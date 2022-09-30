@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "frycmobvariants",
+  "version": "${version}",
+
+  "name": "Mob Variants",
+  "description": "Adds stronger mob variants that spawn underground",
+  "authors": [
+    "Wookash Fryc"
+  ],
+  "contact": {
+    "email": "frycmod@gmail.com"
+  },
+
+  "license": "MIT",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.fryc.frycmobvariants.MobVariants"
+    ],
+    "client": [
+      "net.fryc.frycmobvariants.MobVariantsClient"
+    ]
+  },
+  "mixins": [
+    "frycmobvariants.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

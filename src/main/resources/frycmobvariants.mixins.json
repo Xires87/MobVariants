@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.fryc.frycmobvariants.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ZombieConvertMixin",
+    "SkeletonConvertMixin",
+    "SpiderConvertMixin"
+  ],
+  "client": [
+    "ExampleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

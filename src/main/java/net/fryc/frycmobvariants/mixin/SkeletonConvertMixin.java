@@ -1,6 +1,6 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.gamerules.ModGameRules;
+import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -34,8 +34,8 @@ abstract class SkeletonConvertMixin extends AbstractSkeletonEntity {
             SkeletonEntity skeleton = ((SkeletonEntity)(Object)this);
             if(skeleton.getName().contains(Text.of("Skeleton"))){
                 int i = (int)skeleton.getY();
-                if(canConvert && i < world.getGameRules().getInt(ModGameRules.UNDEAD_WARRIOR_SPAWN_LEVEL)){
-                    if(random.nextInt(i, 100 + i) < world.getGameRules().getInt(ModGameRules.UNDEAD_WARRIOR_SPAWN_LEVEL)){ // ~26% to convert on 0Y level (default)
+                if(canConvert && i < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){
+                    if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)
                         if(skeleton.getMainHandStack().hasEnchantments()){ //skeletons with enchantments on bow always convert to undead warriors with bow
                             skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                         }
@@ -46,8 +46,8 @@ abstract class SkeletonConvertMixin extends AbstractSkeletonEntity {
                             skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                         }
                     }
-                    canConvert = false;
                 }
+                canConvert = false;
             }
         }
     }

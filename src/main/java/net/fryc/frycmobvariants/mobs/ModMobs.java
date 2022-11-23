@@ -26,10 +26,14 @@ public class ModMobs {
             new Identifier(MobVariants.MOD_ID, "armored_spider"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ArmoredSpiderEntity::new).dimensions(EntityDimensions.fixed(1.4F, 0.9F)).build());
 
+    public static final EntityType<CaveCreeperEntity> CAVE_CREEPER = Registry.register(
+            Registry.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "cave_creeper"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CaveCreeperEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.73F)).build());
     public static void registerModMobs(){
         FabricDefaultAttributeRegistry.register(FORGOTTEN, ForgottenEntity.createForgottenAttributes());
         FabricDefaultAttributeRegistry.register(UNDEAD_WARRIOR, UndeadWarriorEntity.createUndeadWarriorAttributes());
         FabricDefaultAttributeRegistry.register(ARMORED_SPIDER, ArmoredSpiderEntity.createArmoredSpiderAttributes());
-
+        FabricDefaultAttributeRegistry.register(CAVE_CREEPER, CaveCreeperEntity.createCreeperAttributes());
     }
 }

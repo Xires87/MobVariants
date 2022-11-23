@@ -1,6 +1,6 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.gamerules.ModGameRules;
+import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
@@ -32,12 +32,12 @@ abstract class SpiderConvertMixin extends HostileEntity {
             SpiderEntity spider = ((SpiderEntity)(Object)this);
             if(spider.getName().contains(Text.of("Spider"))){
                 int i = (int)spider.getY();
-                if(canConvert && i < world.getGameRules().getInt(ModGameRules.ARMORED_SPIDER_SPAWN_LEVEL)){
-                    if(random.nextInt(i, 100 + i) < world.getGameRules().getInt(ModGameRules.ARMORED_SPIDER_SPAWN_LEVEL)){ // ~26% to convert on 0Y level (default)
+                if(canConvert && i < MobVariants.config.spiderToBlackSpiderConvertLevelY){
+                    if(random.nextInt(i, 100 + i) < MobVariants.config.spiderToBlackSpiderConvertLevelY){ // ~26% to convert on 0Y level (default)
                         spider.convertTo(ModMobs.ARMORED_SPIDER, false);
                     }
-                    canConvert = false;
                 }
+                canConvert = false;
             }
         }
     }

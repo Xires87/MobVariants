@@ -9,11 +9,13 @@
     "Wookash Fryc"
   ],
   "contact": {
-    "email": "frycmod@gmail.com"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/mob-variants",
+    "sources": "https://github.com/Xires87/MobVariants",
+    "issues": "https://github.com/Xires87/MobVariants/issues"
   },
 
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/frycmobvariants/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -22,6 +24,9 @@
     ],
     "client": [
       "net.fryc.frycmobvariants.MobVariantsClient"
+    ],
+    "modmenu": [
+      "net.fryc.frycmobvariants.config.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -32,7 +37,8 @@
     "fabricloader": ">=0.14.9",
     "fabric-api": "*",
     "minecraft": "~1.19",
-    "java": ">=17"
+    "java": ">=17",
+    "cloth-config": ">=8.2.88"
   },
   "suggests": {
     "another-mod": "*"

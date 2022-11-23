@@ -18,5 +18,9 @@ public class ModMobsRenderers {
             return new ArmoredSpiderEntityRenderer(context);
         });
 
+        EntityRendererRegistry.register(ModMobs.CAVE_CREEPER, (context) -> {
+            return new CaveCreeperEntityRenderer(context);
+        });
+
     }
 }

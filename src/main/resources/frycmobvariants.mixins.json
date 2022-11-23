@@ -6,10 +6,10 @@
   "mixins": [
     "ZombieConvertMixin",
     "SkeletonConvertMixin",
-    "SpiderConvertMixin"
+    "SpiderConvertMixin",
+    "CreeperConvertMixin"
   ],
   "client": [
-    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -31,23 +31,25 @@ abstract class SkeletonConvertMixin extends AbstractSkeletonEntity {
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void convertToUndeadWarrior(CallbackInfo info) {
         if(!world.isClient){
-            SkeletonEntity skeleton = ((SkeletonEntity)(Object)this);
-            if(skeleton.getName().contains(Text.of("Skeleton"))){
-                int i = (int)skeleton.getY();
-                if(canConvert && i < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){
-                    if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)
-                        if(skeleton.getMainHandStack().hasEnchantments()){ //skeletons with enchantments on bow always convert to undead warriors with bow
-                            skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
-                        }
-                        else{
-                            if(random.nextBoolean()){ //50% to give skeleton a sword
-                                skeleton.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+            if(canConvert){
+                SkeletonEntity skeleton = ((SkeletonEntity)(Object)this);
+                if(skeleton.getName().contains(Text.of("Skeleton"))){
+                    int i = (int)skeleton.getY();
+                    if(i < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){
+                        if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)
+                            if(skeleton.getMainHandStack().hasEnchantments()){ //skeletons with enchantments on bow always convert to undead warriors with bow
+                                skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                             }
-                            skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
+                            else{
+                                if(random.nextBoolean()){ //50% to give skeleton a sword
+                                    skeleton.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+                                }
+                                skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
+                            }
                         }
                     }
+                    canConvert = false;
                 }
-                canConvert = false;
             }
         }
     }

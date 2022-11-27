@@ -31,15 +31,17 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void convertToForgotten(CallbackInfo info) {
         if(!world.isClient){
-            CreeperEntity creeper = ((CreeperEntity)(Object)this);
-            if(creeper.getName().contains(Text.of("Creeper"))){
-                int i = (int)creeper.getY();
-                if(canConvert && i < MobVariants.config.creeperToCaveCreeperConvertLevelY){
-                    if(random.nextInt(i, 100 + i) < MobVariants.config.creeperToCaveCreeperConvertLevelY){ // ~26% to convert on 0Y level (default)
-                        creeper.convertTo(ModMobs.CAVE_CREEPER, false);
+            if(canConvert){
+                CreeperEntity creeper = ((CreeperEntity)(Object)this);
+                if(creeper.getName().contains(Text.of("Creeper"))){
+                    int i = (int)creeper.getY();
+                    if(i < MobVariants.config.creeperToCaveCreeperConvertLevelY){
+                        if(random.nextInt(i, 100 + i) < MobVariants.config.creeperToCaveCreeperConvertLevelY){ // ~26% to convert on 0Y level (default)
+                            creeper.convertTo(ModMobs.CAVE_CREEPER, false);
+                        }
                     }
+                    canConvert = false;
                 }
-                canConvert = false;
             }
         }
     }

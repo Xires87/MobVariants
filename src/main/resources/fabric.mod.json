@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Mob Variants",
-  "description": "Adds stronger mob variants that spawn underground",
+  "description": "Adds stronger mob variants",
   "authors": [
     "Wookash Fryc"
   ],

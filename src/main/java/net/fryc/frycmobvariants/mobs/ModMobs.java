@@ -11,6 +11,7 @@ import net.minecraft.util.registry.Registry;
 
 public class ModMobs {
 
+    //cave variants
     public static final EntityType<ForgottenEntity> FORGOTTEN = Registry.register(
             Registry.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "forgotten"),
@@ -30,10 +31,38 @@ public class ModMobs {
             Registry.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "cave_creeper"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CaveCreeperEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.73F)).build());
+
+    //biome variants
+    public static final EntityType<ExplorerEntity> EXPLORER = Registry.register(
+            Registry.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "explorer"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ExplorerEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).build());
+
+
+    //nether variants
+    public static final EntityType<ExecutionerEntity> EXECUTIONER = Registry.register(
+            Registry.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "executioner"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ExecutionerEntity::new).dimensions(EntityDimensions.fixed(0.73F, 2.6F)).fireImmune().build());
+
+    public static final EntityType<NightmareEntity> NIGHTMARE = Registry.register(
+            Registry.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "nightmare"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, NightmareEntity::new).dimensions(EntityDimensions.fixed(4.0F, 4.0F)).fireImmune().build());
+
     public static void registerModMobs(){
+        //cave variants
         FabricDefaultAttributeRegistry.register(FORGOTTEN, ForgottenEntity.createForgottenAttributes());
         FabricDefaultAttributeRegistry.register(UNDEAD_WARRIOR, UndeadWarriorEntity.createUndeadWarriorAttributes());
         FabricDefaultAttributeRegistry.register(ARMORED_SPIDER, ArmoredSpiderEntity.createArmoredSpiderAttributes());
         FabricDefaultAttributeRegistry.register(CAVE_CREEPER, CaveCreeperEntity.createCreeperAttributes());
+
+        //biome variants
+        FabricDefaultAttributeRegistry.register(EXPLORER, ExplorerEntity.createZombieAttributes());
+
+        //nether variants
+        FabricDefaultAttributeRegistry.register(EXECUTIONER, ExecutionerEntity.createExecutionerAttributes());
+        FabricDefaultAttributeRegistry.register(NIGHTMARE, NightmareEntity.createNightmareAttributes());
+
     }
 }

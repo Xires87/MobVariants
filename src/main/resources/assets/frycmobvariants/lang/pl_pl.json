@@ -3,11 +3,22 @@
   "entity.frycmobvariants.undead_warrior": "Nieumarły Wojownik",
   "entity.frycmobvariants.forgotten": "Zapomniany",
   "entity.frycmobvariants.cave_creeper": "Jaskiniowy Creeper",
+  "entity.frycmobvariants.executioner": "Kat",
+  "entity.frycmobvariants.explorer": "Odkrywca",
+  "entity.frycmobvariants.nightmare": "Koszmar",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Jajo przyzywające Zapomnianego",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Jajo przyzywające Nieumarłego Wojownika",
   "item.frycmobvariants.armored_spider_spawn_egg": "Jajo przyzywające Czarnego Pająka",
   "item.frycmobvariants.cave_creeper_spawn_egg": "Jajo przyzywające Jaskiniowego Creepera",
+  "item.frycmobvariants.executioner_spawn_egg": "Jajo przyzywające Kata",
+  "item.frycmobvariants.explorer_spawn_egg": "Jajo przyzywające Odkrywcę",
+  "item.frycmobvariants.nightmare_spawn_egg": "Jajo przyzywające Koszmar",
+
+  "text.autoconfig.frycmobvariants.title": "Konfiguracja Mob Variants",
+  "text.autoconfig.frycmobvariants.category.cave": "Podziemne",
+  "text.autoconfig.frycmobvariants.category.biome": "Biomy",
+  "text.autoconfig.frycmobvariants.category.nether": "Nether",
 
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Przemień Zombie w Zapomnianych poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "Zombie mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
@@ -19,5 +30,13 @@
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY.@Tooltip": "Szkielety mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
 
   "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY": "Przemień Creepery w Jaskinowe Creepery poniżej wybranego poziomu Y:",
-  "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY.@Tooltip": "Creepery mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y"
+  "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY.@Tooltip": "Creepery mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
+
+  "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance": "Szansa na zmienienie Witherowego Szkieleta w Kata",
+  "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Witherowe Szkielety mają 10% szans na zmienienie się w Kata przy pojawieniu się",
+  "text.autoconfig.frycmobvariants.option.ghastConvertChance": "Szansa na zmienienie Ghasta w Koszmar",
+  "text.autoconfig.frycmobvariants.option.ghastConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Ghasty mają 10% szans na zmienienie się w Koszmar przy pojawieniu się",
+
+  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Szansa na zmienienie Zombie w Odkrywcę na bagnie, w dżungli lub w porośniętej jaskini:",
+  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 90, Zombie mają 90% szans na zmienienie się w Odkrywcę przy pojawieniu się na jednym ze wspomnianych biomów"
 }

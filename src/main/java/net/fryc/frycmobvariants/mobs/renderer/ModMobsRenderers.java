@@ -6,6 +6,7 @@ import net.fryc.frycmobvariants.mobs.ModMobs;
 public class ModMobsRenderers {
 
     public static void registerMobRenderers(){
+        //cave variants
         EntityRendererRegistry.register(ModMobs.FORGOTTEN, (context) -> {
             return new ForgottenEntityRenderer(context);
         });
@@ -22,5 +23,19 @@ public class ModMobsRenderers {
             return new CaveCreeperEntityRenderer(context);
         });
 
+        //biome variants
+        EntityRendererRegistry.register(ModMobs.EXPLORER, (context) -> {
+            return new ExplorerEntityRenderer(context);
+        });
+
+
+        //nether variants
+        EntityRendererRegistry.register(ModMobs.EXECUTIONER, (context) -> {
+            return new ExecutionerEntityRenderer(context);
+        });
+
+        EntityRendererRegistry.register(ModMobs.NIGHTMARE, (context) -> {
+            return new NightmareEntityRenderer(context);
+        });
     }
 }

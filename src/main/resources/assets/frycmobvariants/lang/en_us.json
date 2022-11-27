@@ -3,21 +3,40 @@
   "entity.frycmobvariants.undead_warrior": "Undead Warrior",
   "entity.frycmobvariants.forgotten": "Forgotten",
   "entity.frycmobvariants.cave_creeper": "Cave Creeper",
+  "entity.frycmobvariants.executioner": "Executioner",
+  "entity.frycmobvariants.explorer": "Explorer",
+  "entity.frycmobvariants.nightmare": "Nightmare",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Forgotten Spawn Egg",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Undead Warrior Spawn Egg",
   "item.frycmobvariants.armored_spider_spawn_egg": "Black Spider Spawn Egg",
   "item.frycmobvariants.cave_creeper_spawn_egg": "Cave Creeper Spawn Egg",
+  "item.frycmobvariants.executioner_spawn_egg": "Executioner Spawn Egg",
+  "item.frycmobvariants.explorer_spawn_egg": "Explorer Spawn Egg",
+  "item.frycmobvariants.nightmare_spawn_egg": "Nightmare Spawn Egg",
 
-  "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Convert zombies to forgotten under selected Y level:",
+  "text.autoconfig.frycmobvariants.title": "Mob Variants Config",
+  "text.autoconfig.frycmobvariants.category.cave": "Underground",
+  "text.autoconfig.frycmobvariants.category.biome": "Biomes",
+  "text.autoconfig.frycmobvariants.category.nether": "Nether",
+
+  "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Convert Zombies to Forgottens under selected Y level:",
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "Zombies have a chance to convert into stronger variant when they spawn below this Y level",
 
-  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Convert spiders to black spiders under selected Y level:",
+  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Convert Spiders to Black Spiders under selected Y level:",
   "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY.@Tooltip": "Spiders have a chance to convert into stronger variant when they spawn below this Y level",
 
-  "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY": "Convert skeletons to undead warriors under selected Y level:",
+  "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY": "Convert Skeletons to Undead Warriors under selected Y level:",
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY.@Tooltip": "Skeletons have a chance to convert into stronger variant when they spawn below this Y level",
 
   "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY": "Convert creepers to cave creepers under selected Y level:",
-  "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY.@Tooltip": "Creepers have a chance to convert into stronger variant when they spawn below this Y level"
+  "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY.@Tooltip": "Creepers have a chance to convert into stronger variant when they spawn below this Y level",
+
+  "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance": "Chance to convert Wither Skeleton to Executioner",
+  "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance.@Tooltip": "For example, when set to 10, Wither Skeleton will have 10% chance to convert to Executioner after spawning",
+  "text.autoconfig.frycmobvariants.option.ghastConvertChance": "Chance to convert Ghast to Nightmare",
+  "text.autoconfig.frycmobvariants.option.ghastConvertChance.@Tooltip": "For example, when set to 10, Ghast will have 10% chance to convert to Nightmare after spawning",
+
+  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Chance to convert Zombie to Explorer in jungle, swamp or lush cave:",
+  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning on one of mentioned biomes"
 }

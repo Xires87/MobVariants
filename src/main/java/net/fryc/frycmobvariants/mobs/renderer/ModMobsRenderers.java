@@ -28,6 +28,10 @@ public class ModMobsRenderers {
             return new ExplorerEntityRenderer(context);
         });
 
+        EntityRendererRegistry.register(ModMobs.TROPICAL_SPIDER, (context) -> {
+            return new TropicalSpiderEntityRenderer(context);
+        });
+
 
         //nether variants
         EntityRendererRegistry.register(ModMobs.EXECUTIONER, (context) -> {

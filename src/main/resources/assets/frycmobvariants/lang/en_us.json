@@ -6,6 +6,7 @@
   "entity.frycmobvariants.executioner": "Executioner",
   "entity.frycmobvariants.explorer": "Explorer",
   "entity.frycmobvariants.nightmare": "Nightmare",
+  "entity.frycmobvariants.tropical_spider": "Tropical Spider",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Forgotten Spawn Egg",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Undead Warrior Spawn Egg",
@@ -14,6 +15,7 @@
   "item.frycmobvariants.executioner_spawn_egg": "Executioner Spawn Egg",
   "item.frycmobvariants.explorer_spawn_egg": "Explorer Spawn Egg",
   "item.frycmobvariants.nightmare_spawn_egg": "Nightmare Spawn Egg",
+  "item.frycmobvariants.tropical_spider_spawn_egg": "Tropical Spider Spawn Egg",
 
   "text.autoconfig.frycmobvariants.title": "Mob Variants Config",
   "text.autoconfig.frycmobvariants.category.cave": "Underground",
@@ -38,5 +40,8 @@
   "text.autoconfig.frycmobvariants.option.ghastConvertChance.@Tooltip": "For example, when set to 10, Ghast will have 10% chance to convert to Nightmare after spawning",
 
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Chance to convert Zombie to Explorer in jungle, swamp or lush cave:",
-  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning on one of mentioned biomes"
+  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning on one of mentioned biomes",
+
+  "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "Chance to convert Spider to Tropical Spider in jungle:",
+  "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "For example, when set to 70, Spider will have 70% chance to convert to Tropical Spider after spawning on one of mentioned biomes"
 }

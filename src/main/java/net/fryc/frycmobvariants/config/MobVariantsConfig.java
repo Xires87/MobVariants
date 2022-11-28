@@ -44,5 +44,10 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombieToExplorerConvertChance = 80;
+    public int zombieToExplorerConvertChance = 75;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("biome")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int spiderToTropicalSpiderConvertChance = 75;
 }

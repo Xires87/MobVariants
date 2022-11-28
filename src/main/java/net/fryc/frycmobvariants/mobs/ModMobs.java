@@ -38,6 +38,11 @@ public class ModMobs {
             new Identifier(MobVariants.MOD_ID, "explorer"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ExplorerEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).build());
 
+    public static final EntityType<TropicalSpiderEntity> TROPICAL_SPIDER = Registry.register(
+            Registry.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "tropical_spider"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TropicalSpiderEntity::new).dimensions(EntityDimensions.fixed(1.4F, 0.9F)).build());
+
 
     //nether variants
     public static final EntityType<ExecutionerEntity> EXECUTIONER = Registry.register(
@@ -59,6 +64,7 @@ public class ModMobs {
 
         //biome variants
         FabricDefaultAttributeRegistry.register(EXPLORER, ExplorerEntity.createZombieAttributes());
+        FabricDefaultAttributeRegistry.register(TROPICAL_SPIDER, TropicalSpiderEntity.createTropicalSpiderAttributes());
 
         //nether variants
         FabricDefaultAttributeRegistry.register(EXECUTIONER, ExecutionerEntity.createExecutionerAttributes());

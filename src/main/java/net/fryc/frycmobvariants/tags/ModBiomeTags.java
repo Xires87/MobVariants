@@ -1,9 +1,9 @@
 package net.fryc.frycmobvariants.tags;
 
 import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 
 public class ModBiomeTags {
@@ -13,6 +13,6 @@ public class ModBiomeTags {
     private ModBiomeTags(){
     }
     private static TagKey<Biome> register(String id) {
-        return TagKey.of(Registry.BIOME_KEY, new Identifier(MobVariants.MOD_ID, id));
+        return TagKey.of(RegistryKeys.BIOME, new Identifier(MobVariants.MOD_ID, id));
     }
 }

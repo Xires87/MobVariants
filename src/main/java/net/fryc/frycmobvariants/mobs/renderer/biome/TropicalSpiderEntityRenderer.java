@@ -1,9 +1,9 @@
-package net.fryc.frycmobvariants.mobs.renderer;
+package net.fryc.frycmobvariants.mobs.renderer.biome;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.TropicalSpiderEntity;
+import net.fryc.frycmobvariants.mobs.biome.TropicalSpiderEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.SpiderEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayers;

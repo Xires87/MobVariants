@@ -1,4 +1,4 @@
-package net.fryc.frycmobvariants.mobs;
+package net.fryc.frycmobvariants.mobs.nether;
 
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;

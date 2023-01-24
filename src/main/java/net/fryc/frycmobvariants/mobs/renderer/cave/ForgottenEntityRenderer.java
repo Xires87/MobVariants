@@ -1,4 +1,4 @@
-package net.fryc.frycmobvariants.mobs.renderer;
+package net.fryc.frycmobvariants.mobs.renderer.cave;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -10,11 +10,11 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class ExplorerEntityRenderer extends ZombieEntityRenderer {
+public class ForgottenEntityRenderer extends ZombieEntityRenderer {
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/zombie/explorer.png");
+            new Identifier(MobVariants.MOD_ID, "textures/entity/zombie/forgotten.png");
 
-    public ExplorerEntityRenderer(EntityRendererFactory.Context context) {
+    public ForgottenEntityRenderer(EntityRendererFactory.Context context) {
         super(context,EntityModelLayers.ZOMBIE, EntityModelLayers.ZOMBIE_INNER_ARMOR, EntityModelLayers.ZOMBIE_OUTER_ARMOR);
     }
 

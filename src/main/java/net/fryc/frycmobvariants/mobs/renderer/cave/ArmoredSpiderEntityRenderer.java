@@ -1,9 +1,9 @@
-package net.fryc.frycmobvariants.mobs.renderer;
+package net.fryc.frycmobvariants.mobs.renderer.cave;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.ArmoredSpiderEntity;
+import net.fryc.frycmobvariants.mobs.cave.ArmoredSpiderEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.SpiderEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayers;

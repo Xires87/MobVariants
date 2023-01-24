@@ -2,6 +2,16 @@ package net.fryc.frycmobvariants.mobs.renderer;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fryc.frycmobvariants.mobs.ModMobs;
+import net.fryc.frycmobvariants.mobs.renderer.biome.ExplorerEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.biome.TropicalSpiderEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.cave.ArmoredSpiderEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.cave.CaveCreeperEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.cave.ForgottenEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.cave.UndeadWarriorEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.nether.ExecutionerEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.nether.InfectedPiglinBruteEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.nether.InfectedPiglinEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.nether.NightmareEntityRenderer;
 
 public class ModMobsRenderers {
 
@@ -40,6 +50,14 @@ public class ModMobsRenderers {
 
         EntityRendererRegistry.register(ModMobs.NIGHTMARE, (context) -> {
             return new NightmareEntityRenderer(context);
+        });
+
+        EntityRendererRegistry.register(ModMobs.INFECTED_PIGLIN, (context) -> {
+            return new InfectedPiglinEntityRenderer(context);
+        });
+
+        EntityRendererRegistry.register(ModMobs.INFECTED_PIGLIN_BRUTE, (context) -> {
+            return new InfectedPiglinBruteEntityRenderer(context);
         });
     }
 }

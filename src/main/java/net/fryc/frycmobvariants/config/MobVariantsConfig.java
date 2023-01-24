@@ -39,6 +39,16 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int ghastConvertChance = 26;
 
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int piglinConvertChance = 29;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int piglinBruteConvertChance = 39;
+
 
     //biomes
     @ConfigEntry.Gui.Tooltip

@@ -1,4 +1,4 @@
-package net.fryc.frycmobvariants.mobs;
+package net.fryc.frycmobvariants.mobs.biome;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.pathing.EntityNavigation;

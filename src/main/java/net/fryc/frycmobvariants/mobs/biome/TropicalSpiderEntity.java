@@ -1,4 +1,4 @@
-package net.fryc.frycmobvariants.mobs;
+package net.fryc.frycmobvariants.mobs.biome;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;

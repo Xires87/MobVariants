@@ -9,7 +9,9 @@
     "SpiderConvertMixin",
     "CreeperConvertMixin",
     "WitherSkeletonConvertMixin",
-    "GhastConvertMixin"
+    "GhastConvertMixin",
+    "PiglinConvertMixin",
+    "PiglinBruteConvertMixin"
   ],
   "client": [
   ],

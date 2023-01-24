@@ -5,7 +5,7 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.mobs.ModMobs;
-import net.fryc.frycmobvariants.mobs.eggs.ModSpawnEggs;
+import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +23,6 @@ public class MobVariants implements ModInitializer {
 
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();
-
+//todo lang, loot tables and frozen zombie
 	}
 }

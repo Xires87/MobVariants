@@ -1,8 +1,7 @@
-package net.fryc.frycmobvariants.mobs.eggs;
+package net.fryc.frycmobvariants.mobs;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -23,6 +22,8 @@ public class ModSpawnEggs {
     //nether variants
     public static final Item EXECUTIONER_SPAWN_EGG = new SpawnEggItem(ModMobs.EXECUTIONER, 1315860, 4673845, new Item.Settings());
     public static final Item NIGHTMARE_SPAWN_EGG = new SpawnEggItem(ModMobs.NIGHTMARE, 16382451, 12369044, new Item.Settings());
+    public static final Item INFECTED_PIGLIN_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN, 15373203, 16380836, new Item.Settings());
+    public static final Item INFECTED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN_BRUTE, 15771042, 16380836, new Item.Settings());
     public static void registerSpawnEggs(){
         //cave variants
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "forgotten_spawn_egg"), FORGOTTEN_SPAWN_EGG);
@@ -37,6 +38,8 @@ public class ModSpawnEggs {
         //nether variants
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "executioner_spawn_egg"), EXECUTIONER_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "nightmare_spawn_egg"), NIGHTMARE_SPAWN_EGG);
+        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_spawn_egg"), INFECTED_PIGLIN_SPAWN_EGG);
+        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_brute_spawn_egg"), INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
 
         //Item group
         ItemGroup MOB_VARIANTS = FabricItemGroup.builder(new Identifier(MobVariants.MOD_ID, "mob_variants_spawn_eggs"))
@@ -51,6 +54,8 @@ public class ModSpawnEggs {
                     entries.add(ModSpawnEggs.TROPICAL_SPIDER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.EXECUTIONER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.NIGHTMARE_SPAWN_EGG);
+                    entries.add(ModSpawnEggs.INFECTED_PIGLIN_SPAWN_EGG);
+                    entries.add(ModSpawnEggs.INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
                 })
                 .build();
     }

@@ -1,4 +1,4 @@
-package net.fryc.frycmobvariants.mobs.renderer;
+package net.fryc.frycmobvariants.mobs.renderer.nether;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

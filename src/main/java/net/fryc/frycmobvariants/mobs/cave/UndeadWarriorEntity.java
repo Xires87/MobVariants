@@ -1,4 +1,4 @@
-package net.fryc.frycmobvariants.mobs;
+package net.fryc.frycmobvariants.mobs.cave;
 
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;

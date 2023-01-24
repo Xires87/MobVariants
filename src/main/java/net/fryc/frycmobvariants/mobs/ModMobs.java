@@ -3,6 +3,16 @@ package net.fryc.frycmobvariants.mobs;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.mobs.biome.ExplorerEntity;
+import net.fryc.frycmobvariants.mobs.biome.TropicalSpiderEntity;
+import net.fryc.frycmobvariants.mobs.cave.ArmoredSpiderEntity;
+import net.fryc.frycmobvariants.mobs.cave.CaveCreeperEntity;
+import net.fryc.frycmobvariants.mobs.cave.ForgottenEntity;
+import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
+import net.fryc.frycmobvariants.mobs.nether.ExecutionerEntity;
+import net.fryc.frycmobvariants.mobs.nether.InfectedPiglinBruteEntity;
+import net.fryc.frycmobvariants.mobs.nether.InfectedPiglinEntity;
+import net.fryc.frycmobvariants.mobs.nether.NightmareEntity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -56,6 +66,16 @@ public class ModMobs {
             new Identifier(MobVariants.MOD_ID, "nightmare"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, NightmareEntity::new).dimensions(EntityDimensions.fixed(4.0F, 4.0F)).fireImmune().build());
 
+    public static final EntityType<InfectedPiglinEntity> INFECTED_PIGLIN = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "infected_piglin"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InfectedPiglinEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).fireImmune().build());
+
+    public static final EntityType<InfectedPiglinBruteEntity> INFECTED_PIGLIN_BRUTE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "infected_piglin_brute"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InfectedPiglinBruteEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).fireImmune().build());
+
     public static void registerModMobs(){
         //cave variants
         FabricDefaultAttributeRegistry.register(FORGOTTEN, ForgottenEntity.createForgottenAttributes());
@@ -70,6 +90,8 @@ public class ModMobs {
         //nether variants
         FabricDefaultAttributeRegistry.register(EXECUTIONER, ExecutionerEntity.createExecutionerAttributes());
         FabricDefaultAttributeRegistry.register(NIGHTMARE, NightmareEntity.createNightmareAttributes());
+        FabricDefaultAttributeRegistry.register(INFECTED_PIGLIN, InfectedPiglinEntity.createPiglinAttributes());
+        FabricDefaultAttributeRegistry.register(INFECTED_PIGLIN_BRUTE, InfectedPiglinBruteEntity.createPiglinBruteAttributes());
 
     }
 }

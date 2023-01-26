@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.biome.ExplorerEntity;
+import net.fryc.frycmobvariants.mobs.biome.FrozenZombieEntity;
 import net.fryc.frycmobvariants.mobs.biome.TropicalSpiderEntity;
 import net.fryc.frycmobvariants.mobs.cave.ArmoredSpiderEntity;
 import net.fryc.frycmobvariants.mobs.cave.CaveCreeperEntity;
@@ -26,7 +27,7 @@ public class ModMobs {
     public static final EntityType<ForgottenEntity> FORGOTTEN = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "forgotten"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ForgottenEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).build());
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ForgottenEntity::new).dimensions(EntityDimensions.changing(0.6F, 1.95F)).build());
 
     public static final EntityType<UndeadWarriorEntity> UNDEAD_WARRIOR = Registry.register(
             Registries.ENTITY_TYPE,
@@ -47,7 +48,12 @@ public class ModMobs {
     public static final EntityType<ExplorerEntity> EXPLORER = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "explorer"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ExplorerEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).build());
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ExplorerEntity::new).dimensions(EntityDimensions.changing(0.6F, 1.95F)).build());
+
+    public static final EntityType<FrozenZombieEntity> FROZEN_ZOMBIE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "frozen_zombie"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, FrozenZombieEntity::new).dimensions(EntityDimensions.changing(0.6F, 1.95F)).build());
 
     public static final EntityType<TropicalSpiderEntity> TROPICAL_SPIDER = Registry.register(
             Registries.ENTITY_TYPE,
@@ -69,7 +75,7 @@ public class ModMobs {
     public static final EntityType<InfectedPiglinEntity> INFECTED_PIGLIN = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "infected_piglin"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InfectedPiglinEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).fireImmune().build());
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InfectedPiglinEntity::new).dimensions(EntityDimensions.changing(0.6F, 1.95F)).fireImmune().build());
 
     public static final EntityType<InfectedPiglinBruteEntity> INFECTED_PIGLIN_BRUTE = Registry.register(
             Registries.ENTITY_TYPE,
@@ -85,6 +91,7 @@ public class ModMobs {
 
         //biome variants
         FabricDefaultAttributeRegistry.register(EXPLORER, ExplorerEntity.createZombieAttributes());
+        FabricDefaultAttributeRegistry.register(FROZEN_ZOMBIE, FrozenZombieEntity.createFrozenZombieAttributes());
         FabricDefaultAttributeRegistry.register(TROPICAL_SPIDER, TropicalSpiderEntity.createTropicalSpiderAttributes());
 
         //nether variants

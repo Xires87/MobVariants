@@ -4,11 +4,11 @@ import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,9 +31,10 @@ abstract class SkeletonConvertMixin extends AbstractSkeletonEntity {
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void convertToUndeadWarrior(CallbackInfo info) {
         if(!world.isClient){
+            SkeletonEntity skeleton = ((SkeletonEntity)(Object)this);
+            if(skeleton.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                SkeletonEntity skeleton = ((SkeletonEntity)(Object)this);
-                if(skeleton.getName().contains(Text.of("Skeleton"))){
+                if(skeleton.getClass() == SkeletonEntity.class){
                     int i = (int)skeleton.getY();
                     if(i < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){
                         if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)

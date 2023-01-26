@@ -16,11 +16,11 @@ public class InfectedPiglinEntity extends PiglinEntity {
 
 
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 1.79F;
+        return super.getActiveEyeHeight(pose, dimensions);
     }
 
-    public boolean isBaby() {
-        return false;
+    public double getMountedHeightOffset() {
+        return (double)this.getHeight() * 0.92;
     }
 
 }

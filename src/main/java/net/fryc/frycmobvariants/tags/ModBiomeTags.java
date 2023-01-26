@@ -9,6 +9,8 @@ import net.minecraft.world.biome.Biome;
 public class ModBiomeTags {
     public static final TagKey<Biome> EXPLORER_SPAWN_BIOMES = ModBiomeTags.register("explorer_spawn_biomes");
 
+    public static final TagKey<Biome> SNOWY_BIOMES = ModBiomeTags.register("snowy_biomes");
+
 
     private ModBiomeTags(){
     }

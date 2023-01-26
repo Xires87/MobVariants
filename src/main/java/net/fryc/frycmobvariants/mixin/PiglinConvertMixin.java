@@ -5,9 +5,9 @@ import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.minecraft.entity.CrossbowUser;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.InventoryOwner;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.PiglinEntity;
-import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,13 +28,13 @@ abstract class PiglinConvertMixin extends AbstractPiglinEntity implements Crossb
 
     //converts piglin to infected piglin
     //only first mob tick (right after spawning) tries to convert it
-    //baby piglins won't convert
     @Inject(at = @At("TAIL"), method = "mobTick()V")
     public void convertToPiglinVariant(CallbackInfo info) {
         if(!world.isClient){
+            PiglinEntity piglin = ((PiglinEntity)(Object)this);
+            if(piglin.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                PiglinEntity piglin = ((PiglinEntity)(Object)this);
-                if(piglin.getName().contains(Text.of("Piglin")) && !piglin.isBaby()){
+                if(piglin.getClass() == PiglinEntity.class){
                     if(random.nextInt(0, 100) <= MobVariants.config.piglinConvertChance){
                         piglin.convertTo(ModMobs.INFECTED_PIGLIN, true);
                     }

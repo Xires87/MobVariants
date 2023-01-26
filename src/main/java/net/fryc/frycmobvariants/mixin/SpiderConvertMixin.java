@@ -3,10 +3,10 @@ package net.fryc.frycmobvariants.mixin;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.registry.tag.BiomeTags;
-import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -30,9 +30,10 @@ abstract class SpiderConvertMixin extends HostileEntity {
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void convertToSpiderVariant(CallbackInfo info) {
         if(!world.isClient){
+            SpiderEntity spider = ((SpiderEntity)(Object)this);
+            if(spider.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                SpiderEntity spider = ((SpiderEntity)(Object)this);
-                if(spider.getName().contains(Text.of("Spider"))){
+                if(spider.getClass() == SpiderEntity.class){
                     int i = (int)spider.getY();
                     if(i > 40 && spider.getWorld().getBiome(spider.getBlockPos()).isIn(BiomeTags.IS_JUNGLE)){
                         if(random.nextInt(0, 100) <= MobVariants.config.spiderToTropicalSpiderConvertChance) spider.convertTo(ModMobs.TROPICAL_SPIDER, false); // ~80% chance to convert in jungle (default)

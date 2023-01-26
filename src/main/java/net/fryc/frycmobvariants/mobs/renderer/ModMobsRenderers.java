@@ -3,6 +3,7 @@ package net.fryc.frycmobvariants.mobs.renderer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.renderer.biome.ExplorerEntityRenderer;
+import net.fryc.frycmobvariants.mobs.renderer.biome.FrozenZombieEntityRenderer;
 import net.fryc.frycmobvariants.mobs.renderer.biome.TropicalSpiderEntityRenderer;
 import net.fryc.frycmobvariants.mobs.renderer.cave.ArmoredSpiderEntityRenderer;
 import net.fryc.frycmobvariants.mobs.renderer.cave.CaveCreeperEntityRenderer;
@@ -36,6 +37,10 @@ public class ModMobsRenderers {
         //biome variants
         EntityRendererRegistry.register(ModMobs.EXPLORER, (context) -> {
             return new ExplorerEntityRenderer(context);
+        });
+
+        EntityRendererRegistry.register(ModMobs.FROZEN_ZOMBIE, (context) -> {
+            return new FrozenZombieEntityRenderer(context);
         });
 
         EntityRendererRegistry.register(ModMobs.TROPICAL_SPIDER, (context) -> {

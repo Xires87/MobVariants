@@ -30,9 +30,12 @@ public class ForgottenEntity extends ZombieEntity {
         return bl;
     }
 
-    //forgotten can't spawn as baby
-    public boolean isBaby() {
-        return false;
+    public double getHeightOffset() {
+        return this.isBaby() ? 0.0 : -0.45;
+    }
+
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+        return this.isBaby() ? 0.93F : 1.74F;
     }
 
 

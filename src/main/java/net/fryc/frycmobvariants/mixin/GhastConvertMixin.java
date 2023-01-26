@@ -3,10 +3,10 @@ package net.fryc.frycmobvariants.mixin;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.FlyingEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.Monster;
-import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -25,9 +25,10 @@ abstract class GhastConvertMixin extends FlyingEntity implements Monster {
     public void tick() {
         super.tick();
         if (!world.isClient) {
+            GhastEntity ghast = ((GhastEntity) (Object) this);
+            if(ghast.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if (canConvert) {
-                GhastEntity ghast = ((GhastEntity) (Object) this);
-                if (ghast.getName().contains(Text.of("Ghast"))) {
+                if (ghast.getClass() == GhastEntity.class) {
                     if (random.nextInt(0, 100) <= MobVariants.config.ghastConvertChance) {
                         ghast.convertTo(ModMobs.NIGHTMARE, false);
                     }

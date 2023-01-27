@@ -2,6 +2,7 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
+import net.fryc.frycmobvariants.mobs.biome.FrozenZombieEntity;
 import net.fryc.frycmobvariants.tags.ModBiomeTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
@@ -55,7 +56,7 @@ abstract class ZombieConvertMixin extends HostileEntity {
                 }
             }
 
-            if(zombie.isAlive() && !zombie.isAiDisabled() && !zombie.canFreeze()){
+            if(zombie.isAlive() && !zombie.isAiDisabled() && !zombie.canFreeze() && zombie.getClass() != FrozenZombieEntity.class){
                 if (zombie.inPowderSnow) {
                     if (inPowderSnowTime >= 140) {
                         --convertToFrozenZombieTime;

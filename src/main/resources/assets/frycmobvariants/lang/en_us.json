@@ -5,8 +5,11 @@
   "entity.frycmobvariants.cave_creeper": "Cave Creeper",
   "entity.frycmobvariants.executioner": "Executioner",
   "entity.frycmobvariants.explorer": "Explorer",
+  "entity.frycmobvariants.frozen_zombie": "Frozen Zombie",
   "entity.frycmobvariants.nightmare": "Nightmare",
   "entity.frycmobvariants.tropical_spider": "Tropical Spider",
+  "entity.frycmobvariants.infected_piglin": "Infected Piglin",
+  "entity.frycmobvariants.infected_piglin_brute": "Infected Piglin Brute",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Forgotten Spawn Egg",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Undead Warrior Spawn Egg",
@@ -14,8 +17,11 @@
   "item.frycmobvariants.cave_creeper_spawn_egg": "Cave Creeper Spawn Egg",
   "item.frycmobvariants.executioner_spawn_egg": "Executioner Spawn Egg",
   "item.frycmobvariants.explorer_spawn_egg": "Explorer Spawn Egg",
+  "item.frycmobvariants.frozen_zombie_spawn_egg": "Frozen Zombie Spawn Egg",
   "item.frycmobvariants.nightmare_spawn_egg": "Nightmare Spawn Egg",
   "item.frycmobvariants.tropical_spider_spawn_egg": "Tropical Spider Spawn Egg",
+  "item.frycmobvariants.infected_piglin_spawn_egg": "Infected Piglin Spawn Egg",
+  "item.frycmobvariants.infected_piglin_brute_spawn_egg": "Infected Piglin Brute Spawn Egg",
 
   "text.autoconfig.frycmobvariants.title": "Mob Variants Config",
   "text.autoconfig.frycmobvariants.category.cave": "Underground",
@@ -36,11 +42,21 @@
 
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance": "Chance to convert Wither Skeleton to Executioner",
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance.@Tooltip": "For example, when set to 10, Wither Skeleton will have 10% chance to convert to Executioner after spawning",
+
   "text.autoconfig.frycmobvariants.option.ghastConvertChance": "Chance to convert Ghast to Nightmare",
   "text.autoconfig.frycmobvariants.option.ghastConvertChance.@Tooltip": "For example, when set to 10, Ghast will have 10% chance to convert to Nightmare after spawning",
 
+  "text.autoconfig.frycmobvariants.option.piglinConvertChance": "Chance to convert Piglin to Infected Piglin",
+  "text.autoconfig.frycmobvariants.option.piglinConvertChance.@Tooltip": "For example, when set to 10, Piglin will have 10% chance to convert to Infected Piglin after spawning",
+
+  "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance": "Chance to convert Piglin Brute to Infected Piglin Brute",
+  "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance.@Tooltip": "For example, when set to 10, Piglin Brute will have 10% chance to convert to Infected Piglin Brute after spawning",
+
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Chance to convert Zombie to Explorer in jungle, swamp or lush cave:",
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning on one of mentioned biomes",
+
+  "text.autoconfig.frycmobvariants.option.zombieToFrozenZombieConvertChance": "Chance to convert Zombie to Frozen Zombie on snowy biomes:",
+  "text.autoconfig.frycmobvariants.option.zombieToFrozenZombieConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Frozen Zombie after spawning on one of mentioned biomes",
 
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "Chance to convert Spider to Tropical Spider in jungle:",
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "For example, when set to 70, Spider will have 70% chance to convert to Tropical Spider after spawning on one of mentioned biomes"

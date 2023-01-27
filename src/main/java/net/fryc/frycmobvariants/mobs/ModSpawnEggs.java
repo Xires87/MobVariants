@@ -17,6 +17,8 @@ public class ModSpawnEggs {
 
     //biome variants
     public static final Item EXPLORER_SPAWN_EGG = new SpawnEggItem(ModMobs.EXPLORER, 3232308, 894731, new Item.Settings());
+
+    public static final Item FROZEN_ZOMBIE_SPAWN_EGG = new SpawnEggItem(ModMobs.FROZEN_ZOMBIE, 44975, 56063, new Item.Settings());
     public static final Item TROPICAL_SPIDER_SPAWN_EGG = new SpawnEggItem(ModMobs.TROPICAL_SPIDER, 894731, 11013646, new Item.Settings());
 
     //nether variants
@@ -33,6 +35,7 @@ public class ModSpawnEggs {
 
         //biome variants
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "explorer_spawn_egg"), EXPLORER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "frozen_zombie_spawn_egg"), FROZEN_ZOMBIE_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "tropical_spider_spawn_egg"), TROPICAL_SPIDER_SPAWN_EGG);
 
         //nether variants
@@ -52,6 +55,7 @@ public class ModSpawnEggs {
                     entries.add(ModSpawnEggs.CAVE_CREEPER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.EXPLORER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.TROPICAL_SPIDER_SPAWN_EGG);
+                    entries.add(ModSpawnEggs.FROZEN_ZOMBIE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.EXECUTIONER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.NIGHTMARE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.INFECTED_PIGLIN_SPAWN_EGG);

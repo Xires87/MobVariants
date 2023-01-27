@@ -23,6 +23,5 @@ public class MobVariants implements ModInitializer {
 
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();
-//todo lang, loot tables and frozen zombie
 	}
 }

@@ -19,7 +19,6 @@ public class FrozenZombieEntityRenderer extends ZombieEntityRenderer {
     }
 
 
-
     public Identifier getTexture(ZombieEntity zombieEntity) {
         return TEXTURE;
     }

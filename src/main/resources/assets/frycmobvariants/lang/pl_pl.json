@@ -5,8 +5,11 @@
   "entity.frycmobvariants.cave_creeper": "Jaskiniowy Creeper",
   "entity.frycmobvariants.executioner": "Kat",
   "entity.frycmobvariants.explorer": "Odkrywca",
+  "entity.frycmobvariants.frozen_zombie": "Zamarznięty Zombie",
   "entity.frycmobvariants.nightmare": "Koszmar",
   "entity.frycmobvariants.tropical_spider": "Tropikalny Pająk",
+  "entity.frycmobvariants.infected_piglin": "Zainfekowany Piglin",
+  "entity.frycmobvariants.infected_piglin_brute": "Zainfekowany Piglin Brutal",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Jajo przyzywające Zapomnianego",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Jajo przyzywające Nieumarłego Wojownika",
@@ -16,6 +19,8 @@
   "item.frycmobvariants.explorer_spawn_egg": "Jajo przyzywające Odkrywcę",
   "item.frycmobvariants.nightmare_spawn_egg": "Jajo przyzywające Koszmar",
   "item.frycmobvariants.tropical_spider_spawn_egg": "Jajo przyzywające Tropikalnego Pająka",
+  "item.frycmobvariants.infected_piglin_spawn_egg": "Jajo przyzywające Zainfekowanego Piglina",
+  "item.frycmobvariants.infected_piglin_brute_spawn_egg": "Jajo przyzywające Zainfekowanego Piglina Brutala",
 
   "text.autoconfig.frycmobvariants.title": "Konfiguracja Mob Variants",
   "text.autoconfig.frycmobvariants.category.cave": "Podziemne",
@@ -36,8 +41,15 @@
 
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance": "Szansa na zmienienie Witherowego Szkieleta w Kata",
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Witherowe Szkielety mają 10% szans na zmienienie się w Kata po pojawieniu się",
+
   "text.autoconfig.frycmobvariants.option.ghastConvertChance": "Szansa na zmienienie Ghasta w Koszmar",
   "text.autoconfig.frycmobvariants.option.ghastConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Ghasty mają 10% szans na zmienienie się w Koszmar po pojawieniu się",
+
+  "text.autoconfig.frycmobvariants.option.piglinConvertChance": "Szansa na zmienienie Piglina w Zainfekowanego Piglina",
+  "text.autoconfig.frycmobvariants.option.piglinConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Pigliny mają 10% szans na zmienienie się w Zainfekowane Pigliny po pojawieniu się",
+
+  "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance": "Szansa na zmienienie Piglina Brutala w Zainfekowanego Piglina Brutala",
+  "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Pigliny Brutale mają 10% szans na zmienienie się w Zainfekowane Pigliny Brutale po pojawieniu się",
 
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Szansa na zmienienie Zombie w Odkrywcę na bagnie, w dżungli lub w porośniętej jaskini:",
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 90, Zombie mają 90% szans na zmienienie się w Odkrywcę po pojawieniu się na jednym ze wspomnianych biomów",

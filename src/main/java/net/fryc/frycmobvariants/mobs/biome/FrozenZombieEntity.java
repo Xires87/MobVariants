@@ -26,7 +26,7 @@ public class FrozenZombieEntity extends ZombieEntity {
         boolean bl = super.tryAttack(target);
         if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
             float f = this.world.getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
-            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200 * (int)f), this);
+            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 260 * (int)f), this);
         }
 
         return bl;
@@ -35,29 +35,31 @@ public class FrozenZombieEntity extends ZombieEntity {
 
     public void tick(){
         super.tick();
-        if((this.getWorld().getDimension().ultrawarm() || this.ticksUntilDaylightConversion <= 0) && this.isAlive()){
-            float health = this.getHealth();
-            int i = this.getFireTicks() / 20;
-            this.playSound(SoundEvents.ENTITY_PLAYER_HURT_FREEZE, 1.0F, 0.4F);
-            ZombieEntity zombie = this.convertTo(EntityType.ZOMBIE, true);
-            if(zombie != null){
-                zombie.setHealth(health);
-                if(i > 0) zombie.setOnFireFor(i);
-                zombie.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 60));
-            }
-        }
-        else{
-            if(!this.inPowderSnow){
-                if((this.getWorld().isDay() && this.getWorld().isSkyVisible(this.getBlockPos())) || this.isWet()){
-                    this.ticksUntilDaylightConversion -= 1;
-                }
-                if(this.isOnFire()){
-                    this.ticksUntilDaylightConversion -= 9;
+        if(!this.world.isClient() && this.isAlive() && !this.isAiDisabled()){
+            if((this.getWorld().getDimension().ultrawarm() || this.ticksUntilDaylightConversion <= 0)){
+                float health = this.getHealth();
+                int i = this.getFireTicks() / 20;
+                this.playSound(SoundEvents.ENTITY_PLAYER_HURT_FREEZE, 1.0F, 0.4F);
+                ZombieEntity zombie = this.convertTo(EntityType.ZOMBIE, true);
+                if(zombie != null){
+                    zombie.setHealth(health);
+                    if(i > 0) zombie.setOnFireFor(i);
+                    zombie.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 60));
                 }
             }
-            else {
-                if(this.ticksUntilDaylightConversion < 280){
-                    this.ticksUntilDaylightConversion += 2;
+            else{
+                if(!this.inPowderSnow){
+                    if((this.getWorld().isDay() && this.getWorld().isSkyVisible(this.getBlockPos())) || this.isWet()){
+                        this.ticksUntilDaylightConversion -= 1;
+                    }
+                    if(this.isOnFire()){
+                        this.ticksUntilDaylightConversion -= 7;
+                    }
+                }
+                else {
+                    if(this.ticksUntilDaylightConversion < 280){
+                        this.ticksUntilDaylightConversion += 2;
+                    }
                 }
             }
         }

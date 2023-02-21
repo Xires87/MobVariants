@@ -1,6 +1,7 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
 
+import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
@@ -161,7 +162,7 @@ public class NightmareEntity extends GhastEntity {
                         if (!this.ghast.isSilent()) {
                             world.syncWorldEvent((PlayerEntity)null, 1016, this.ghast.getBlockPos(), 0);
                         }
-                        if(random.nextBoolean()){
+                        if(random.nextInt(0, 100) > MobVariants.config.nightmareShootSingleFireballChance){
                             for(int i = -3; i<3; i++){
                                 SmallFireballEntity fireballEntity = new SmallFireballEntity(world, this.ghast, f + random.nextDouble(-2.0, 2.0), g + random.nextDouble(-2.0, 2.0), h + + random.nextDouble(-2.0, 2.0));
                                 fireballEntity.setPosition(this.ghast.getX() + i + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + 0.5, fireballEntity.getZ() + vec3d.z * 4.0);

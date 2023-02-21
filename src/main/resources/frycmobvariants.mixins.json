@@ -5,13 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ZombieConvertMixin",
-    "SkeletonConvertMixin",
     "SpiderConvertMixin",
     "CreeperConvertMixin",
-    "WitherSkeletonConvertMixin",
     "GhastConvertMixin",
-    "PiglinConvertMixin",
-    "PiglinBruteConvertMixin"
+    "AbstractPiglinConvertMixin",
+    "AbstractSkeletonConvertMixin"
   ],
   "client": [
   ],

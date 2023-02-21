@@ -26,6 +26,7 @@
   "text.autoconfig.frycmobvariants.category.cave": "Podziemne",
   "text.autoconfig.frycmobvariants.category.biome": "Biomy",
   "text.autoconfig.frycmobvariants.category.nether": "Nether",
+  "text.autoconfig.frycmobvariants.category.mobattributes": "Atrybuty mobów",
 
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Przemień Zombie w Zapomnianych poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "Zombie mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
@@ -55,5 +56,15 @@
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 90, Zombie mają 90% szans na zmienienie się w Odkrywcę po pojawieniu się na jednym ze wspomnianych biomów",
 
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "Szansa na zmienienie Pająka w Tropikalnego Pająka w dżungli:",
-  "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 70, Pająki mają 70% szans na zmienienie się w Tropikalne Pająki po pojawieniu się na jednym ze wspomnianych biomów"
+  "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 70, Pająki mają 70% szans na zmienienie się w Tropikalne Pająki po pojawieniu się na jednym ze wspomnianych biomów",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration": "Czas trwania osłabienia Nieumarłych Wojowników",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration.@Tooltip": "20 = 1 sekunda",
+
+  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Szansa Koszmaru na wystrzelenie pojedynczej kuli ognia",
+  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Szansa na wystrzelenie pojedynczej kuli ognia (jak zwykły ghast)"
+
 }

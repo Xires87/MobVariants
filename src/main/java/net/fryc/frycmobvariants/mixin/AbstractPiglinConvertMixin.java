@@ -1,13 +1,13 @@
 package net.fryc.frycmobvariants.mixin;
 
-
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
-import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.PiglinBruteEntity;
+import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,30 +17,33 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(CreeperEntity.class)
-abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayOwner {
+@Mixin(AbstractPiglinEntity.class)
+abstract class AbstractPiglinConvertMixin extends HostileEntity {
 
     boolean canConvert = true;
     Random random = new Random();
 
-    protected CreeperConvertMixin(EntityType<? extends HostileEntity> entityType, World world) {
+    protected AbstractPiglinConvertMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    //converts creeper to cave creeper
+    //converts piglin to infected piglin
     //only first mob tick (right after spawning) tries to convert it
-    @Inject(at = @At("TAIL"), method = "tick()V")
-    public void convertToForgotten(CallbackInfo info) {
+    @Inject(at = @At("TAIL"), method = "mobTick()V")
+    public void convertToPiglinVariant(CallbackInfo info) {
         if(!world.isClient){
-            CreeperEntity creeper = ((CreeperEntity)(Object)this);
-            if(creeper.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
+            AbstractPiglinEntity piglin = ((AbstractPiglinEntity)(Object)this);
+            if(piglin.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                if(creeper.getClass() == CreeperEntity.class){
-                    int i = (int)creeper.getY();
-                    if(i < MobVariants.config.creeperToCaveCreeperConvertLevelY){
-                        if(random.nextInt(i, 100 + i) < MobVariants.config.creeperToCaveCreeperConvertLevelY){ // ~26% to convert on 0Y level (default)
-                            creeper.convertTo(ModMobs.CAVE_CREEPER, false);
-                        }
+                if(piglin.getClass() == PiglinEntity.class){
+                    if(random.nextInt(0, 100) <= MobVariants.config.piglinConvertChance){
+                        piglin.convertTo(ModMobs.INFECTED_PIGLIN, true);
+                    }
+                    canConvert = false;
+                }
+                else if(piglin.getClass() == PiglinBruteEntity.class){
+                    if(random.nextInt(0, 100) <= MobVariants.config.piglinBruteConvertChance){
+                        piglin.convertTo(ModMobs.INFECTED_PIGLIN_BRUTE, true);
                     }
                     canConvert = false;
                 }
@@ -48,8 +51,9 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
         }
     }
 
+
     //reading canConvert from Nbt
-    @Inject(method = "Lnet/minecraft/entity/mob/CreeperEntity;readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
+    @Inject(method = "Lnet/minecraft/entity/mob/AbstractPiglinEntity;readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
     private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
         if(nbt.contains("MobVariantsCanConvert")){
             NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
@@ -58,7 +62,7 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
     }
 
     //writing canConvert to Nbt
-    @Inject(method = "Lnet/minecraft/entity/mob/CreeperEntity;writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
+    @Inject(method = "Lnet/minecraft/entity/mob/AbstractPiglinEntity;writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
     private void writeCanConvertToNbt(NbtCompound nbt, CallbackInfo ci) {
         if(!canConvert){
             NbtCompound nbtCompound = new NbtCompound();
@@ -66,5 +70,4 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
             nbt.put("MobVariantsCanConvert", nbtCompound);
         }
     }
-
 }

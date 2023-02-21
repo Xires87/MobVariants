@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SpiderEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.tag.BiomeTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,6 +49,25 @@ abstract class SpiderConvertMixin extends HostileEntity {
                     canConvert = false;
                 }
             }
+        }
+    }
+
+    //reading canConvert from Nbt
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        if(nbt.contains("MobVariantsCanConvert")){
+            NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
+            canConvert = nbtCompound.getBoolean("canConvert");
+        }
+    }
+
+    //writing canConvert to Nbt
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        if(!canConvert){
+            NbtCompound nbtCompound = new NbtCompound();
+            nbtCompound.putBoolean("canConvert", canConvert);
+            nbt.put("MobVariantsCanConvert", nbtCompound);
         }
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -75,6 +76,25 @@ abstract class ZombieConvertMixin extends HostileEntity {
                 }
             }
 
+        }
+    }
+
+    //reading canConvert from Nbt
+    @Inject(method = "Lnet/minecraft/entity/mob/ZombieEntity;readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
+    private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
+        if(nbt.contains("MobVariantsCanConvert")){
+            NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
+            canConvert = nbtCompound.getBoolean("canConvert");
+        }
+    }
+
+    //writing canConvert to Nbt
+    @Inject(method = "Lnet/minecraft/entity/mob/ZombieEntity;writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
+    private void writeCanConvertToNbt(NbtCompound nbt, CallbackInfo ci) {
+        if(!canConvert){
+            NbtCompound nbtCompound = new NbtCompound();
+            nbtCompound.putBoolean("canConvert", canConvert);
+            nbt.put("MobVariantsCanConvert", nbtCompound);
         }
     }
 

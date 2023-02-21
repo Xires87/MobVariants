@@ -1,5 +1,6 @@
 package net.fryc.frycmobvariants.mobs.cave;
 
+import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -33,7 +34,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     //used only in summons and spawn eggs, udead warriors don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(random.nextBoolean()) this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+        if(random.nextInt(100) > MobVariants.config.undeadWarriorSpawnWithBowChance) this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
         else this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 
@@ -48,7 +49,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
         PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
         if (persistentProjectileEntity instanceof ArrowEntity) {
-            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 400));
+            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, MobVariants.config.undeadWarriorsWeaknessDuration));
         }
 
         return persistentProjectileEntity;

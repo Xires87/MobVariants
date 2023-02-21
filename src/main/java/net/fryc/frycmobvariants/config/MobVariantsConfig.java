@@ -65,4 +65,19 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int spiderToTropicalSpiderConvertChance = 75;
+
+    //mob attributes
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("mobattributes")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int undeadWarriorSpawnWithBowChance = 50;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("mobattributes")
+    public int undeadWarriorsWeaknessDuration = 300;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("mobattributes")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int nightmareShootSingleFireballChance = 50;
 }

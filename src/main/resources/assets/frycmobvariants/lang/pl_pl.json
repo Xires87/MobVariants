@@ -1,5 +1,5 @@
 {
-  "entity.frycmobvariants.armored_spider": "Czarny Pająk",
+  "entity.frycmobvariants.armored_spider": "Opancerzony Pająk",
   "entity.frycmobvariants.undead_warrior": "Nieumarły Wojownik",
   "entity.frycmobvariants.forgotten": "Zapomniany",
   "entity.frycmobvariants.cave_creeper": "Jaskiniowy Creeper",
@@ -13,7 +13,7 @@
 
   "item.frycmobvariants.forgotten_spawn_egg": "Jajo przyzywające Zapomnianego",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Jajo przyzywające Nieumarłego Wojownika",
-  "item.frycmobvariants.armored_spider_spawn_egg": "Jajo przyzywające Czarnego Pająka",
+  "item.frycmobvariants.armored_spider_spawn_egg": "Jajo przyzywające Opancerzonego Pająka",
   "item.frycmobvariants.cave_creeper_spawn_egg": "Jajo przyzywające Jaskiniowego Creepera",
   "item.frycmobvariants.executioner_spawn_egg": "Jajo przyzywające Kata",
   "item.frycmobvariants.explorer_spawn_egg": "Jajo przyzywające Odkrywcę",
@@ -31,7 +31,7 @@
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Przemień Zombie w Zapomnianych poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "Zombie mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
 
-  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Przemień Pająki w Czarne Pająki poniżej wybranego poziomu Y:",
+  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Przemień Pająki w Opancerzone Pająki poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY.@Tooltip": "Pająki mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
 
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY": "Przemień Szkielety w Nieumarłych Wojowników poniżej wybranego poziomu Y:",

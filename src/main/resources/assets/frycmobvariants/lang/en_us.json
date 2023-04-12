@@ -1,5 +1,5 @@
 {
-  "entity.frycmobvariants.armored_spider": "Black Spider",
+  "entity.frycmobvariants.armored_spider": "Armored Spider",
   "entity.frycmobvariants.undead_warrior": "Undead Warrior",
   "entity.frycmobvariants.forgotten": "Forgotten",
   "entity.frycmobvariants.cave_creeper": "Cave Creeper",
@@ -13,7 +13,7 @@
 
   "item.frycmobvariants.forgotten_spawn_egg": "Forgotten Spawn Egg",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Undead Warrior Spawn Egg",
-  "item.frycmobvariants.armored_spider_spawn_egg": "Black Spider Spawn Egg",
+  "item.frycmobvariants.armored_spider_spawn_egg": "Armored Spider Spawn Egg",
   "item.frycmobvariants.cave_creeper_spawn_egg": "Cave Creeper Spawn Egg",
   "item.frycmobvariants.executioner_spawn_egg": "Executioner Spawn Egg",
   "item.frycmobvariants.explorer_spawn_egg": "Explorer Spawn Egg",
@@ -32,7 +32,7 @@
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Convert Zombies to Forgottens under selected Y level:",
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "Zombies have a chance to convert into stronger variant when they spawn below this Y level",
 
-  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Convert Spiders to Black Spiders under selected Y level:",
+  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Convert Spiders to Armored Spiders under selected Y level:",
   "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY.@Tooltip": "Spiders have a chance to convert into stronger variant when they spawn below this Y level",
 
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY": "Convert Skeletons to Undead Warriors under selected Y level:",

@@ -11,7 +11,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.world.World;
 
 public class ExplorerEntity extends ZombieEntity {
@@ -32,7 +31,7 @@ public class ExplorerEntity extends ZombieEntity {
     //explorers take 70% less damage from falling
     @Override
     public boolean damage(DamageSource source, float amount) {
-        if(source.isIn(DamageTypeTags.IS_FALL)){
+        if(source.isFromFalling()){
             amount*=0.30;
             super.damage(source, amount);
         }

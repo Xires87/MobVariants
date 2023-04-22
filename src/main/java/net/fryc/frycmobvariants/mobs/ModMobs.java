@@ -58,7 +58,7 @@ public class ModMobs {
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TropicalSpiderEntity::new).dimensions(EntityDimensions.fixed(1.4F, 0.9F)).build());
 
     public static final EntityType<CorsairEntity> CORSAIR = Registry.register(
-            Registries.ENTITY_TYPE,
+            Registry.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "corsair"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CorsairEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.99F)).build());
 
@@ -85,7 +85,7 @@ public class ModMobs {
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InfectedPiglinBruteEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).fireImmune().build());
 
     public static final EntityType<SoulStealerEntity> SOUL_STEALER = Registry.register(
-            Registries.ENTITY_TYPE,
+            Registry.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "soul_stealer"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SoulStealerEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.99F)).fireImmune().build());
 

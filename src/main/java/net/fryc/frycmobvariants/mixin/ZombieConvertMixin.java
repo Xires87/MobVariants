@@ -11,6 +11,7 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeKeys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,14 +42,14 @@ abstract class ZombieConvertMixin extends HostileEntity {
                 if(zombie.getClass() == ZombieEntity.class){
                     int i = (int)zombie.getY();
                     if(zombie.getWorld().getBiome(zombie.getBlockPos()).isIn(ModBiomeTags.SNOWY_BIOMES) && i > 48){
-                        if(random.nextInt(0, 100) <= MobVariants.config.zombieToFrozenZombieConvertChance) zombie.convertTo(ModMobs.FROZEN_ZOMBIE, true); // ~80% chance to convert in snow biomes (default)
+                        if(random.nextInt(0, 100) <= MobVariants.config.zombieToFrozenZombieConvertChance) zombie.convertTo(ModMobs.FROZEN_ZOMBIE, true);
                     }
-                    else if(zombie.getWorld().getBiome(zombie.getBlockPos()).isIn(ModBiomeTags.EXPLORER_SPAWN_BIOMES) && i > 38){
-                        if(random.nextInt(0, 100) <= MobVariants.config.zombieToExplorerConvertChance) zombie.convertTo(ModMobs.EXPLORER, true); // ~75% chance to convert in jungle, swamp or lush cave (default)
+                    else if((zombie.getWorld().getBiome(zombie.getBlockPos()).isIn(ModBiomeTags.EXPLORER_SPAWN_BIOMES) && i > 38) || zombie.getWorld().getBiome(zombie.getBlockPos()).matchesKey(BiomeKeys.LUSH_CAVES)){
+                        if(random.nextInt(0, 100) <= MobVariants.config.zombieToExplorerConvertChance) zombie.convertTo(ModMobs.EXPLORER, true);
                     }
                     else {
                         if(i < MobVariants.config.zombieToForgottenConvertLevelY){
-                            if(random.nextInt(i, 100 + i) < MobVariants.config.zombieToForgottenConvertLevelY){ // ~26% to convert on 0Y level (default)
+                            if(random.nextInt(i, 100 + i) < MobVariants.config.zombieToForgottenConvertLevelY){
                                 zombie.convertTo(ModMobs.FORGOTTEN, true);
                             }
                         }

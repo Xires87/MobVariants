@@ -10,6 +10,8 @@
   "entity.frycmobvariants.tropical_spider": "Tropikalny Pająk",
   "entity.frycmobvariants.infected_piglin": "Zainfekowany Piglin",
   "entity.frycmobvariants.infected_piglin_brute": "Zainfekowany Piglin Brutal",
+  "entity.frycmobvariants.soul_stealer": "Złodziej Dusz",
+  "entity.frycmobvariants.corsair": "Korsarz",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Jajo przyzywające Zapomnianego",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Jajo przyzywające Nieumarłego Wojownika",
@@ -21,6 +23,8 @@
   "item.frycmobvariants.tropical_spider_spawn_egg": "Jajo przyzywające Tropikalnego Pająka",
   "item.frycmobvariants.infected_piglin_spawn_egg": "Jajo przyzywające Zainfekowanego Piglina",
   "item.frycmobvariants.infected_piglin_brute_spawn_egg": "Jajo przyzywające Zainfekowanego Piglina Brutala",
+  "item.frycmobvariants.corsair_spawn_egg": "Jajo przyzywające Korsarza",
+  "item.frycmobvariants.soul_stealer_spawn_egg": "Jajo przyzywające Złodzieja Dusz",
 
   "text.autoconfig.frycmobvariants.title": "Konfiguracja Mob Variants",
   "text.autoconfig.frycmobvariants.category.cave": "Podziemne",
@@ -65,6 +69,11 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration.@Tooltip": "20 = 1 sekunda",
 
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Szansa Koszmaru na wystrzelenie pojedynczej kuli ognia",
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Szansa na wystrzelenie pojedynczej kuli ognia (jak zwykły ghast)"
+  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Szansa na wystrzelenie pojedynczej kuli ognia (jak zwykły ghast)",
+
+  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Szansa Korsarza na pojawienie się z mieczem",
+
+  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Dodatkowe obrażenia magiczne zadawane przez Złodzieja Dusz",
+  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "Na normalnym poziomie trudności ta wartość jest zwiększana o 1. Na trudnym o 3"
 
 }

@@ -9,7 +9,8 @@
     "CreeperConvertMixin",
     "GhastConvertMixin",
     "AbstractPiglinConvertMixin",
-    "AbstractSkeletonConvertMixin"
+    "AbstractSkeletonConvertMixin",
+    "ShipwreckGeneratorMixin"
   ],
   "client": [
   ],

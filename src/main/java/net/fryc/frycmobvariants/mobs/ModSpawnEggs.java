@@ -53,7 +53,7 @@ public class ModSpawnEggs {
         ItemGroup MOB_VARIANTS = FabricItemGroup.builder(new Identifier(MobVariants.MOD_ID, "mob_variants_spawn_eggs"))
                 .displayName(Text.literal("Mob Variants"))
                 .icon(() -> new ItemStack(Items.SPIDER_SPAWN_EGG))
-                .entries((enabledFeatures, entries) -> {
+                .entries((enabledFeatures, entries, operatorEnabled) -> {
                     entries.add(ModSpawnEggs.FORGOTTEN_SPAWN_EGG);
                     entries.add(ModSpawnEggs.UNDEAD_WARRIOR_SPAWN_EGG);
                     entries.add(ModSpawnEggs.ARMORED_SPIDER_SPAWN_EGG);

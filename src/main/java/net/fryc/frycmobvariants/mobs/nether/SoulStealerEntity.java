@@ -5,6 +5,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.item.ItemStack;
@@ -50,13 +51,13 @@ public class SoulStealerEntity extends SkeletonEntity {
         if (super.tryAttack(target)) {
             if (target instanceof LivingEntity entity) {
                 if (this.world.getDifficulty() == Difficulty.EASY && MobVariants.config.soulStealersBaseMagicDamage > 0.0F) {
-                    entity.damage(this.world.getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage);
+                    entity.damage(DamageSource.magic(this, this), MobVariants.config.soulStealersBaseMagicDamage);
                 }
                 else if (this.world.getDifficulty() == Difficulty.NORMAL && MobVariants.config.soulStealersBaseMagicDamage > -1.0F) {
-                    entity.damage(this.world.getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 1.0F);
+                    entity.damage(DamageSource.magic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 1.0F);
                 }
                 else if(this.world.getDifficulty() == Difficulty.HARD && MobVariants.config.soulStealersBaseMagicDamage > -3.0F) {
-                    entity.damage(this.world.getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 3.0F);
+                    entity.damage(DamageSource.magic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 3.0F);
                 }
             }
 

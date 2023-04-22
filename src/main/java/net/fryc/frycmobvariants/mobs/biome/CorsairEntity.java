@@ -37,7 +37,7 @@ public class CorsairEntity extends SkeletonEntity {
 
     public CorsairEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
-        this.setStepHeight(1.0F);
+        //this.setStepHeight(1.0F);
         this.moveControl = new CorsairEntity.CorsairMoveControl(this);
         this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
         this.waterNavigation = new SwimNavigation(this, world);

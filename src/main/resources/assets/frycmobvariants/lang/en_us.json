@@ -10,6 +10,8 @@
   "entity.frycmobvariants.tropical_spider": "Tropical Spider",
   "entity.frycmobvariants.infected_piglin": "Infected Piglin",
   "entity.frycmobvariants.infected_piglin_brute": "Infected Piglin Brute",
+  "entity.frycmobvariants.soul_stealer": "Soul Stealer",
+  "entity.frycmobvariants.corsair": "Corsair",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Forgotten Spawn Egg",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Undead Warrior Spawn Egg",
@@ -22,6 +24,8 @@
   "item.frycmobvariants.tropical_spider_spawn_egg": "Tropical Spider Spawn Egg",
   "item.frycmobvariants.infected_piglin_spawn_egg": "Infected Piglin Spawn Egg",
   "item.frycmobvariants.infected_piglin_brute_spawn_egg": "Infected Piglin Brute Spawn Egg",
+  "item.frycmobvariants.corsair_spawn_egg": "Corsair Spawn Egg",
+  "item.frycmobvariants.soul_stealer_spawn_egg": "Soul Stealer Spawn Egg",
 
   "text.autoconfig.frycmobvariants.title": "Mob Variants Config",
   "text.autoconfig.frycmobvariants.category.cave": "Underground",
@@ -53,6 +57,9 @@
   "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance": "Chance to convert Piglin Brute to Infected Piglin Brute",
   "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance.@Tooltip": "For example, when set to 10, Piglin Brute will have 10% chance to convert to Infected Piglin Brute after spawning",
 
+  "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance": "Chance to convert Skeleton to Soul Stealer",
+  "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance.@Tooltip": "For example, when set to 30, Skeleton will have 30% chance to convert to Soul Stealer after spawning",
+
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Chance to convert Zombie to Explorer in jungle, swamp or lush cave:",
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning on one of mentioned biomes",
 
@@ -62,12 +69,18 @@
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "Chance to convert Spider to Tropical Spider in jungle:",
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "For example, when set to 70, Spider will have 70% chance to convert to Tropical Spider after spawning on one of mentioned biomes",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Undead warriors chance to spawn with bow",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",
   "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration": "Undead warriors weakness duration",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration": "Undead warrior's weakness duration",
   "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration.@Tooltip": "20 = 1 second",
 
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Nightmares chance to shoot single fireball",
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Chance to shoot single fireball (like normal ghast)"
+  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Nightmare's chance to shoot single fireball",
+  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Chance to shoot single fireball (like normal ghast)",
+
+  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Corsair's chance to spawn with sword",
+
+  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Additional magic damage dealt by soul stealer",
+  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "On normal difficulty this value is increased by 1. On hard, by 3"
 }

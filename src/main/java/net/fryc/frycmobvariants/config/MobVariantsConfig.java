@@ -49,6 +49,11 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int piglinBruteConvertChance = 39;
 
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int skeletonToSoulStealerConvertChance = 31;
+
 
     //biomes
     @ConfigEntry.Gui.Tooltip
@@ -66,6 +71,7 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int spiderToTropicalSpiderConvertChance = 75;
 
+
     //mob attributes
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
@@ -80,4 +86,13 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int nightmareShootSingleFireballChance = 50;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("mobattributes")
+    public float soulStealersBaseMagicDamage = 1.0F;
+
+    @ConfigEntry.Category("mobattributes")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int corsairSpawnWithSwordChance = 42;
+
 }

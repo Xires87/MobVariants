@@ -61,7 +61,7 @@ public class CorsairEntity extends SkeletonEntity {
     }
 
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(random.nextInt(100) < MobVariants.config.corsairSpawnWithSwordChance) this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.WOODEN_SWORD));
+        if(random.nextInt(100) < MobVariants.config.corsairSpawnWithSwordChance) this.equipStack(EquipmentSlot.MAINHAND, getCorsairSword());
     }
 
     protected boolean hasFinishedCurrentPath() {
@@ -114,6 +114,10 @@ public class CorsairEntity extends SkeletonEntity {
             LivingEntity livingEntity = this.getTarget();
             return livingEntity != null && livingEntity.isTouchingWater();
         }
+    }
+
+    public static ItemStack getCorsairSword(){
+        return new ItemStack(Items.WOODEN_SWORD);
     }
 
 

@@ -31,7 +31,7 @@ public class SoulStealerEntity extends SkeletonEntity {
     }
 
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_HOE));
+        this.equipStack(EquipmentSlot.MAINHAND, getSoulsStealerHoe());
     }
 
     @Nullable
@@ -64,6 +64,10 @@ public class SoulStealerEntity extends SkeletonEntity {
         } else {
             return false;
         }
+    }
+
+    public static ItemStack getSoulsStealerHoe(){
+        return new ItemStack(Items.IRON_HOE);
     }
 
 

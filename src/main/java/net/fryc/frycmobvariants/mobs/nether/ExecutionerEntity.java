@@ -27,7 +27,7 @@ public class ExecutionerEntity extends WitherSkeletonEntity {
 
     //used only in summons and spawn eggs, executioners don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_AXE));
+        this.equipStack(EquipmentSlot.MAINHAND, getExecutionerAxe());
         this.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.IRON_HELMET));
         int equipChance = random.nextInt(100);
         if(equipChance > 45){
@@ -39,6 +39,10 @@ public class ExecutionerEntity extends WitherSkeletonEntity {
 
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return 2.24F;
+    }
+
+    public static ItemStack getExecutionerAxe(){
+        return new ItemStack(Items.STONE_AXE);
     }
 
 }

@@ -34,7 +34,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     //used only in summons and spawn eggs, udead warriors don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(random.nextInt(100) > MobVariants.config.undeadWarriorSpawnWithBowChance) this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+        if(random.nextInt(100) > MobVariants.config.undeadWarriorSpawnWithBowChance) this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorSword());
         else this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 
@@ -53,5 +53,9 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         }
 
         return persistentProjectileEntity;
+    }
+
+    public static ItemStack getUndeadWarriorSword(){
+        return new ItemStack(Items.STONE_SWORD);
     }
 }

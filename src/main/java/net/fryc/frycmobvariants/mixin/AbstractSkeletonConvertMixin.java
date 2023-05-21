@@ -3,6 +3,8 @@ package net.fryc.frycmobvariants.mixin;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
+import net.fryc.frycmobvariants.mobs.nether.ExecutionerEntity;
+import net.fryc.frycmobvariants.mobs.nether.SoulStealerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -58,7 +60,7 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
                                 }
                                 else{
                                     if(MobVariants.config.undeadWarriorSpawnWithBowChance <= random.nextInt(0, 100)){ //50% to give skeleton a sword
-                                        skeleton.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+                                        skeleton.equipStack(EquipmentSlot.MAINHAND, UndeadWarriorEntity.getUndeadWarriorSword());
                                     }
                                     skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                                 }
@@ -67,7 +69,7 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
                     }
                     else {
                         if(random.nextInt(0, 100) <= MobVariants.config.skeletonToSoulStealerConvertChance){
-                            skeleton.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_HOE));
+                            skeleton.equipStack(EquipmentSlot.MAINHAND, SoulStealerEntity.getSoulsStealerHoe());
                             skeleton.convertTo(ModMobs.SOUL_STEALER, true);
                         }
                     }
@@ -76,7 +78,7 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
                 }
                 else if(skeleton.getClass() == WitherSkeletonEntity.class){
                     if(random.nextInt(0, 100) <= MobVariants.config.witherSkeletonConvertChance){
-                        skeleton.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_AXE));
+                        skeleton.equipStack(EquipmentSlot.MAINHAND, ExecutionerEntity.getExecutionerAxe());
                         skeleton.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.IRON_HELMET));
                         int equipChance = random.nextInt(0, 100);
                         if(equipChance > 45){

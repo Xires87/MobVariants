@@ -46,8 +46,8 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
     //only first mob tick (right after spawning) tries to convert it
     public void tick() {
         super.tick();
-        if(!world.isClient){
-            AbstractSkeletonEntity skeleton = ((AbstractSkeletonEntity)(Object)this);
+        AbstractSkeletonEntity skeleton = ((AbstractSkeletonEntity)(Object)this);
+        if(!skeleton.getWorld().isClient){
             if(skeleton.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
                 if(skeleton.getClass() == SkeletonEntity.class){

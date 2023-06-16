@@ -27,9 +27,9 @@ public class TropicalSpiderEntity extends SpiderEntity {
         if (super.tryAttack(target)) {
             if (target instanceof LivingEntity) {
                 int i = 0;
-                if (this.world.getDifficulty() == Difficulty.EASY) {
+                if (this.getWorld().getDifficulty() == Difficulty.EASY) {
                     i = 1;
-                } else if (this.world.getDifficulty() == Difficulty.NORMAL) {
+                } else if (this.getWorld().getDifficulty() == Difficulty.NORMAL) {
                     i = 2;
                 }
                 else{

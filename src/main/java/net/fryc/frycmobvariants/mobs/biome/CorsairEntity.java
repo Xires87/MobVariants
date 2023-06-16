@@ -48,7 +48,7 @@ public class CorsairEntity extends SkeletonEntity {
         this.goalSelector.add(1, new CorsairEntity.WanderAroundOnSurfaceGoal(this, 1.0));
         this.goalSelector.add(3, new FleeEntityGoal(this, WolfEntity.class, 6.0F, 1.0, 1.2));
         this.goalSelector.add(5, new CorsairEntity.LeaveWaterGoal(this, 1.0));
-        this.goalSelector.add(6, new CorsairEntity.TargetAboveWaterGoal(this, 1.0, this.world.getSeaLevel()));
+        this.goalSelector.add(6, new CorsairEntity.TargetAboveWaterGoal(this, 1.0, this.getWorld().getSeaLevel()));
         this.goalSelector.add(7, new WanderAroundGoal(this, 1.0));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal(this, IronGolemEntity.class, true));
@@ -80,7 +80,7 @@ public class CorsairEntity extends SkeletonEntity {
     }
 
     public void updateSwimming() {
-        if (!this.world.isClient) {
+        if (!this.getWorld().isClient) {
             if (this.canMoveVoluntarily() && this.isTouchingWater() && this.isTargetingUnderwater()) {
                 this.navigation = this.waterNavigation;
                 this.setSwimming(true);
@@ -156,7 +156,7 @@ public class CorsairEntity extends SkeletonEntity {
                 this.corsair.setMovementSpeed(j);
                 this.corsair.setVelocity(this.corsair.getVelocity().add((double)j * d * 0.005, (double)j * e * 0.1, (double)j * f * 0.005));
             } else {
-                if (!this.corsair.onGround) {
+                if (!this.corsair.isOnGround()) {
                     this.corsair.setVelocity(this.corsair.getVelocity().add(0.0, -0.008, 0.0));
                 }
 
@@ -179,7 +179,7 @@ public class CorsairEntity extends SkeletonEntity {
         }
 
         public boolean canStart() {
-            return super.canStart() && !this.corsair.world.isDay() && this.corsair.isTouchingWater() && this.corsair.getY() >= (double)(this.corsair.world.getSeaLevel() - 3);
+            return super.canStart() && !this.corsair.getWorld().isDay() && this.corsair.isTouchingWater() && this.corsair.getY() >= (double)(this.corsair.getWorld().getSeaLevel() - 3);
         }
 
         public boolean shouldContinue() {
@@ -215,7 +215,7 @@ public class CorsairEntity extends SkeletonEntity {
         }
 
         public boolean canStart() {
-            return !this.corsair.world.isDay() && this.corsair.isTouchingWater() && this.corsair.getY() < (double)(this.minY - 2);
+            return !this.corsair.getWorld().isDay() && this.corsair.isTouchingWater() && this.corsair.getY() < (double)(this.minY - 2);
         }
 
         public boolean shouldContinue() {
@@ -256,7 +256,7 @@ public class CorsairEntity extends SkeletonEntity {
         public WanderAroundOnSurfaceGoal(PathAwareEntity mob, double speed) {
             this.mob = mob;
             this.speed = speed;
-            this.world = mob.world;
+            this.world = mob.getWorld();
             this.setControls(EnumSet.of(Control.MOVE));
         }
 

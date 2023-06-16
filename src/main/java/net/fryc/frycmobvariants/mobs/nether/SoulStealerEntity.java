@@ -49,14 +49,14 @@ public class SoulStealerEntity extends SkeletonEntity {
     public boolean tryAttack(Entity target) {
         if (super.tryAttack(target)) {
             if (target instanceof LivingEntity entity) {
-                if (this.world.getDifficulty() == Difficulty.EASY && MobVariants.config.soulStealersBaseMagicDamage > 0.0F) {
-                    entity.damage(this.world.getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage);
+                if (this.getWorld().getDifficulty() == Difficulty.EASY && MobVariants.config.soulStealersBaseMagicDamage > 0.0F) {
+                    entity.damage(this.getWorld().getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage);
                 }
-                else if (this.world.getDifficulty() == Difficulty.NORMAL && MobVariants.config.soulStealersBaseMagicDamage > -1.0F) {
-                    entity.damage(this.world.getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 1.0F);
+                else if (this.getWorld().getDifficulty() == Difficulty.NORMAL && MobVariants.config.soulStealersBaseMagicDamage > -1.0F) {
+                    entity.damage(this.getWorld().getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 1.0F);
                 }
-                else if(this.world.getDifficulty() == Difficulty.HARD && MobVariants.config.soulStealersBaseMagicDamage > -3.0F) {
-                    entity.damage(this.world.getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 3.0F);
+                else if(this.getWorld().getDifficulty() == Difficulty.HARD && MobVariants.config.soulStealersBaseMagicDamage > -3.0F) {
+                    entity.damage(this.getWorld().getDamageSources().indirectMagic(this, this), MobVariants.config.soulStealersBaseMagicDamage + 3.0F);
                 }
             }
 

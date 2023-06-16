@@ -31,8 +31,8 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
     //only first mob tick (right after spawning) tries to convert it
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void convertToForgotten(CallbackInfo info) {
-        if(!world.isClient){
-            CreeperEntity creeper = ((CreeperEntity)(Object)this);
+        CreeperEntity creeper = ((CreeperEntity)(Object)this);
+        if(!creeper.getWorld().isClient){
             if(creeper.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
                 if(creeper.getClass() == CreeperEntity.class){

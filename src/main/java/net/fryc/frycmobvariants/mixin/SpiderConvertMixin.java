@@ -30,8 +30,8 @@ abstract class SpiderConvertMixin extends HostileEntity {
     //only first mob tick (right after spawning) tries to convert it
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void convertToSpiderVariant(CallbackInfo info) {
-        if(!world.isClient){
-            SpiderEntity spider = ((SpiderEntity)(Object)this);
+        SpiderEntity spider = ((SpiderEntity)(Object)this);
+        if(!spider.getWorld().isClient){
             if(spider.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
                 if(spider.getClass() == SpiderEntity.class){

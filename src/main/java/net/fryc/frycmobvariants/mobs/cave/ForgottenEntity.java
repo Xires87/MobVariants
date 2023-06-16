@@ -23,7 +23,7 @@ public class ForgottenEntity extends ZombieEntity {
     public boolean tryAttack(Entity target) {
         boolean bl = super.tryAttack(target);
         if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
-            float f = this.world.getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
+            float f = this.getWorld().getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
             ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 120 * (int)f, 1), this);
         }
 

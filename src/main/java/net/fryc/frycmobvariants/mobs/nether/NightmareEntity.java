@@ -147,7 +147,7 @@ public class NightmareEntity extends GhastEntity {
             if (livingEntity != null) {
                 double d = 64.0;
                 if (livingEntity.squaredDistanceTo(this.ghast) < 4096.0 && this.ghast.canSee(livingEntity)) {
-                    World world = this.ghast.world;
+                    World world = this.ghast.getWorld();
                     ++this.cooldown;
                     if (this.cooldown == 10 && !this.ghast.isSilent()) {
                         world.syncWorldEvent((PlayerEntity)null, 1015, this.ghast.getBlockPos(), 0);

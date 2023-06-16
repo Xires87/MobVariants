@@ -25,7 +25,7 @@ public class FrozenZombieEntity extends ZombieEntity {
     public boolean tryAttack(Entity target) {
         boolean bl = super.tryAttack(target);
         if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
-            float f = this.world.getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
+            float f = this.getWorld().getLocalDifficulty(this.getBlockPos()).getLocalDifficulty();
             ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 260 * (int)f), this);
         }
 
@@ -35,7 +35,7 @@ public class FrozenZombieEntity extends ZombieEntity {
 
     public void tick(){
         super.tick();
-        if(!this.world.isClient() && this.isAlive() && !this.isAiDisabled()){
+        if(!this.getWorld().isClient() && this.isAlive() && !this.isAiDisabled()){
             if((this.getWorld().getDimension().ultrawarm() || this.ticksUntilDaylightConversion <= 0)){
                 float health = this.getHealth();
                 int i = this.getFireTicks() / 20;

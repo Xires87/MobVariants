@@ -5,10 +5,15 @@ import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModSpawnEggs {
+    //item group
+    public static final RegistryKey<ItemGroup> MOB_VARIANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MobVariants.MOD_ID, "mob_variants_spawn_eggs"));
+
     //cave variants
     public static final Item FORGOTTEN_SPAWN_EGG = new SpawnEggItem(ModMobs.FORGOTTEN, 3232308, 5651507, new Item.Settings());
     public static final Item UNDEAD_WARRIOR_SPAWN_EGG = new SpawnEggItem(ModMobs.UNDEAD_WARRIOR, 6387319, 4802889, new Item.Settings());
@@ -50,9 +55,9 @@ public class ModSpawnEggs {
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "soul_stealer_spawn_egg"), SOUL_STEALER_SPAWN_EGG);
 
         //Item group
-        ItemGroup MOB_VARIANTS = FabricItemGroup.builder(new Identifier(MobVariants.MOD_ID, "mob_variants_spawn_eggs"))
-                .displayName(Text.literal("Mob Variants"))
+        Registry.register(Registries.ITEM_GROUP, MOB_VARIANTS, FabricItemGroup.builder()
                 .icon(() -> new ItemStack(Items.SPIDER_SPAWN_EGG))
+                .displayName(Text.literal("Mob Variants"))
                 .entries((enabledFeatures, entries) -> {
                     entries.add(ModSpawnEggs.FORGOTTEN_SPAWN_EGG);
                     entries.add(ModSpawnEggs.UNDEAD_WARRIOR_SPAWN_EGG);
@@ -68,6 +73,6 @@ public class ModSpawnEggs {
                     entries.add(ModSpawnEggs.INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.SOUL_STEALER_SPAWN_EGG);
                 })
-                .build();
+                .build());
     }
 }

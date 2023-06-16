@@ -35,8 +35,8 @@ abstract class ZombieConvertMixin extends HostileEntity {
     //only first mob tick (right after spawning) tries to convert it
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void convertToZombieVariant(CallbackInfo info) {
-        if(!world.isClient){
-            ZombieEntity zombie = ((ZombieEntity)(Object)this);
+        ZombieEntity zombie = ((ZombieEntity)(Object)this);
+        if(!zombie.getWorld().isClient){
             if(zombie.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
                 if(zombie.getClass() == ZombieEntity.class){

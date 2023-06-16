@@ -28,8 +28,8 @@ abstract class GhastConvertMixin extends FlyingEntity implements Monster {
     //converts ghasts to nightmare
     public void tick() {
         super.tick();
-        if (!world.isClient) {
-            GhastEntity ghast = ((GhastEntity) (Object) this);
+        GhastEntity ghast = ((GhastEntity) (Object) this);
+        if (!ghast.getWorld().isClient) {
             if(ghast.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if (canConvert) {
                 if (ghast.getClass() == GhastEntity.class) {

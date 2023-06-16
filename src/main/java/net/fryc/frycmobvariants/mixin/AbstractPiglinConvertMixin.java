@@ -31,8 +31,8 @@ abstract class AbstractPiglinConvertMixin extends HostileEntity {
     //only first mob tick (right after spawning) tries to convert it
     @Inject(at = @At("TAIL"), method = "mobTick()V")
     public void convertToPiglinVariant(CallbackInfo info) {
-        if(!world.isClient){
-            AbstractPiglinEntity piglin = ((AbstractPiglinEntity)(Object)this);
+        AbstractPiglinEntity piglin = ((AbstractPiglinEntity)(Object)this);
+        if(!piglin.getWorld().isClient){
             if(piglin.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
                 if(piglin.getClass() == PiglinEntity.class){

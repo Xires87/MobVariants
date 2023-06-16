@@ -29,10 +29,10 @@ public class CaveCreeperEntity extends CreeperEntity {
     }
 
     private void explode() {
-        if (!this.world.isClient) {
+        if (!this.getWorld().isClient) {
             float f = this.shouldRenderOverlay() ? 2.0F : 1.0F;
             this.dead = true;
-            this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, World.ExplosionSourceType.MOB);
+            this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, World.ExplosionSourceType.MOB);
             this.discard();
             this.spawnEffectsCloud();
         }
@@ -42,7 +42,7 @@ public class CaveCreeperEntity extends CreeperEntity {
     private void spawnEffectsCloud() {
         Collection<StatusEffectInstance> collection = this.getStatusEffects();
         if (!collection.isEmpty()) {
-            AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(this.world, this.getX(), this.getY(), this.getZ());
+            AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
             areaEffectCloudEntity.setRadius(2.5F);
             areaEffectCloudEntity.setRadiusOnUse(-0.5F);
             areaEffectCloudEntity.setWaitTime(10);
@@ -55,7 +55,7 @@ public class CaveCreeperEntity extends CreeperEntity {
                 areaEffectCloudEntity.addEffect(new StatusEffectInstance(statusEffectInstance));
             }
 
-            this.world.spawnEntity(areaEffectCloudEntity);
+            this.getWorld().spawnEntity(areaEffectCloudEntity);
         }
 
     }

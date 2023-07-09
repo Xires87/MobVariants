@@ -38,7 +38,17 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
                 if(creeper.getClass() == CreeperEntity.class){
                     int i = (int)creeper.getY();
                     if(i < MobVariants.config.creeperToCaveCreeperConvertLevelY){
-                        if(random.nextInt(i, 100 + i) < MobVariants.config.creeperToCaveCreeperConvertLevelY){ // ~26% to convert on 0Y level (default)
+                        boolean bl = false;
+                        if(MobVariants.config.fixedChanceToConvertCreeperUnderSelectedYLevel > -1){
+                            if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertCreeperUnderSelectedYLevel){
+                                bl = true;
+                            }
+                        }
+                        else if(random.nextInt(i, 100 + i) < MobVariants.config.creeperToCaveCreeperConvertLevelY){ // ~26% to convert on 0Y level (default)
+                            bl = true;
+                        }
+
+                        if(bl){
                             creeper.convertTo(ModMobs.CAVE_CREEPER, false);
                         }
                     }

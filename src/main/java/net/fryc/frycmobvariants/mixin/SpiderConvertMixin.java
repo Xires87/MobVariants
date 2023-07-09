@@ -40,8 +40,18 @@ abstract class SpiderConvertMixin extends HostileEntity {
                         if(random.nextInt(0, 100) <= MobVariants.config.spiderToTropicalSpiderConvertChance) spider.convertTo(ModMobs.TROPICAL_SPIDER, false); // ~80% chance to convert in jungle (default)
                     }
                     else {
-                        if(i < MobVariants.config.spiderToBlackSpiderConvertLevelY){
-                            if(random.nextInt(i, 100 + i) < MobVariants.config.spiderToBlackSpiderConvertLevelY){ // ~26% to convert on 0Y level (default)
+                        if(i < MobVariants.config.spiderToArmoredSpiderConvertLevelY){
+                            boolean bl = false;
+                            if(MobVariants.config.fixedChanceToConvertSpiderUnderSelectedYLevel > -1){
+                                if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertSpiderUnderSelectedYLevel){
+                                    bl = true;
+                                }
+                            }
+                            else if(random.nextInt(i, 100 + i) < MobVariants.config.spiderToArmoredSpiderConvertLevelY){ // ~26% to convert on 0Y level (default)
+                                bl = true;
+                            }
+
+                            if(bl){
                                 spider.convertTo(ModMobs.ARMORED_SPIDER, false);
                             }
                         }

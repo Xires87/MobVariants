@@ -54,7 +54,17 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
                     if(!skeleton.getWorld().getDimension().ultrawarm()){
                         int i = (int)skeleton.getY();
                         if(i < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){
-                            if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)
+                            boolean bl = false;
+                            if(MobVariants.config.fixedChanceToConvertSkeletonUnderSelectedYLevel > -1){
+                                if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertSkeletonUnderSelectedYLevel){
+                                    bl = true;
+                                }
+                            }
+                            else if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)
+                                bl = true;
+                            }
+
+                            if(bl){
                                 if(skeleton.getMainHandStack().hasEnchantments()){ //skeletons with enchantments on bow always convert to undead warriors with bow
                                     skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                                 }

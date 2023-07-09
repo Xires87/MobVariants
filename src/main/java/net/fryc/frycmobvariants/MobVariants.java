@@ -1,7 +1,7 @@
 package net.fryc.frycmobvariants;
 
 import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.mobs.ModMobs;
@@ -18,7 +18,7 @@ public class MobVariants implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		AutoConfig.register(MobVariantsConfig.class, GsonConfigSerializer::new);
+		AutoConfig.register(MobVariantsConfig.class, JanksonConfigSerializer::new);
 		config = AutoConfig.getConfigHolder(MobVariantsConfig.class).getConfig();
 
 		ModMobs.registerModMobs();

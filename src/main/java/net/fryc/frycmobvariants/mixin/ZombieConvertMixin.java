@@ -49,7 +49,17 @@ abstract class ZombieConvertMixin extends HostileEntity {
                     }
                     else {
                         if(i < MobVariants.config.zombieToForgottenConvertLevelY){
-                            if(random.nextInt(i, 100 + i) < MobVariants.config.zombieToForgottenConvertLevelY){
+                            boolean bl = false;
+                            if(MobVariants.config.fixedChanceToConvertZombieUnderSelectedYLevel > -1){
+                                if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertZombieUnderSelectedYLevel){
+                                    bl = true;
+                                }
+                            }
+                            else if(random.nextInt(i, 100 + i) < MobVariants.config.zombieToForgottenConvertLevelY){
+                                bl = true;
+                            }
+
+                            if(bl){
                                 zombie.convertTo(ModMobs.FORGOTTEN, true);
                             }
                         }

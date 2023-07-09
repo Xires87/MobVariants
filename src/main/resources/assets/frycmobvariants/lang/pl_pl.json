@@ -35,14 +35,26 @@
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Przemień Zombie w Zapomnianych poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "Zombie mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
 
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel": "Stała szansa na zmienienie Zombie w Zapomnianego poniżej poziomu Y wybranego w poprzedniej opcji",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel.@Tooltip": "Gdy ta wartość jest poniżej 0, szansa na zmienienie zwiększa się o 1% za każdy poziom Y poniżej wybranego w poprzedniej opcji",
+
   "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Przemień Pająki w Opancerzone Pająki poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY.@Tooltip": "Pająki mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
+
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel": "Stała szansa na zmienienie Pająka w Opancerzonego Pająka poniżej poziomu Y wybranego w poprzedniej opcji",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel.@Tooltip": "Gdy ta wartość jest poniżej 0, szansa na zmienienie zwiększa się o 1% za każdy poziom Y poniżej wybranego w poprzedniej opcji",
+
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSkeletonUnderSelectedYLevel": "Stała szansa na zmienienie Szkieleta w Nieumarłego Wojownika poniżej poziomu Y wybranego w poprzedniej opcji",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSkeletonUnderSelectedYLevel.@Tooltip": "Gdy ta wartość jest poniżej 0, szansa na zmienienie zwiększa się o 1% za każdy poziom Y poniżej wybranego w poprzedniej opcji",
 
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY": "Przemień Szkielety w Nieumarłych Wojowników poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY.@Tooltip": "Szkielety mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
 
   "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY": "Przemień Creepery w Jaskinowe Creepery poniżej wybranego poziomu Y:",
   "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY.@Tooltip": "Creepery mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
+
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertCreeperUnderSelectedYLevel": "Stała szansa na zmienienie Szkieleta w Nieumarłego Wojownika poniżej poziomu Y wybranego w poprzedniej opcji",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertCreeperUnderSelectedYLevel.@Tooltip": "Gdy ta wartość jest poniżej 0, szansa na zmienienie zwiększa się o 1% za każdy poziom Y poniżej wybranego w poprzedniej opcji",
 
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance": "Szansa na zmienienie Witherowego Szkieleta w Kata",
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Witherowe Szkielety mają 10% szans na zmienienie się w Kata po pojawieniu się",

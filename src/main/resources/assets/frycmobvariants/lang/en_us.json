@@ -36,14 +36,26 @@
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Convert Zombies to Forgottens under selected Y level:",
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "Zombies have a chance to convert into stronger variant when they spawn below this Y level",
 
-  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Convert Spiders to Armored Spiders under selected Y level:",
-  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY.@Tooltip": "Spiders have a chance to convert into stronger variant when they spawn below this Y level",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel": "Fixed chance to convert Zombies to Forgottens under Y level selected in previous option:",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel.@Tooltip": "When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option",
+
+  "text.autoconfig.frycmobvariants.option.spiderToArmoredSpiderConvertLevelY": "Convert Spiders to Armored Spiders under selected Y level:",
+  "text.autoconfig.frycmobvariants.option.spiderToArmoredSpiderConvertLevelY.@Tooltip": "Spiders have a chance to convert into stronger variant when they spawn below this Y level",
+
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel": "Fixed chance to convert Spiders to Armored Spiders under Y level selected in previous option:",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel.@Tooltip": "When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option",
+
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSkeletonUnderSelectedYLevel": "Fixed chance to convert Skeletons to Undead Warriors under Y level selected in previous option:",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSkeletonUnderSelectedYLevel.@Tooltip": "When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option",
 
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY": "Convert Skeletons to Undead Warriors under selected Y level:",
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY.@Tooltip": "Skeletons have a chance to convert into stronger variant when they spawn below this Y level",
 
   "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY": "Convert creepers to cave creepers under selected Y level:",
   "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY.@Tooltip": "Creepers have a chance to convert into stronger variant when they spawn below this Y level",
+
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertCreeperUnderSelectedYLevel": "Fixed chance to convert Creepers to Cave Creepers under Y level selected in previous option:",
+  "text.autoconfig.frycmobvariants.option.fixedChanceToConvertCreeperUnderSelectedYLevel.@Tooltip": "When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option",
 
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance": "Chance to convert Wither Skeleton to Executioner",
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance.@Tooltip": "For example, when set to 10, Wither Skeleton will have 10% chance to convert to Executioner after spawning",
@@ -73,7 +85,9 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",
   "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration": "Undead warrior's weakness duration",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorsStatusEffect": "Status effect applied by Undead Warrior's arrows",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration": "Undead warrior's effect duration",
   "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration.@Tooltip": "20 = 1 second",
 
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Nightmare's chance to shoot single fireball",

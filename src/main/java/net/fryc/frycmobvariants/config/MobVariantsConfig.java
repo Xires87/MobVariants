@@ -89,6 +89,12 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int skeletonToSoulStealerConvertChance = 31;
 
+    @Comment("For example, when set to 15, Magma Cube will have 15% chance to convert to Lava Slime after spawning")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int magmaCubeToLavaSlimeConvertChance = 19;
+
 
     //biomes
     @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning in jungle, swamp or lush cave")
@@ -108,6 +114,12 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int spiderToTropicalSpiderConvertChance = 75;
+
+    @Comment("For example, when set to 100, Slime will have 100% chance to convert to Toxic Slime after spawning in swamp biomes")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("biome")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int slimeToToxicSlimeConvertChance = 70;
 
 
     //mob attributes
@@ -136,5 +148,10 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int corsairSpawnWithSwordChance = 42;
+
+    @Comment("20 = 1s. Set it to 10 (or lower) to prevent lava from disappearing")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("mobattributes")
+    public int timeToRemoveLavaLeftByLavaSlime = 30;
 
 }

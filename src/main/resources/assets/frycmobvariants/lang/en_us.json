@@ -12,6 +12,8 @@
   "entity.frycmobvariants.infected_piglin_brute": "Infected Piglin Brute",
   "entity.frycmobvariants.soul_stealer": "Soul Stealer",
   "entity.frycmobvariants.corsair": "Corsair",
+  "entity.frycmobvariants.lava_slime": "Lava Slime",
+  "entity.frycmobvariants.toxic_slime": "Toxic Slime",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Forgotten Spawn Egg",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Undead Warrior Spawn Egg",
@@ -96,5 +98,8 @@
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Corsair's chance to spawn with sword",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Additional magic damage dealt by soul stealer",
-  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "On normal difficulty this value is increased by 1. On hard, by 3"
+  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "On normal difficulty this value is increased by 1. On hard, by 3",
+
+  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime": "Time to remove lava left by Lava Slime",
+  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Set it to 10 (or lower) to prevent lava from disappearing"
 }

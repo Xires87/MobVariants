@@ -27,6 +27,7 @@ public class ModSpawnEggs {
     public static final Item TROPICAL_SPIDER_SPAWN_EGG = new SpawnEggItem(ModMobs.TROPICAL_SPIDER, 894731, 11013646, new Item.Settings());
 
     public static final Item CORSAIR_SPAWN_EGG = new SpawnEggItem(ModMobs.CORSAIR, 12698049, 894731, new Item.Settings());
+    public static final Item TOXIC_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.TOXIC_SLIME, 12049, 894731, new Item.Settings());
 
     //nether variants
     public static final Item EXECUTIONER_SPAWN_EGG = new SpawnEggItem(ModMobs.EXECUTIONER, 1315860, 4673845, new Item.Settings());
@@ -34,6 +35,7 @@ public class ModSpawnEggs {
     public static final Item INFECTED_PIGLIN_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN, 15373203, 16380836, new Item.Settings());
     public static final Item INFECTED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN_BRUTE, 15771042, 16380836, new Item.Settings());
     public static final Item SOUL_STEALER_SPAWN_EGG = new SpawnEggItem(ModMobs.SOUL_STEALER, 5651507, 3790560, new Item.Settings());
+    public static final Item LAVA_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.LAVA_SLIME, 56507, 379560, new Item.Settings());
     public static void registerSpawnEggs(){
         //cave variants
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "forgotten_spawn_egg"), FORGOTTEN_SPAWN_EGG);
@@ -46,6 +48,7 @@ public class ModSpawnEggs {
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "frozen_zombie_spawn_egg"), FROZEN_ZOMBIE_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "tropical_spider_spawn_egg"), TROPICAL_SPIDER_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "corsair_spawn_egg"), CORSAIR_SPAWN_EGG);
+        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "toxic_slime_spawn_egg"), TOXIC_SLIME_SPAWN_EGG);
 
         //nether variants
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "executioner_spawn_egg"), EXECUTIONER_SPAWN_EGG);
@@ -53,6 +56,7 @@ public class ModSpawnEggs {
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_spawn_egg"), INFECTED_PIGLIN_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_brute_spawn_egg"), INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "soul_stealer_spawn_egg"), SOUL_STEALER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "lava_slime_spawn_egg"), LAVA_SLIME_SPAWN_EGG);
 
         //Item group
         Registry.register(Registries.ITEM_GROUP, MOB_VARIANTS, FabricItemGroup.builder()
@@ -67,11 +71,13 @@ public class ModSpawnEggs {
                     entries.add(ModSpawnEggs.TROPICAL_SPIDER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.FROZEN_ZOMBIE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.CORSAIR_SPAWN_EGG);
+                    entries.add(ModSpawnEggs.TOXIC_SLIME_SPAWN_EGG);
                     entries.add(ModSpawnEggs.EXECUTIONER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.NIGHTMARE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.INFECTED_PIGLIN_SPAWN_EGG);
                     entries.add(ModSpawnEggs.INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.SOUL_STEALER_SPAWN_EGG);
+                    entries.add(ModSpawnEggs.LAVA_SLIME_SPAWN_EGG);
                 })
                 .build());
     }

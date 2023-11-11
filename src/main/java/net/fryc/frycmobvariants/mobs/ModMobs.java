@@ -3,10 +3,7 @@ package net.fryc.frycmobvariants.mobs;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.biome.CorsairEntity;
-import net.fryc.frycmobvariants.mobs.biome.ExplorerEntity;
-import net.fryc.frycmobvariants.mobs.biome.FrozenZombieEntity;
-import net.fryc.frycmobvariants.mobs.biome.TropicalSpiderEntity;
+import net.fryc.frycmobvariants.mobs.biome.*;
 import net.fryc.frycmobvariants.mobs.cave.ArmoredSpiderEntity;
 import net.fryc.frycmobvariants.mobs.cave.CaveCreeperEntity;
 import net.fryc.frycmobvariants.mobs.cave.ForgottenEntity;
@@ -15,6 +12,7 @@ import net.fryc.frycmobvariants.mobs.nether.*;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -63,6 +61,11 @@ public class ModMobs {
             new Identifier(MobVariants.MOD_ID, "corsair"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, CorsairEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.99F)).build());
 
+    public static final EntityType<ToxicSlimeEntity> TOXIC_SLIME = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "toxic_slime"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ToxicSlimeEntity::new).dimensions(EntityDimensions.changing(2.04F, 2.04F)).build());
+
 
     //nether variants
     public static final EntityType<ExecutionerEntity> EXECUTIONER = Registry.register(
@@ -90,6 +93,11 @@ public class ModMobs {
             new Identifier(MobVariants.MOD_ID, "soul_stealer"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SoulStealerEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.99F)).fireImmune().build());
 
+    public static final EntityType<LavaSlimeEntity> LAVA_SLIME = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "lava_slime"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, LavaSlimeEntity::new).dimensions(EntityDimensions.changing(2.04F, 2.04F)).fireImmune().build());
+
     public static void registerModMobs(){
         //cave variants
         FabricDefaultAttributeRegistry.register(FORGOTTEN, ForgottenEntity.createForgottenAttributes());
@@ -102,6 +110,7 @@ public class ModMobs {
         FabricDefaultAttributeRegistry.register(FROZEN_ZOMBIE, FrozenZombieEntity.createFrozenZombieAttributes());
         FabricDefaultAttributeRegistry.register(TROPICAL_SPIDER, TropicalSpiderEntity.createTropicalSpiderAttributes());
         FabricDefaultAttributeRegistry.register(CORSAIR, CorsairEntity.createCorsairAttributes());
+        FabricDefaultAttributeRegistry.register(TOXIC_SLIME, HostileEntity.createHostileAttributes());
 
         //nether variants
         FabricDefaultAttributeRegistry.register(EXECUTIONER, ExecutionerEntity.createExecutionerAttributes());
@@ -109,6 +118,7 @@ public class ModMobs {
         FabricDefaultAttributeRegistry.register(INFECTED_PIGLIN, InfectedPiglinEntity.createPiglinAttributes());
         FabricDefaultAttributeRegistry.register(INFECTED_PIGLIN_BRUTE, InfectedPiglinBruteEntity.createPiglinBruteAttributes());
         FabricDefaultAttributeRegistry.register(SOUL_STEALER, SoulStealerEntity.createSoulStealerAttributes());
+        FabricDefaultAttributeRegistry.register(LAVA_SLIME, LavaSlimeEntity.createLavaSlimeAttributes());
 
     }
 }

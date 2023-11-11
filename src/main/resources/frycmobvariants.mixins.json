@@ -10,7 +10,10 @@
     "GhastConvertMixin",
     "AbstractPiglinConvertMixin",
     "AbstractSkeletonConvertMixin",
-    "ShipwreckGeneratorMixin"
+    "ShipwreckGeneratorMixin",
+    "SlimeConvertMixin",
+    "ServerWorldMixin",
+    "SnowballEntityMixin"
   ],
   "client": [
   ],

@@ -12,6 +12,8 @@
   "entity.frycmobvariants.infected_piglin_brute": "Zainfekowany Piglin Brutal",
   "entity.frycmobvariants.soul_stealer": "Złodziej Dusz",
   "entity.frycmobvariants.corsair": "Korsarz",
+  "entity.frycmobvariants.lava_slime": "Szlam Lawy",
+  "entity.frycmobvariants.toxic_slime": "Toksyczny Szlam",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Jajo przyzywające Zapomnianego",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Jajo przyzywające Nieumarłego Wojownika",
@@ -86,6 +88,9 @@
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Szansa Korsarza na pojawienie się z mieczem",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Dodatkowe obrażenia magiczne zadawane przez Złodzieja Dusz",
-  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "Na normalnym poziomie trudności ta wartość jest zwiększana o 1. Na trudnym o 3"
+  "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "Na normalnym poziomie trudności ta wartość jest zwiększana o 1. Na trudnym o 3",
+
+  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime": "Czas do usunięcia lawy pozostawionej przez Szlam Lawy",
+  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Ustaw na 10 lub mniej żeby zapobiec znikaniu lawy"
 
 }

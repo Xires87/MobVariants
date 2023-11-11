@@ -28,6 +28,8 @@
   "item.frycmobvariants.infected_piglin_brute_spawn_egg": "Infected Piglin Brute Spawn Egg",
   "item.frycmobvariants.corsair_spawn_egg": "Corsair Spawn Egg",
   "item.frycmobvariants.soul_stealer_spawn_egg": "Soul Stealer Spawn Egg",
+  "item.frycmobvariants.lava_slime_spawn_egg": "Lava Slime Spawn Egg",
+  "item.frycmobvariants.toxic_slime_spawn_egg": "Toxic Slime Spawn Egg",
 
   "text.autoconfig.frycmobvariants.title": "Mob Variants Config",
   "text.autoconfig.frycmobvariants.category.cave": "Underground",
@@ -74,6 +76,9 @@
   "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance": "Chance to convert Skeleton to Soul Stealer",
   "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance.@Tooltip": "For example, when set to 30, Skeleton will have 30% chance to convert to Soul Stealer after spawning",
 
+  "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance": "Chance to convert Magma Cube to Lava Slime",
+  "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance.@Tooltip": "For example, when set to 50, Magma Cube will have 50% chance to convert to Lava Slime after spawning",
+
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Chance to convert Zombie to Explorer in jungle, swamp or lush cave:",
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning on one of mentioned biomes",
 
@@ -82,6 +87,9 @@
 
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "Chance to convert Spider to Tropical Spider in jungle:",
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "For example, when set to 70, Spider will have 70% chance to convert to Tropical Spider after spawning on one of mentioned biomes",
+
+  "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance": "Chance to convert Slime to Toxic Slime in mangrove swamp:",
+  "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance.@Tooltip": "For example, when set to 10, Slime will have 10% chance to convert to Toxic Slime after spawning on one of mentioned biomes",
 
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",

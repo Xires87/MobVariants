@@ -27,6 +27,8 @@
   "item.frycmobvariants.infected_piglin_brute_spawn_egg": "Jajo przyzywające Zainfekowanego Piglina Brutala",
   "item.frycmobvariants.corsair_spawn_egg": "Jajo przyzywające Korsarza",
   "item.frycmobvariants.soul_stealer_spawn_egg": "Jajo przyzywające Złodzieja Dusz",
+  "item.frycmobvariants.lava_slime_spawn_egg": "Jajo przyzywające Szlam Lawy",
+  "item.frycmobvariants.toxic_slime_spawn_egg": "Jajo przyzywające Toksyczny Szlam",
 
   "text.autoconfig.frycmobvariants.title": "Konfiguracja Mob Variants",
   "text.autoconfig.frycmobvariants.category.cave": "Podziemne",
@@ -75,6 +77,12 @@
 
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "Szansa na zmienienie Pająka w Tropikalnego Pająka w dżungli:",
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 70, Pająki mają 70% szans na zmienienie się w Tropikalne Pająki po pojawieniu się na jednym ze wspomnianych biomów",
+
+  "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance": "Szansa na zmienienie Szlamu w Toksyczny Szlam na bagnie namorzynowym:",
+  "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Szlamy mają 10% szans na zmienienie się w Toksyczne Szlamy po pojawieniu się na jednym ze wspomnianych biomów",
+
+  "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance": "Szansa na zmienienie Kostki Magmy w Szlam Lawy",
+  "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 50, Kostki Magmy mają 50% szans na zmienienie się w Szlamy Lawy po pojawieniu się",
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
   "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",

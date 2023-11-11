@@ -27,7 +27,7 @@ public class ModSpawnEggs {
     public static final Item TROPICAL_SPIDER_SPAWN_EGG = new SpawnEggItem(ModMobs.TROPICAL_SPIDER, 894731, 11013646, new Item.Settings());
 
     public static final Item CORSAIR_SPAWN_EGG = new SpawnEggItem(ModMobs.CORSAIR, 12698049, 894731, new Item.Settings());
-    public static final Item TOXIC_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.TOXIC_SLIME, 12049, 894731, new Item.Settings());
+    public static final Item TOXIC_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.TOXIC_SLIME, 5349438, 9725844, new Item.Settings());
 
     //nether variants
     public static final Item EXECUTIONER_SPAWN_EGG = new SpawnEggItem(ModMobs.EXECUTIONER, 1315860, 4673845, new Item.Settings());
@@ -35,7 +35,7 @@ public class ModSpawnEggs {
     public static final Item INFECTED_PIGLIN_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN, 15373203, 16380836, new Item.Settings());
     public static final Item INFECTED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN_BRUTE, 15771042, 16380836, new Item.Settings());
     public static final Item SOUL_STEALER_SPAWN_EGG = new SpawnEggItem(ModMobs.SOUL_STEALER, 5651507, 3790560, new Item.Settings());
-    public static final Item LAVA_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.LAVA_SLIME, 56507, 379560, new Item.Settings());
+    public static final Item LAVA_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.LAVA_SLIME, 13661252, 16579584, new Item.Settings());
     public static void registerSpawnEggs(){
         //cave variants
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "forgotten_spawn_egg"), FORGOTTEN_SPAWN_EGG);

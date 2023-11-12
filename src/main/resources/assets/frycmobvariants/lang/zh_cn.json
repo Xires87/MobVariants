@@ -103,7 +103,7 @@
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "梦魇发射单个火球的概率",
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "像普通恶魂那样，发射单个火球的概率",
 
-  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "海盗僵尸生成时携带剑的概率",
+  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "海盗骷髅生成时携带剑的概率",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "窃魂骷髅的额外魔法伤害",
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "普通难度此值将上升1，困难难度则为3",

@@ -2,6 +2,7 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
+import net.fryc.frycmobvariants.util.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.FlyingEntity;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 
 @Mixin(GhastEntity.class)
-abstract class GhastConvertMixin extends FlyingEntity implements Monster {
+abstract class GhastConvertMixin extends FlyingEntity implements Monster, CanConvert {
     boolean canConvert = true;
     Random random = new Random();
 
@@ -59,5 +60,13 @@ abstract class GhastConvertMixin extends FlyingEntity implements Monster {
             nbtCompound.putBoolean("canConvert", canConvert);
             nbt.put("MobVariantsCanConvert", nbtCompound);
         }
+    }
+
+    public void setCanConvertToTrue(){
+        canConvert = true;
+    }
+
+    public void setCanConvertToFalse(){
+        canConvert = false;
     }
 }

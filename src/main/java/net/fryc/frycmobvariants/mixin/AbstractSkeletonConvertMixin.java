@@ -5,6 +5,7 @@ import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
 import net.fryc.frycmobvariants.mobs.nether.ExecutionerEntity;
 import net.fryc.frycmobvariants.mobs.nether.SoulStealerEntity;
+import net.fryc.frycmobvariants.util.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -28,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 
 @Mixin(AbstractSkeletonEntity.class)
-abstract class AbstractSkeletonConvertMixin extends HostileEntity implements RangedAttackMob {
+abstract class AbstractSkeletonConvertMixin extends HostileEntity implements RangedAttackMob, CanConvert {
 
     boolean canConvert = true;
     Random random = new Random();
@@ -156,6 +157,14 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
             nbtCompound.putBoolean("canConvert", canConvert);
             nbt.put("MobVariantsCanConvert", nbtCompound);
         }
+    }
+
+    public void setCanConvertToTrue(){
+        canConvert = true;
+    }
+
+    public void setCanConvertToFalse(){
+        canConvert = false;
     }
 
     static {

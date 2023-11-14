@@ -13,7 +13,8 @@
     "ShipwreckGeneratorMixin",
     "SlimeConvertMixin",
     "ServerWorldMixin",
-    "SnowballEntityMixin"
+    "SnowballEntityMixin",
+    "MobEntityMixin"
   ],
   "client": [
   ],

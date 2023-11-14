@@ -2,6 +2,7 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
+import net.fryc.frycmobvariants.util.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
@@ -18,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 
 @Mixin(AbstractPiglinEntity.class)
-abstract class AbstractPiglinConvertMixin extends HostileEntity {
+abstract class AbstractPiglinConvertMixin extends HostileEntity implements CanConvert {
 
     boolean canConvert = true;
     Random random = new Random();
@@ -69,5 +70,13 @@ abstract class AbstractPiglinConvertMixin extends HostileEntity {
             nbtCompound.putBoolean("canConvert", canConvert);
             nbt.put("MobVariantsCanConvert", nbtCompound);
         }
+    }
+
+    public void setCanConvertToTrue(){
+        canConvert = true;
+    }
+
+    public void setCanConvertToFalse(){
+        canConvert = false;
     }
 }

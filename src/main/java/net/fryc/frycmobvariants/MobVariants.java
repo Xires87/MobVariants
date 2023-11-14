@@ -3,6 +3,8 @@ package net.fryc.frycmobvariants;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fryc.frycmobvariants.commands.TryToConvertCommand;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
@@ -23,5 +25,7 @@ public class MobVariants implements ModInitializer {
 
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();
+
+		CommandRegistrationCallback.EVENT.register(TryToConvertCommand::register);
 	}
 }

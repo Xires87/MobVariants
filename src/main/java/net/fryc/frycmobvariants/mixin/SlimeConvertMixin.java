@@ -5,6 +5,7 @@ import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.biome.ToxicSlimeEntity;
 import net.fryc.frycmobvariants.mobs.nether.LavaSlimeEntity;
 import net.fryc.frycmobvariants.tags.ModBiomeTags;
+import net.fryc.frycmobvariants.util.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -23,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 
 @Mixin(SlimeEntity.class)
-abstract class SlimeConvertMixin extends MobEntity implements Monster {
+abstract class SlimeConvertMixin extends MobEntity implements Monster, CanConvert {
 
     boolean canConvert = true;
     Random random = new Random();
@@ -91,5 +92,12 @@ abstract class SlimeConvertMixin extends MobEntity implements Monster {
         }
     }
 
+    public void setCanConvertToTrue(){
+        canConvert = true;
+    }
+
+    public void setCanConvertToFalse(){
+        canConvert = false;
+    }
 
 }

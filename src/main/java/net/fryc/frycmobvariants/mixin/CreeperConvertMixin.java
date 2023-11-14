@@ -3,6 +3,7 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
+import net.fryc.frycmobvariants.util.CanConvert;
 import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
@@ -18,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 
 @Mixin(CreeperEntity.class)
-abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayOwner {
+abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayOwner, CanConvert {
 
     boolean canConvert = true;
     Random random = new Random();
@@ -75,6 +76,14 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
             nbtCompound.putBoolean("canConvert", canConvert);
             nbt.put("MobVariantsCanConvert", nbtCompound);
         }
+    }
+
+    public void setCanConvertToTrue(){
+        canConvert = true;
+    }
+
+    public void setCanConvertToFalse(){
+        canConvert = false;
     }
 
 }

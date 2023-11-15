@@ -24,6 +24,7 @@ public class SoulStealerEntity extends SkeletonEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
         this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
         this.setPathfindingPenalty(PathNodeType.LAVA, 8.0F);
+        this.experiencePoints += 3;
     }
 
     public static DefaultAttributeContainer.Builder createSoulStealerAttributes() {

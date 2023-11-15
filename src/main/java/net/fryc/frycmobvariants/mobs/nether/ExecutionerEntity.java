@@ -6,10 +6,12 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
@@ -18,6 +20,7 @@ public class ExecutionerEntity extends WitherSkeletonEntity {
 
     public ExecutionerEntity(EntityType<? extends WitherSkeletonEntity> entityType, World world) {
         super(entityType, world);
+        this.experiencePoints += 8;
     }
 
     public static DefaultAttributeContainer.Builder createExecutionerAttributes() {
@@ -43,6 +46,27 @@ public class ExecutionerEntity extends WitherSkeletonEntity {
 
     public static ItemStack getExecutionerAxe(){
         return new ItemStack(Items.STONE_AXE);
+    }
+
+    public void playAmbientSound() {
+        SoundEvent soundEvent = this.getAmbientSound();
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.25F);
+        }
+
+    }
+
+    protected void playHurtSound(DamageSource source) {
+        this.resetSoundDelay();
+        SoundEvent soundEvent = this.getHurtSound(source);
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.20F);
+        }
+
+    }
+
+    private void resetSoundDelay() {
+        this.ambientSoundChance = -this.getMinAmbientSoundDelay();
     }
 
 }

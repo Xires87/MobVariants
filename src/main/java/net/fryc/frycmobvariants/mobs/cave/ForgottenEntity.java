@@ -3,16 +3,19 @@ package net.fryc.frycmobvariants.mobs.cave;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 
 public class ForgottenEntity extends ZombieEntity {
     public ForgottenEntity(EntityType<? extends ZombieEntity> entityType, World world) {
         super(entityType, world);
+        this.experiencePoints += 1;
     }
 
     public static DefaultAttributeContainer.Builder createForgottenAttributes() {
@@ -41,5 +44,26 @@ public class ForgottenEntity extends ZombieEntity {
 
     protected ItemStack getSkull() {
         return ItemStack.EMPTY;
+    }
+
+    public void playAmbientSound() {
+        SoundEvent soundEvent = this.getAmbientSound();
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.30F);
+        }
+
+    }
+
+    protected void playHurtSound(DamageSource source) {
+        this.resetSoundDelay();
+        SoundEvent soundEvent = this.getHurtSound(source);
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.20F);
+        }
+
+    }
+
+    private void resetSoundDelay() {
+        this.ambientSoundChance = -this.getMinAmbientSoundDelay();
     }
 }

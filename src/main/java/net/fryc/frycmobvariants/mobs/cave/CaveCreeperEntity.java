@@ -16,6 +16,7 @@ public class CaveCreeperEntity extends CreeperEntity {
 
     public CaveCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {
         super(entityType, world);
+        this.experiencePoints += 1;
     }
 
 

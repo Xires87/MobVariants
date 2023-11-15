@@ -7,6 +7,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
@@ -16,6 +17,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -26,6 +28,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     public UndeadWarriorEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
+        this.experiencePoints += 1;
     }
 
     public static DefaultAttributeContainer.Builder createUndeadWarriorAttributes() {
@@ -57,5 +60,26 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     public static ItemStack getUndeadWarriorSword(){
         return new ItemStack(Items.STONE_SWORD);
+    }
+
+    public void playAmbientSound() {
+        SoundEvent soundEvent = this.getAmbientSound();
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.25F);
+        }
+
+    }
+
+    protected void playHurtSound(DamageSource source) {
+        this.resetSoundDelay();
+        SoundEvent soundEvent = this.getHurtSound(source);
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.15F);
+        }
+
+    }
+
+    private void resetSoundDelay() {
+        this.ambientSoundChance = -this.getMinAmbientSoundDelay();
     }
 }

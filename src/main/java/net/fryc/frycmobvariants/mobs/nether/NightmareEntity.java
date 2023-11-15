@@ -11,11 +11,13 @@ import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.entity.projectile.SmallFireballEntity;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -28,6 +30,7 @@ public class NightmareEntity extends GhastEntity {
 
     public NightmareEntity(EntityType<? extends GhastEntity> entityType, World world) {
         super(entityType, world);
+        this.experiencePoints += 3;
     }
 
     protected void initGoals() {
@@ -45,6 +48,27 @@ public class NightmareEntity extends GhastEntity {
 
     public static DefaultAttributeContainer.Builder createNightmareAttributes() {
         return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0);
+    }
+
+    public void playAmbientSound() {
+        SoundEvent soundEvent = this.getAmbientSound();
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.15F);
+        }
+
+    }
+
+    protected void playHurtSound(DamageSource source) {
+        this.resetSoundDelay();
+        SoundEvent soundEvent = this.getHurtSound(source);
+        if (soundEvent != null) {
+            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.20F);
+        }
+
+    }
+
+    private void resetSoundDelay() {
+        this.ambientSoundChance = -this.getMinAmbientSoundDelay();
     }
 
 

@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
@@ -18,6 +19,7 @@ public class LavaSlimeEntity extends MagmaCubeEntity {
 
     public LavaSlimeEntity(EntityType<? extends MagmaCubeEntity> entityType, World world) {
         super(entityType, world);
+        this.experiencePoints += 3;
     }
 
     public static DefaultAttributeContainer.Builder createLavaSlimeAttributes() {
@@ -61,5 +63,12 @@ public class LavaSlimeEntity extends MagmaCubeEntity {
 
     public boolean hurtByWater() {
         return true;
+    }
+
+    protected SoundEvent getJumpSound() {
+        if(this.getSize() > 2){
+            this.playSound(SoundEvents.ITEM_BUCKET_EMPTY_LAVA, 0.78f, this.getSoundPitch());
+        }
+        return super.getJumpSound();
     }
 }

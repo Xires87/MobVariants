@@ -37,6 +37,10 @@ public class ModMobsRenderers {
             return new ExplorerEntityRenderer(context);
         });
 
+        EntityRendererRegistry.register(ModMobs.BLOATED_CORPSE, (context) -> {
+            return new BloatedCorpseEntityRenderer(context);
+        });
+
         EntityRendererRegistry.register(ModMobs.FROZEN_ZOMBIE, (context) -> {
             return new FrozenZombieEntityRenderer(context);
         });

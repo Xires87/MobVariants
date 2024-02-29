@@ -46,6 +46,11 @@ public class ModMobs {
             new Identifier(MobVariants.MOD_ID, "explorer"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ExplorerEntity::new).dimensions(EntityDimensions.changing(0.6F, 1.95F)).build());
 
+    public static final EntityType<BloatedCorpseEntity> BLOATED_CORPSE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "bloated_corpse"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BloatedCorpseEntity::new).dimensions(EntityDimensions.changing(0.6F, 1.95F)).build());
+
     public static final EntityType<FrozenZombieEntity> FROZEN_ZOMBIE = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "frozen_zombie"),
@@ -107,6 +112,7 @@ public class ModMobs {
 
         //biome variants
         FabricDefaultAttributeRegistry.register(EXPLORER, ExplorerEntity.createZombieAttributes());
+        FabricDefaultAttributeRegistry.register(BLOATED_CORPSE, BloatedCorpseEntity.createBloatedCorpseAttributes());
         FabricDefaultAttributeRegistry.register(FROZEN_ZOMBIE, FrozenZombieEntity.createFrozenZombieAttributes());
         FabricDefaultAttributeRegistry.register(TROPICAL_SPIDER, TropicalSpiderEntity.createTropicalSpiderAttributes());
         FabricDefaultAttributeRegistry.register(CORSAIR, CorsairEntity.createCorsairAttributes());

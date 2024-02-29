@@ -93,6 +93,11 @@ public class ModMobs {
             new Identifier(MobVariants.MOD_ID, "infected_piglin_brute"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, InfectedPiglinBruteEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).fireImmune().build());
 
+    public static final EntityType<ZombifiedPiglinBruteEntity> ZOMBIFIED_PIGLIN_BRUTE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MobVariants.MOD_ID, "zombified_piglin_brute"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, ZombifiedPiglinBruteEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F)).fireImmune().build());
+
     public static final EntityType<SoulStealerEntity> SOUL_STEALER = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(MobVariants.MOD_ID, "soul_stealer"),
@@ -123,6 +128,7 @@ public class ModMobs {
         FabricDefaultAttributeRegistry.register(NIGHTMARE, NightmareEntity.createNightmareAttributes());
         FabricDefaultAttributeRegistry.register(INFECTED_PIGLIN, InfectedPiglinEntity.createPiglinAttributes());
         FabricDefaultAttributeRegistry.register(INFECTED_PIGLIN_BRUTE, InfectedPiglinBruteEntity.createPiglinBruteAttributes());
+        FabricDefaultAttributeRegistry.register(ZOMBIFIED_PIGLIN_BRUTE, ZombifiedPiglinBruteEntity.createZombifiedPiglinBruteAttributes());
         FabricDefaultAttributeRegistry.register(SOUL_STEALER, SoulStealerEntity.createSoulStealerAttributes());
         FabricDefaultAttributeRegistry.register(LAVA_SLIME, LavaSlimeEntity.createLavaSlimeAttributes());
 

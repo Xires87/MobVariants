@@ -35,6 +35,7 @@ public class ModSpawnEggs {
     public static final Item NIGHTMARE_SPAWN_EGG = new SpawnEggItem(ModMobs.NIGHTMARE, 16382451, 12369044, new Item.Settings());
     public static final Item INFECTED_PIGLIN_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN, 15373203, 16380836, new Item.Settings());
     public static final Item INFECTED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN_BRUTE, 15771042, 16380836, new Item.Settings());
+    public static final Item ZOMBIFIED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.ZOMBIFIED_PIGLIN_BRUTE, 0, 0, new Item.Settings());
     public static final Item SOUL_STEALER_SPAWN_EGG = new SpawnEggItem(ModMobs.SOUL_STEALER, 5651507, 3790560, new Item.Settings());
     public static final Item LAVA_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.LAVA_SLIME, 13661252, 16579584, new Item.Settings());
     public static void registerSpawnEggs(){
@@ -57,6 +58,7 @@ public class ModSpawnEggs {
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "nightmare_spawn_egg"), NIGHTMARE_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_spawn_egg"), INFECTED_PIGLIN_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_brute_spawn_egg"), INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
+        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "zombified_piglin_brute_spawn_egg"), ZOMBIFIED_PIGLIN_BRUTE_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "soul_stealer_spawn_egg"), SOUL_STEALER_SPAWN_EGG);
         Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "lava_slime_spawn_egg"), LAVA_SLIME_SPAWN_EGG);
 
@@ -79,6 +81,7 @@ public class ModSpawnEggs {
                     entries.add(ModSpawnEggs.NIGHTMARE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.INFECTED_PIGLIN_SPAWN_EGG);
                     entries.add(ModSpawnEggs.INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
+                    entries.add(ModSpawnEggs.ZOMBIFIED_PIGLIN_BRUTE_SPAWN_EGG);
                     entries.add(ModSpawnEggs.SOUL_STEALER_SPAWN_EGG);
                     entries.add(ModSpawnEggs.LAVA_SLIME_SPAWN_EGG);
                 })

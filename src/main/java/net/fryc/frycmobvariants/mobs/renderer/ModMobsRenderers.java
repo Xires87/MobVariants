@@ -73,6 +73,10 @@ public class ModMobsRenderers {
             return new InfectedPiglinBruteEntityRenderer(context);
         });
 
+        EntityRendererRegistry.register(ModMobs.ZOMBIFIED_PIGLIN_BRUTE, (context) -> {
+            return new ZombifiedPiglinBruteEntityRenderer(context);
+        });
+
         EntityRendererRegistry.register(ModMobs.SOUL_STEALER, (context) -> {
             return new SoulStealerEntityRenderer(context);
         });

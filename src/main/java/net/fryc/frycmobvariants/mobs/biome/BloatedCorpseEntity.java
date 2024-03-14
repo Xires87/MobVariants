@@ -1,5 +1,6 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
+import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -15,7 +16,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class BloatedCorpseEntity extends ZombieEntity {
         areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
         areaEffectCloudEntity.setColor(8888888);
         areaEffectCloudEntity.addEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 320));
-        if(this.getWorld().getDifficulty() == Difficulty.HARD){
+        if(MobVariants.config.bloatedCorpsesCloudPoisonDamageDifficulty.hasCorrectDifficulty(this.getWorld())){
             areaEffectCloudEntity.addEffect(new StatusEffectInstance(StatusEffects.POISON, 34));
         }
 

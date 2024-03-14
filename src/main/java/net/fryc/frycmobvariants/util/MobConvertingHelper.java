@@ -62,12 +62,7 @@ public class MobConvertingHelper {
                 int i = (int)skeleton.getY();
                 if(skeleton.getWorld().getBiome(skeleton.getBlockPos()).isIn(ModBiomeTags.CORSAIR_SPAWN_BIOMES) && (i > 48 || skeleton.getWorld().getBiome(skeleton.getBlockPos()).isIn(ModBiomeTags.UNDERGROUND_BIOMES))){
                     if(random.nextInt(0, 100) <= MobVariants.config.skeletonToCorsairConvertChance){
-                        if (random.nextInt(100) < MobVariants.config.corsairSpawnWithSwordChance) {
-                            skeleton.equipStack(EquipmentSlot.MAINHAND, CorsairEntity.getCorsairSword());
-                        }
-                        else {
-                            skeleton.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                        }
+                        skeleton.equipStack(EquipmentSlot.MAINHAND, CorsairEntity.getCorsairSword());
                         skeleton.convertTo(ModMobs.CORSAIR, true);
                     }
                 }
@@ -88,7 +83,7 @@ public class MobConvertingHelper {
                                 skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                             }
                             else{
-                                if(MobVariants.config.undeadWarriorSpawnWithBowChance <= random.nextInt(0, 100)){ //50% to give skeleton a sword
+                                if(MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance <= random.nextInt(0, 100)){ //50% to give skeleton a sword
                                     skeleton.equipStack(EquipmentSlot.MAINHAND, UndeadWarriorEntity.getUndeadWarriorSword());
                                 }
                                 skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);

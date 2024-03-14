@@ -4,6 +4,8 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import net.fryc.frycmobvariants.util.DifficultyPicker;
+import net.fryc.frycmobvariants.util.StatusEffectPicker;
 
 @Config(name = "frycmobvariants")
 public class MobVariantsConfig implements ConfigData {
@@ -140,17 +142,11 @@ public class MobVariantsConfig implements ConfigData {
     public int skeletonToCorsairConvertChance = 60;
 
 
-    //mob attributes todo collapsible objecty zeby sie nie pogubic w configu
-    @Comment("Skeletons with enchanted bow always convert to undead warrior with bow")
-    @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.Category("mobattributes")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int undeadWarriorSpawnWithBowChance = 50;
+    //mob attributes
 
-    @Comment("20 = 1 second")
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
-    public int undeadWarriorsWeaknessDuration = 300;
+    @ConfigEntry.Gui.CollapsibleObject
+    public UndeadWarriorAttributes undeadWarriorAttributes = new UndeadWarriorAttributes();
 
     @Comment("Nightmare's chance to shoot single fireball (like normal ghast)")
     @ConfigEntry.Gui.Tooltip
@@ -163,13 +159,42 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("mobattributes")
     public float soulStealersBaseMagicDamage = 1.0F;
 
-    @ConfigEntry.Category("mobattributes")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int corsairSpawnWithSwordChance = 42;
 
     @Comment("20 = 1s. Set it to 10 (or lower) to prevent lava from disappearing")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
     public int timeToRemoveLavaLeftByLavaSlime = 30;
 
+    @Comment("This options affects only Corsairs that spawned on shipwrecks")
+    @ConfigEntry.Category("mobattributes")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int corsairSpawnWithSwordChance = 42;
+    @Comment("Minimal difficulty at which Bloated Corpse's cloud deals poison damage. Set to NONE to remove poison damage from the cloud")
+    @ConfigEntry.Category("mobattributes")
+    public DifficultyPicker bloatedCorpsesCloudPoisonDamageDifficulty = DifficultyPicker.HARD;
+
+
+    public static class UndeadWarriorAttributes{
+        @Comment("Skeletons with enchanted bow always convert to undead warrior with bow")
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.Category("mobattributes")
+        @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+        public int undeadWarriorSpawnWithBowChance = 50;
+
+        @Comment("20 = 1 second")
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.Category("mobattributes")
+        public int undeadWarriorsEffectDuration = 300;
+
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.Category("mobattributes")
+        public int undeadWarriorsEffectAmplifier = 1;
+
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.Category("mobattributes")
+        public StatusEffectPicker undeadWarriorsArrowEffect = StatusEffectPicker.WEAKNESS;
+
+    }
 }
+
+

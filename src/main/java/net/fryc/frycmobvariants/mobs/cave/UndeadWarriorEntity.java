@@ -9,7 +9,6 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
@@ -37,7 +36,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     //used only in summons and spawn eggs, udead warriors don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(random.nextInt(100) > MobVariants.config.undeadWarriorSpawnWithBowChance) this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorSword());
+        if(random.nextInt(100) > MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance) this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorSword());
         else this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 
@@ -52,7 +51,9 @@ public class UndeadWarriorEntity extends SkeletonEntity {
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
         PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
         if (persistentProjectileEntity instanceof ArrowEntity) {
-            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, MobVariants.config.undeadWarriorsWeaknessDuration));
+            int duration = MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectDuration > 0 ? MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectDuration : 1;
+            int amplifier = MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectAmplifier > 0 ? MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectAmplifier - 1 : 0;
+            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect.getStatusEffect(), duration, amplifier));
         }
 
         return persistentProjectileEntity;

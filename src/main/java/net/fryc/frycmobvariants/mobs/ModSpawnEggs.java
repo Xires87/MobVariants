@@ -22,7 +22,7 @@ public class ModSpawnEggs {
 
     //biome variants
     public static final Item EXPLORER_SPAWN_EGG = new SpawnEggItem(ModMobs.EXPLORER, 3232308, 894731, new Item.Settings());
-    public static final Item BLOATED_CORPSE_SPAWN_EGG = new SpawnEggItem(ModMobs.BLOATED_CORPSE, 0, 0, new Item.Settings());
+    public static final Item BLOATED_CORPSE_SPAWN_EGG = new SpawnEggItem(ModMobs.BLOATED_CORPSE, 7969893, 5651507, new Item.Settings());
 
     public static final Item FROZEN_ZOMBIE_SPAWN_EGG = new SpawnEggItem(ModMobs.FROZEN_ZOMBIE, 44975, 56063, new Item.Settings());
     public static final Item TROPICAL_SPIDER_SPAWN_EGG = new SpawnEggItem(ModMobs.TROPICAL_SPIDER, 894731, 11013646, new Item.Settings());
@@ -35,7 +35,7 @@ public class ModSpawnEggs {
     public static final Item NIGHTMARE_SPAWN_EGG = new SpawnEggItem(ModMobs.NIGHTMARE, 16382451, 12369044, new Item.Settings());
     public static final Item INFECTED_PIGLIN_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN, 15373203, 16380836, new Item.Settings());
     public static final Item INFECTED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.INFECTED_PIGLIN_BRUTE, 15771042, 16380836, new Item.Settings());
-    public static final Item ZOMBIFIED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.ZOMBIFIED_PIGLIN_BRUTE, 0, 0, new Item.Settings());
+    public static final Item ZOMBIFIED_PIGLIN_BRUTE_SPAWN_EGG = new SpawnEggItem(ModMobs.ZOMBIFIED_PIGLIN_BRUTE, 15771042, 7969893, new Item.Settings());
     public static final Item SOUL_STEALER_SPAWN_EGG = new SpawnEggItem(ModMobs.SOUL_STEALER, 5651507, 3790560, new Item.Settings());
     public static final Item LAVA_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.LAVA_SLIME, 13661252, 16579584, new Item.Settings());
     public static void registerSpawnEggs(){

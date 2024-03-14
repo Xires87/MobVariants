@@ -46,8 +46,8 @@
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel": "Stała szansa na zmienienie Zombie w Zapomnianego poniżej poziomu Y wybranego w poprzedniej opcji",
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel.@Tooltip": "Gdy ta wartość jest poniżej 0, szansa na zmienienie zwiększa się o 1% za każdy poziom Y poniżej wybranego w poprzedniej opcji",
 
-  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY": "Przemień Pająki w Opancerzone Pająki poniżej wybranego poziomu Y:",
-  "text.autoconfig.frycmobvariants.option.spiderToBlackSpiderConvertLevelY.@Tooltip": "Pająki mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
+  "text.autoconfig.frycmobvariants.option.spiderToArmoredSpiderConvertLevelY": "Przemień Pająki w Opancerzone Pająki poniżej wybranego poziomu Y:",
+  "text.autoconfig.frycmobvariants.option.spiderToArmoredSpiderConvertLevelY.@Tooltip": "Pająki mają szansę zmienić się w silniejszy wariant kiedy pojawiają się poniżej tego poziomu Y",
 
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel": "Stała szansa na zmienienie Pająka w Opancerzonego Pająka poniżej poziomu Y wybranego w poprzedniej opcji",
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel.@Tooltip": "Gdy ta wartość jest poniżej 0, szansa na zmienienie zwiększa się o 1% za każdy poziom Y poniżej wybranego w poprzedniej opcji",
@@ -76,7 +76,7 @@
   "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance": "Szansa na zmienienie Piglina Brutala w Zainfekowanego Piglina Brutala",
   "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 10, Pigliny Brutale mają 10% szans na zmienienie się w Zainfekowane Pigliny Brutale po pojawieniu się",
 
-  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Szansa na zmienienie Zombie w Odkrywcę na bagnie, w dżungli lub w porośniętej jaskini:",
+  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Szansa na zmienienie Zombie w Odkrywcę w dżungli lub w porośniętej jaskini:",
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 90, Zombie mają 90% szans na zmienienie się w Odkrywcę po pojawieniu się na jednym ze wspomnianych biomów",
 
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "Szansa na zmienienie Pająka w Tropikalnego Pająka w dżungli:",
@@ -88,21 +88,45 @@
   "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance": "Szansa na zmienienie Kostki Magmy w Szlam Lawy",
   "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 50, Kostki Magmy mają 50% szans na zmienienie się w Szlamy Lawy po pojawieniu się",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
+  "text.autoconfig.frycmobvariants.option.skeletonToCorsairConvertChance": "Szansa na zmienienie Szkieleta w Korsarza",
+  "text.autoconfig.frycmobvariants.option.skeletonToCorsairConvertChance.@Tooltip": "Dla szkieletów które pojawiły się w oceanie lub na plaży. Nie ma wpływu na Korsarzy którzy pojawiają się na wrakach statków",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration": "Czas trwania osłabienia Nieumarłych Wojowników",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration.@Tooltip": "20 = 1 sekunda",
+  "text.autoconfig.frycmobvariants.option.zombifiedPiglinConvertChance": "Szansa na zmienienie Zombifikowanego Piglina w Zombifikowanego Piglina Okrutnika:",
+  "text.autoconfig.frycmobvariants.option.zombifiedPiglinConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 12, Zombifikowane Pigliny mają 12% szans na zmienienie się w Zombifikowane Pigliny Okrutniki po pojawieniu się",
+
+  "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance": "Szansa na zmienienie Zombie w Napuchnięte Zwłoki na bagnach:",
+  "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 85, Zombie mają 85% szans na zmienienie się w Napuchnięte Zwłoki po pojawieniu się na jednym ze wspomnianych biomów",
+
+  "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance": "Szansa na zmienienie Szkieleta w Złodzieja Dusz",
+  "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 30, Szkielety mają 30% szans na zmienienie się w Złodzieji Dusz po pojawieniu się",
+
+  "text.autoconfig.frycmobvariants.option.zombieToFrozenZombieConvertChance": "Szansa na zmienienie Zombie w Zamarzniętego Zombie na śnieżnych biomach:",
+  "text.autoconfig.frycmobvariants.option.zombieToFrozenZombieConvertChance.@Tooltip": "Na przykład, kiedy ta opcja jest ustawiona na 85, Zombie mają 85% szans na zmienienie się w Zamarznięte Zombie po pojawieniu się na jednym ze wspomnianych biomów",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes": "Atrybuty Nieumarłego Wojownika",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration": "Czas trwania osłabienia Nieumarłych Wojowników",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration.@Tooltip": "20 = 1 sekunda",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Efekt nakładany przez strzały Nieumarłeo Wojownika",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectAmplifier": "Moc efektu nakładanego przez strzały Nieumarłego Wojownika",
 
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Szansa Koszmaru na wystrzelenie pojedynczej kuli ognia",
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Szansa na wystrzelenie pojedynczej kuli ognia (jak zwykły ghast)",
 
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Szansa Korsarza na pojawienie się z mieczem",
+  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance.@Tooltip": "Ta opcja ma wpływ tylko na Korsarzy którzy pojawiają się na wrakach statków",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Dodatkowe obrażenia magiczne zadawane przez Złodzieja Dusz",
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "Na normalnym poziomie trudności ta wartość jest zwiększana o 1. Na trudnym o 3",
 
   "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime": "Czas do usunięcia lawy pozostawionej przez Szlam Lawy",
-  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Ustaw na 10 lub mniej żeby zapobiec znikaniu lawy"
+  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Ustaw na 10 lub mniej żeby zapobiec znikaniu lawy",
+
+  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty": "Najniższy poziom trudności na którym chmura Napuchniętych Zwłok zadaje obrażenia od trucizny",
+  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Ustaw na NONE aby usunąć truciznę z chmury"
 
 }

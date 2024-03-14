@@ -83,7 +83,7 @@
   "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance": "Chance to convert Magma Cube to Lava Slime",
   "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance.@Tooltip": "For example, when set to 50, Magma Cube will have 50% chance to convert to Lava Slime after spawning",
 
-  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Chance to convert Zombie to Explorer in jungle, swamp or lush cave:",
+  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "Chance to convert Zombie to Explorer in jungle, or lush cave:",
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning on one of mentioned biomes",
 
   "text.autoconfig.frycmobvariants.option.zombieToFrozenZombieConvertChance": "Chance to convert Zombie to Frozen Zombie on snowy biomes:",
@@ -95,23 +95,39 @@
   "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance": "Chance to convert Slime to Toxic Slime in mangrove swamp:",
   "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance.@Tooltip": "For example, when set to 10, Slime will have 10% chance to convert to Toxic Slime after spawning on one of mentioned biomes",
 
+  "text.autoconfig.frycmobvariants.option.skeletonToCorsairConvertChance": "Chance to convert Skeleton to Corsair in ocean or beach:",
+  "text.autoconfig.frycmobvariants.option.skeletonToCorsairConvertChance.@Tooltip": "For skeletons spawned in ocean or beach. Doesn't affect Corsairs spawning on Shipwrecks",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorSpawnWithBowChance.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
+  "text.autoconfig.frycmobvariants.option.zombifiedPiglinConvertChance": "Chance to convert Zombified Piglin to Zombified Piglin Brute:",
+  "text.autoconfig.frycmobvariants.option.zombifiedPiglinConvertChance.@Tooltip": "For example, when set to 12, Piglin Brute will have 12% chance to convert to Zombified Piglin Brute after spawning",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorsStatusEffect": "Status effect applied by Undead Warrior's arrows",
+  "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance": "Chance to convert Zombie to Bloated Corpse in swamps:",
+  "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning on one of mentioned biomes",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration": "Undead warrior's effect duration",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorsWeaknessDuration.@Tooltip": "20 = 1 second",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes": "Undead warrior's attributes",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Status effect applied by Undead Warrior's arrows",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration": "Undead warrior's effect duration",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration.@Tooltip": "20 = 1 second",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectAmplifier": "Undead warrior's effect amplifier",
 
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Nightmare's chance to shoot single fireball",
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Chance to shoot single fireball (like normal ghast)",
 
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Corsair's chance to spawn with sword",
+  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance.@Tooltip": "This options affects only Corsairs that spawned on shipwrecks",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Additional magic damage dealt by soul stealer",
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "On normal difficulty this value is increased by 1. On hard, by 3",
 
   "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime": "Time to remove lava left by Lava Slime",
-  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Set it to 10 (or lower) to prevent lava from disappearing"
+  "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Set it to 10 (or lower) to prevent lava from disappearing",
+
+  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty": "Minimal difficulty at which Bloated Corpse's cloud deals poison damage",
+  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Set to NONE to remove poison damage from the cloud"
 }

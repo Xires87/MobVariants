@@ -168,9 +168,11 @@ public class MobVariantsConfig implements ConfigData {
     @Comment("This options affects only Corsairs that spawned on shipwrecks")
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    @ConfigEntry.Gui.Tooltip
     public int corsairSpawnWithSwordChance = 42;
     @Comment("Minimal difficulty at which Bloated Corpse's cloud deals poison damage. Set to NONE to remove poison damage from the cloud")
     @ConfigEntry.Category("mobattributes")
+    @ConfigEntry.Gui.Tooltip
     public DifficultyPicker bloatedCorpsesCloudPoisonDamageDifficulty = DifficultyPicker.HARD;
 
 
@@ -186,11 +188,9 @@ public class MobVariantsConfig implements ConfigData {
         @ConfigEntry.Category("mobattributes")
         public int undeadWarriorsEffectDuration = 300;
 
-        @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Category("mobattributes")
         public int undeadWarriorsEffectAmplifier = 1;
 
-        @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Category("mobattributes")
         public StatusEffectPicker undeadWarriorsArrowEffect = StatusEffectPicker.WEAKNESS;
 

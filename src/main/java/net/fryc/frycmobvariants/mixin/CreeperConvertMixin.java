@@ -1,9 +1,8 @@
 package net.fryc.frycmobvariants.mixin;
 
 
-import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
@@ -36,25 +35,8 @@ abstract class CreeperConvertMixin extends HostileEntity implements SkinOverlayO
         if(!creeper.getWorld().isClient){
             if(creeper.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                if(creeper.getClass() == CreeperEntity.class){
-                    int i = (int)creeper.getY();
-                    if(i < MobVariants.config.creeperToCaveCreeperConvertLevelY){
-                        boolean bl = false;
-                        if(MobVariants.config.fixedChanceToConvertCreeperUnderSelectedYLevel > -1){
-                            if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertCreeperUnderSelectedYLevel){
-                                bl = true;
-                            }
-                        }
-                        else if(random.nextInt(i, 100 + i) < MobVariants.config.creeperToCaveCreeperConvertLevelY){ // ~26% to convert on 0Y level (default)
-                            bl = true;
-                        }
-
-                        if(bl){
-                            creeper.convertTo(ModMobs.CAVE_CREEPER, false);
-                        }
-                    }
-                    canConvert = false;
-                }
+                MobConvertingHelper.tryToConvertCreeper(creeper, random);
+                canConvert = false;
             }
         }
     }

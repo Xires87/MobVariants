@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:mangrove_swamp"
+    "#minecraft:is_jungle"
   ]
 }

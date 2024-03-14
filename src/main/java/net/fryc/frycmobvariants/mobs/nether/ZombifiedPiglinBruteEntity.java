@@ -30,7 +30,7 @@ public class ZombifiedPiglinBruteEntity extends ZombifiedPiglinEntity {
         if (!this.canTarget(entity)) {
             return false;
         } else {
-            return entity.getType() == EntityType.PLAYER && this.isUniversallyAngry(entity.getWorld()) ? true : entity.getUuid().equals(this.getAngryAt()) || (this.squaredDistanceTo(entity) < 24 && this.canSee(entity));
+            return entity.getType() == EntityType.PLAYER && this.isUniversallyAngry(entity.getWorld()) || entity.getUuid().equals(this.getAngryAt()) || (this.squaredDistanceTo(entity) < 24 && this.canSee(entity));
         }
     }
 

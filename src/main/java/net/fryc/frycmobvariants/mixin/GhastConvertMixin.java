@@ -1,8 +1,7 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.FlyingEntity;
@@ -33,12 +32,8 @@ abstract class GhastConvertMixin extends FlyingEntity implements Monster, CanCon
         if (!ghast.getWorld().isClient) {
             if(ghast.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if (canConvert) {
-                if (ghast.getClass() == GhastEntity.class) {
-                    if (random.nextInt(0, 100) <= MobVariants.config.ghastConvertChance) {
-                        ghast.convertTo(ModMobs.NIGHTMARE, false);
-                    }
-                    canConvert = false;
-                }
+                MobConvertingHelper.tryToConvertGhast(ghast, random);
+                canConvert = false;
             }
         }
     }

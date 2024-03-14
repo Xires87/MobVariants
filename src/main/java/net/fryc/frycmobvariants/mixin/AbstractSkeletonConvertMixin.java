@@ -1,11 +1,9 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
-import net.fryc.frycmobvariants.mobs.nether.ExecutionerEntity;
-import net.fryc.frycmobvariants.mobs.nether.SoulStealerEntity;
 import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -13,10 +11,11 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.*;
+import net.minecraft.entity.mob.AbstractSkeletonEntity;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvents;
@@ -51,56 +50,8 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
         if(!skeleton.getWorld().isClient){
             if(skeleton.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                if(skeleton.getClass() == SkeletonEntity.class){
-                    if(!skeleton.getWorld().getDimension().ultrawarm()){
-                        int i = (int)skeleton.getY();
-                        if(i < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){
-                            boolean bl = false;
-                            if(MobVariants.config.fixedChanceToConvertSkeletonUnderSelectedYLevel > -1){
-                                if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertSkeletonUnderSelectedYLevel){
-                                    bl = true;
-                                }
-                            }
-                            else if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)
-                                bl = true;
-                            }
-
-                            if(bl){
-                                if(skeleton.getMainHandStack().hasEnchantments()){ //skeletons with enchantments on bow always convert to undead warriors with bow
-                                    skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
-                                }
-                                else{
-                                    if(MobVariants.config.undeadWarriorSpawnWithBowChance <= random.nextInt(0, 100)){ //50% to give skeleton a sword
-                                        skeleton.equipStack(EquipmentSlot.MAINHAND, UndeadWarriorEntity.getUndeadWarriorSword());
-                                    }
-                                    skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        if(random.nextInt(0, 100) <= MobVariants.config.skeletonToSoulStealerConvertChance){
-                            skeleton.equipStack(EquipmentSlot.MAINHAND, SoulStealerEntity.getSoulsStealerHoe());
-                            skeleton.convertTo(ModMobs.SOUL_STEALER, true);
-                        }
-                    }
-
-                    canConvert = false;
-                }
-                else if(skeleton.getClass() == WitherSkeletonEntity.class){
-                    if(random.nextInt(0, 100) <= MobVariants.config.witherSkeletonConvertChance){
-                        skeleton.equipStack(EquipmentSlot.MAINHAND, ExecutionerEntity.getExecutionerAxe());
-                        skeleton.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.IRON_HELMET));
-                        int equipChance = random.nextInt(0, 100);
-                        if(equipChance > 45){
-                            if(equipChance <= 49) skeleton.equipStack(EquipmentSlot.FEET, new ItemStack(Items.IRON_BOOTS));
-                            else if(equipChance <= 78) skeleton.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.IRON_CHESTPLATE));
-                            else skeleton.equipStack(EquipmentSlot.LEGS, new ItemStack(Items.IRON_LEGGINGS));
-                        }
-                        skeleton.convertTo(ModMobs.EXECUTIONER, true);
-                    }
-                    canConvert = false;
-                }
+                MobConvertingHelper.tryToConvertSkeleton(skeleton ,random);
+                canConvert = false;
             }
 
             //converting to corsair underwater

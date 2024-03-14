@@ -95,9 +95,15 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int magmaCubeToLavaSlimeConvertChance = 19;
 
+    @Comment("For example, when set to 12, Zombified Piglin will have 12% chance to convert to Zombified Piglin Brute after spawning")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int zombifiedPiglinConvertChance = 4;
+
 
     //biomes
-    @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning in jungle, swamp or lush cave")
+    @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning in jungle or lush cave")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
@@ -108,6 +114,12 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int zombieToFrozenZombieConvertChance = 80;
+
+    @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning in swamp")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("biome")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int zombieToBloatedCorpseConvertChance = 75;
 
     @Comment("For example, when set to 70, Spider will have 70% chance to convert to Tropical Spider after spawning in jungle")
     @ConfigEntry.Gui.Tooltip
@@ -121,8 +133,14 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     public int slimeToToxicSlimeConvertChance = 70;
 
+    @Comment("For skeletons spawned in ocean or beach. Doesn't affect Corsairs spawning on Shipwrecks")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("biome")
+    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
+    public int skeletonToCorsairConvertChance = 60;
 
-    //mob attributes
+
+    //mob attributes todo collapsible objecty zeby sie nie pogubic w configu
     @Comment("Skeletons with enchanted bow always convert to undead warrior with bow")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")

@@ -14,7 +14,8 @@
     "SlimeConvertMixin",
     "ServerWorldMixin",
     "SnowballEntityMixin",
-    "MobEntityMixin"
+    "MobEntityMixin",
+    "PiglinBrainMixin"
   ],
   "client": [
   ],

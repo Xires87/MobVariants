@@ -1,10 +1,9 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.biome.FrozenZombieEntity;
-import net.fryc.frycmobvariants.tags.ModBiomeTags;
 import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
@@ -12,7 +11,6 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeKeys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -40,33 +38,8 @@ abstract class ZombieConvertMixin extends HostileEntity implements CanConvert {
         if(!zombie.getWorld().isClient){
             if(zombie.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                if(zombie.getClass() == ZombieEntity.class){
-                    int i = (int)zombie.getY();
-                    if(zombie.getWorld().getBiome(zombie.getBlockPos()).isIn(ModBiomeTags.SNOWY_BIOMES) && i > 48){
-                        if(random.nextInt(0, 100) <= MobVariants.config.zombieToFrozenZombieConvertChance) zombie.convertTo(ModMobs.FROZEN_ZOMBIE, true);
-                    }
-                    else if((zombie.getWorld().getBiome(zombie.getBlockPos()).isIn(ModBiomeTags.EXPLORER_SPAWN_BIOMES) && i > 38) || zombie.getWorld().getBiome(zombie.getBlockPos()).matchesKey(BiomeKeys.LUSH_CAVES)){
-                        if(random.nextInt(0, 100) <= MobVariants.config.zombieToExplorerConvertChance) zombie.convertTo(ModMobs.EXPLORER, true);
-                    }
-                    else {
-                        if(i < MobVariants.config.zombieToForgottenConvertLevelY){
-                            boolean bl = false;
-                            if(MobVariants.config.fixedChanceToConvertZombieUnderSelectedYLevel > -1){
-                                if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertZombieUnderSelectedYLevel){
-                                    bl = true;
-                                }
-                            }
-                            else if(random.nextInt(i, 100 + i) < MobVariants.config.zombieToForgottenConvertLevelY){
-                                bl = true;
-                            }
-
-                            if(bl){
-                                zombie.convertTo(ModMobs.FORGOTTEN, true);
-                            }
-                        }
-                    }
-                    canConvert = false;
-                }
+                MobConvertingHelper.tryToConvertZombie(zombie, random);
+                canConvert = false;
             }
 
             if(zombie.isAlive() && !zombie.isAiDisabled() && !zombie.canFreeze() && zombie.getClass() != FrozenZombieEntity.class){

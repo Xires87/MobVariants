@@ -15,6 +15,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -52,7 +53,11 @@ public class BloatedCorpseEntity extends ZombieEntity {
         areaEffectCloudEntity.setWaitTime(4);
         areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration());
         areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
+        areaEffectCloudEntity.setColor(8888888);
         areaEffectCloudEntity.addEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 320));
+        if(this.getWorld().getDifficulty() == Difficulty.HARD){
+            areaEffectCloudEntity.addEffect(new StatusEffectInstance(StatusEffects.POISON, 34));
+        }
 
         this.getWorld().spawnEntity(areaEffectCloudEntity);
     }
@@ -66,7 +71,7 @@ public class BloatedCorpseEntity extends ZombieEntity {
 
         for (LivingEntity livingEntity : list) {
             double d = this.squaredDistanceTo(livingEntity);
-            if (d < 12.0) {
+            if (d < 12.0 && this.canSee(livingEntity)) {
                 if(livingEntity.isWet()){
                     livingEntity.damage(this.getWorld().getDamageSources().onFire(), 0.1f);
                 }
@@ -81,7 +86,7 @@ public class BloatedCorpseEntity extends ZombieEntity {
 
     private void spawnFireExplosionParticles(){
         Random rand = this.getRandom();
-        for(int i = 50; i > 0; i--){
+        for(int i = 60; i > 0; i--){
             this.getWorld().addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), rand.nextFloat() * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * (rand.nextBoolean() ? 1 : -1));
         }
     }

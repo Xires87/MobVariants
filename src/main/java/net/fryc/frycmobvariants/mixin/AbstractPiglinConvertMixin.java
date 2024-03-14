@@ -1,15 +1,17 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
+import net.fryc.frycmobvariants.mobs.nether.ZombifiedPiglinBruteEntity;
 import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.PiglinBruteEntity;
-import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -36,19 +38,22 @@ abstract class AbstractPiglinConvertMixin extends HostileEntity implements CanCo
         if(!piglin.getWorld().isClient){
             if(piglin.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                if(piglin.getClass() == PiglinEntity.class){
-                    if(random.nextInt(0, 100) <= MobVariants.config.piglinConvertChance){
-                        piglin.convertTo(ModMobs.INFECTED_PIGLIN, true);
-                    }
-                    canConvert = false;
-                }
-                else if(piglin.getClass() == PiglinBruteEntity.class){
-                    if(random.nextInt(0, 100) <= MobVariants.config.piglinBruteConvertChance){
-                        piglin.convertTo(ModMobs.INFECTED_PIGLIN_BRUTE, true);
-                    }
-                    canConvert = false;
-                }
+                MobConvertingHelper.tryToConvertPiglin(piglin, random);
+                canConvert = false;
             }
+        }
+    }
+
+
+    @Inject(at = @At("HEAD"), method = "zombify(Lnet/minecraft/server/world/ServerWorld;)V", cancellable = true)
+    private void turnPiglinBrutesIntoZombifiedPiglinBrutes(ServerWorld world, CallbackInfo info) {
+        AbstractPiglinEntity dys = ((AbstractPiglinEntity)(Object)this);
+        if(dys instanceof PiglinBruteEntity){
+            ZombifiedPiglinBruteEntity zombifiedPiglinEntity = (ZombifiedPiglinBruteEntity)dys.convertTo(ModMobs.ZOMBIFIED_PIGLIN_BRUTE, true);
+            if (zombifiedPiglinEntity != null) {
+                zombifiedPiglinEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 0));
+            }
+            info.cancel();
         }
     }
 

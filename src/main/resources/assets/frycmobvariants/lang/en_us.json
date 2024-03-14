@@ -14,6 +14,8 @@
   "entity.frycmobvariants.corsair": "Corsair",
   "entity.frycmobvariants.lava_slime": "Lava Slime",
   "entity.frycmobvariants.toxic_slime": "Toxic Slime",
+  "entity.frycmobvariants.bloated_corpse": "Bloated Corpse",
+  "entity.frycmobvariants.zombified_piglin_brute": "Zombified Piglin Brute",
 
   "item.frycmobvariants.forgotten_spawn_egg": "Forgotten Spawn Egg",
   "item.frycmobvariants.undead_warrior_spawn_egg": "Undead Warrior Spawn Egg",
@@ -30,6 +32,8 @@
   "item.frycmobvariants.soul_stealer_spawn_egg": "Soul Stealer Spawn Egg",
   "item.frycmobvariants.lava_slime_spawn_egg": "Lava Slime Spawn Egg",
   "item.frycmobvariants.toxic_slime_spawn_egg": "Toxic Slime Spawn Egg",
+  "item.frycmobvariants.bloated_corpse_spawn_egg": "Bloated Corpse Spawn Egg",
+  "item.frycmobvariants.zombified_piglin_brute_spawn_egg": "Zombified Piglin Brute Spawn Egg",
 
   "text.autoconfig.frycmobvariants.title": "Mob Variants Config",
   "text.autoconfig.frycmobvariants.category.cave": "Underground",

@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 public class ZombifiedPiglinBruteEntityRenderer extends BipedEntityRenderer<MobEntity, ZombifiedPiglinBruteEntityModel> {
 
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/piglin/zombified_piglin_brute.png");
+            new Identifier(MobVariants.MOD_ID, "textures/entity/zombie/zombified_piglin_brute.png");
 
     public ZombifiedPiglinBruteEntityRenderer(EntityRendererFactory.Context ctx, EntityModelLayer mainLayer, EntityModelLayer innerArmorLayer, EntityModelLayer outerArmorLayer, boolean zombie) {
         super(ctx, getPiglinModel(ctx.getModelLoader(), mainLayer, zombie), 0.5F, 1.0019531F, 1.0F, 1.0019531F);

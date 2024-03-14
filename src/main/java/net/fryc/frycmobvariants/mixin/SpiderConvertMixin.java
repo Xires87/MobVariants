@@ -1,14 +1,12 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,30 +33,8 @@ abstract class SpiderConvertMixin extends HostileEntity implements CanConvert {
         if(!spider.getWorld().isClient){
             if(spider.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                if(spider.getClass() == SpiderEntity.class){
-                    int i = (int)spider.getY();
-                    if(i > 40 && spider.getWorld().getBiome(spider.getBlockPos()).isIn(BiomeTags.IS_JUNGLE)){
-                        if(random.nextInt(0, 100) <= MobVariants.config.spiderToTropicalSpiderConvertChance) spider.convertTo(ModMobs.TROPICAL_SPIDER, false); // ~80% chance to convert in jungle (default)
-                    }
-                    else {
-                        if(i < MobVariants.config.spiderToArmoredSpiderConvertLevelY){
-                            boolean bl = false;
-                            if(MobVariants.config.fixedChanceToConvertSpiderUnderSelectedYLevel > -1){
-                                if(random.nextInt(0,100) <= MobVariants.config.fixedChanceToConvertSpiderUnderSelectedYLevel){
-                                    bl = true;
-                                }
-                            }
-                            else if(random.nextInt(i, 100 + i) < MobVariants.config.spiderToArmoredSpiderConvertLevelY){ // ~26% to convert on 0Y level (default)
-                                bl = true;
-                            }
-
-                            if(bl){
-                                spider.convertTo(ModMobs.ARMORED_SPIDER, false);
-                            }
-                        }
-                    }
-                    canConvert = false;
-                }
+                MobConvertingHelper.tryToConvertSpider(spider, random);
+                canConvert = false;
             }
         }
     }

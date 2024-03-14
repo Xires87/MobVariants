@@ -1,15 +1,10 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.ModMobs;
-import net.fryc.frycmobvariants.mobs.biome.ToxicSlimeEntity;
-import net.fryc.frycmobvariants.mobs.nether.LavaSlimeEntity;
-import net.fryc.frycmobvariants.tags.ModBiomeTags;
 import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.mob.SlimeEntity;
@@ -39,26 +34,7 @@ abstract class SlimeConvertMixin extends MobEntity implements Monster, CanConver
         if(!slime.getWorld().isClient){
             if(slime.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
             if(canConvert){
-                int size = slime.getSize();
-                if(slime.getClass() == SlimeEntity.class){
-                    int i = (int)slime.getY();
-                    if(slime.getWorld().getBiome(slime.getBlockPos()).isIn(ModBiomeTags.TOXIC_SLIME_SPAWN_BIOMES) && i > 48){
-                        if(random.nextInt(0, 100) <= MobVariants.config.slimeToToxicSlimeConvertChance){
-                            ToxicSlimeEntity toxicSlime = slime.convertTo(ModMobs.TOXIC_SLIME, false);
-                            if(toxicSlime != null){
-                                toxicSlime.setSize(size, true);
-                            }
-                        }
-                    }
-                }
-                else if(slime.getClass() == MagmaCubeEntity.class){
-                    if(random.nextInt(0, 100) <= MobVariants.config.magmaCubeToLavaSlimeConvertChance){
-                        LavaSlimeEntity lavaSlime = slime.convertTo(ModMobs.LAVA_SLIME, false);
-                        if(lavaSlime != null){
-                            lavaSlime.setSize(size, true);
-                        }
-                    }
-                }
+                MobConvertingHelper.tryToConvertSlime(slime, random);
                 canConvert = false;
             }
         }

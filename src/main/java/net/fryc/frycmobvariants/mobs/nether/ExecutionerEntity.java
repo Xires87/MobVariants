@@ -1,7 +1,5 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -38,10 +36,6 @@ public class ExecutionerEntity extends WitherSkeletonEntity {
             else if(equipChance <= 78) this.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.IRON_CHESTPLATE));
             else this.equipStack(EquipmentSlot.LEGS, new ItemStack(Items.IRON_LEGGINGS));
         }
-    }
-
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 2.24F;
     }
 
     public static ItemStack getExecutionerAxe(){

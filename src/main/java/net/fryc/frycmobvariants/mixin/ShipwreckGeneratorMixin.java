@@ -5,7 +5,6 @@ import net.fryc.frycmobvariants.mobs.biome.CorsairEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.structure.ShipwreckGenerator;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +29,7 @@ abstract class ShipwreckGeneratorMixin {
         if (corsairEntity != null) {
             corsairEntity.setPersistent();
             corsairEntity.refreshPositionAndAngles(cPos, 0.0F, 0.0F);
-            corsairEntity.initialize(world, world.getLocalDifficulty(cPos), SpawnReason.STRUCTURE, (EntityData)null, (NbtCompound)null);
+            corsairEntity.initialize(world, world.getLocalDifficulty(cPos), SpawnReason.STRUCTURE, (EntityData)null);
             world.spawnEntityAndPassengers(corsairEntity);
             if (cPos.getY() > world.getSeaLevel()) {
                 world.setBlockState(cPos, Blocks.AIR.getDefaultState(), 2);

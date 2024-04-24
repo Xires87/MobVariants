@@ -74,9 +74,9 @@ public class ExplorerEntity extends ZombieEntity {
         return this.isBaby() ? 0.93F : 1.74F;
     }
 
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(EXPLORER_FLAGS, (byte)0);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(EXPLORER_FLAGS, (byte)0);
     }
 
     public boolean canFreeze() {

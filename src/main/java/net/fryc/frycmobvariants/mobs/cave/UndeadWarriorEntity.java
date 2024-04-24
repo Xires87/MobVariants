@@ -42,7 +42,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     @Nullable
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData);
         this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(3.0);
         this.updateAttackType();
         return entityData2;

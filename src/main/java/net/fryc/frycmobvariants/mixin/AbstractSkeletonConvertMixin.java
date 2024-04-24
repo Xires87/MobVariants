@@ -84,9 +84,9 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
     }
 
     //init data tracker
-    protected void initDataTracker() {
-        super.initDataTracker();
-        ((AbstractSkeletonEntity)(Object)this).getDataTracker().startTracking(CONVERTING_IN_WATER, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(CONVERTING_IN_WATER, false);
     }
 
 

@@ -2,7 +2,10 @@ package net.fryc.frycmobvariants.mobs.biome;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.*;
@@ -25,7 +28,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.*;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
@@ -37,7 +42,6 @@ public class CorsairEntity extends SkeletonEntity {
 
     public CorsairEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
-        this.setStepHeight(1.0F);
         this.moveControl = new CorsairEntity.CorsairMoveControl(this);
         this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
         this.waterNavigation = new SwimNavigation(this, world);

@@ -53,7 +53,7 @@ public class BloatedCorpseEntity extends ZombieEntity {
         areaEffectCloudEntity.setWaitTime(4);
         areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration());
         areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
-        areaEffectCloudEntity.setColor(8888888);
+        //areaEffectCloudEntity.setColor(8888888);
         areaEffectCloudEntity.addEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 320));
         if(MobVariants.config.bloatedCorpsesCloudPoisonDamageDifficulty.hasCorrectDifficulty(this.getWorld())){
             areaEffectCloudEntity.addEffect(new StatusEffectInstance(StatusEffects.POISON, 34));

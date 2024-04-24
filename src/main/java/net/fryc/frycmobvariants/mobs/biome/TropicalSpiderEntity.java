@@ -7,7 +7,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SpiderEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -46,11 +45,8 @@ public class TropicalSpiderEntity extends SpiderEntity {
     }
 
     @Nullable
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
         return entityData;
     }
 
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 0.45F;
-    }
 }

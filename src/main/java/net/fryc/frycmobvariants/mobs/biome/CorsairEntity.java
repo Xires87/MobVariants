@@ -120,6 +120,10 @@ public class CorsairEntity extends SkeletonEntity {
         }
     }
 
+    public boolean isPushedByFluids() {
+        return !this.isSwimming();
+    }
+
     public static ItemStack getCorsairSword(){
         return new ItemStack(Items.WOODEN_SWORD);
     }

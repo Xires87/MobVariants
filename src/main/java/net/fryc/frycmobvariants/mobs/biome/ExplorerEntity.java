@@ -1,7 +1,5 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.ai.pathing.SpiderNavigation;
@@ -64,14 +62,6 @@ public class ExplorerEntity extends ZombieEntity {
         }
 
         this.dataTracker.set(EXPLORER_FLAGS, b);
-    }
-
-    public double getHeightOffset() {
-        return this.isBaby() ? 0.0 : -0.45;
-    }
-
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return this.isBaby() ? 0.93F : 1.74F;
     }
 
     protected void initDataTracker(DataTracker.Builder builder) {

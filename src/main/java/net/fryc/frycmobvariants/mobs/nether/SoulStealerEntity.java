@@ -9,7 +9,6 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
@@ -36,7 +35,7 @@ public class SoulStealerEntity extends SkeletonEntity {
     }
 
     @Nullable
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
         EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData);
         this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(3.0);
         this.updateAttackType();

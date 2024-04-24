@@ -33,14 +33,6 @@ public class ForgottenEntity extends ZombieEntity {
         return bl;
     }
 
-    public double getHeightOffset() {
-        return this.isBaby() ? 0.0 : -0.45;
-    }
-
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return this.isBaby() ? 0.93F : 1.74F;
-    }
-
 
     protected ItemStack getSkull() {
         return ItemStack.EMPTY;

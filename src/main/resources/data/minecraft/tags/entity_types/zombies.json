@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "frycmobvariants:bloated_corpse",
+    "frycmobvariants:explorer",
+    "frycmobvariants:frozen_zombie",
+    "frycmobvariants:forgotten",
+    "frycmobvariants:zombified_piglin_brute"
+  ]
+}

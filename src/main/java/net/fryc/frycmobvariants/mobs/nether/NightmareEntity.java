@@ -2,8 +2,6 @@ package net.fryc.frycmobvariants.mobs.nether;
 
 
 import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.control.MoveControl;
@@ -40,10 +38,6 @@ public class NightmareEntity extends GhastEntity {
         this.targetSelector.add(1, new ActiveTargetGoal(this, PlayerEntity.class, 10, true, false, (entity) -> {
             return Math.abs(((LivingEntity)entity).getY() - this.getY()) <= 4.0;
         }));
-    }
-
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 2.6F;
     }
 
     public static DefaultAttributeContainer.Builder createNightmareAttributes() {

@@ -15,7 +15,8 @@
     "ServerWorldMixin",
     "SnowballEntityMixin",
     "MobEntityMixin",
-    "PiglinBrainMixin"
+    "PiglinBrainMixin",
+    "VillagerHostilesSensorMixin"
   ],
   "client": [
   ],

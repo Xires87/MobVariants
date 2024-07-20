@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "frycmobvariants:corsair",
+    "frycmobvariants:undead_warrior",
+    "frycmobvariants:soul_stealer",
+    "frycmobvariants:executioner"
+  ]
+}

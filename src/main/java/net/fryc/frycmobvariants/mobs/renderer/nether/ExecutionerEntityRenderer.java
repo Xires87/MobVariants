@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class ExecutionerEntityRenderer extends WitherSkeletonEntityRenderer {
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/skeleton/executioner.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/skeleton/executioner.png");
 
     public ExecutionerEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

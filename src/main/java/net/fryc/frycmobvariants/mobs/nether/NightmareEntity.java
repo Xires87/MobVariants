@@ -182,13 +182,13 @@ public class NightmareEntity extends GhastEntity {
                         }
                         if(random.nextInt(0, 100) > MobVariants.config.nightmareShootSingleFireballChance){
                             for(int i = -3; i<3; i++){
-                                SmallFireballEntity fireballEntity = new SmallFireballEntity(world, this.ghast, f + random.nextDouble(-2.0, 2.0), g + random.nextDouble(-2.0, 2.0), h + + random.nextDouble(-2.0, 2.0));
+                                SmallFireballEntity fireballEntity = new SmallFireballEntity(world, this.ghast, new Vec3d(f + random.nextDouble(-2.0, 2.0), g + random.nextDouble(-2.0, 2.0), h + random.nextDouble(-2.0, 2.0)));
                                 fireballEntity.setPosition(this.ghast.getX() + i + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + 0.5, fireballEntity.getZ() + vec3d.z * 4.0);
                                 world.spawnEntity(fireballEntity);
                             }
                         }
                         else {
-                            FireballEntity fireballEntity = new FireballEntity(world, this.ghast, f, g, h, this.ghast.getFireballStrength() + 1);
+                            FireballEntity fireballEntity = new FireballEntity(world, this.ghast, new Vec3d(f,g,h), this.ghast.getFireballStrength() + 1);
                             fireballEntity.setPosition(this.ghast.getX() + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + 0.5, fireballEntity.getZ() + vec3d.z * 4.0);
                             world.spawnEntity(fireballEntity);
                         }

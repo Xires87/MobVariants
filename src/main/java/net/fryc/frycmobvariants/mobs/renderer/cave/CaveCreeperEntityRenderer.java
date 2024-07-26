@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 public class CaveCreeperEntityRenderer extends CreeperEntityRenderer {
 
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/creeper/cave_creeper.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/creeper/cave_creeper.png");
 
     public CaveCreeperEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

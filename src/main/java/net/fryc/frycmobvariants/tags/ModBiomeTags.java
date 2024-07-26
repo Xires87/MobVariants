@@ -21,6 +21,6 @@ public class ModBiomeTags {
     private ModBiomeTags(){
     }
     private static TagKey<Biome> register(String id) {
-        return TagKey.of(RegistryKeys.BIOME, new Identifier(MobVariants.MOD_ID, id));
+        return TagKey.of(RegistryKeys.BIOME, Identifier.of(MobVariants.MOD_ID, id));
     }
 }

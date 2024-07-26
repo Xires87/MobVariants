@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class InfectedPiglinEntityRenderer extends PiglinEntityRenderer {
 
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/piglin/infected_piglin.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/piglin/infected_piglin.png");
 
     public InfectedPiglinEntityRenderer(EntityRendererFactory.Context context) {
         super(context, EntityModelLayers.PIGLIN, EntityModelLayers.PIGLIN_INNER_ARMOR, EntityModelLayers.PIGLIN_OUTER_ARMOR, false);

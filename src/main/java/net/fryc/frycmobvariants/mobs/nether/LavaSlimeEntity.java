@@ -3,10 +3,12 @@ package net.fryc.frycmobvariants.mobs.nether;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.BlockRemovalCountdown;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -45,9 +47,10 @@ public class LavaSlimeEntity extends MagmaCubeEntity {
     }
 
     protected void damage(LivingEntity target) {
-        if (this.isAlive()) {
-            int i = this.getSize();
-            if (this.squaredDistanceTo(target) < 0.6 * (double)i * 0.6 * (double)i && this.canSee(target) && target.damage(this.getDamageSources().mobAttack(this), this.getDamageAmount())) {
+        if (this.isAlive() && this.isInAttackRange(target) && this.canSee(target)) {
+            DamageSource damageSource = this.getDamageSources().mobAttack(this);
+            if (target.damage(damageSource, this.getDamageAmount())) {
+                int i = this.getSize();
                 if(this.getWorld().getDifficulty() == Difficulty.NORMAL){
                     target.setOnFireFor(i*2);
                 }
@@ -55,10 +58,13 @@ public class LavaSlimeEntity extends MagmaCubeEntity {
                     target.setOnFireFor(i*3);
                 }
                 this.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-                this.applyDamageEffects(this, target);
+                World var4 = this.getWorld();
+                if (var4 instanceof ServerWorld) {
+                    ServerWorld serverWorld = (ServerWorld)var4;
+                    EnchantmentHelper.onTargetDamaged(serverWorld, target, damageSource);
+                }
             }
         }
-
     }
 
     public boolean hurtByWater() {

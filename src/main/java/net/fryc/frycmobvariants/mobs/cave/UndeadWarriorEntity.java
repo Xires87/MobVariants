@@ -47,14 +47,13 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         return entityData2;
     }
 
-    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
-        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
+    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
+        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier, shotFrom);
         if (persistentProjectileEntity instanceof ArrowEntity) {
             int duration = MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectDuration > 0 ? MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectDuration : 1;
             int amplifier = MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectAmplifier > 0 ? MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectAmplifier - 1 : 0;
             ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect.getStatusEffect(), duration, amplifier));
         }
-
         return persistentProjectileEntity;
     }
 

@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class ToxicSlimeEntityRenderer extends SlimeEntityRenderer {
 
-    private static final Identifier TEXTURE = new Identifier(MobVariants.MOD_ID, "textures/entity/slime/toxic_slime.png");
+    private static final Identifier TEXTURE = Identifier.of(MobVariants.MOD_ID, "textures/entity/slime/toxic_slime.png");
 
     public ToxicSlimeEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

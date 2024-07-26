@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class CorsairEntityRenderer extends SkeletonEntityRenderer {
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/skeleton/corsair.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/skeleton/corsair.png");
 
     public CorsairEntityRenderer(EntityRendererFactory.Context context) {
         super(context, EntityModelLayers.SKELETON, EntityModelLayers.SKELETON_INNER_ARMOR, EntityModelLayers.SKELETON_OUTER_ARMOR);

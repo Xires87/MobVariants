@@ -61,7 +61,7 @@ public class CorsairEntity extends SkeletonEntity {
     }
 
     public static DefaultAttributeContainer.Builder createCorsairAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 85);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 85).add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.0);
     }
 
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {

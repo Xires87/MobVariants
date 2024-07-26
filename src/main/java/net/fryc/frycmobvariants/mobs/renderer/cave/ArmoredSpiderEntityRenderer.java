@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class ArmoredSpiderEntityRenderer extends SpiderEntityRenderer<ArmoredSpiderEntity> {
 
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/spider/armored_spider.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/spider/armored_spider.png");
 
     public ArmoredSpiderEntityRenderer(EntityRendererFactory.Context context) {
         super(context, EntityModelLayers.SPIDER);

@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class LavaSlimeEntityRenderer extends SlimeEntityRenderer {
 
-    private static final Identifier TEXTURE = new Identifier(MobVariants.MOD_ID, "textures/entity/slime/lava_slime.png");
+    private static final Identifier TEXTURE = Identifier.of(MobVariants.MOD_ID, "textures/entity/slime/lava_slime.png");
 
     public LavaSlimeEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

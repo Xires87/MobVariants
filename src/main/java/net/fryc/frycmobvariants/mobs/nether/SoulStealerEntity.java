@@ -9,6 +9,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
@@ -44,6 +45,10 @@ public class SoulStealerEntity extends SkeletonEntity {
 
     protected float getVelocityMultiplier() {
         return this.isOnSoulSpeedBlock() ? 1.47F : super.getVelocityMultiplier();
+    }
+
+    private boolean isOnSoulSpeedBlock() {
+        return this.isOnGround() && this.getWorld().getBlockState(this.getPosWithYOffset(0.2F)).isIn(BlockTags.SOUL_SPEED_BLOCKS);
     }
 
     public boolean tryAttack(Entity target) {

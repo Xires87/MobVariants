@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class ForgottenEntityRenderer extends ZombieEntityRenderer {
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/zombie/forgotten.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/zombie/forgotten.png");
 
     public ForgottenEntityRenderer(EntityRendererFactory.Context context) {
         super(context,EntityModelLayers.ZOMBIE, EntityModelLayers.ZOMBIE_INNER_ARMOR, EntityModelLayers.ZOMBIE_OUTER_ARMOR);

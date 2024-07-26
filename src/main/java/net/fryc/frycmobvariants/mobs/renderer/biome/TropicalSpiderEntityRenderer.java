@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class TropicalSpiderEntityRenderer extends SpiderEntityRenderer<TropicalSpiderEntity> {
 
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/spider/tropical_spider.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/spider/tropical_spider.png");
 
     public TropicalSpiderEntityRenderer(EntityRendererFactory.Context context) {
         super(context, EntityModelLayers.SPIDER);

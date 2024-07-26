@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class BloatedCorpseEntityRenderer extends ZombieEntityRenderer {
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/zombie/bloated_corpse.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/zombie/bloated_corpse.png");
 
     public BloatedCorpseEntityRenderer(EntityRendererFactory.Context context) {
         super(context,EntityModelLayers.ZOMBIE, EntityModelLayers.ZOMBIE_INNER_ARMOR, EntityModelLayers.ZOMBIE_OUTER_ARMOR);

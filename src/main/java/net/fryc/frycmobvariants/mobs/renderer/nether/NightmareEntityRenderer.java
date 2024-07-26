@@ -11,10 +11,10 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class NightmareEntityRenderer extends GhastEntityRenderer {
     private static final Identifier TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/ghast/nightmare.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/ghast/nightmare.png");
 
     private static final Identifier ANGRY_TEXTURE =
-            new Identifier(MobVariants.MOD_ID, "textures/entity/ghast/nightmare_angry.png");
+            Identifier.of(MobVariants.MOD_ID, "textures/entity/ghast/nightmare_angry.png");
 
     public NightmareEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

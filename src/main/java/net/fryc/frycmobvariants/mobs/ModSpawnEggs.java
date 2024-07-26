@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 public class ModSpawnEggs {
     //item group
-    public static final RegistryKey<ItemGroup> MOB_VARIANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MobVariants.MOD_ID, "mob_variants_spawn_eggs"));
+    public static final RegistryKey<ItemGroup> MOB_VARIANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MobVariants.MOD_ID, "mob_variants_spawn_eggs"));
 
     //cave variants
     public static final Item FORGOTTEN_SPAWN_EGG = new SpawnEggItem(ModMobs.FORGOTTEN, 3232308, 5651507, new Item.Settings());
@@ -40,27 +40,27 @@ public class ModSpawnEggs {
     public static final Item LAVA_SLIME_SPAWN_EGG = new SpawnEggItem(ModMobs.LAVA_SLIME, 13661252, 16579584, new Item.Settings());
     public static void registerSpawnEggs(){
         //cave variants
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "forgotten_spawn_egg"), FORGOTTEN_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "undead_warrior_spawn_egg"), UNDEAD_WARRIOR_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "armored_spider_spawn_egg"), ARMORED_SPIDER_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "cave_creeper_spawn_egg"), CAVE_CREEPER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "forgotten_spawn_egg"), FORGOTTEN_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "undead_warrior_spawn_egg"), UNDEAD_WARRIOR_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "armored_spider_spawn_egg"), ARMORED_SPIDER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "cave_creeper_spawn_egg"), CAVE_CREEPER_SPAWN_EGG);
 
         //biome variants
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "explorer_spawn_egg"), EXPLORER_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "bloated_corpse_spawn_egg"), BLOATED_CORPSE_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "frozen_zombie_spawn_egg"), FROZEN_ZOMBIE_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "tropical_spider_spawn_egg"), TROPICAL_SPIDER_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "corsair_spawn_egg"), CORSAIR_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "toxic_slime_spawn_egg"), TOXIC_SLIME_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "explorer_spawn_egg"), EXPLORER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "bloated_corpse_spawn_egg"), BLOATED_CORPSE_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "frozen_zombie_spawn_egg"), FROZEN_ZOMBIE_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "tropical_spider_spawn_egg"), TROPICAL_SPIDER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "corsair_spawn_egg"), CORSAIR_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "toxic_slime_spawn_egg"), TOXIC_SLIME_SPAWN_EGG);
 
         //nether variants
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "executioner_spawn_egg"), EXECUTIONER_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "nightmare_spawn_egg"), NIGHTMARE_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_spawn_egg"), INFECTED_PIGLIN_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "infected_piglin_brute_spawn_egg"), INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "zombified_piglin_brute_spawn_egg"), ZOMBIFIED_PIGLIN_BRUTE_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "soul_stealer_spawn_egg"), SOUL_STEALER_SPAWN_EGG);
-        Registry.register(Registries.ITEM, new Identifier(MobVariants.MOD_ID, "lava_slime_spawn_egg"), LAVA_SLIME_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "executioner_spawn_egg"), EXECUTIONER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "nightmare_spawn_egg"), NIGHTMARE_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "infected_piglin_spawn_egg"), INFECTED_PIGLIN_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "infected_piglin_brute_spawn_egg"), INFECTED_PIGLIN_BRUTE_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "zombified_piglin_brute_spawn_egg"), ZOMBIFIED_PIGLIN_BRUTE_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "soul_stealer_spawn_egg"), SOUL_STEALER_SPAWN_EGG);
+        Registry.register(Registries.ITEM, Identifier.of(MobVariants.MOD_ID, "lava_slime_spawn_egg"), LAVA_SLIME_SPAWN_EGG);
 
         //Item group
         Registry.register(Registries.ITEM_GROUP, MOB_VARIANTS, FabricItemGroup.builder()

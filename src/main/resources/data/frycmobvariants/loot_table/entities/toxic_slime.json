@@ -9,7 +9,7 @@
           "entity": "this",
           "predicate": {
             "type_specific": {
-              "type": "slime",
+              "type": "minecraft:slime",
               "size": 1
             }
           }
@@ -47,7 +47,8 @@
                 "max": 1.0,
                 "min": 0.0
               },
-              "function": "minecraft:looting_enchant"
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase"
             }
           ],
           "name": "minecraft:slime_ball"
@@ -77,5 +78,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "minecraft:entities/slime"
+  "random_sequence": "frycmobvariants:entities/toxic_slime"
 }

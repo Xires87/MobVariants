@@ -22,7 +22,8 @@
                 "max": 1.0,
                 "min": 0.0
               },
-              "function": "minecraft:looting_enchant"
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase"
             }
           ],
           "name": "minecraft:rotten_flesh"
@@ -37,9 +38,14 @@
           "condition": "minecraft:killed_by_player"
         },
         {
-          "chance": 0.025,
-          "condition": "minecraft:random_chance_with_looting",
-          "looting_multiplier": 0.01
+          "condition": "minecraft:random_chance_with_enchanted_bonus",
+          "enchanted_chance": {
+            "type": "minecraft:linear",
+            "base": 0.035,
+            "per_level_above_first": 0.01
+          },
+          "enchantment": "minecraft:looting",
+          "unenchanted_chance": 0.025
         }
       ],
       "entries": [
@@ -49,30 +55,15 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:carrot"
+          "name": "minecraft:slime_ball"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "conditions": [
-                {
-                  "condition": "minecraft:entity_properties",
-                  "entity": "this",
-                  "predicate": {
-                    "flags": {
-                      "is_on_fire": true
-                    }
-                  }
-                }
-              ],
-              "function": "minecraft:furnace_smelt"
-            }
-          ],
-          "name": "minecraft:potato"
+          "name": "minecraft:poisonous_potato"
         }
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "frycmobvariants:entities/bloated_corpse"
 }

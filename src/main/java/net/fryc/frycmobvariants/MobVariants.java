@@ -8,6 +8,7 @@ import net.fryc.frycmobvariants.commands.TryToConvertCommand;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
+import net.fryc.frycmobvariants.util.StatusEffectHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,8 @@ public class MobVariants implements ModInitializer {
 	public void onInitialize() {
 		AutoConfig.register(MobVariantsConfig.class, JanksonConfigSerializer::new);
 		config = AutoConfig.getConfigHolder(MobVariantsConfig.class).getConfig();
+
+		StatusEffectHelper.initializeStatusEffectMap();// TODO usunac niepotrzebne tlumaczenia i zmienic loot table Undead Warriora i testy
 
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();

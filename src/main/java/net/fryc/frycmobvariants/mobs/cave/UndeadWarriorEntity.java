@@ -1,6 +1,7 @@
 package net.fryc.frycmobvariants.mobs.cave;
 
 import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.util.StatusEffectHelper;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -8,6 +9,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
@@ -15,17 +17,26 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import oshi.util.tuples.Pair;
 
 public class UndeadWarriorEntity extends SkeletonEntity {
 
+    public java.util.Random rand = new java.util.Random();
+    public int tippedArrowsAmount;
+    public Pair<RegistryEntry<StatusEffect>, Pair<Integer, Integer>> tippedArrowEffect;
+
     public UndeadWarriorEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
+        this.tippedArrowsAmount = rand.nextInt(1, 5);
+        this.tippedArrowEffect = StatusEffectHelper.pickRandomStatusEffect(rand);
         this.experiencePoints += 1;
     }
 
@@ -35,7 +46,10 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     //used only in summons and spawn eggs, udead warriors don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(random.nextInt(100) > MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance) this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorSword());
+        if(random.nextInt(100) > MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance) {
+            this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorSword());
+            this.tippedArrowsAmount = -1;
+        }
         else this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 
@@ -47,20 +61,41 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         return entityData2;
     }
 
-    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
-        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
-        if (persistentProjectileEntity instanceof ArrowEntity) {
-            int duration = MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectDuration > 0 ? MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectDuration : 1;
-            int amplifier = MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectAmplifier > 0 ? MobVariants.config.undeadWarriorAttributes.undeadWarriorsEffectAmplifier - 1 : 0;
-            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect.getStatusEffect(), duration, amplifier));
+    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
+        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier, shotFrom);
+        if(this.tippedArrowsAmount > 0){
+            if (persistentProjectileEntity instanceof ArrowEntity) {
+                int duration = this.tippedArrowEffect.getB().getA() > 0 ? this.tippedArrowEffect.getB().getA() : 1;
+                int amplifier = this.tippedArrowEffect.getB().getB() > 0 ? this.tippedArrowEffect.getB().getB() - 1 : 0;
+                ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(this.tippedArrowEffect.getA(), duration, amplifier));
+            }
+            this.tippedArrowsAmount--;
         }
-
         return persistentProjectileEntity;
     }
 
     public static ItemStack getUndeadWarriorSword(){
         return new ItemStack(Items.STONE_SWORD);
     }
+
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putInt("TippedArrowsAmount", this.tippedArrowsAmount);
+        nbt.putString("TippedArrowEffect", this.tippedArrowEffect.getA().getIdAsString());
+        nbt.putInt("TippedArrowDuration", this.tippedArrowEffect.getB().getA());
+        nbt.putInt("TippedArrowAmplifier", this.tippedArrowEffect.getB().getB());
+    }
+
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        if (nbt.contains("TippedArrowsAmount")) {
+            this.tippedArrowsAmount = nbt.getInt("TippedArrowsAmount");
+        }
+        if(nbt.contains("TippedArrowEffect") && nbt.contains("TippedArrowDuration") && nbt.contains("TippedArrowAmplifier")){
+            this.tippedArrowEffect = new Pair<>(StatusEffectHelper.getStatusEffectFromString(nbt.getString("TippedArrowEffect")), new Pair<>(nbt.getInt("TippedArrowDuration"), nbt.getInt("TippedArrowAmplifier")));
+        }
+    }
+
 
     public void playAmbientSound() {
         SoundEvent soundEvent = this.getAmbientSound();

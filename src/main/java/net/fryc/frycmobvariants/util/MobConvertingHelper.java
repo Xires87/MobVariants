@@ -83,10 +83,17 @@ public class MobConvertingHelper {
                                 skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                             }
                             else{
+                                boolean hasArrows = true;
                                 if(MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance <= random.nextInt(0, 100)){ //50% to give skeleton a sword
                                     skeleton.equipStack(EquipmentSlot.MAINHAND, UndeadWarriorEntity.getUndeadWarriorSword());
+                                    hasArrows = false;
                                 }
-                                skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
+                                UndeadWarriorEntity uw = skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
+                                if(uw != null){
+                                    if(!hasArrows){
+                                        uw.tippedArrowsAmount = -1;
+                                    }
+                                }
                             }
                         }
                     }

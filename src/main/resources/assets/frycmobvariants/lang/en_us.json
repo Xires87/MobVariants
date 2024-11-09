@@ -104,18 +104,6 @@
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance": "Chance to convert Zombie to Bloated Corpse in swamps:",
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning on one of mentioned biomes",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes": "Undead warrior's attributes",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Status effect applied by Undead Warrior's arrows",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration": "Undead warrior's effect duration",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration.@Tooltip": "20 = 1 second",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectAmplifier": "Undead warrior's effect amplifier",
-
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Nightmare's chance to shoot single fireball",
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Chance to shoot single fireball (like normal ghast)",
 
@@ -129,5 +117,18 @@
   "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Set it to 10 (or lower) to prevent lava from disappearing",
 
   "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty": "Minimal difficulty at which Bloated Corpse's cloud deals poison damage",
-  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Set to NONE to remove poison damage from the cloud"
+  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Set to NONE to remove poison damage from the cloud",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes": "Undead warrior's attributes",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "List of status effects Undead Warrior's arrows can apply",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect.@Tooltip": "Status effect, duration and amplifier separated with semicolon: 'StatusEffect;duration;amplifier;StatusEffect;duration;amplifier;[...]'",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount": "Minimal amount of tipped arrows Undead Warrior can spawn with",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMaxTippedArrowsCount": "Maximal amount of tipped arrows Undead Warrior can spawn with",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsTippedArrowDropChancePerTippedArrowHeld": "Undead Warrior's tipped arrow drop chance per tipped arrow held"
 }

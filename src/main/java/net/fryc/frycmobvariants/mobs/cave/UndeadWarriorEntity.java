@@ -2,10 +2,11 @@ package net.fryc.frycmobvariants.mobs.cave;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.StatusEffectHelper;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -18,6 +19,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.random.Random;
@@ -26,6 +28,9 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
+
+import java.util.List;
+import java.util.Optional;
 
 public class UndeadWarriorEntity extends SkeletonEntity {
 
@@ -116,5 +121,31 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     private void resetSoundDelay() {
         this.ambientSoundChance = -this.getMinAmbientSoundDelay();
+    }
+
+    protected void dropLoot(DamageSource damageSource, boolean causedByPlayer) {
+        if(!this.getWorld().isClient()){
+            if(causedByPlayer){
+                if(this.tippedArrowsAmount > -1){
+                    int lootingLevel = damageSource.getAttacker() instanceof LivingEntity entity ? EnchantmentHelper.getEquipmentLevel(entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).entryOf(Enchantments.LOOTING), entity) : 0;
+                    if(rand.nextInt(0, 100) < this.tippedArrowsAmount*3 + 1 + lootingLevel * 2){
+                        ItemStack stack = new ItemStack(Items.TIPPED_ARROW);
+                        int duration = this.tippedArrowEffect.getB().getA()*9;
+                        int amp = this.tippedArrowEffect.getB().getB() > 0 ? this.tippedArrowEffect.getB().getB() - 1 : 0;
+                        stack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(
+                                Optional.empty(),
+                                Optional.of(this.tippedArrowEffect.getA().value().getColor()),
+                                List.of(new StatusEffectInstance(this.tippedArrowEffect.getA(), duration, amp))
+                        ));
+                        this.dropStack(stack);
+                    }
+                    int arrowCount = rand.nextInt(0, 3 + lootingLevel);
+                    if(arrowCount > 0){
+                        this.dropStack(new ItemStack(Items.ARROW, arrowCount));
+                    }
+                }
+            }
+        }
+        super.dropLoot(damageSource, causedByPlayer);
     }
 }

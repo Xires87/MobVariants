@@ -91,14 +91,8 @@
   "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance": "史莱姆在红树林沼泽被转化为淤毒史莱姆的概率：",
   "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance.@Tooltip": "比如，将此值设为10，史莱姆在生成后将有10%的概率转化为淤毒史莱姆",
 
-
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "骷髅战士生成时携带弓的概率",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "携带附魔弓的骷髅总是会转化为装备弓的骷髅战士",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "骷髅战士的弓箭附带的状态效果",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration": "骷髅战士附加的状态效果时长",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration.@Tooltip": "20 = 1秒",
 
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "梦魇发射单个火球的概率",
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "像普通恶魂那样，发射单个火球的概率",

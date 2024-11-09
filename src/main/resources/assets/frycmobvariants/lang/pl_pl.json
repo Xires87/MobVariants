@@ -108,12 +108,6 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration": "Czas trwania osłabienia Nieumarłych Wojowników",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectDuration.@Tooltip": "20 = 1 sekunda",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Efekt nakładany przez strzały Nieumarłeo Wojownika",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsEffectAmplifier": "Moc efektu nakładanego przez strzały Nieumarłego Wojownika",
-
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Szansa Koszmaru na wystrzelenie pojedynczej kuli ognia",
   "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Szansa na wystrzelenie pojedynczej kuli ognia (jak zwykły ghast)",
 
@@ -127,6 +121,13 @@
   "text.autoconfig.frycmobvariants.option.timeToRemoveLavaLeftByLavaSlime.@Tooltip": "20 = 1s. Ustaw na 10 lub mniej żeby zapobiec znikaniu lawy",
 
   "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty": "Najniższy poziom trudności na którym chmura Napuchniętych Zwłok zadaje obrażenia od trucizny",
-  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Ustaw na NONE aby usunąć truciznę z chmury"
+  "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Ustaw na NONE aby usunąć truciznę z chmury",
 
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Lista efektów które mogą zostać nałożone przez strzały Nieumarłeo Wojownika",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect.@Tooltip": "Efekt, czas trwania i moc oddzielone średnikiem: 'Efekt;czasTrwania;moc;Efekt;czasTrwania;moc;[...]'",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount": "Minimalna liczba strzał z miksturą z którą może się pojawić Nieumarły Wojownik",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMaxTippedArrowsCount": "Maksymalna liczba strzał z miksturą z którą może się pojawić Nieumarły Wojownik",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsTippedArrowDropChancePerTippedArrowHeld": "Szansa na wypadnięcie strzały z miksturą za każdą strzałę z miksturą trzymaną przez Nieumarłego Wojownika"
 }

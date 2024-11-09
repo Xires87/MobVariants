@@ -2,6 +2,7 @@ package net.fryc.frycmobvariants.mobs.cave;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ProjectileDeflection;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -22,16 +23,17 @@ public class ArmoredSpiderEntity extends SpiderEntity {
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000000192092896).add(EntityAttributes.GENERIC_ARMOR, 12).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.1f);
     }
 
-    //armored spiders take 40% less damage from bows or crossbows without piercing
+    //armored spiders deflect arrows
     @Override
     public boolean damage(DamageSource source, float amount) {
         if(source.getSource() instanceof ArrowEntity arrow){
             if(arrow.getPierceLevel() < 1){
-                amount*=0.60;
+                arrow.deflect(ProjectileDeflection.SIMPLE, this, source.getAttacker(), false);
+                return false;
             }
         }
-        super.damage(source, amount);
-        return true;
+
+        return super.damage(source, amount);
     }
 
     protected void playStepSound(BlockPos pos, BlockState state) {

@@ -5,7 +5,6 @@ import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import net.fryc.frycmobvariants.util.DifficultyPicker;
-import net.fryc.frycmobvariants.util.StatusEffectPicker;
 
 @Config(name = "frycmobvariants")
 public class MobVariantsConfig implements ConfigData {
@@ -183,6 +182,7 @@ public class MobVariantsConfig implements ConfigData {
         @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
         public int undeadWarriorSpawnWithBowChance = 50;
 
+        /*
         @Comment("20 = 1 second")
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Category("mobattributes")
@@ -193,6 +193,11 @@ public class MobVariantsConfig implements ConfigData {
 
         @ConfigEntry.Category("mobattributes")
         public StatusEffectPicker undeadWarriorsArrowEffect = StatusEffectPicker.WEAKNESS;
+         */
+
+        @Comment("List of effects (with duration and amplifier) that Undead Warrior's arrow can have in the following pattern: 'StatusEffect;duration;amplifier;StatusEffect;duration;amplifier'")
+        @ConfigEntry.Category("mobattributes")
+        public String undeadWarriorsArrowEffect = "minecraft:weakness;400;1;minecraft:blindness;80;1;minecraft:instant_damage;1;1";
 
     }
 }

@@ -40,7 +40,10 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     public UndeadWarriorEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
-        this.tippedArrowsAmount = rand.nextInt(1, 5);
+        this.tippedArrowsAmount = rand.nextInt(
+                MobVariants.config.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount,
+                MobVariants.config.undeadWarriorAttributes.undeadWarriorsMaxTippedArrowsCount + 1
+        );
         this.tippedArrowEffect = StatusEffectHelper.pickRandomStatusEffect(rand);
         this.experiencePoints += 1;
     }
@@ -128,7 +131,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
             if(causedByPlayer){
                 if(this.tippedArrowsAmount > -1){
                     int lootingLevel = damageSource.getAttacker() instanceof LivingEntity entity ? EnchantmentHelper.getEquipmentLevel(entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).entryOf(Enchantments.LOOTING), entity) : 0;
-                    if(rand.nextInt(0, 100) < this.tippedArrowsAmount*3 + 1 + lootingLevel * 2){
+                    if(rand.nextInt(0, 100) < this.tippedArrowsAmount * MobVariants.config.undeadWarriorAttributes.undeadWarriorsTippedArrowDropChancePerTippedArrowHeld + 1 + lootingLevel * 2){
                         ItemStack stack = new ItemStack(Items.TIPPED_ARROW);
                         int duration = this.tippedArrowEffect.getB().getA()*9;
                         int amp = this.tippedArrowEffect.getB().getB() > 0 ? this.tippedArrowEffect.getB().getB() - 1 : 0;

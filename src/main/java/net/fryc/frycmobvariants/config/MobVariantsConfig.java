@@ -180,6 +180,7 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("mobattributes")
     public boolean convertSkeletonsToCorsairsUnderwater = true;
     @Comment("When true, Frozen Zombies become normal zombies after spending some time exposed to sunlight, fire or water")
+    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
     public boolean enableFrozenZombieConvertingToNormalZombie = true;
 

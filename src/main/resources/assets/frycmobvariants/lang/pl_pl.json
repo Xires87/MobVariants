@@ -108,9 +108,6 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
 
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Szansa Koszmaru na wystrzelenie pojedynczej kuli ognia",
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Szansa na wystrzelenie pojedynczej kuli ognia (jak zwykły ghast)",
-
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Szansa Korsarza na pojawienie się z mieczem",
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance.@Tooltip": "Ta opcja ma wpływ tylko na Korsarzy którzy pojawiają się na wrakach statków",
 

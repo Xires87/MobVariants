@@ -94,9 +94,6 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "骷髅战士生成时携带弓的概率",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "携带附魔弓的骷髅总是会转化为装备弓的骷髅战士",
 
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "梦魇发射单个火球的概率",
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "像普通恶魂那样，发射单个火球的概率",
-
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "海盗骷髅生成时携带剑的概率",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "窃魂骷髅的额外魔法伤害",

@@ -147,12 +147,6 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public UndeadWarriorAttributes undeadWarriorAttributes = new UndeadWarriorAttributes();
 
-    @Comment("Nightmare's chance to shoot single fireball (like normal ghast)")
-    @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.Category("mobattributes")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int nightmareShootSingleFireballChance = 50;
-
     @Comment("Additional magic damage dealt by Soul Stealer. On normal difficulty this value is increased by 1. On hard, by 3")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")

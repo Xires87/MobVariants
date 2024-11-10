@@ -123,6 +123,13 @@
   "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty": "Najniższy poziom trudności na którym chmura Napuchniętych Zwłok zadaje obrażenia od trucizny",
   "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Ustaw na NONE aby usunąć truciznę z chmury",
 
+  "text.autoconfig.frycmobvariants.option.convertZombiesToFrozenZombiesInPowderSnow": "Zmieniaj Zombie w Zamarznięte Zombie w sypkim śniegu",
+
+  "text.autoconfig.frycmobvariants.option.convertSkeletonsToCorsairsUnderwater": "Zmieniaj Szkielety w Korsarzy pod wodą",
+
+  "text.autoconfig.frycmobvariants.option.enableFrozenZombieConvertingToNormalZombie": "Włącz przemianę Zamarzniętego Zombie w zwykłego zombie",
+  "text.autoconfig.frycmobvariants.option.enableFrozenZombieConvertingToNormalZombie.@Tooltip": "Zamarznięte Zombie zmieniają się w zwykłe zombie po spędzeniu kilku chwil na słońcu, w wodzie lub w ogniu",
+
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Lista efektów które mogą zostać nałożone przez strzały Nieumarłeo Wojownika",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect.@Tooltip": "Efekt, czas trwania i moc oddzielone średnikiem: 'Efekt;czasTrwania;moc;Efekt;czasTrwania;moc;[...]'",
 

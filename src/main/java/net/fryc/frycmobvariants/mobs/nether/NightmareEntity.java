@@ -1,9 +1,6 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
 
-import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.control.MoveControl;
@@ -40,10 +37,6 @@ public class NightmareEntity extends GhastEntity {
         this.targetSelector.add(1, new ActiveTargetGoal(this, PlayerEntity.class, 10, true, false, (entity) -> {
             return Math.abs(((LivingEntity)entity).getY() - this.getY()) <= 4.0;
         }));
-    }
-
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 2.6F;
     }
 
     public static DefaultAttributeContainer.Builder createNightmareAttributes() {
@@ -186,15 +179,17 @@ public class NightmareEntity extends GhastEntity {
                         if (!this.ghast.isSilent()) {
                             world.syncWorldEvent((PlayerEntity)null, 1016, this.ghast.getBlockPos(), 0);
                         }
-                        if(random.nextInt(0, 100) > MobVariants.config.nightmareShootSingleFireballChance){
-                            for(int i = -3; i<3; i++){
-                                SmallFireballEntity fireballEntity = new SmallFireballEntity(world, this.ghast, f + random.nextDouble(-2.0, 2.0), g + random.nextDouble(-2.0, 2.0), h + + random.nextDouble(-2.0, 2.0));
-                                fireballEntity.setPosition(this.ghast.getX() + i + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + 0.5, fireballEntity.getZ() + vec3d.z * 4.0);
-                                world.spawnEntity(fireballEntity);
+                        if(this.ghast.squaredDistanceTo(livingEntity) < 800){
+                            for(float j = 0.0f; j < 1.1f; j += 0.5f){
+                                for(int i = -3; i<3; i++){
+                                    SmallFireballEntity fireballEntity = new SmallFireballEntity(world, this.ghast, new Vec3d(f + random.nextDouble(-2.8, 2.8), g + random.nextDouble(-3.5, 3.5), h + random.nextDouble(-2.8, 2.8)));
+                                    fireballEntity.setPosition(this.ghast.getX() + i + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + j, fireballEntity.getZ() + vec3d.z * 4.0);
+                                    world.spawnEntity(fireballEntity);
+                                }
                             }
                         }
                         else {
-                            FireballEntity fireballEntity = new FireballEntity(world, this.ghast, f, g, h, this.ghast.getFireballStrength() + 1);
+                            FireballEntity fireballEntity = new FireballEntity(world, this.ghast, new Vec3d(f,g,h), this.ghast.getFireballStrength() + 1);
                             fireballEntity.setPosition(this.ghast.getX() + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + 0.5, fireballEntity.getZ() + vec3d.z * 4.0);
                             world.spawnEntity(fireballEntity);
                         }

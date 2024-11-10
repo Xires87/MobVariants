@@ -1,5 +1,6 @@
 package net.fryc.frycmobvariants.mixin;
 
+import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
 import net.fryc.frycmobvariants.util.CanConvert;
@@ -55,22 +56,24 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
             }
 
             //converting to corsair underwater
-            if ((skeleton.getClass() == SkeletonEntity.class || skeleton.getClass() == UndeadWarriorEntity.class) && skeleton.isAlive() && !skeleton.isAiDisabled()) {
-                if (skeleton.getDataTracker().get(CONVERTING_IN_WATER)) {
-                    --ticksUntilWaterConversion;
-                    if (ticksUntilWaterConversion < 0) {
-                        skeleton.playSoundIfNotSilent(SoundEvents.AMBIENT_UNDERWATER_EXIT);
-                        if(skeleton.getMainHandStack().getItem() instanceof BowItem) skeleton.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                        skeleton.convertTo(ModMobs.CORSAIR, true);
-                    }
-                } else {
-                    if (skeleton.isSubmergedIn(FluidTags.WATER)) {
-                        ++inWaterTime;
-                        if (inWaterTime >= 600) {
-                            setTicksUntilWaterConversion(300);
+            if(MobVariants.config.convertSkeletonsToCorsairsUnderwater){
+                if ((skeleton.getClass() == SkeletonEntity.class || skeleton.getClass() == UndeadWarriorEntity.class) && skeleton.isAlive() && !skeleton.isAiDisabled()) {
+                    if (skeleton.getDataTracker().get(CONVERTING_IN_WATER)) {
+                        --ticksUntilWaterConversion;
+                        if (ticksUntilWaterConversion < 0) {
+                            skeleton.playSoundIfNotSilent(SoundEvents.AMBIENT_UNDERWATER_EXIT);
+                            if(skeleton.getMainHandStack().getItem() instanceof BowItem) skeleton.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                            skeleton.convertTo(ModMobs.CORSAIR, true);
                         }
                     } else {
-                        inWaterTime = -1;
+                        if (skeleton.isSubmergedIn(FluidTags.WATER)) {
+                            ++inWaterTime;
+                            if (inWaterTime >= 600) {
+                                setTicksUntilWaterConversion(300);
+                            }
+                        } else {
+                            inWaterTime = -1;
+                        }
                     }
                 }
             }

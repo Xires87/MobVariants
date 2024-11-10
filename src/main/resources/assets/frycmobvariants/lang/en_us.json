@@ -104,9 +104,6 @@
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance": "Chance to convert Zombie to Bloated Corpse in swamps:",
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning on one of mentioned biomes",
 
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance": "Nightmare's chance to shoot single fireball",
-  "text.autoconfig.frycmobvariants.option.nightmareShootSingleFireballChance.@Tooltip": "Chance to shoot single fireball (like normal ghast)",
-
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Corsair's chance to spawn with sword",
   "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance.@Tooltip": "This options affects only Corsairs that spawned on shipwrecks",
 

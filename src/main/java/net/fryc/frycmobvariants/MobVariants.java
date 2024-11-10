@@ -24,7 +24,7 @@ public class MobVariants implements ModInitializer {
 		AutoConfig.register(MobVariantsConfig.class, JanksonConfigSerializer::new);
 		config = AutoConfig.getConfigHolder(MobVariantsConfig.class).getConfig();
 
-		StatusEffectHelper.initializeStatusEffectMap();// TODO usunac niepotrzebne tlumaczenia i zmienic loot table Undead Warriora i testy
+		StatusEffectHelper.initializeStatusEffectMap();
 
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();

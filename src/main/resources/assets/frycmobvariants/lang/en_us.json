@@ -119,6 +119,13 @@
   "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty": "Minimal difficulty at which Bloated Corpse's cloud deals poison damage",
   "text.autoconfig.frycmobvariants.option.bloatedCorpsesCloudPoisonDamageDifficulty.@Tooltip": "Set to NONE to remove poison damage from the cloud",
 
+  "text.autoconfig.frycmobvariants.option.convertZombiesToFrozenZombiesInPowderSnow": "Convert Zombies to Frozen Zombies in powder snow",
+
+  "text.autoconfig.frycmobvariants.option.convertSkeletonsToCorsairsUnderwater": "Convert Skeletons to Corsairs underwater",
+
+  "text.autoconfig.frycmobvariants.option.enableFrozenZombieConvertingToNormalZombie": "Enable Frozen Zombie's conversion to normal zombie",
+  "text.autoconfig.frycmobvariants.option.enableFrozenZombieConvertingToNormalZombie.@Tooltip": "Frozen Zombies become normal zombies after spending some time exposed to sunlight, fire or water",
+
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes": "Undead warrior's attributes",
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",

@@ -1,5 +1,6 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
+import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -35,30 +36,34 @@ public class FrozenZombieEntity extends ZombieEntity {
 
     public void tick(){
         super.tick();
-        if(!this.getWorld().isClient() && this.isAlive() && !this.isAiDisabled()){
-            if((this.getWorld().getDimension().ultrawarm() || this.ticksUntilDaylightConversion <= 0)){
-                float health = this.getHealth();
-                int i = this.getFireTicks() / 20;
-                this.playSound(SoundEvents.ENTITY_PLAYER_HURT_FREEZE, 1.0F, 0.4F);
-                ZombieEntity zombie = this.convertTo(EntityType.ZOMBIE, true);
-                if(zombie != null){
-                    zombie.setHealth(health);
-                    if(i > 0) zombie.setOnFireFor(i);
-                    zombie.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 60));
-                }
-            }
-            else{
-                if(!this.inPowderSnow){
-                    if((this.getWorld().isDay() && this.getWorld().isSkyVisible(this.getBlockPos())) || this.isWet()){
-                        this.ticksUntilDaylightConversion -= 1;
+        if(!this.getWorld().isClient()){
+            if(MobVariants.config.enableFrozenZombieConvertingToNormalZombie){
+                if(this.isAlive() && !this.isAiDisabled()){
+                    if((this.getWorld().getDimension().ultrawarm() || this.ticksUntilDaylightConversion <= 0)){
+                        float health = this.getHealth();
+                        int i = this.getFireTicks() / 20;
+                        this.playSound(SoundEvents.ENTITY_PLAYER_HURT_FREEZE, 1.0F, 0.4F);
+                        ZombieEntity zombie = this.convertTo(EntityType.ZOMBIE, true);
+                        if(zombie != null){
+                            zombie.setHealth(health);
+                            if(i > 0) zombie.setOnFireFor(i);
+                            zombie.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 60));
+                        }
                     }
-                    if(this.isOnFire()){
-                        this.ticksUntilDaylightConversion -= 7;
-                    }
-                }
-                else {
-                    if(this.ticksUntilDaylightConversion < 280){
-                        this.ticksUntilDaylightConversion += 2;
+                    else{
+                        if(!this.inPowderSnow){
+                            if((this.getWorld().isDay() && this.getWorld().isSkyVisible(this.getBlockPos())) || this.isWet()){
+                                this.ticksUntilDaylightConversion -= 1;
+                            }
+                            if(this.isOnFire()){
+                                this.ticksUntilDaylightConversion -= 7;
+                            }
+                        }
+                        else {
+                            if(this.ticksUntilDaylightConversion < 280){
+                                this.ticksUntilDaylightConversion += 2;
+                            }
+                        }
                     }
                 }
             }

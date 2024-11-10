@@ -164,7 +164,7 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("mobattributes")
     public int timeToRemoveLavaLeftByLavaSlime = 30;
 
-    @Comment("This options affects only Corsairs that spawned on shipwrecks")
+    @Comment("This option affects only Corsairs that spawned on shipwrecks")
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
     @ConfigEntry.Gui.Tooltip
@@ -173,6 +173,15 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.Gui.Tooltip
     public DifficultyPicker bloatedCorpsesCloudPoisonDamageDifficulty = DifficultyPicker.HARD;
+
+    @ConfigEntry.Category("mobattributes")
+    public boolean convertZombiesToFrozenZombiesInPowderSnow = true;
+
+    @ConfigEntry.Category("mobattributes")
+    public boolean convertSkeletonsToCorsairsUnderwater = true;
+    @Comment("When true, Frozen Zombies become normal zombies after spending some time exposed to sunlight, fire or water")
+    @ConfigEntry.Category("mobattributes")
+    public boolean enableFrozenZombieConvertingToNormalZombie = true;
 
 
     public static class UndeadWarriorAttributes{

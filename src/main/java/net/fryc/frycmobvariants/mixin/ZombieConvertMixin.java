@@ -1,5 +1,6 @@
 package net.fryc.frycmobvariants.mixin;
 
+import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.biome.FrozenZombieEntity;
 import net.fryc.frycmobvariants.util.CanConvert;
@@ -42,25 +43,26 @@ abstract class ZombieConvertMixin extends HostileEntity implements CanConvert {
                 canConvert = false;
             }
 
-            if(zombie.isAlive() && !zombie.isAiDisabled() && !zombie.canFreeze() && zombie.getClass() != FrozenZombieEntity.class){
-                if (zombie.inPowderSnow) {
-                    if (inPowderSnowTime >= 140) {
-                        --convertToFrozenZombieTime;
-                        if (convertToFrozenZombieTime < 0) {
-                            zombie.playSound(SoundEvents.ENTITY_PLAYER_HURT_FREEZE, 1.0F, 0.4F);
-                            zombie.convertTo(ModMobs.FROZEN_ZOMBIE, true);
+            if(MobVariants.config.convertZombiesToFrozenZombiesInPowderSnow){
+                if(zombie.isAlive() && !zombie.isAiDisabled() && !zombie.canFreeze() && zombie.getClass() != FrozenZombieEntity.class){
+                    if (zombie.inPowderSnow) {
+                        if (inPowderSnowTime >= 140) {
+                            --convertToFrozenZombieTime;
+                            if (convertToFrozenZombieTime < 0) {
+                                zombie.playSound(SoundEvents.ENTITY_PLAYER_HURT_FREEZE, 1.0F, 0.4F);
+                                zombie.convertTo(ModMobs.FROZEN_ZOMBIE, true);
+                            }
+                        } else {
+                            ++inPowderSnowTime;
+                            if (inPowderSnowTime >= 140) {
+                                convertToFrozenZombieTime = 300;
+                            }
                         }
                     } else {
-                        ++inPowderSnowTime;
-                        if (inPowderSnowTime >= 140) {
-                            convertToFrozenZombieTime = 300;
-                        }
+                        inPowderSnowTime = -1;
                     }
-                } else {
-                    inPowderSnowTime = -1;
                 }
             }
-
         }
     }
 

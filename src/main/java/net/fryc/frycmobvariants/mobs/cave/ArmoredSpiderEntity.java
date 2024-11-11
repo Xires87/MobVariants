@@ -2,7 +2,6 @@ package net.fryc.frycmobvariants.mobs.cave;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ProjectileDeflection;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -28,7 +27,9 @@ public class ArmoredSpiderEntity extends SpiderEntity {
     public boolean damage(DamageSource source, float amount) {
         if(source.getSource() instanceof ArrowEntity arrow){
             if(arrow.getPierceLevel() < 1){
-                arrow.deflect(ProjectileDeflection.SIMPLE, this, source.getAttacker(), false);
+                arrow.setVelocity(arrow.getVelocity().negate());
+                arrow.velocityModified = true;
+                //arrow.deflect(ProjectileDeflection.SIMPLE, this, source.getAttacker(), false);
                 return false;
             }
         }

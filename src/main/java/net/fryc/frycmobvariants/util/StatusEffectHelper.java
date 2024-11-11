@@ -5,7 +5,6 @@ import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import oshi.util.tuples.Pair;
 
@@ -21,12 +20,12 @@ public class StatusEffectHelper {
      * @param random random
      * @return Pair containing a status effect and a pair of integers (duration and amplifier)
      */
-    public static Pair<RegistryEntry<StatusEffect>, Pair<Integer, Integer>> pickRandomStatusEffect(Random random) {
+    public static Pair<StatusEffect, Pair<Integer, Integer>> pickRandomStatusEffect(Random random) {
         int i = random.nextInt(0, availableStatusEffects.size());
         int j = 0;
         for(String key : availableStatusEffects.keySet()){
             if(j == i){
-                RegistryEntry<StatusEffect> effect = getStatusEffectFromString(key);
+                StatusEffect effect = getStatusEffectFromString(key);
                 Pair<Integer, Integer> durAndAmp = availableStatusEffects.get(key);
 
                 return new Pair<>(effect, durAndAmp);
@@ -41,11 +40,14 @@ public class StatusEffectHelper {
         availableStatusEffects = StringHelper.transformStringToMap(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect);
     }
 
-    public static RegistryEntry<StatusEffect> getStatusEffectFromString(String statusEffect){
-        return Registries.STATUS_EFFECT.getEntry(new Identifier(statusEffect)).orElseGet(() -> {
-            MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
-            return (RegistryEntry.Reference<StatusEffect>) StatusEffects.WEAKNESS;
-        });
+    public static StatusEffect getStatusEffectFromString(String statusEffect){
+        StatusEffect effect = Registries.STATUS_EFFECT.get(new Identifier(statusEffect));
+        if(effect != null){
+            return effect;
+        }
+
+        MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
+        return StatusEffects.WEAKNESS;
     }
 
 }

@@ -2,8 +2,6 @@ package net.fryc.frycmobvariants.mobs.cave;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.StatusEffectHelper;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -19,8 +17,10 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.potion.PotionUtil;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -29,13 +29,12 @@ import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UndeadWarriorEntity extends SkeletonEntity {
 
     public java.util.Random rand = new java.util.Random();
     public int tippedArrowsAmount;
-    public Pair<RegistryEntry<StatusEffect>, Pair<Integer, Integer>> tippedArrowEffect;
+    public Pair<StatusEffect, Pair<Integer, Integer>> tippedArrowEffect;
 
     public UndeadWarriorEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
@@ -61,8 +60,8 @@ public class UndeadWarriorEntity extends SkeletonEntity {
     }
 
     @Nullable
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
         this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(3.0);
         this.updateAttackType();
         return entityData2;
@@ -87,10 +86,13 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putInt("TippedArrowsAmount", this.tippedArrowsAmount);
-        nbt.putString("TippedArrowEffect", this.tippedArrowEffect.getA().getIdAsString());
-        nbt.putInt("TippedArrowDuration", this.tippedArrowEffect.getB().getA());
-        nbt.putInt("TippedArrowAmplifier", this.tippedArrowEffect.getB().getB());
+        Identifier id = Registries.STATUS_EFFECT.getId(tippedArrowEffect.getA());
+        if(id != null){
+            nbt.putInt("TippedArrowsAmount", this.tippedArrowsAmount);
+            nbt.putString("TippedArrowEffect", id.toString());
+            nbt.putInt("TippedArrowDuration", this.tippedArrowEffect.getB().getA());
+            nbt.putInt("TippedArrowAmplifier", this.tippedArrowEffect.getB().getB());
+        }
     }
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
@@ -134,11 +136,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
                         ItemStack stack = new ItemStack(Items.TIPPED_ARROW);
                         int duration = this.tippedArrowEffect.getB().getA()*9;
                         int amp = this.tippedArrowEffect.getB().getB() > 0 ? this.tippedArrowEffect.getB().getB() - 1 : 0;
-                        stack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(
-                                Optional.empty(),
-                                Optional.of(this.tippedArrowEffect.getA().value().getColor()),
-                                List.of(new StatusEffectInstance(this.tippedArrowEffect.getA(), duration, amp))
-                        ));
+                        PotionUtil.setCustomPotionEffects(stack, List.of(new StatusEffectInstance(this.tippedArrowEffect.getA(), duration, amp)));
                         this.dropStack(stack);
                     }
                     int arrowCount = rand.nextInt(0, 3 + lootingLevel);

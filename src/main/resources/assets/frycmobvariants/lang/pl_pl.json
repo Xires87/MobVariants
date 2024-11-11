@@ -127,7 +127,7 @@
   "text.autoconfig.frycmobvariants.option.enableFrozenZombieConvertingToNormalZombie": "Włącz przemianę Zamarzniętego Zombie w zwykłego zombie",
   "text.autoconfig.frycmobvariants.option.enableFrozenZombieConvertingToNormalZombie.@Tooltip": "Zamarznięte Zombie zmieniają się w zwykłe zombie po spędzeniu kilku chwil na słońcu, w wodzie lub w ogniu",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Lista efektów które mogą zostać nałożone przez strzały Nieumarłeo Wojownika",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "Lista efektów które mogą zostać nałożone przez strzały Nieumarłeo Wojownika [Wymagany Restart]",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect.@Tooltip": "Efekt, czas trwania i moc oddzielone średnikiem: 'Efekt;czasTrwania;moc;Efekt;czasTrwania;moc;[...]'",
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount": "Minimalna liczba strzał z miksturą z którą może się pojawić Nieumarły Wojownik",

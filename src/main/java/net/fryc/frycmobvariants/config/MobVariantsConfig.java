@@ -198,6 +198,7 @@ public class MobVariantsConfig implements ConfigData {
         @Comment("List of effects (with duration and amplifier) that Undead Warrior's arrow can have in the following pattern: 'StatusEffect;duration;amplifier;StatusEffect;duration;amplifier'")
         @ConfigEntry.Category("mobattributes")
         @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.Gui.RequiresRestart
         public String undeadWarriorsArrowEffect = "minecraft:weakness;400;1;minecraft:blindness;80;1;minecraft:instant_damage;1;1";
 
     }

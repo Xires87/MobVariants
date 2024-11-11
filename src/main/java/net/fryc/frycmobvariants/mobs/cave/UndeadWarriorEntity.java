@@ -19,7 +19,6 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.random.Random;
@@ -69,8 +68,8 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         return entityData2;
     }
 
-    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
-        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier, shotFrom);
+    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
+        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
         if(this.tippedArrowsAmount > 0){
             if (persistentProjectileEntity instanceof ArrowEntity) {
                 int duration = this.tippedArrowEffect.getB().getA() > 0 ? this.tippedArrowEffect.getB().getA() : 1;
@@ -130,7 +129,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         if(!this.getWorld().isClient()){
             if(causedByPlayer){
                 if(this.tippedArrowsAmount > -1){
-                    int lootingLevel = damageSource.getAttacker() instanceof LivingEntity entity ? EnchantmentHelper.getEquipmentLevel(entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).entryOf(Enchantments.LOOTING), entity) : 0;
+                    int lootingLevel = damageSource.getAttacker() instanceof LivingEntity entity ? EnchantmentHelper.getEquipmentLevel(Enchantments.LOOTING, entity) : 0;
                     if(rand.nextInt(0, 100) < this.tippedArrowsAmount * MobVariants.config.undeadWarriorAttributes.undeadWarriorsTippedArrowDropChancePerTippedArrowHeld + 1 + lootingLevel * 2){
                         ItemStack stack = new ItemStack(Items.TIPPED_ARROW);
                         int duration = this.tippedArrowEffect.getB().getA()*9;

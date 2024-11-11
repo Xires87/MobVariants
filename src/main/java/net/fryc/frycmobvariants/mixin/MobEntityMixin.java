@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MobEntity.class)
-abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, Leashable, Targeter {
+abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, Targeter {
 
     protected MobEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);

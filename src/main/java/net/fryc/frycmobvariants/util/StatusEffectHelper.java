@@ -42,7 +42,7 @@ public class StatusEffectHelper {
     }
 
     public static RegistryEntry<StatusEffect> getStatusEffectFromString(String statusEffect){
-        return Registries.STATUS_EFFECT.getEntry(Identifier.of(statusEffect)).orElseGet(() -> {
+        return Registries.STATUS_EFFECT.getEntry(new Identifier(statusEffect)).orElseGet(() -> {
             MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
             return (RegistryEntry.Reference<StatusEffect>) StatusEffects.WEAKNESS;
         });

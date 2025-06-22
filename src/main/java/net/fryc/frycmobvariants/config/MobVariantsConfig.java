@@ -183,8 +183,12 @@ public class MobVariantsConfig implements ConfigData {
         @Comment("Skeletons with enchanted bow always convert to undead warrior with bow")
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Category("mobattributes")
-        @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-        public int undeadWarriorSpawnWithBowChance = 50;
+        public boolean alwaysKeepEnchantedBow = true;
+
+        @Comment("List of weapons that Undead Warrior can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
+        @ConfigEntry.Category("mobattributes")
+        @ConfigEntry.Gui.RequiresRestart
+        public String undeadWarriorWeapons = "minecraft:stone_sword;0.50;minecraft:bow;0.50";
 
         @ConfigEntry.Category("mobattributes")
         public int undeadWarriorsMinTippedArrowsCount = 1;

@@ -1,6 +1,7 @@
 package net.fryc.frycmobvariants.mobs.cave;
 
 import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.StatusEffectHelper;
 import net.fryc.frycmobvariants.util.StringHelper;
 import net.minecraft.component.DataComponentTypes;
@@ -17,8 +18,10 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
@@ -29,7 +32,9 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class UndeadWarriorEntity extends SkeletonEntity {
@@ -37,6 +42,8 @@ public class UndeadWarriorEntity extends SkeletonEntity {
     public java.util.Random rand = new java.util.Random();
     public int tippedArrowsAmount;
     public Pair<RegistryEntry<StatusEffect>, Pair<Integer, Integer>> tippedArrowEffect;
+
+    public static Map<Item, Pair<Float, Float>> undeadWarriorWeapons = new HashMap<>(Map.of(Items.BOW, new Pair<>(0.0F, 0.50F), Items.STONE_SWORD, new Pair<>(0.50F, 1.0F)));
 
     public UndeadWarriorEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
@@ -54,11 +61,10 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     //used only in summons and spawn eggs, undead warriors don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(random.nextInt(100) > MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance) {
-            this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorSword());
+        this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorWeapon());
+        if(!(this.getMainHandStack().getItem() instanceof RangedWeaponItem)){
             this.tippedArrowsAmount = -1;
         }
-        else this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 
     @Nullable
@@ -82,8 +88,8 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         return persistentProjectileEntity;
     }
 
-    public static ItemStack getUndeadWarriorSword(){
-        return new ItemStack(Items.STONE_SWORD);
+    public static ItemStack getUndeadWarriorWeapon(){
+        return MobConvertingHelper.getRandomItemStack(UndeadWarriorEntity.undeadWarriorWeapons);
     }
 
     public void writeCustomDataToNbt(NbtCompound nbt) {

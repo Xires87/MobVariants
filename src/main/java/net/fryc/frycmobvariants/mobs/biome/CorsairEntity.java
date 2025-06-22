@@ -1,6 +1,6 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
-import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,6 +22,7 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
@@ -32,13 +33,18 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
+import oshi.util.tuples.Pair;
 
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CorsairEntity extends SkeletonEntity {
     boolean targetingUnderwater;
     protected final SwimNavigation waterNavigation;
     protected final MobNavigation landNavigation;
+
+    public static Map<Item, Pair<Float, Float>> corsairWeapons = new HashMap<>(Map.of(Items.WOODEN_SWORD, new Pair<>(0.0F, 0.72F)));
 
     public CorsairEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
@@ -65,7 +71,7 @@ public class CorsairEntity extends SkeletonEntity {
     }
 
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(random.nextInt(100) < MobVariants.config.corsairSpawnWithSwordChance) this.equipStack(EquipmentSlot.MAINHAND, getCorsairSword());
+        this.equipStack(EquipmentSlot.MAINHAND, getCorsairSword());
     }
 
     protected boolean hasFinishedCurrentPath() {
@@ -125,9 +131,8 @@ public class CorsairEntity extends SkeletonEntity {
     }
 
     public static ItemStack getCorsairSword(){
-        return new ItemStack(Items.WOODEN_SWORD);
+        return MobConvertingHelper.getRandomItemStack(corsairWeapons);
     }
-
 
 
     //move control

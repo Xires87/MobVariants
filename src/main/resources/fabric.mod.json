@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Mob Variants",
-  "description": "Adds stronger variants for hostile mobs",
+  "description": "Adds stronger variants for hostile mobs \n \n Translations by: \n 'pl_pl' - Xires87 \n 'zh_cn' - Rad586",
   "authors": [
     "Wookash Fryc",
     "sheslong (artist)"

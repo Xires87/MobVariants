@@ -26,7 +26,7 @@ public class StatusEffectHelper {
         int j = 0;
         for(String key : availableStatusEffects.keySet()){
             if(j == i){
-                RegistryEntry<StatusEffect> effect = getStatusEffectFromString(key);
+                RegistryEntry<StatusEffect> effect = StringHelper.getStatusEffectFromString(key);
                 Pair<Integer, Integer> durAndAmp = availableStatusEffects.get(key);
 
                 return new Pair<>(effect, durAndAmp);
@@ -38,14 +38,7 @@ public class StatusEffectHelper {
     }
 
     public static void initializeStatusEffectMap(){
-        availableStatusEffects = StringHelper.transformStringToMap(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect);
-    }
-
-    public static RegistryEntry<StatusEffect> getStatusEffectFromString(String statusEffect){
-        return Registries.STATUS_EFFECT.getEntry(new Identifier(statusEffect)).orElseGet(() -> {
-            MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
-            return (RegistryEntry.Reference<StatusEffect>) StatusEffects.WEAKNESS;
-        });
+        availableStatusEffects = StringHelper.transformStringToIntMap(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect);
     }
 
 }

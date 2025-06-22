@@ -104,8 +104,8 @@
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance": "Chance to convert Zombie to Bloated Corpse in swamps:",
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning on one of mentioned biomes",
 
-  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Corsair's chance to spawn with sword",
-  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance.@Tooltip": "This options affects only Corsairs that spawned on shipwrecks",
+  "text.autoconfig.frycmobvariants.option.corsairWeapons": "Corsair's weapons [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.corsairWeapons.@Tooltip": "List of weapons that Corsair can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Additional magic damage dealt by soul stealer",
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "On normal difficulty this value is increased by 1. On hard, by 3",

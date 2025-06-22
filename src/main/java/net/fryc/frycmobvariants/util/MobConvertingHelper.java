@@ -103,14 +103,14 @@ public class MobConvertingHelper {
             }
             else {
                 if(random.nextInt(0, 100) <= MobVariants.config.skeletonToSoulStealerConvertChance){
-                    skeleton.equipStack(EquipmentSlot.MAINHAND, SoulStealerEntity.getSoulsStealerHoe());
+                    skeleton.equipStack(EquipmentSlot.MAINHAND, SoulStealerEntity.getSoulsStealerWeapon());
                     skeleton.convertTo(ModMobs.SOUL_STEALER, true);
                 }
             }
         }
         else if(skeleton.getClass() == WitherSkeletonEntity.class){
             if(random.nextInt(0, 100) <= MobVariants.config.witherSkeletonConvertChance){
-                initExecutionersEquipment(skeleton, random);
+                ExecutionerEntity.initExecutionerEquipment(skeleton);
                 skeleton.convertTo(ModMobs.EXECUTIONER, true);
             }
         }
@@ -207,16 +207,6 @@ public class MobConvertingHelper {
         }
     }
 
-    private static void initExecutionersEquipment(AbstractSkeletonEntity skeleton, Random random){
-        skeleton.equipStack(EquipmentSlot.MAINHAND, ExecutionerEntity.getExecutionerAxe());
-        skeleton.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.IRON_HELMET));
-        int equipChance = random.nextInt(0, 100);
-        if(equipChance > 45){
-            if(equipChance <= 49) skeleton.equipStack(EquipmentSlot.FEET, new ItemStack(Items.IRON_BOOTS));
-            else if(equipChance <= 78) skeleton.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.IRON_CHESTPLATE));
-            else skeleton.equipStack(EquipmentSlot.LEGS, new ItemStack(Items.IRON_LEGGINGS));
-        }
-    }
 
     public static ItemStack getRandomItemStack(Map<Item, Pair<Float, Float>> map) {
         float chance = ThreadLocalRandom.current().nextFloat();

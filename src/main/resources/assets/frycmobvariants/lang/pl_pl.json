@@ -133,5 +133,28 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount": "Minimalna liczba strzał z miksturą z którą może się pojawić Nieumarły Wojownik",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMaxTippedArrowsCount": "Maksymalna liczba strzał z miksturą z którą może się pojawić Nieumarły Wojownik",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsTippedArrowDropChancePerTippedArrowHeld": "Szansa na wypadnięcie strzały z miksturą za każdą strzałę z miksturą trzymaną przez Nieumarłego Wojownika"
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsTippedArrowDropChancePerTippedArrowHeld": "Szansa na wypadnięcie strzały z miksturą za każdą strzałę z miksturą trzymaną przez Nieumarłego Wojownika",
+
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorWeapons": "Bronie Nieumarłego Wojownika [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorWeapons.@Tooltip": "Lista broni, z którymi Nieumarły Wojownik może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
+
+  "text.autoconfig.frycmobvariants.option.soulStealerWeapons": "Bronie Złodzieja Dusz [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.soulStealerWeapons.@Tooltip": "Lista broni, z którymi Złodziej Dusz może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
+
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerWeapons": "Bronie Kata [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerWeapons.@Tooltip": "Lista broni, z którymi Kat może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
+
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerHelmets": "Hełmy Kata [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerHelmets.@Tooltip": "Lista hełmów, z którymi Kat może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
+
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerChestplates": "Napierśniki Kata [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerChestplates.@Tooltip": "Lista napierśników, z którymi Kat może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
+
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerLeggings": "Nogawice Kata [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerLeggings.@Tooltip": "Lista nogawic, z którymi Kat może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
+
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots": "Buty Kata [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots.@Tooltip": "Lista butów, z którymi Kat może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
+
+  "text.autoconfig.frycmobvariants.option.executionerAttributes": "Atrybuty Kata"
 }

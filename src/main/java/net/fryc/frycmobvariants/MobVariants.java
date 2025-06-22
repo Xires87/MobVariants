@@ -9,6 +9,7 @@ import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
 import net.fryc.frycmobvariants.mobs.biome.CorsairEntity;
+import net.fryc.frycmobvariants.util.MobEquipment;
 import net.fryc.frycmobvariants.util.StatusEffectHelper;
 import net.fryc.frycmobvariants.util.StringHelper;
 import org.slf4j.Logger;
@@ -26,8 +27,7 @@ public class MobVariants implements ModInitializer {
 		AutoConfig.register(MobVariantsConfig.class, JanksonConfigSerializer::new);
 		config = AutoConfig.getConfigHolder(MobVariantsConfig.class).getConfig();
 
-		StatusEffectHelper.initializeStatusEffectMap();
-		CorsairEntity.corsairWeapons = StringHelper.transformStringToFloatMap(config.corsairWeapons);
+		MobEquipment.initializePossibleEquipment();
 
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();

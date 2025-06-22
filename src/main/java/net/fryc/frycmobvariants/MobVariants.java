@@ -4,14 +4,12 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fryc.frycmobvariants.commands.TryToConvertCommand;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
-import net.fryc.frycmobvariants.mobs.biome.CorsairEntity;
 import net.fryc.frycmobvariants.util.MobEquipment;
-import net.fryc.frycmobvariants.util.StatusEffectHelper;
-import net.fryc.frycmobvariants.util.StringHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,11 +25,17 @@ public class MobVariants implements ModInitializer {
 		AutoConfig.register(MobVariantsConfig.class, JanksonConfigSerializer::new);
 		config = AutoConfig.getConfigHolder(MobVariantsConfig.class).getConfig();
 
-		MobEquipment.initializePossibleEquipment();
-
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();
 
 		CommandRegistrationCallback.EVENT.register(TryToConvertCommand::register);
+
+		ServerLifecycleEvents.START_DATA_PACK_RELOAD.register((server, resourceManager) -> {
+			MobEquipment.initializePossibleEquipment();
+		});
+
+		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+			MobEquipment.initializePossibleEquipment();
+		});
 	}
 }

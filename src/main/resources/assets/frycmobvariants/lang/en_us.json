@@ -104,7 +104,7 @@
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance": "Chance to convert Zombie to Bloated Corpse in swamps:",
   "text.autoconfig.frycmobvariants.option.zombieToBloatedCorpseConvertChance.@Tooltip": "For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning on one of mentioned biomes",
 
-  "text.autoconfig.frycmobvariants.option.corsairWeapons": "Corsair's weapons [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.corsairWeapons": "Corsair's weapons [/reload Required]",
   "text.autoconfig.frycmobvariants.option.corsairWeapons.@Tooltip": "List of weapons, that Corsair can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Additional magic damage dealt by soul stealer",
@@ -128,10 +128,10 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.alwaysKeepEnchantedBow": "Always keep enchanted bow",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.alwaysKeepEnchantedBow.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorWeapons": "Undead Warrior's weapons [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorWeapons": "Undead Warrior's weapons [/reload Required]",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorWeapons.@Tooltip": "List of weapons that Undead Warrior can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "List of status effects Undead Warrior's arrows can apply [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "List of status effects Undead Warrior's arrows can apply [/reload Required]",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect.@Tooltip": "Status effect, duration and amplifier separated with semicolon: 'StatusEffect;duration;amplifier;StatusEffect;duration;amplifier;[...]'",
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount": "Minimal amount of tipped arrows Undead Warrior can spawn with",
@@ -139,22 +139,22 @@
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsTippedArrowDropChancePerTippedArrowHeld": "Undead Warrior's tipped arrow drop chance per tipped arrow held",
 
-  "text.autoconfig.frycmobvariants.option.soulStealerWeapons": "Soul Stealer's weapons [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.soulStealerWeapons": "Soul Stealer's weapons [/reload Required]",
   "text.autoconfig.frycmobvariants.option.soulStealerWeapons.@Tooltip": "List of weapons, that Soul Stealer can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
-  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerWeapons": "Executioner's weapons [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerWeapons": "Executioner's weapons [/reload Required]",
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerWeapons.@Tooltip": "List of weapons, that Executioner can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
-  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerHelmets": "Executioner's helmets [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerHelmets": "Executioner's helmets [/reload Required]",
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerHelmets.@Tooltip": "List of helmets, that Executioner can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
-  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerChestplates": "Executioner's chestplates [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerChestplates": "Executioner's chestplates [/reload Required]",
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerChestplates.@Tooltip": "List of chestplates, that Executioner can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
-  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerLeggings": "Executioner's leggings [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerLeggings": "Executioner's leggings [/reload Required]",
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerLeggings.@Tooltip": "List of leggings, that Executioner can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
-  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots": "Executioner's boots [Restart Required]",
+  "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots": "Executioner's boots [/reload Required]",
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots.@Tooltip": "List of boots, that Executioner can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
   "text.autoconfig.frycmobvariants.option.executionerAttributes": "Executioner attributes"

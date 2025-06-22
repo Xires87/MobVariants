@@ -108,8 +108,8 @@
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
 
-  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "Szansa Korsarza na pojawienie się z mieczem",
-  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance.@Tooltip": "Ta opcja ma wpływ tylko na Korsarzy którzy pojawiają się na wrakach statków",
+  "text.autoconfig.frycmobvariants.option.corsairWeapons": "Bronie Korsarza [Wymagany Restart]",
+  "text.autoconfig.frycmobvariants.option.corsairWeapons.@Tooltip": "Lista broni, z którymi Korsarz może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
 
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "Dodatkowe obrażenia magiczne zadawane przez Złodzieja Dusz",
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "Na normalnym poziomie trudności ta wartość jest zwiększana o 1. Na trudnym o 3",

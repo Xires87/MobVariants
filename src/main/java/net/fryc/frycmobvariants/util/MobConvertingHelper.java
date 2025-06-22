@@ -11,10 +11,15 @@ import net.fryc.frycmobvariants.mobs.nether.SoulStealerEntity;
 import net.fryc.frycmobvariants.tags.ModBiomeTags;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.mob.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import oshi.util.tuples.Pair;
 
+import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MobConvertingHelper {
 
@@ -214,5 +219,14 @@ public class MobConvertingHelper {
             else if(equipChance <= 78) skeleton.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.IRON_CHESTPLATE));
             else skeleton.equipStack(EquipmentSlot.LEGS, new ItemStack(Items.IRON_LEGGINGS));
         }
+    }
+
+    public static ItemStack getRandomItemStack(Map<Item, Pair<Float, Float>> map) {
+        float chance = ThreadLocalRandom.current().nextFloat();
+        Optional<Map.Entry<Item, Pair<Float, Float>>> optional = map.entrySet().stream().filter(entry -> {
+            return chance >= entry.getValue().getA() && chance < entry.getValue().getB();
+        }).findAny();
+
+        return optional.isPresent() ? new ItemStack(optional.get().getKey()) : ItemStack.EMPTY;
     }
 }

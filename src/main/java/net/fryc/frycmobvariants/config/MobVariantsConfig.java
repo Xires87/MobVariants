@@ -158,11 +158,11 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("mobattributes")
     public int timeToRemoveLavaLeftByLavaSlime = 30;
 
-    @Comment("This option affects only Corsairs that spawned on shipwrecks")
+    @Comment("List of weapons that Corsair can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
     @ConfigEntry.Category("mobattributes")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    @ConfigEntry.Gui.Tooltip
-    public int corsairSpawnWithSwordChance = 42;
+    @ConfigEntry.Gui.RequiresRestart
+    public String corsairWeapons = "minecraft:wooden_sword;0.72";
+
     @Comment("Minimal difficulty at which Bloated Corpse's cloud deals poison damage. Set to NONE to remove poison damage from the cloud")
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.Gui.Tooltip

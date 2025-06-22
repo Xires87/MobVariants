@@ -37,17 +37,7 @@ public class StatusEffectHelper {
     }
 
     public static void initializeStatusEffectMap(){
-        availableStatusEffects = StringHelper.transformStringToMap(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect);
-    }
-
-    public static StatusEffect getStatusEffectFromString(String statusEffect){
-        StatusEffect effect = Registries.STATUS_EFFECT.get(new Identifier(statusEffect));
-        if(effect != null){
-            return effect;
-        }
-
-        MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
-        return StatusEffects.WEAKNESS;
+        availableStatusEffects = StringHelper.transformStringToIntMap(MobVariants.config.undeadWarriorAttributes.undeadWarriorsArrowEffect);
     }
 
 }

@@ -50,7 +50,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2505).add(EntityAttributes.GENERIC_MAX_HEALTH, 22).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.2f);
     }
 
-    //used only in summons and spawn eggs, udead warriors don't spawn naturally
+    //used only in summons and spawn eggs, undead warriors don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
         if(random.nextInt(100) > MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance) {
             this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorSword());
@@ -101,7 +101,7 @@ public class UndeadWarriorEntity extends SkeletonEntity {
             this.tippedArrowsAmount = nbt.getInt("TippedArrowsAmount");
         }
         if(nbt.contains("TippedArrowEffect") && nbt.contains("TippedArrowDuration") && nbt.contains("TippedArrowAmplifier")){
-            this.tippedArrowEffect = new Pair<>(StatusEffectHelper.getStatusEffectFromString(nbt.getString("TippedArrowEffect")), new Pair<>(nbt.getInt("TippedArrowDuration"), nbt.getInt("TippedArrowAmplifier")));
+            this.tippedArrowEffect = new Pair<>(StringHelper.getStatusEffectFromString(nbt.getString("TippedArrowEffect")), new Pair<>(nbt.getInt("TippedArrowDuration"), nbt.getInt("TippedArrowAmplifier")));
         }
     }
 

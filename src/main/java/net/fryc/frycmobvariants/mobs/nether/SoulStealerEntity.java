@@ -1,12 +1,14 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
 import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.tag.BlockTags;
@@ -16,8 +18,14 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import oshi.util.tuples.Pair;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SoulStealerEntity extends SkeletonEntity {
+
+    public static Map<Item, Pair<Float, Float>> soulStealerWeapons = new HashMap<>(Map.of(Items.IRON_HOE, new Pair<>(0.0F, 1.0F)));
 
     public SoulStealerEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
@@ -32,7 +40,7 @@ public class SoulStealerEntity extends SkeletonEntity {
     }
 
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        this.equipStack(EquipmentSlot.MAINHAND, getSoulsStealerHoe());
+        this.equipStack(EquipmentSlot.MAINHAND, getSoulsStealerWeapon());
     }
 
     @Nullable
@@ -71,8 +79,8 @@ public class SoulStealerEntity extends SkeletonEntity {
         }
     }
 
-    public static ItemStack getSoulsStealerHoe(){
-        return new ItemStack(Items.IRON_HOE);
+    public static ItemStack getSoulsStealerWeapon(){
+        return MobConvertingHelper.getRandomItemStack(SoulStealerEntity.soulStealerWeapons);
     }
 
 

@@ -147,11 +147,20 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public UndeadWarriorAttributes undeadWarriorAttributes = new UndeadWarriorAttributes();
 
+    @ConfigEntry.Category("mobattributes")
+    @ConfigEntry.Gui.CollapsibleObject
+    public ExecutionerAttibutes executionerAttributes = new ExecutionerAttibutes();
+
     @Comment("Additional magic damage dealt by Soul Stealer. On normal difficulty this value is increased by 1. On hard, by 3")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
     public float soulStealersBaseMagicDamage = 1.0F;
 
+    @Comment("List of weapons that Soul Stealer can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
+    @ConfigEntry.Category("mobattributes")
+    @ConfigEntry.Gui.RequiresRestart
+    @ConfigEntry.Gui.Tooltip
+    public String soulStealerWeapons = "minecraft:iron_hoe;1.0";
 
     @Comment("20 = 1s. Set it to 10 (or lower) to prevent lava from disappearing")
     @ConfigEntry.Gui.Tooltip
@@ -161,6 +170,7 @@ public class MobVariantsConfig implements ConfigData {
     @Comment("List of weapons that Corsair can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.Gui.RequiresRestart
+    @ConfigEntry.Gui.Tooltip
     public String corsairWeapons = "minecraft:wooden_sword;0.72";
 
     @Comment("Minimal difficulty at which Bloated Corpse's cloud deals poison damage. Set to NONE to remove poison damage from the cloud")
@@ -173,6 +183,7 @@ public class MobVariantsConfig implements ConfigData {
 
     @ConfigEntry.Category("mobattributes")
     public boolean convertSkeletonsToCorsairsUnderwater = true;
+
     @Comment("When true, Frozen Zombies become normal zombies after spending some time exposed to sunlight, fire or water")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
@@ -188,6 +199,7 @@ public class MobVariantsConfig implements ConfigData {
         @Comment("List of weapons that Undead Warrior can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
         @ConfigEntry.Category("mobattributes")
         @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
         public String undeadWarriorWeapons = "minecraft:stone_sword;0.50;minecraft:bow;0.50";
 
         @ConfigEntry.Category("mobattributes")
@@ -204,6 +216,40 @@ public class MobVariantsConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Gui.RequiresRestart
         public String undeadWarriorsArrowEffect = "minecraft:weakness;400;1;minecraft:blindness;80;1;minecraft:instant_damage;1;1";
+
+    }
+
+    public static class ExecutionerAttibutes {
+
+        @Comment("List of weapons that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
+        @ConfigEntry.Category("mobattributes")
+        @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
+        public String executionerWeapons = "minecraft:stone_axe;1.0";
+
+        @Comment("List of helmets that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
+        @ConfigEntry.Category("mobattributes")
+        @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
+        public String executionerHelmets = "minecraft:iron_helmet;1.0";
+
+        @Comment("List of chestplates that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
+        @ConfigEntry.Category("mobattributes")
+        @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
+        public String executionerChestplates = "minecraft:iron_chestplate;0.50";
+
+        @Comment("List of leggings that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
+        @ConfigEntry.Category("mobattributes")
+        @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
+        public String executionerLeggings = "minecraft:iron_leggings;0.25";
+
+        @Comment("List of boots that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
+        @ConfigEntry.Category("mobattributes")
+        @ConfigEntry.Gui.RequiresRestart
+        @ConfigEntry.Gui.Tooltip
+        public String executionerBoots = "minecraft:iron_boots;0.04";
 
     }
 }

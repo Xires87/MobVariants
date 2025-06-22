@@ -105,8 +105,8 @@
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes": "Atrybuty Nieumarłego Wojownika",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Szansa nieumarłych wojowników na pojawienie się z łukiem",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.alwaysKeepEnchantedBow": "Zawsze zachowuj zaklęty łuk",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.alwaysKeepEnchantedBow.@Tooltip": "Szkielety z zaklętymi łukami zawsze zmieniają się w Nieumarłych Wojowników z łukiem",
 
   "text.autoconfig.frycmobvariants.option.corsairWeapons": "Bronie Korsarza [Wymagany Restart]",
   "text.autoconfig.frycmobvariants.option.corsairWeapons.@Tooltip": "Lista broni, z którymi Korsarz może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",

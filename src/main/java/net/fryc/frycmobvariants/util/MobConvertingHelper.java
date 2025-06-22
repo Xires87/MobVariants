@@ -14,6 +14,7 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.RangedWeaponItem;
 import oshi.util.tuples.Pair;
 
 import java.util.Map;
@@ -79,23 +80,19 @@ public class MobConvertingHelper {
                                 bl = true;
                             }
                         }
-                        else if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){ // ~26% to convert on 0Y level (default)
+                        else if(random.nextInt(i, 100 + i) < MobVariants.config.skeletonToUndeadWarriorConvertLevelY){
                             bl = true;
                         }
 
                         if(bl){
-                            if(skeleton.getMainHandStack().hasEnchantments()){ //skeletons with enchantments on bow always convert to undead warriors with bow
+                            if(skeleton.getMainHandStack().hasEnchantments() && MobVariants.config.undeadWarriorAttributes.alwaysKeepEnchantedBow){
                                 skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                             }
                             else{
-                                boolean hasArrows = true;
-                                if(MobVariants.config.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance <= random.nextInt(0, 100)){ //50% to give skeleton a sword
-                                    skeleton.equipStack(EquipmentSlot.MAINHAND, UndeadWarriorEntity.getUndeadWarriorSword());
-                                    hasArrows = false;
-                                }
+                                skeleton.equipStack(EquipmentSlot.MAINHAND, UndeadWarriorEntity.getUndeadWarriorWeapon());
                                 UndeadWarriorEntity uw = skeleton.convertTo(ModMobs.UNDEAD_WARRIOR, true);
                                 if(uw != null){
-                                    if(!hasArrows){
+                                    if(!(uw.getMainHandStack().getItem() instanceof RangedWeaponItem)){
                                         uw.tippedArrowsAmount = -1;
                                     }
                                 }

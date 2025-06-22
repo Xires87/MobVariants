@@ -125,8 +125,8 @@
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes": "Undead warrior's attributes",
 
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "Undead warrior's chance to spawn with bow",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.alwaysKeepEnchantedBow": "Always keep enchanted bow",
+  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.alwaysKeepEnchantedBow.@Tooltip": "Skeletons with enchanted bow always convert to undead warrior with bow",
 
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect": "List of status effects Undead Warrior's arrows can apply [Restart Required]",
   "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorsArrowEffect.@Tooltip": "Status effect, duration and amplifier separated with semicolon: 'StatusEffect;duration;amplifier;StatusEffect;duration;amplifier;[...]'",

@@ -158,7 +158,6 @@ public class MobVariantsConfig implements ConfigData {
 
     @Comment("List of weapons that Soul Stealer can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
     @ConfigEntry.Category("mobattributes")
-    @ConfigEntry.Gui.RequiresRestart
     @ConfigEntry.Gui.Tooltip
     public String soulStealerWeapons = "minecraft:iron_hoe;1.0";
 
@@ -169,7 +168,6 @@ public class MobVariantsConfig implements ConfigData {
 
     @Comment("List of weapons that Corsair can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
     @ConfigEntry.Category("mobattributes")
-    @ConfigEntry.Gui.RequiresRestart
     @ConfigEntry.Gui.Tooltip
     public String corsairWeapons = "minecraft:wooden_sword;0.72";
 
@@ -198,7 +196,6 @@ public class MobVariantsConfig implements ConfigData {
 
         @Comment("List of weapons that Undead Warrior can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
         @ConfigEntry.Category("mobattributes")
-        @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
         public String undeadWarriorWeapons = "minecraft:stone_sword;0.50;minecraft:bow;0.50";
 
@@ -214,7 +211,6 @@ public class MobVariantsConfig implements ConfigData {
         @Comment("List of effects (with duration and amplifier) that Undead Warrior's arrow can have in the following pattern: 'StatusEffect;duration;amplifier;StatusEffect;duration;amplifier'")
         @ConfigEntry.Category("mobattributes")
         @ConfigEntry.Gui.Tooltip
-        @ConfigEntry.Gui.RequiresRestart
         public String undeadWarriorsArrowEffect = "minecraft:weakness;400;1;minecraft:blindness;80;1;minecraft:instant_damage;1;1";
 
     }
@@ -223,31 +219,26 @@ public class MobVariantsConfig implements ConfigData {
 
         @Comment("List of weapons that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
         @ConfigEntry.Category("mobattributes")
-        @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
         public String executionerWeapons = "minecraft:stone_axe;1.0";
 
         @Comment("List of helmets that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
         @ConfigEntry.Category("mobattributes")
-        @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
         public String executionerHelmets = "minecraft:iron_helmet;1.0";
 
         @Comment("List of chestplates that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
         @ConfigEntry.Category("mobattributes")
-        @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
         public String executionerChestplates = "minecraft:iron_chestplate;0.50";
 
         @Comment("List of leggings that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
         @ConfigEntry.Category("mobattributes")
-        @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
         public String executionerLeggings = "minecraft:iron_leggings;0.25";
 
         @Comment("List of boots that Executioner can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
         @ConfigEntry.Category("mobattributes")
-        @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.Gui.Tooltip
         public String executionerBoots = "minecraft:iron_boots;0.04";
 

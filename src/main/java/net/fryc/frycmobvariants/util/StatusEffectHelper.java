@@ -25,7 +25,7 @@ public class StatusEffectHelper {
         int j = 0;
         for(String key : availableStatusEffects.keySet()){
             if(j == i){
-                StatusEffect effect = getStatusEffectFromString(key);
+                StatusEffect effect = StringHelper.getStatusEffectFromString(key);
                 Pair<Integer, Integer> durAndAmp = availableStatusEffects.get(key);
 
                 return new Pair<>(effect, durAndAmp);

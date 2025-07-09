@@ -118,10 +118,10 @@ public class StringHelper {
         return optional.get();
     }
 
-    public static RegistryEntry<StatusEffect> getStatusEffectFromString(String statusEffect){
-        return Registries.STATUS_EFFECT.getEntry(new Identifier(statusEffect)).orElseGet(() -> {
+    public static StatusEffect getStatusEffectFromString(String statusEffect){
+        return Registries.STATUS_EFFECT.getOrEmpty(new Identifier(statusEffect)).orElseGet(() -> {
             MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
-            return (RegistryEntry.Reference<StatusEffect>) StatusEffects.WEAKNESS;
+            return StatusEffects.WEAKNESS;
         });
     }
 }

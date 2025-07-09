@@ -3,6 +3,7 @@ package net.fryc.frycmobvariants.mobs.cave;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.StatusEffectHelper;
+import net.fryc.frycmobvariants.util.StringHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;

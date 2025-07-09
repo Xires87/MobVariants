@@ -109,7 +109,7 @@ public class StringHelper {
 
     @Nullable
     public static Item transformStringToItem(String item){
-        Optional<Item> optional = Registries.ITEM.getOrEmpty(Identifier.of(item));
+        Optional<Item> optional = Registries.ITEM.getOrEmpty(new Identifier(item));
         if(optional.isEmpty()){
             MobVariants.LOGGER.error("An error occurred while reading MobVariants config. Unknown item: " + item);
             return null;
@@ -119,7 +119,7 @@ public class StringHelper {
     }
 
     public static RegistryEntry<StatusEffect> getStatusEffectFromString(String statusEffect){
-        return Registries.STATUS_EFFECT.getEntry(Identifier.of(statusEffect)).orElseGet(() -> {
+        return Registries.STATUS_EFFECT.getEntry(new Identifier(statusEffect)).orElseGet(() -> {
             MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
             return (RegistryEntry.Reference<StatusEffect>) StatusEffects.WEAKNESS;
         });

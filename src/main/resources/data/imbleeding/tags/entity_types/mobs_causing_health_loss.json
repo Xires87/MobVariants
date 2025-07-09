@@ -1,8 +1,5 @@
 {
-  "replace": false,
   "values": [
-    "frycmobvariants:lava_slime",
-    "frycmobvariants:toxic_slime",
     "frycmobvariants:tropical_spider",
     "frycmobvariants:armored_spider"
   ]

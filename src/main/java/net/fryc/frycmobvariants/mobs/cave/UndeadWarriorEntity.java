@@ -14,6 +14,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
@@ -48,11 +49,19 @@ public class UndeadWarriorEntity extends SkeletonEntity {
 
     public UndeadWarriorEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
-        this.tippedArrowsAmount = rand.nextInt(
-                MobVariants.config.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount,
-                MobVariants.config.undeadWarriorAttributes.undeadWarriorsMaxTippedArrowsCount + 1
-        );
-        this.tippedArrowEffect = StatusEffectHelper.pickRandomStatusEffect(rand);
+        if(!world.isClient()){
+            int minTippedArrows = MobVariants.config.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount;
+            this.tippedArrowsAmount = rand.nextInt(
+                    minTippedArrows,
+                    Math.max(MobVariants.config.undeadWarriorAttributes.undeadWarriorsMaxTippedArrowsCount + 1, minTippedArrows + 1)
+            );
+            this.tippedArrowEffect = StatusEffectHelper.pickRandomStatusEffect(rand);
+        }
+        else {
+            this.tippedArrowsAmount = 1;
+            this.tippedArrowEffect = new Pair<>(StatusEffects.WEAKNESS, new Pair<>(400, 1));
+        }
+
         this.experiencePoints += 1;
     }
 

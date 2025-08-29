@@ -4,8 +4,6 @@ package net.fryc.frycmobvariants.util;
 import net.fryc.frycmobvariants.MobVariants;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
 import oshi.util.tuples.Pair;
 
 import java.util.HashMap;
@@ -13,7 +11,7 @@ import java.util.Random;
 
 public class StatusEffectHelper {
 
-    public static HashMap<String, Pair<Integer, Integer>> availableStatusEffects;
+    public static HashMap<String, Pair<Integer, Integer>> availableStatusEffects = new HashMap<>();
 
     /**
      *
@@ -21,7 +19,8 @@ public class StatusEffectHelper {
      * @return Pair containing a status effect and a pair of integers (duration and amplifier)
      */
     public static Pair<StatusEffect, Pair<Integer, Integer>> pickRandomStatusEffect(Random random) {
-        int i = random.nextInt(0, availableStatusEffects.size());
+        int bound = !availableStatusEffects.isEmpty() ? availableStatusEffects.size() : 1;
+        int i = random.nextInt(0, bound);
         int j = 0;
         for(String key : availableStatusEffects.keySet()){
             if(j == i){

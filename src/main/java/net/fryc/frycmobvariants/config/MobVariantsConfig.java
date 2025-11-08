@@ -64,43 +64,43 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int witherSkeletonConvertChance = 11;
+    public int witherSkeletonConvertChance = 12;
 
     @Comment("For example, when set to 10, Ghast will have 10% chance to convert to Nightmare after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int ghastConvertChance = 26;
+    public int ghastConvertChance = 27;
 
     @Comment("For example, when set to 10, Piglin will have 10% chance to convert to Infected Piglin after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int piglinConvertChance = 29;
+    public int piglinConvertChance = 30;
 
     @Comment("For example, when set to 10, Piglin Brute will have 10% chance to convert to Infected Piglin Brute after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int piglinBruteConvertChance = 39;
+    public int piglinBruteConvertChance = 40;
 
     @Comment("For example, when set to 30, Skeleton will have 30% chance to convert to Soul Stealer after spawning (in nether)")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int skeletonToSoulStealerConvertChance = 31;
+    public int skeletonToSoulStealerConvertChance = 32;
 
     @Comment("For example, when set to 15, Magma Cube will have 15% chance to convert to Lava Slime after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int magmaCubeToLavaSlimeConvertChance = 19;
+    public int magmaCubeToLavaSlimeConvertChance = 20;
 
     @Comment("For example, when set to 12, Zombified Piglin will have 12% chance to convert to Zombified Piglin Brute after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombifiedPiglinConvertChance = 4;
+    public int zombifiedPiglinConvertChance = 5;
 
 
     //biomes
@@ -108,37 +108,37 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombieToExplorerConvertChance = 75;
+    public int zombieToExplorerConvertChance = 76;
 
     @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Frozen Zombie after spawning in snowy biome")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombieToFrozenZombieConvertChance = 80;
+    public int zombieToFrozenZombieConvertChance = 81;
 
     @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning in swamp")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombieToBloatedCorpseConvertChance = 75;
+    public int zombieToBloatedCorpseConvertChance = 76;
 
     @Comment("For example, when set to 70, Spider will have 70% chance to convert to Tropical Spider after spawning in jungle")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int spiderToTropicalSpiderConvertChance = 75;
+    public int spiderToTropicalSpiderConvertChance = 76;
 
     @Comment("For example, when set to 100, Slime will have 100% chance to convert to Toxic Slime after spawning in swamp biomes")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int slimeToToxicSlimeConvertChance = 70;
+    public int slimeToToxicSlimeConvertChance = 71;
 
     @Comment("For skeletons spawned in ocean or beach. Doesn't affect Corsairs spawning on Shipwrecks")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int skeletonToCorsairConvertChance = 60;
+    public int skeletonToCorsairConvertChance = 61;
 
 
     //mob attributes

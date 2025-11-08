@@ -155,7 +155,7 @@ public class MobConvertingHelper {
     }
 
     public static boolean isAtProperYLevel(int y, LivingEntity mob){
-        return y > 48 || mob.getWorld().getBiome(mob.getBlockPos()).isIn(ModBiomeTags.UNDERGROUND_BIOMES);
+        return y >= MobVariants.config.minYLevelForBiomeVariants || mob.getWorld().getBiome(mob.getBlockPos()).isIn(ModBiomeTags.UNDERGROUND_BIOMES);
     }
     
     public static boolean shouldConvertToVariant(Random random, int chance){

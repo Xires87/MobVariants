@@ -157,5 +157,8 @@
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots": "Executioner's boots [/reload Required]",
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots.@Tooltip": "List of boots, that Executioner can spawn with, in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0",
 
-  "text.autoconfig.frycmobvariants.option.executionerAttributes": "Executioner attributes"
+  "text.autoconfig.frycmobvariants.option.executionerAttributes": "Executioner attributes",
+
+  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants": "Min. Y level for biome variant conversion",
+  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants.@Tooltip": "Mob conversion isn't affected by biome under this Y level, unless they spawn in one of the cave biomes in which they can convert"
 }

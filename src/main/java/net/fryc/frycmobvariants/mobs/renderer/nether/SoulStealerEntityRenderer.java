@@ -15,8 +15,9 @@ public class SoulStealerEntityRenderer extends SkeletonEntityRenderer {
             new Identifier(MobVariants.MOD_ID, "textures/entity/skeleton/soul_stealer.png");
 
     public SoulStealerEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, EntityModelLayers.SKELETON, EntityModelLayers.SKELETON_INNER_ARMOR, EntityModelLayers.SKELETON_OUTER_ARMOR);
-        this.addFeature(new SoulStealerOverlayFeatureRenderer(this, context.getModelLoader()));
+        super(context, EntityModelLayers.STRAY, EntityModelLayers.STRAY_INNER_ARMOR, EntityModelLayers.STRAY_OUTER_ARMOR);
+        this.addFeature(new SkeletonOverlayFeatureRenderer(this, context.getModelLoader(), EntityModelLayers.STRAY_OUTER, OVERLAY));
+        //this.addFeature(new SoulStealerOverlayFeatureRenderer(this, context.getModelLoader()));
     }
 
     public Identifier getTexture(AbstractSkeletonEntity abstractSkeletonEntity) {

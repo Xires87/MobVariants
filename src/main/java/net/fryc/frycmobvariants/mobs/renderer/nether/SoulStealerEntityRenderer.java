@@ -16,7 +16,7 @@ public class SoulStealerEntityRenderer extends SkeletonEntityRenderer {
 
     public SoulStealerEntityRenderer(EntityRendererFactory.Context context) {
         super(context, EntityModelLayers.STRAY, EntityModelLayers.STRAY_INNER_ARMOR, EntityModelLayers.STRAY_OUTER_ARMOR);
-        this.addFeature(new SkeletonOverlayFeatureRenderer(this, context.getModelLoader(), EntityModelLayers.STRAY_OUTER, OVERLAY));
+        this.addFeature(new SoulStealerOverlayFeatureRenderer(this, context.getModelLoader()));
         //this.addFeature(new SoulStealerOverlayFeatureRenderer(this, context.getModelLoader()));
     }
 

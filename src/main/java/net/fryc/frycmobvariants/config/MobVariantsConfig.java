@@ -104,6 +104,11 @@ public class MobVariantsConfig implements ConfigData {
 
 
     //biomes
+    @Comment("Mob conversion isn't affected by biome under this Y level, unless they spawn in one of the cave biomes in which they can convert")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("biome")
+    public int minYLevelForBiomeVariants = 49;
+
     @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning in jungle or lush cave")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")

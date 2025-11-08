@@ -156,5 +156,8 @@
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots": "Buty Kata [Wymagany /reload]",
   "text.autoconfig.frycmobvariants.option.executionerAttributes.executionerBoots.@Tooltip": "Lista butów, z którymi Kat może się pojawić, zapisana według następującego wzoru: 'Przedmiot;Szansa;Przedmiot;Szansa' \n Suma szans nie może być większa niż 1.0",
 
-  "text.autoconfig.frycmobvariants.option.executionerAttributes": "Atrybuty Kata"
+  "text.autoconfig.frycmobvariants.option.executionerAttributes": "Atrybuty Kata",
+
+  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants": "Min. poziom Y dla zmiany mobów",
+  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants.@Tooltip": "Biomy nie mają wpływu na zmianę mobów poniżej tego poziomu Y, chyba, że pojawią się na jednym z podziemnych biomów na którym mogą się zmienić"
 }

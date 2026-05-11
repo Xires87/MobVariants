@@ -35,7 +35,7 @@ public class SoulStealerEntity extends SkeletonEntity {
     }
 
     public static DefaultAttributeContainer.Builder createSoulStealerAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_MAX_HEALTH, 20);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 24.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_MAX_HEALTH, 20);
     }
 
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {

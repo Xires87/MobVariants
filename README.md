@@ -8,5 +8,8 @@ Adds stronger variants for hostile mobs
 
 -------------------------------------------------------------
 
-# Credits:
-* Thanks to **sheslong** for making textures
+## Credits:
+- Textures made by **sheslong**
+- Translations made by:
+    * **Xires87** (pl_pl)
+    * **Rad586** (zh_cn)

@@ -1,4 +1,4 @@
-package net.fryc.frycmobvariants.util;
+package net.fryc.frycmobvariants.util.mixin_interfaces;
 
 import net.minecraft.util.math.BlockPos;
 

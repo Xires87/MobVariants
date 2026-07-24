@@ -1,7 +1,7 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
 import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.util.BlockRemovalCountdown;
+import net.fryc.frycmobvariants.util.mixin_interfaces.BlockRemovalCountdown;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;

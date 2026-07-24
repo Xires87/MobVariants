@@ -5,11 +5,14 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fryc.frycmobvariants.commands.TryToConvertCommand;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
+import net.fryc.frycmobvariants.conversion.json.MobConversionRulesResourceReloadListener;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
 import net.fryc.frycmobvariants.util.MobEquipment;
+import net.minecraft.resource.ResourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,8 +31,11 @@ public class MobVariants implements ModInitializer {
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();
 
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new MobConversionRulesResourceReloadListener());
+
 		CommandRegistrationCallback.EVENT.register(TryToConvertCommand::register);
 
+		// TODO usunac ponizsze linijki i mozliwosc edytowania eq przy pomocy configu
 		ServerLifecycleEvents.START_DATA_PACK_RELOAD.register((server, resourceManager) -> {
 			MobEquipment.initializePossibleEquipment();
 		});

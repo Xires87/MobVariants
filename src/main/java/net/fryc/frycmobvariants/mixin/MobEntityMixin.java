@@ -2,24 +2,53 @@ package net.fryc.frycmobvariants.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Random;
+
 @Mixin(MobEntity.class)
-abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, Leashable, Targeter {
+abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, Leashable, Targeter, CanConvert {
+
+    @Shadow protected abstract void initEquipment(net.minecraft.util.math.random.Random random, LocalDifficulty localDifficulty);
+
+    @Unique
+    boolean canConvert = true;
+
+    @Unique
+    Random random = new Random();
 
     protected MobEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+
+    @Inject(at = @At("TAIL"), method = "tick()V")
+    public void tryToConvertMob(CallbackInfo info) {
+        MobEntity mob = ((MobEntity)(Object)this);
+        if(!mob.getWorld().isClient()){
+            if(mob.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
+            if(canConvert){
+                MobConvertingHelper.detectMobAndTryToConvert(mob, this.random);
+                canConvert = false;
+            }
+        }
     }
 
     // prevents mobs from converting when spawned with spawn egg or command
@@ -44,6 +73,37 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
             }
         }
         return mobEntity;
+    }
+
+    //reading canConvert from Nbt
+    @Inject(method = "readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
+    private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
+        if(nbt.contains("MobVariantsCanConvert")){
+            NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
+            canConvert = nbtCompound.getBoolean("canConvert");
+        }
+    }
+
+    //writing canConvert to Nbt
+    @Inject(method = "writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
+    private void writeCanConvertToNbt(NbtCompound nbt, CallbackInfo ci) {
+        if(!canConvert){
+            NbtCompound nbtCompound = new NbtCompound();
+            nbtCompound.putBoolean("canConvert", false);
+            nbt.put("MobVariantsCanConvert", nbtCompound);
+        }
+    }
+
+    public void setCanConvertToTrue(){
+        canConvert = true;
+    }
+
+    public void setCanConvertToFalse(){
+        canConvert = false;
+    }
+
+    public void initMobEquipment() {
+        this.initEquipment(this.getRandom(), this.getWorld().getLocalDifficulty(this.getBlockPos()));
     }
 
 }

@@ -1,6 +1,9 @@
 package net.fryc.frycmobvariants.util;
 
 import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
+import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
+import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.biome.CorsairEntity;
 import net.fryc.frycmobvariants.mobs.biome.ToxicSlimeEntity;
@@ -9,6 +12,8 @@ import net.fryc.frycmobvariants.mobs.nether.ExecutionerEntity;
 import net.fryc.frycmobvariants.mobs.nether.LavaSlimeEntity;
 import net.fryc.frycmobvariants.mobs.nether.SoulStealerEntity;
 import net.fryc.frycmobvariants.tags.ModBiomeTags;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.*;
@@ -18,12 +23,13 @@ import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
 import oshi.util.tuples.Pair;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 public class MobConvertingHelper {
+
+    public static final HashMap<EntityType<?>, List<MobConvertingRule>> MOB_CONVERTING_RULES = new HashMap<>();
 
     public static void tryToConvertZombie(ZombieEntity zombie, Random random){
         if(zombie.getClass() == ZombieEntity.class){
@@ -180,5 +186,54 @@ public class MobConvertingHelper {
         }).findAny();
 
         return optional.isPresent() ? new ItemStack(optional.get().getKey()) : ItemStack.EMPTY;
+    }
+
+    public static void detectMobAndTryToConvert(MobEntity mob, Random random) {
+        MobConvertingOutcome outcome;
+        int currentPriority = 0;
+        ArrayList<MobConvertingOutcome> possibleOutcomes = new ArrayList<>();
+
+        for(MobConvertingRule rule : MOB_CONVERTING_RULES.getOrDefault(mob.getType(), List.of())) {
+            if(rule.priority() < currentPriority) continue;
+
+            outcome = rule.function().test(mob, random);
+            if(outcome != null) {
+                if(rule.priority() > currentPriority) {
+                    possibleOutcomes.clear();
+                    currentPriority = rule.priority();
+                }
+
+                possibleOutcomes.add(outcome);
+            }
+        }
+
+        if(!possibleOutcomes.isEmpty()) {
+            convertMobAndSetCustomEquipment(
+                    mob, random,
+                    possibleOutcomes.get(random.nextInt(0, possibleOutcomes.size()))
+            );
+        }
+    }
+
+    private static void convertMobAndSetCustomEquipment(MobEntity originalMob, Random random, MobConvertingOutcome outcome) {
+        MobEntity mob = originalMob.convertTo(outcome.entityType(), outcome.conversionEquipment().keepEquipment());
+
+        if(mob != null) {
+            if(outcome.conversionEquipment().initEquipment()) {
+                ((CanConvert) mob).initMobEquipment();
+            }
+
+            outcome.conversionEquipment().customEquipment().stream().collect(
+                    Collectors.groupingBy(MobConversionEquipment.MobConvertItem::slot)
+            ).forEach((equipmentSlot, mobConvertItems) -> {
+                List<MobConversionEquipment.MobConvertItem> list = mobConvertItems.stream().filter(item -> {
+                    return random.nextDouble() < item.chance();
+                }).toList();
+
+                if(!list.isEmpty()) {
+                    mob.equipStack(equipmentSlot, new ItemStack(list.get(random.nextInt(list.size())).item()));
+                }
+            });
+        }
     }
 }

@@ -1,0 +1,70 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:zombie",
+  "outcome_mob": "frycmobvariants:forgotten",
+  "equipment": {
+    "keep_equipment": true,
+    "init_equipment": false,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "OR",
+    "functions": [
+      {
+        "type": "AND",
+        "functions": [
+          {
+            "type": "config_value",
+            "variable_name": "fixedChanceToConvertZombieUnderSelectedYLevel",
+            "comparator": "LOWER_THAN",
+            "comparison_value": 0
+          },
+          {
+            "type": "mob_property_chance",
+            "values": {
+              "base_value": {
+                "value": {
+                  "value_type": "config_variable",
+                  "value": "zombieToForgottenConvertLevelY"
+                }
+              },
+              "y": {
+                "value": -0.01
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "AND",
+        "functions": [
+          {
+            "type": "config_value",
+            "variable_name": "fixedChanceToConvertZombieUnderSelectedYLevel",
+            "comparator": "HIGHER_THAN",
+            "comparison_value": 0
+          },
+          {
+            "type": "fixed_chance",
+            "value": {
+              "value_type": "config_variable",
+              "value": "fixedChanceToConvertZombieUnderSelectedYLevel"
+            }
+          },
+          {
+            "type": "mob_properties",
+            "values": {
+              "y": {
+                "comparator": "LOWER_THAN",
+                "value": {
+                  "value_type": "config_variable",
+                  "value": "zombieToForgottenConvertLevelY"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

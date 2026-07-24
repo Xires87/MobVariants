@@ -2,7 +2,7 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.nether.ZombifiedPiglinBruteEntity;
-import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -29,7 +29,7 @@ abstract class AbstractPiglinConvertMixin extends HostileEntity implements CanCo
     protected AbstractPiglinConvertMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
-
+// TODO remove unused mixins
     //converts piglin to infected piglin
     //only first mob tick (right after spawning) tries to convert it
     @Inject(at = @At("TAIL"), method = "mobTick()V")

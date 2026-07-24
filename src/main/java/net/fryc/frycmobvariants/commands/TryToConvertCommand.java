@@ -3,7 +3,7 @@ package net.fryc.frycmobvariants.commands;
 import com.google.common.collect.ImmutableList;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.fryc.frycmobvariants.util.CanConvert;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;

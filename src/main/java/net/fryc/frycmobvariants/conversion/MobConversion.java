@@ -3,6 +3,7 @@ package net.fryc.frycmobvariants.conversion;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.conversion.rules.functions.AndFunction;
 import net.fryc.frycmobvariants.conversion.rules.functions.MobConversionFunctions;
+import net.fryc.frycmobvariants.conversion.rules.functions.NotFunction;
 import net.fryc.frycmobvariants.conversion.rules.functions.OrFunction;
 import net.minecraft.entity.EntityType;
 
@@ -16,5 +17,6 @@ public class MobConversion {
     public static void registerMobConversionFunctionTypes() {
         MobConversionFunctions.registerMobConversionFunctionType("OR", OrFunction::fromJson);
         MobConversionFunctions.registerMobConversionFunctionType("AND", AndFunction::fromJson);
+        MobConversionFunctions.registerMobConversionFunctionType("NOT", NotFunction::fromJson);
     }
 }

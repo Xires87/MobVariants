@@ -13,6 +13,7 @@ import java.util.function.BiPredicate;
 
 public record AndFunction(List<BiPredicate<MobEntity, Random>> functions) implements BiPredicate<MobEntity, Random> {
 
+    public static final String ID = "AND";
 
     @Override
     public boolean test(MobEntity mob, Random random) {

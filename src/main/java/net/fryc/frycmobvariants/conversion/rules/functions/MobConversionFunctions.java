@@ -17,7 +17,7 @@ public class MobConversionFunctions {
             MOB_CONVERSION_FUNCTION_TYPES.put(key, jsonToBiPredicate);
         }
     }
-    // TODO dodac reszte funkcji
+
     public static Function<JsonObject, BiPredicate<MobEntity, Random>> getMobConversionFunctionType(String key) {
         return MOB_CONVERSION_FUNCTION_TYPES.get(key);
     }

@@ -1,7 +1,7 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.FlyingEntity;

@@ -14,23 +14,18 @@
         "type": "AND",
         "functions": [
           {
-            "type": "config_value",
+            "type": "config_value_number",
             "variable_name": "fixedChanceToConvertZombieUnderSelectedYLevel",
             "comparator": "LOWER_THAN",
             "comparison_value": 0
           },
           {
-            "type": "mob_property_chance",
-            "values": {
-              "base_value": {
-                "value": {
-                  "value_type": "config_variable",
-                  "value": "zombieToForgottenConvertLevelY"
-                }
-              },
-              "y": {
-                "value": -0.01
-              }
+            "type": "mob_position_chance",
+            "base_value": {
+              "value": "zombieToForgottenConvertLevelY"
+            },
+            "y": {
+              "value": -0.01
             }
           }
         ]
@@ -39,28 +34,20 @@
         "type": "AND",
         "functions": [
           {
-            "type": "config_value",
+            "type": "config_value_number",
             "variable_name": "fixedChanceToConvertZombieUnderSelectedYLevel",
             "comparator": "HIGHER_THAN",
             "comparison_value": 0
           },
           {
             "type": "fixed_chance",
-            "value": {
-              "value_type": "config_variable",
-              "value": "fixedChanceToConvertZombieUnderSelectedYLevel"
-            }
+            "value": "fixedChanceToConvertZombieUnderSelectedYLevel"
           },
           {
-            "type": "mob_properties",
-            "values": {
-              "y": {
-                "comparator": "LOWER_THAN",
-                "value": {
-                  "value_type": "config_variable",
-                  "value": "zombieToForgottenConvertLevelY"
-                }
-              }
+            "type": "mob_position",
+            "y": {
+              "comparator": "LOWER_THAN",
+              "value": "zombieToForgottenConvertLevelY"
             }
           }
         ]

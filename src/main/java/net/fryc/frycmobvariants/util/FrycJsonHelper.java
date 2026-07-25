@@ -1,9 +1,7 @@
 package net.fryc.frycmobvariants.util;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
+import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
 import net.fryc.frycmobvariants.conversion.rules.functions.MobConversionFunctions;
 import net.minecraft.entity.Entity;
@@ -17,11 +15,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.function.BiPredicate;
-import java.util.function.Function;
 
 public class FrycJsonHelper {
 
@@ -79,5 +75,36 @@ public class FrycJsonHelper {
 
     public static EquipmentSlot getEquipmentSlot(JsonObject object, String key) {
         return EquipmentSlot.byName(JsonHelper.getString(object, key));
+    }
+
+    public static NumberComparator getNumberComparator(JsonObject jsonObject, String key) {
+        return NumberComparator.getByName(JsonHelper.getString(jsonObject, key));
+    }
+
+    public static NumberComparator getNumberComparator(JsonObject jsonObject, String key, NumberComparator defaultValue) {
+        try {
+            return NumberComparator.getByName(JsonHelper.getString(jsonObject, key));
+        } catch (Exception ignored) { }
+
+        return defaultValue;
+    }
+
+    public static double getValue(JsonObject object) throws NoSuchFieldException, IllegalAccessException {
+        JsonPrimitive el = object.get("value").getAsJsonPrimitive();
+
+        if(el.isString()) {
+            // TODO replace (almost) all integers in config with doubles
+            return ((Number) MobVariants.config.getClass().getField(el.getAsString()).get(MobVariants.config)).doubleValue() / 100;
+        }
+
+        return el.getAsDouble();
+    }
+
+    public static double getValue(JsonObject object, double defaultValue) throws NoSuchFieldException, IllegalAccessException {
+        if(object.has("value")){
+            return getValue(object);
+        }
+
+        return defaultValue;
     }
 }

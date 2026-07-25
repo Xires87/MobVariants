@@ -2,8 +2,8 @@ package net.fryc.frycmobvariants.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

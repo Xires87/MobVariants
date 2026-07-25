@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fryc.frycmobvariants.commands.TryToConvertCommand;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
+import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.conversion.json.MobConversionRulesResourceReloadListener;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
@@ -30,6 +31,7 @@ public class MobVariants implements ModInitializer {
 
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();
+		MobConversion.registerMobConversionFunctionTypes();
 
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new MobConversionRulesResourceReloadListener());
 

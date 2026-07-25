@@ -1,6 +1,7 @@
 package net.fryc.frycmobvariants.util;
 
 import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
@@ -13,7 +14,6 @@ import net.fryc.frycmobvariants.mobs.nether.LavaSlimeEntity;
 import net.fryc.frycmobvariants.mobs.nether.SoulStealerEntity;
 import net.fryc.frycmobvariants.tags.ModBiomeTags;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.*;
@@ -28,8 +28,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class MobConvertingHelper {
-
-    public static final HashMap<EntityType<?>, List<MobConvertingRule>> MOB_CONVERTING_RULES = new HashMap<>();
 
     public static void tryToConvertZombie(ZombieEntity zombie, Random random){
         if(zombie.getClass() == ZombieEntity.class){
@@ -193,7 +191,7 @@ public class MobConvertingHelper {
         int currentPriority = 0;
         ArrayList<MobConvertingOutcome> possibleOutcomes = new ArrayList<>();
 
-        for(MobConvertingRule rule : MOB_CONVERTING_RULES.getOrDefault(mob.getType(), List.of())) {
+        for(MobConvertingRule rule : MobConversion.MOB_CONVERTING_RULES.getOrDefault(mob.getType(), List.of())) {
             if(rule.priority() < currentPriority) continue;
 
             outcome = rule.function().test(mob, random);
@@ -208,6 +206,7 @@ public class MobConvertingHelper {
         }
 
         if(!possibleOutcomes.isEmpty()) {
+            MobVariants.LOGGER.warn("outcomy nie sa puste");
             convertMobAndSetCustomEquipment(
                     mob, random,
                     possibleOutcomes.get(random.nextInt(0, possibleOutcomes.size()))
@@ -219,6 +218,7 @@ public class MobConvertingHelper {
         MobEntity mob = originalMob.convertTo(outcome.entityType(), outcome.conversionEquipment().keepEquipment());
 
         if(mob != null) {
+            MobVariants.LOGGER.warn("mob nie jest nullem");
             if(outcome.conversionEquipment().initEquipment()) {
                 ((CanConvert) mob).initMobEquipment();
             }

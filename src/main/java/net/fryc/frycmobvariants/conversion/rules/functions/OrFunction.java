@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.BiPredicate;
 
-public record OrFunction(List<? extends BiPredicate<MobEntity, Random>> functions) implements BiPredicate<MobEntity, Random> {
+public record OrFunction(List<BiPredicate<MobEntity, Random>> functions) implements BiPredicate<MobEntity, Random> {
+
+    public static final String ID = "OR";
 
     @Override
     public boolean test(MobEntity mob, Random random) {

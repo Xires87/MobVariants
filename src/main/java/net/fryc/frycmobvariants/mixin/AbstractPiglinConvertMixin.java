@@ -2,8 +2,8 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.nether.ZombifiedPiglinBruteEntity;
-import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

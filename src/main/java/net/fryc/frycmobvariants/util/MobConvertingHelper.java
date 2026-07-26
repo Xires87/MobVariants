@@ -29,6 +29,8 @@ import java.util.stream.Collectors;
 
 public class MobConvertingHelper {
 
+    /*
+
     public static void tryToConvertZombie(ZombieEntity zombie, Random random){
         if(zombie.getClass() == ZombieEntity.class){
             int i = (int)zombie.getY();
@@ -157,6 +159,8 @@ public class MobConvertingHelper {
             }
         }
     }
+
+     */
 
     public static boolean isAtProperYLevel(int y, LivingEntity mob){
         return y >= MobVariants.config.minYLevelForBiomeVariants || mob.getWorld().getBiome(mob.getBlockPos()).isIn(ModBiomeTags.UNDERGROUND_BIOMES);

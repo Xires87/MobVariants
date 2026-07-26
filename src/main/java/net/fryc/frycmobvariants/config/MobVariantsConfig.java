@@ -4,13 +4,14 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.DifficultyPicker;
 
-@Config(name = "frycmobvariants")
+@Config(name = MobVariants.MOD_ID)
 public class MobVariantsConfig implements ConfigData {
 
     //cave
-    @Comment("Zombies have a chance to convert into stronger variant when they spawn below this Y level")
+    @Comment("Zombies have a chance to convert to Forgotten when they spawn below this Y level")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
@@ -19,10 +20,9 @@ public class MobVariantsConfig implements ConfigData {
     @Comment("When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = -1)
-    public int fixedChanceToConvertZombieUnderSelectedYLevel = -1;
+    public double fixedChanceToConvertZombieUnderSelectedYLevel = -1.0;
 
-    @Comment("Skeletons have a chance to convert into stronger variant when they spawn below this Y level")
+    @Comment("Skeletons have a chance to convert to Undead Warrior when they spawn below this Y level")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
@@ -31,10 +31,9 @@ public class MobVariantsConfig implements ConfigData {
     @Comment("When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = -1)
-    public int fixedChanceToConvertSkeletonUnderSelectedYLevel = -1;
+    public double fixedChanceToConvertSkeletonUnderSelectedYLevel = -1;
 
-    @Comment("Spiders have a chance to convert into stronger variant when they spawn below this Y level")
+    @Comment("Spiders have a chance to convert to Armored Spider when they spawn below this Y level")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
@@ -43,10 +42,9 @@ public class MobVariantsConfig implements ConfigData {
     @Comment("When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = -1)
-    public int fixedChanceToConvertSpiderUnderSelectedYLevel = -1;
+    public double fixedChanceToConvertSpiderUnderSelectedYLevel = -1;
 
-    @Comment("Creepers have a chance to convert into stronger variant when they spawn below this Y level")
+    @Comment("Creepers have a chance to convert to Cave Creeper when they spawn below this Y level")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
@@ -55,52 +53,38 @@ public class MobVariantsConfig implements ConfigData {
     @Comment("When this value is below 0, chance of converting increases by 1% with every Y level below value specified in previous option")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = -1)
-    public int fixedChanceToConvertCreeperUnderSelectedYLevel = -1;
+    public double fixedChanceToConvertCreeperUnderSelectedYLevel = -1;
 
 
     //nether
-    @Comment("For example, when set to 10, Wither Skeleton will have 10% chance to convert to Executioner after spawning")
+    @Comment("Nether variants \n1.0 = 100%\n0.0 = 0%")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int witherSkeletonConvertChance = 12;
+    public double witherSkeletonConvertChance = 0.12;
 
-    @Comment("For example, when set to 10, Ghast will have 10% chance to convert to Nightmare after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int ghastConvertChance = 27;
+    public double ghastConvertChance = 0.27;
 
-    @Comment("For example, when set to 10, Piglin will have 10% chance to convert to Infected Piglin after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int piglinConvertChance = 30;
+    public double piglinConvertChance = 0.30;
 
-    @Comment("For example, when set to 10, Piglin Brute will have 10% chance to convert to Infected Piglin Brute after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int piglinBruteConvertChance = 40;
+    public double piglinBruteConvertChance = 0.40;
 
-    @Comment("For example, when set to 30, Skeleton will have 30% chance to convert to Soul Stealer after spawning (in nether)")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int skeletonToSoulStealerConvertChance = 32;
+    public double skeletonToSoulStealerConvertChance = 0.32;
 
-    @Comment("For example, when set to 15, Magma Cube will have 15% chance to convert to Lava Slime after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int magmaCubeToLavaSlimeConvertChance = 20;
+    public double magmaCubeToLavaSlimeConvertChance = 0.20;
 
-    @Comment("For example, when set to 12, Zombified Piglin will have 12% chance to convert to Zombified Piglin Brute after spawning")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombifiedPiglinConvertChance = 5;
+    public double zombifiedPiglinConvertChance = 0.05;
 
 
     //biomes
@@ -109,41 +93,31 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Category("biome")
     public int minYLevelForBiomeVariants = 49;
 
-    @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Explorer after spawning in jungle or lush cave")
+    @Comment("Biome variants \n1.0 = 100%\n0.0 = 0%")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombieToExplorerConvertChance = 76;
+    public double zombieToExplorerConvertChance = 0.76;
 
-    @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Frozen Zombie after spawning in snowy biome")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombieToFrozenZombieConvertChance = 81;
+    public double zombieToFrozenZombieConvertChance = 0.81;
 
-    @Comment("For example, when set to 90, Zombie will have 90% chance to convert to Bloated Corpse after spawning in swamp")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int zombieToBloatedCorpseConvertChance = 76;
+    public double zombieToBloatedCorpseConvertChance = 0.76;
 
-    @Comment("For example, when set to 70, Spider will have 70% chance to convert to Tropical Spider after spawning in jungle")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int spiderToTropicalSpiderConvertChance = 76;
+    public double spiderToTropicalSpiderConvertChance = 0.76;
 
-    @Comment("For example, when set to 100, Slime will have 100% chance to convert to Toxic Slime after spawning in swamp biomes")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int slimeToToxicSlimeConvertChance = 71;
+    public double slimeToToxicSlimeConvertChance = 0.71;
 
     @Comment("For skeletons spawned in ocean or beach. Doesn't affect Corsairs spawning on Shipwrecks")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
-    @ConfigEntry.BoundedDiscrete(max = 100, min = 0)
-    public int skeletonToCorsairConvertChance = 61;
+    public double skeletonToCorsairConvertChance = 0.61;
 
 
     //mob attributes
@@ -170,7 +144,7 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
     public int timeToRemoveLavaLeftByLavaSlime = 30;
-
+// TODO dokonczyc
     @Comment("List of weapons that Corsair can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.Gui.Tooltip

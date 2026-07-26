@@ -93,8 +93,7 @@ public class FrycJsonHelper {
         JsonPrimitive el = object.get("value").getAsJsonPrimitive();
 
         if(el.isString()) {
-            // TODO replace (almost) all integers in config with doubles
-            return ((Number) MobVariants.config.getClass().getField(el.getAsString()).get(MobVariants.config)).doubleValue() / 100;
+            return ((Number) MobVariants.config.getClass().getField(el.getAsString()).get(MobVariants.config)).doubleValue();
         }
 
         return el.getAsDouble();

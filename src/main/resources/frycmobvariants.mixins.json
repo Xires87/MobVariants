@@ -4,12 +4,14 @@
   "package": "net.fryc.frycmobvariants.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ShipwreckGeneratorMixin",
-    "ServerWorldMixin",
-    "SnowballEntityMixin",
+    "AbstractSkeletonConvertMixin",
     "MobEntityMixin",
     "PiglinBrainMixin",
-    "VillagerHostilesSensorMixin"
+    "ServerWorldMixin",
+    "ShipwreckGeneratorMixin",
+    "SnowballEntityMixin",
+    "VillagerHostilesSensorMixin",
+    "ZombieConvertMixin"
   ],
   "client": [
   ],

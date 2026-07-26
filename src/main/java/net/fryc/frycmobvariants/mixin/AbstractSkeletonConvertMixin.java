@@ -22,6 +22,7 @@ import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -31,11 +32,12 @@ import java.util.Random;
 @Mixin(AbstractSkeletonEntity.class)
 abstract class AbstractSkeletonConvertMixin extends HostileEntity implements RangedAttackMob, CanConvert {
 
-    boolean canConvert = true;
-    Random random = new Random();
 
+    @Unique
     private static final TrackedData<Boolean> CONVERTING_IN_WATER;
+    @Unique
     private int ticksUntilWaterConversion;
+    @Unique
     private int inWaterTime;
 
     protected AbstractSkeletonConvertMixin(EntityType<? extends HostileEntity> entityType, World world) {
@@ -49,12 +51,6 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
         super.tick();
         AbstractSkeletonEntity skeleton = ((AbstractSkeletonEntity)(Object)this);
         if(!skeleton.getWorld().isClient){
-            if(skeleton.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
-            if(canConvert){
-                MobConvertingHelper.tryToConvertSkeleton(skeleton ,random);
-                canConvert = false;
-            }
-
             //converting to corsair underwater
             if(MobVariants.config.convertSkeletonsToCorsairsUnderwater){
                 if ((skeleton.getClass() == SkeletonEntity.class || skeleton.getClass() == UndeadWarriorEntity.class) && skeleton.isAlive() && !skeleton.isAiDisabled()) {
@@ -81,6 +77,7 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
     }
 
 
+    @Unique
     private void setTicksUntilWaterConversion(int ticksUntilConversion) {
         ticksUntilWaterConversion = ticksUntilConversion;
         ((AbstractSkeletonEntity)(Object)this).getDataTracker().set(CONVERTING_IN_WATER, true);
@@ -93,7 +90,7 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
     }
 
 
-
+/*
     //reading canConvert from Nbt
     @Inject(method = "Lnet/minecraft/entity/mob/AbstractSkeletonEntity;readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
     private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
@@ -113,6 +110,8 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
         }
     }
 
+
+
     public void setCanConvertToTrue(){
         canConvert = true;
     }
@@ -120,6 +119,7 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
     public void setCanConvertToFalse(){
         canConvert = false;
     }
+ */
 
     static {
         CONVERTING_IN_WATER = DataTracker.registerData(AbstractSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);

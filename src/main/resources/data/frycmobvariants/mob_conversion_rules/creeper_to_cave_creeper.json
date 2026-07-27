@@ -1,0 +1,67 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:creeper",
+  "outcome_mob": "frycmobvariants:cave_creeper",
+  "equipment": {
+    "keep_equipment": false,
+    "init_equipment": false,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "minecraft:is_overworld"
+      },
+      {
+        "type": "OR",
+        "functions": [
+          {
+            "type": "AND",
+            "functions": [
+              {
+                "type": "config_value_number",
+                "variable_name": "fixedChanceToConvertCreeperUnderSelectedYLevel",
+                "comparator": "LOWER_THAN",
+                "comparison_value": 0
+              },
+              {
+                "type": "mob_position_chance",
+                "base_value": {
+                  "value": "creeperToCaveCreeperConvertLevelY",
+                  "multiplier": 0.01
+                },
+                "y": {
+                  "value": -0.01
+                }
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "functions": [
+              {
+                "type": "config_value_number",
+                "variable_name": "fixedChanceToConvertCreeperUnderSelectedYLevel",
+                "comparator": "HIGHER_THAN",
+                "comparison_value": 0
+              },
+              {
+                "type": "fixed_chance",
+                "value": "fixedChanceToConvertCreeperUnderSelectedYLevel"
+              },
+              {
+                "type": "mob_position",
+                "y": {
+                  "comparator": "LOWER_THAN",
+                  "value": "creeperToCaveCreeperConvertLevelY"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

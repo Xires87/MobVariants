@@ -1,0 +1,67 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:skeleton",
+  "outcome_mob": "frycmobvariants:undead_warrior",
+  "equipment": {
+    "keep_equipment": true,
+    "init_equipment": true,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "minecraft:is_overworld"
+      },
+      {
+        "type": "OR",
+        "functions": [
+          {
+            "type": "AND",
+            "functions": [
+              {
+                "type": "config_value_number",
+                "variable_name": "fixedChanceToConvertSkeletonUnderSelectedYLevel",
+                "comparator": "LOWER_THAN",
+                "comparison_value": 0
+              },
+              {
+                "type": "mob_position_chance",
+                "base_value": {
+                  "value": "skeletonToUndeadWarriorConvertLevelY",
+                  "multiplier": 0.01
+                },
+                "y": {
+                  "value": -0.01
+                }
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "functions": [
+              {
+                "type": "config_value_number",
+                "variable_name": "fixedChanceToConvertSkeletonUnderSelectedYLevel",
+                "comparator": "HIGHER_THAN",
+                "comparison_value": 0
+              },
+              {
+                "type": "fixed_chance",
+                "value": "fixedChanceToConvertSkeletonUnderSelectedYLevel"
+              },
+              {
+                "type": "mob_position",
+                "y": {
+                  "comparator": "LOWER_THAN",
+                  "value": "skeletonToUndeadWarriorConvertLevelY"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

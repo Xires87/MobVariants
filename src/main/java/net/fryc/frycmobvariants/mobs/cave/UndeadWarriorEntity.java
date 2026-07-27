@@ -69,9 +69,15 @@ public class UndeadWarriorEntity extends SkeletonEntity {
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 19.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2505).add(EntityAttributes.GENERIC_MAX_HEALTH, 22).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.2f);
     }
 
-    //used only in summons and spawn eggs, undead warriors don't spawn naturally
     protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorWeapon());
+        if(this.getMainHandStack().isEmpty()) {
+            super.initEquipment(random, localDifficulty);
+        }
+
+        if(!MobVariants.config.undeadWarriorAttributes.alwaysKeepEnchantedBow || !this.getMainHandStack().hasEnchantments()) {
+            this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorWeapon());
+        }
+
         if(!(this.getMainHandStack().getItem() instanceof RangedWeaponItem)){
             this.tippedArrowsAmount = -1;
         }

@@ -1,0 +1,67 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:spider",
+  "outcome_mob": "frycmobvariants:armored_spider",
+  "equipment": {
+    "keep_equipment": false,
+    "init_equipment": false,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "minecraft:is_overworld"
+      },
+      {
+        "type": "OR",
+        "functions": [
+          {
+            "type": "AND",
+            "functions": [
+              {
+                "type": "config_value_number",
+                "variable_name": "fixedChanceToConvertSpiderUnderSelectedYLevel",
+                "comparator": "LOWER_THAN",
+                "comparison_value": 0
+              },
+              {
+                "type": "mob_position_chance",
+                "base_value": {
+                  "value": "spiderToArmoredSpiderConvertLevelY",
+                  "multiplier": 0.01
+                },
+                "y": {
+                  "value": -0.01
+                }
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "functions": [
+              {
+                "type": "config_value_number",
+                "variable_name": "fixedChanceToConvertSpiderUnderSelectedYLevel",
+                "comparator": "HIGHER_THAN",
+                "comparison_value": 0
+              },
+              {
+                "type": "fixed_chance",
+                "value": "fixedChanceToConvertSpiderUnderSelectedYLevel"
+              },
+              {
+                "type": "mob_position",
+                "y": {
+                  "comparator": "LOWER_THAN",
+                  "value": "spiderToArmoredSpiderConvertLevelY"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

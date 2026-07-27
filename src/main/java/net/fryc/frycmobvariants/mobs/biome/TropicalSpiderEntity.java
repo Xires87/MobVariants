@@ -43,10 +43,4 @@ public class TropicalSpiderEntity extends SpiderEntity {
             return false;
         }
     }
-
-    @Nullable
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        return entityData;
-    }
-
 }

@@ -1,0 +1,23 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:magma_cube",
+  "outcome_mob": "frycmobvariants:lava_slime",
+  "equipment": {
+    "keep_equipment": false,
+    "init_equipment": false,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "minecraft:is_nether"
+      },
+      {
+        "type": "fixed_chance",
+        "value": "magmaCubeToLavaSlimeConvertChance"
+      }
+    ]
+  }
+}

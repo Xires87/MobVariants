@@ -1,0 +1,23 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:wither_skeleton",
+  "outcome_mob": "frycmobvariants:executioner",
+  "equipment": {
+    "keep_equipment": false,
+    "init_equipment": true,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "minecraft:is_nether"
+      },
+      {
+        "type": "fixed_chance",
+        "value": "witherSkeletonConvertChance"
+      }
+    ]
+  }
+}

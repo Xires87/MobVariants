@@ -1,0 +1,23 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:skeleton",
+  "outcome_mob": "frycmobvariants:soul_stealer",
+  "equipment": {
+    "keep_equipment": false,
+    "init_equipment": true,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "minecraft:is_nether"
+      },
+      {
+        "type": "fixed_chance",
+        "value": "skeletonToSoulStealerConvertChance"
+      }
+    ]
+  }
+}

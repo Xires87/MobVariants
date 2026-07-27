@@ -1,0 +1,23 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:ghast",
+  "outcome_mob": "frycmobvariants:nightmare",
+  "equipment": {
+    "keep_equipment": false,
+    "init_equipment": false,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "minecraft:is_nether"
+      },
+      {
+        "type": "fixed_chance",
+        "value": "ghastConvertChance"
+      }
+    ]
+  }
+}

@@ -40,6 +40,7 @@
   "text.autoconfig.frycmobvariants.category.biome": "Biomes",
   "text.autoconfig.frycmobvariants.category.nether": "Nether",
   "text.autoconfig.frycmobvariants.category.mobattributes": "Mob attributes",
+  "text.autoconfig.frycmobvariants.category.other": "Other",
 
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Convert Zombies to Forgottens under selected Y level:",
 
@@ -133,5 +134,10 @@
   "text.autoconfig.frycmobvariants.option.executionerAttributes": "Executioner attributes",
 
   "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants": "Min. Y level for biome variant conversion",
-  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants.@Tooltip": "Mob conversion isn't affected by biome under this Y level, unless they spawn in one of the cave biomes in which they can convert"
+  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants.@Tooltip": "Mob conversion isn't affected by biome under this Y level, unless they spawn in one of the cave biomes in which they can convert",
+
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedByNormalSpawner": "Convert mobs spawned by normal mob spawner",
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedByTrialSpawner": "Convert mobs spawned by trial mob spawner",
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedBySpawnEgg": "Convert mobs spawned by spawn egg",
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedByCommand": "Convert mobs spawned by command"
 }

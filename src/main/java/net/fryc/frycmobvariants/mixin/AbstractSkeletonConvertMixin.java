@@ -44,9 +44,6 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
         super(entityType, world);
     }
 
-    //converts skeletons to undead warriors
-    //converts wither skeletons to executioners
-    //only first mob tick (right after spawning) tries to convert it
     public void tick() {
         super.tick();
         AbstractSkeletonEntity skeleton = ((AbstractSkeletonEntity)(Object)this);
@@ -88,38 +85,6 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
         super.initDataTracker(builder);
         builder.add(CONVERTING_IN_WATER, false);
     }
-
-
-/*
-    //reading canConvert from Nbt
-    @Inject(method = "Lnet/minecraft/entity/mob/AbstractSkeletonEntity;readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
-    private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        if(nbt.contains("MobVariantsCanConvert")){
-            NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
-            canConvert = nbtCompound.getBoolean("canConvert");
-        }
-    }
-
-    //writing canConvert to Nbt
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        if(!canConvert){
-            NbtCompound nbtCompound = new NbtCompound();
-            nbtCompound.putBoolean("canConvert", canConvert);
-            nbt.put("MobVariantsCanConvert", nbtCompound);
-        }
-    }
-
-
-
-    public void setCanConvertToTrue(){
-        canConvert = true;
-    }
-
-    public void setCanConvertToFalse(){
-        canConvert = false;
-    }
- */
 
     static {
         CONVERTING_IN_WATER = DataTracker.registerData(AbstractSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);

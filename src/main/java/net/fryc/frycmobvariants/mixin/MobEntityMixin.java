@@ -2,6 +2,7 @@ package net.fryc.frycmobvariants.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.*;
@@ -43,20 +44,21 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     public void tryToConvertMob(CallbackInfo info) {
         MobEntity mob = ((MobEntity)(Object)this);
         if(!mob.getWorld().isClient()){
-            if(mob.hasStatusEffect(StatusEffects.NAUSEA)) canConvert = false;
-            if(canConvert){
+            if(mob.hasStatusEffect(StatusEffects.NAUSEA)) this.canConvert = false;
+            if(this.canConvert){
                 MobConvertingHelper.detectMobAndTryToConvert(mob, this.random);
-                canConvert = false;
+                this.canConvert = false;
             }
         }
     }
 
-    // prevents mobs from converting when spawned with spawn egg or command
     @Inject(method = "initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;" +
             "Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;)Lnet/minecraft/entity/EntityData;", at = @At("TAIL"))
-    private void setNauseaAfterSpawningWithEgg(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason,
-                                               @Nullable EntityData entityData, CallbackInfoReturnable<EntityData> ret) {
-        if(spawnReason == SpawnReason.SPAWN_EGG || spawnReason == SpawnReason.COMMAND){
+    private void preventConversionForSpecifiedSpawnReasons(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, CallbackInfoReturnable<EntityData> ret) {
+        if((spawnReason == SpawnReason.SPAWN_EGG && !MobVariants.config.convertMobsSpawnedBySpawnEgg) ||
+                (spawnReason == SpawnReason.COMMAND && !MobVariants.config.convertMobsSpawnedByCommand) ||
+                (spawnReason == SpawnReason.SPAWNER && !MobVariants.config.convertMobsSpawnedByNormalSpawner) ||
+                (spawnReason == SpawnReason.TRIAL_SPAWNER && !MobVariants.config.convertMobsSpawnedByTrialSpawner)) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 10, 0, false, false));
         }
     }
@@ -80,14 +82,14 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
         if(nbt.contains("MobVariantsCanConvert")){
             NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
-            canConvert = nbtCompound.getBoolean("canConvert");
+            this.canConvert = nbtCompound.getBoolean("canConvert");
         }
     }
 
     //writing canConvert to Nbt
     @Inject(method = "writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
     private void writeCanConvertToNbt(NbtCompound nbt, CallbackInfo ci) {
-        if(!canConvert){
+        if(!this.canConvert){
             NbtCompound nbtCompound = new NbtCompound();
             nbtCompound.putBoolean("canConvert", false);
             nbt.put("MobVariantsCanConvert", nbtCompound);
@@ -95,11 +97,11 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     }
 
     public void setCanConvertToTrue(){
-        canConvert = true;
+        this.canConvert = true;
     }
 
     public void setCanConvertToFalse(){
-        canConvert = false;
+        this.canConvert = false;
     }
 
     public void initMobEquipment() {

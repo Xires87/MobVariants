@@ -205,6 +205,19 @@ public class MobVariantsConfig implements ConfigData {
         public String executionerBoots = "minecraft:iron_boots;0.04";
 
     }
+
+    @Comment("Some mobs are unaffected by these options (Cave Spider for example)")
+    @ConfigEntry.Category("other")
+    public boolean convertMobsSpawnedByNormalSpawner = true;
+
+    @ConfigEntry.Category("other")
+    public boolean convertMobsSpawnedByTrialSpawner = true;
+
+    @ConfigEntry.Category("other")
+    public boolean convertMobsSpawnedBySpawnEgg = false;
+
+    @ConfigEntry.Category("other")
+    public boolean convertMobsSpawnedByCommand = false;
 }
 
 

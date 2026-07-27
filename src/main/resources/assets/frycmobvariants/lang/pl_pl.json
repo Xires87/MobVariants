@@ -39,6 +39,7 @@
   "text.autoconfig.frycmobvariants.category.biome": "Biomy",
   "text.autoconfig.frycmobvariants.category.nether": "Nether",
   "text.autoconfig.frycmobvariants.category.mobattributes": "Atrybuty mobów",
+  "text.autoconfig.frycmobvariants.category.other": "Inne",
 
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "Przemień Zombie w Zapomnianych poniżej wybranego poziomu Y:",
 
@@ -132,5 +133,10 @@
   "text.autoconfig.frycmobvariants.option.executionerAttributes": "Atrybuty Kata",
 
   "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants": "Min. poziom Y dla zmiany mobów",
-  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants.@Tooltip": "Biomy nie mają wpływu na zmianę mobów poniżej tego poziomu Y, chyba, że pojawią się na jednym z podziemnych biomów na którym mogą się zmienić"
+  "text.autoconfig.frycmobvariants.option.minYLevelForBiomeVariants.@Tooltip": "Biomy nie mają wpływu na zmianę mobów poniżej tego poziomu Y, chyba, że pojawią się na jednym z podziemnych biomów na którym mogą się zmienić",
+
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedByNormalSpawner": "Przemień moby przywołane przez zwykły spawner",
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedByTrialSpawner": "Przemień moby przywołane przez spawner prób",
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedBySpawnEgg": "Przemień moby przywołane przez jajka spawnujące",
+  "text.autoconfig.frycmobvariants.option.convertMobsSpawnedByCommand": "Przemień moby przywołane przez komendę"
 }

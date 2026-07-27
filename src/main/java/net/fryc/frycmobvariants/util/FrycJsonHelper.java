@@ -91,12 +91,13 @@ public class FrycJsonHelper {
 
     public static double getValue(JsonObject object) throws NoSuchFieldException, IllegalAccessException {
         JsonPrimitive el = object.get("value").getAsJsonPrimitive();
+        double multiplier = JsonHelper.getDouble(object, "multiplier", 1.0);
 
         if(el.isString()) {
-            return ((Number) MobVariants.config.getClass().getField(el.getAsString()).get(MobVariants.config)).doubleValue();
+            return ((Number) MobVariants.config.getClass().getField(el.getAsString()).get(MobVariants.config)).doubleValue() * multiplier;
         }
 
-        return el.getAsDouble();
+        return el.getAsDouble() * multiplier;
     }
 
     public static double getValue(JsonObject object, double defaultValue) throws NoSuchFieldException, IllegalAccessException {

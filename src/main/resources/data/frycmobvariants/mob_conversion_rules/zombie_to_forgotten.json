@@ -22,7 +22,8 @@
           {
             "type": "mob_position_chance",
             "base_value": {
-              "value": "zombieToForgottenConvertLevelY"
+              "value": "zombieToForgottenConvertLevelY",
+              "multiplier": 0.01
             },
             "y": {
               "value": -0.01

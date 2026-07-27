@@ -8,19 +8,24 @@ import net.minecraft.world.biome.Biome;
 
 public class ModBiomeTags {
 
-    public static final TagKey<Biome> UNDERGROUND_BIOMES = ModBiomeTags.register("underground_biomes");
-    public static final TagKey<Biome> EXPLORER_SPAWN_BIOMES = ModBiomeTags.register("explorer_spawn_biomes");
-    public static final TagKey<Biome> TROPICAL_SPIDER_SPAWN_BIOMES = ModBiomeTags.register("tropical_spider_spawn_biomes");
-    public static final TagKey<Biome> TOXIC_SLIME_SPAWN_BIOMES = ModBiomeTags.register("toxic_slime_spawn_biomes");
+    public static final TagKey<Biome> UNDERGROUND_BIOMES = ModBiomeTags.getCustomTag("underground_biomes");
+    public static final TagKey<Biome> EXPLORER_SPAWN_BIOMES = ModBiomeTags.getCustomTag("explorer_spawn_biomes");
+    public static final TagKey<Biome> TROPICAL_SPIDER_SPAWN_BIOMES = ModBiomeTags.getCustomTag("tropical_spider_spawn_biomes");
+    public static final TagKey<Biome> TOXIC_SLIME_SPAWN_BIOMES = ModBiomeTags.getCustomTag("toxic_slime_spawn_biomes");
 
-    public static final TagKey<Biome> FROZEN_ZOMBIE_SPAWN_BIOMES = ModBiomeTags.register("frozen_zombie_spawn_biomes");
-    public static final TagKey<Biome> BLOATED_CORPSE_SPAWN_BIOMES = ModBiomeTags.register("bloated_corpse_spawn_biomes");
-    public static final TagKey<Biome> CORSAIR_SPAWN_BIOMES = ModBiomeTags.register("corsair_spawn_biomes");
+    public static final TagKey<Biome> FROZEN_ZOMBIE_SPAWN_BIOMES = ModBiomeTags.getCustomTag("frozen_zombie_spawn_biomes");
+    public static final TagKey<Biome> BLOATED_CORPSE_SPAWN_BIOMES = ModBiomeTags.getCustomTag("bloated_corpse_spawn_biomes");
+    public static final TagKey<Biome> CORSAIR_SPAWN_BIOMES = ModBiomeTags.getCustomTag("corsair_spawn_biomes");
 
 
     private ModBiomeTags(){
     }
-    private static TagKey<Biome> register(String id) {
+
+    public static TagKey<Biome> getCustomTag(String id) {
         return TagKey.of(RegistryKeys.BIOME, Identifier.of(MobVariants.MOD_ID, id));
+    }
+
+    public static TagKey<Biome> getTag(Identifier id) {
+        return TagKey.of(RegistryKeys.BIOME, id);
     }
 }

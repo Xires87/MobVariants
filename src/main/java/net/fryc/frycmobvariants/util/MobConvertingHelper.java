@@ -5,22 +5,12 @@ import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
-import net.fryc.frycmobvariants.mobs.ModMobs;
-import net.fryc.frycmobvariants.mobs.biome.CorsairEntity;
-import net.fryc.frycmobvariants.mobs.biome.ToxicSlimeEntity;
-import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
-import net.fryc.frycmobvariants.mobs.nether.ExecutionerEntity;
-import net.fryc.frycmobvariants.mobs.nether.LavaSlimeEntity;
-import net.fryc.frycmobvariants.mobs.nether.SoulStealerEntity;
 import net.fryc.frycmobvariants.tags.ModBiomeTags;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.*;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.RangedWeaponItem;
 import oshi.util.tuples.Pair;
 
 import java.util.*;
@@ -210,7 +200,6 @@ public class MobConvertingHelper {
         }
 
         if(!possibleOutcomes.isEmpty()) {
-            MobVariants.LOGGER.warn("outcomy nie sa puste");
             convertMobAndSetCustomEquipment(
                     mob, random,
                     possibleOutcomes.get(random.nextInt(0, possibleOutcomes.size()))
@@ -222,7 +211,6 @@ public class MobConvertingHelper {
         MobEntity mob = originalMob.convertTo(outcome.entityType(), outcome.conversionEquipment().keepEquipment());
 
         if(mob != null) {
-            MobVariants.LOGGER.warn("mob nie jest nullem");
             if(outcome.conversionEquipment().initEquipment()) {
                 ((CanConvert) mob).initMobEquipment();
             }

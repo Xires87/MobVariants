@@ -1,0 +1,39 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:zombie",
+  "outcome_mob": "frycmobvariants:explorer",
+  "equipment": {
+    "keep_equipment": true,
+    "init_equipment": false,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "frycmobvariants:explorer_spawn_biomes"
+      },
+      {
+        "type": "fixed_chance",
+        "value": "zombieToExplorerConvertChance"
+      },
+      {
+        "type": "OR",
+        "functions": [
+          {
+            "type": "mob_position",
+            "y": {
+              "comparator": "HIGHER_THAN",
+              "value": "minYLevelForBiomeVariants"
+            }
+          },
+          {
+            "type": "biome",
+            "tag": "c:is_cave"
+          }
+        ]
+      }
+    ]
+  }
+}

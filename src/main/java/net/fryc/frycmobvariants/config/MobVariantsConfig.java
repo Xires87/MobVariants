@@ -12,7 +12,6 @@ public class MobVariantsConfig implements ConfigData {
 
     //cave
     @Comment("Zombies have a chance to convert to Forgotten when they spawn below this Y level")
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
     public int zombieToForgottenConvertLevelY = 26;
@@ -23,7 +22,6 @@ public class MobVariantsConfig implements ConfigData {
     public double fixedChanceToConvertZombieUnderSelectedYLevel = -1.0;
 
     @Comment("Skeletons have a chance to convert to Undead Warrior when they spawn below this Y level")
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
     public int skeletonToUndeadWarriorConvertLevelY = 26;
@@ -34,7 +32,6 @@ public class MobVariantsConfig implements ConfigData {
     public double fixedChanceToConvertSkeletonUnderSelectedYLevel = -1;
 
     @Comment("Spiders have a chance to convert to Armored Spider when they spawn below this Y level")
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
     public int spiderToArmoredSpiderConvertLevelY = 26;
@@ -45,7 +42,6 @@ public class MobVariantsConfig implements ConfigData {
     public double fixedChanceToConvertSpiderUnderSelectedYLevel = -1;
 
     @Comment("Creepers have a chance to convert to Cave Creeper when they spawn below this Y level")
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("cave")
     @ConfigEntry.BoundedDiscrete(max = 300, min = -64)
     public int creeperToCaveCreeperConvertLevelY = 26;
@@ -58,59 +54,46 @@ public class MobVariantsConfig implements ConfigData {
 
     //nether
     @Comment("Nether variants \n1.0 = 100%\n0.0 = 0%")
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     public double witherSkeletonConvertChance = 0.12;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     public double ghastConvertChance = 0.27;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     public double piglinConvertChance = 0.30;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     public double piglinBruteConvertChance = 0.40;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     public double skeletonToSoulStealerConvertChance = 0.32;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     public double magmaCubeToLavaSlimeConvertChance = 0.20;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("nether")
     public double zombifiedPiglinConvertChance = 0.05;
 
 
     //biomes
-    @Comment("Mob conversion isn't affected by biome under this Y level, unless they spawn in one of the cave biomes in which they can convert")
+    @Comment("Biome variants \n1.0 = 100%\n0.0 = 0%\n ---- \nMob conversion isn't affected by biome under this Y level, unless they spawn in one of the cave biomes in which they can convert")
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     public int minYLevelForBiomeVariants = 49;
 
-    @Comment("Biome variants \n1.0 = 100%\n0.0 = 0%")
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     public double zombieToExplorerConvertChance = 0.76;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     public double zombieToFrozenZombieConvertChance = 0.81;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     public double zombieToBloatedCorpseConvertChance = 0.76;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     public double spiderToTropicalSpiderConvertChance = 0.76;
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("biome")
     public double slimeToToxicSlimeConvertChance = 0.71;
 

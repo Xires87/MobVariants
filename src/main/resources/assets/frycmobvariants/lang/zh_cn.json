@@ -38,14 +38,10 @@
   "text.autoconfig.frycmobvariants.category.mobattributes": "怪物属性",
 
   "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY": "在此y轴高度下把僵尸转化为被弃者僵尸：",
-  "text.autoconfig.frycmobvariants.option.zombieToForgottenConvertLevelY.@Tooltip": "在设定值的y轴高度下，僵尸有概率转化为更强的变种",
-
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel": "在设定高度下把僵尸转化为被弃者僵尸的概率：",
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertZombieUnderSelectedYLevel.@Tooltip": "此值小于0时，高度每下降一格，概率提升1%",
 
   "text.autoconfig.frycmobvariants.option.spiderToArmoredSpiderConvertLevelY": "在此y轴高度下把蜘蛛转化为重甲蜘蛛：",
-  "text.autoconfig.frycmobvariants.option.spiderToArmoredSpiderConvertLevelY.@Tooltip": "在设定值的y轴高度下，蜘蛛有概率转化为更强的变种",
-
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel": "在设定高度下把蜘蛛转化为重甲僵尸的概率：",
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSpiderUnderSelectedYLevel.@Tooltip": "此值小于0时，高度每下降一格，概率提升1%",
 
@@ -53,49 +49,20 @@
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertSkeletonUnderSelectedYLevel.@Tooltip": "此值小于0时，高度每下降一格，概率提升1%",
 
   "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY": "在此y轴高度下把骷髅转化为骷髅战士：",
-  "text.autoconfig.frycmobvariants.option.skeletonToUndeadWarriorConvertLevelY.@Tooltip": "在设定值的y轴高度下，骷髅有概率转化为更强的变种",
-
   "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY": "在此y轴高度下把苦力怕转化为洞穴苦力怕：",
-  "text.autoconfig.frycmobvariants.option.creeperToCaveCreeperConvertLevelY.@Tooltip": "在设定值的y轴高度下，苦力怕有概率转化为更强的变种",
-
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertCreeperUnderSelectedYLevel": "在设定高度下把苦力怕转化为洞穴苦力怕的概率：",
   "text.autoconfig.frycmobvariants.option.fixedChanceToConvertCreeperUnderSelectedYLevel.@Tooltip": "此值小于0时，高度每下降一格，概率提升1%",
 
   "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance": "凋零骷髅被转化为处刑者的概率",
-  "text.autoconfig.frycmobvariants.option.witherSkeletonConvertChance.@Tooltip": "比如，将此值设为10，凋零骷髅在生成后将有10%的概率转化为处刑者",
-
   "text.autoconfig.frycmobvariants.option.ghastConvertChance": "恶魂被转化为梦魇的概率",
-  "text.autoconfig.frycmobvariants.option.ghastConvertChance.@Tooltip": "比如，将此值设为10，恶魂在生成后将有10%的概率转化为梦魇",
-
   "text.autoconfig.frycmobvariants.option.piglinConvertChance": "猪灵被转化为被感染的猪灵的概率",
-  "text.autoconfig.frycmobvariants.option.piglinConvertChance.@Tooltip": "比如，将此值设为10，猪灵在生成后将有10%的概率转化为被感染的猪灵",
-
   "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance": "猪灵蛮兵被转化为被感染的猪灵蛮兵的概率",
-  "text.autoconfig.frycmobvariants.option.piglinBruteConvertChance.@Tooltip": "比如，将此值设为10，猪灵蛮兵在生成后将有10%的概率转化为被感染的猪灵蛮兵",
-
   "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance": "骷髅被转化为窃魂骷髅的概率",
-  "text.autoconfig.frycmobvariants.option.skeletonToSoulStealerConvertChance.@Tooltip": "比如，将此值设为30，骷髅在生成后将有30%的概率转化为窃魂骷髅",
-
   "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance": "岩浆怪被转化为爆炎怪的概率",
-  "text.autoconfig.frycmobvariants.option.magmaCubeToLavaSlimeConvertChance.@Tooltip": "比如，将此值设为50，岩浆怪在生成后将有50%的概率转化为爆炎怪",
-
   "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance": "僵尸被转化为探索者僵尸的概率：",
-  "text.autoconfig.frycmobvariants.option.zombieToExplorerConvertChance.@Tooltip": "比如，将此值设为90，僵尸在生成后将有90%的概率转化为探索者僵尸",
-
   "text.autoconfig.frycmobvariants.option.zombieToFrozenZombieConvertChance": "僵尸在寒冷群系被转化为寒霜僵尸的概率：",
-  "text.autoconfig.frycmobvariants.option.zombieToFrozenZombieConvertChance.@Tooltip": "比如，将此值设为90，僵尸在寒冷群系生成后将有90%的概率转化为寒霜僵尸",
-
   "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance": "蜘蛛在丛林群系被转化为丛林毒蛛的概率：",
-  "text.autoconfig.frycmobvariants.option.spiderToTropicalSpiderConvertChance.@Tooltip": "比如，将此值设为70，蜘蛛在丛林群系生成后将有70%的概率转化为丛林毒蛛",
-
   "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance": "史莱姆在红树林沼泽被转化为淤毒史莱姆的概率：",
-  "text.autoconfig.frycmobvariants.option.slimeToToxicSlimeConvertChance.@Tooltip": "比如，将此值设为10，史莱姆在生成后将有10%的概率转化为淤毒史莱姆",
-
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance": "骷髅战士生成时携带弓的概率",
-  "text.autoconfig.frycmobvariants.option.undeadWarriorAttributes.undeadWarriorSpawnWithBowChance.@Tooltip": "携带附魔弓的骷髅总是会转化为装备弓的骷髅战士",
-
-  "text.autoconfig.frycmobvariants.option.corsairSpawnWithSwordChance": "海盗骷髅生成时携带剑的概率",
-
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage": "窃魂骷髅的额外魔法伤害",
   "text.autoconfig.frycmobvariants.option.soulStealersBaseMagicDamage.@Tooltip": "普通难度此值将上升1，困难难度则为3",
 

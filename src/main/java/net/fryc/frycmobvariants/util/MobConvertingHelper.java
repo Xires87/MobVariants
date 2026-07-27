@@ -6,6 +6,7 @@ import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import oshi.util.tuples.Pair;
@@ -186,9 +187,14 @@ public class MobConvertingHelper {
     }
 
     private static void convertMobAndSetCustomEquipment(MobEntity originalMob, Random random, MobConvertingOutcome outcome) {
+        int slimeSize = originalMob instanceof SlimeEntity slime ? slime.getSize() : -1;
         MobEntity mob = originalMob.convertTo(outcome.entityType(), outcome.conversionEquipment().keepEquipment());
 
         if(mob != null) {
+            if(slimeSize > -1 && mob instanceof SlimeEntity slime) {
+                slime.setSize(slimeSize, true);
+            }
+
             if(outcome.conversionEquipment().initEquipment()) {
                 ((CanConvert) mob).initMobEquipment();
             }

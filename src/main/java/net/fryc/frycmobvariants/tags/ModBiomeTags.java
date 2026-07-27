@@ -8,7 +8,6 @@ import net.minecraft.world.biome.Biome;
 
 public class ModBiomeTags {
 
-    public static final TagKey<Biome> UNDERGROUND_BIOMES = ModBiomeTags.getCustomTag("underground_biomes");
     public static final TagKey<Biome> EXPLORER_SPAWN_BIOMES = ModBiomeTags.getCustomTag("explorer_spawn_biomes");
     public static final TagKey<Biome> TROPICAL_SPIDER_SPAWN_BIOMES = ModBiomeTags.getCustomTag("tropical_spider_spawn_biomes");
     public static final TagKey<Biome> TOXIC_SLIME_SPAWN_BIOMES = ModBiomeTags.getCustomTag("toxic_slime_spawn_biomes");

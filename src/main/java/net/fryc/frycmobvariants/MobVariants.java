@@ -37,7 +37,6 @@ public class MobVariants implements ModInitializer {
 
 		CommandRegistrationCallback.EVENT.register(TryToConvertCommand::register);
 
-		// TODO usunac ponizsze linijki i mozliwosc edytowania eq przy pomocy configu
 		ServerLifecycleEvents.START_DATA_PACK_RELOAD.register((server, resourceManager) -> {
 			MobEquipment.initializePossibleEquipment();
 		});

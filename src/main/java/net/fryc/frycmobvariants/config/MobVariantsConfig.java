@@ -144,7 +144,7 @@ public class MobVariantsConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("mobattributes")
     public int timeToRemoveLavaLeftByLavaSlime = 30;
-// TODO dokonczyc
+
     @Comment("List of weapons that Corsair can spawn with in the following pattern: 'Item;Chance;Item;Chance' \n Sum of chances cannot be greater than 1.0")
     @ConfigEntry.Category("mobattributes")
     @ConfigEntry.Gui.Tooltip

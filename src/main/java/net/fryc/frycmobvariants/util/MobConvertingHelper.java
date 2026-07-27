@@ -1,13 +1,10 @@
 package net.fryc.frycmobvariants.util;
 
-import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
-import net.fryc.frycmobvariants.tags.ModBiomeTags;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -151,25 +148,6 @@ public class MobConvertingHelper {
     }
 
      */
-
-    public static boolean isAtProperYLevel(int y, LivingEntity mob){
-        return y >= MobVariants.config.minYLevelForBiomeVariants || mob.getWorld().getBiome(mob.getBlockPos()).isIn(ModBiomeTags.UNDERGROUND_BIOMES);
-    }
-    
-    public static boolean shouldConvertToVariant(Random random, int chance){
-        return random.nextInt(0, 100) < chance;
-    }
-
-    public static boolean shouldConvertToCaveVariant(Random random, int y, int fixedChance, int convertLevelY) {
-        if(y < convertLevelY){
-            if(fixedChance > -1){
-                return shouldConvertToVariant(random, fixedChance);
-            }
-            else return random.nextInt(y, 100 + y) < convertLevelY;
-        }
-
-        return false;
-    }
 
     public static ItemStack getRandomItemStack(Map<Item, Pair<Float, Float>> map) {
         float chance = ThreadLocalRandom.current().nextFloat();

@@ -55,7 +55,7 @@ public class MobConvertingHelper {
 
     private static void convertMobAndSetCustomEquipment(MobEntity originalMob, Random random, MobConvertingOutcome outcome) {
         int slimeSize = originalMob instanceof SlimeEntity slime ? slime.getSize() : -1;
-        MobEntity mob = originalMob.convertTo(outcome.entityType(), outcome.conversionEquipment().keepEquipment());
+        MobEntity mob = convertMob(originalMob, outcome);
 
         if(mob != null) {
             if(slimeSize > -1 && mob instanceof SlimeEntity slime) {
@@ -78,5 +78,17 @@ public class MobConvertingHelper {
                 }
             });
         }
+    }
+
+    private static MobEntity convertMob(MobEntity originalMob, MobConvertingOutcome outcome) {
+        if(originalMob.getType().equals(outcome.entityType())) {
+            if(!outcome.conversionEquipment().keepEquipment()) {
+                originalMob.getEquippedItems().forEach(item -> item.setCount(0));
+            }
+
+            return originalMob;
+        }
+
+        return originalMob.convertTo(outcome.entityType(), outcome.conversionEquipment().keepEquipment());
     }
 }

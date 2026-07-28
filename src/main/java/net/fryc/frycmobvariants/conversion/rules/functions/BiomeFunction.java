@@ -1,9 +1,7 @@
 package net.fryc.frycmobvariants.conversion.rules.functions;
 
 import com.google.gson.JsonObject;
-import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.tags.ModBiomeTags;
-import net.fryc.frycmobvariants.util.FrycJsonHelper;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;

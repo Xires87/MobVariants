@@ -24,7 +24,7 @@ public class FrycJsonHelper {
     public static RegistryEntry<EntityType<? extends Entity>> asEntityType(JsonElement element, String name) {
         if (element.isJsonPrimitive()) {
             String string = element.getAsString();
-            return (RegistryEntry) Registries.ENTITY_TYPE.getEntry(Identifier.of(string)).orElseThrow(() -> new JsonSyntaxException("Expected " + name + " to be an entity type, was unknown string '" + string + "'"));
+            return Registries.ENTITY_TYPE.getEntry(Identifier.of(string)).orElseThrow(() -> new JsonSyntaxException("Expected " + name + " to be an entity type, was unknown string '" + string + "'"));
         } else {
             throw new JsonSyntaxException("Expected " + name + " to be an entity type, was " + JsonHelper.getType(element));
         }

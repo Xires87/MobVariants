@@ -3,13 +3,10 @@ package net.fryc.frycmobvariants.mixin;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.biome.FrozenZombieEntity;
-import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,8 +14,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Random;
 
 @Mixin(ZombieEntity.class)
 abstract class ZombieConvertMixin extends HostileEntity implements CanConvert {

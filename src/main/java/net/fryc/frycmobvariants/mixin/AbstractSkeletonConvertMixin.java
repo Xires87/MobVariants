@@ -3,7 +3,6 @@ package net.fryc.frycmobvariants.mixin;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
-import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -11,23 +10,16 @@ import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Random;
 
 @Mixin(AbstractSkeletonEntity.class)
 abstract class AbstractSkeletonConvertMixin extends HostileEntity implements RangedAttackMob, CanConvert {

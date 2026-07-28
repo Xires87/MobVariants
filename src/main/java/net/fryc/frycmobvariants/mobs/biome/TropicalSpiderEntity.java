@@ -1,6 +1,8 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -8,10 +10,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class TropicalSpiderEntity extends SpiderEntity {
     public TropicalSpiderEntity(EntityType<? extends SpiderEntity> entityType, World world) {

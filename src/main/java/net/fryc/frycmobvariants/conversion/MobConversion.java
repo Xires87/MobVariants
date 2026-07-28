@@ -20,6 +20,5 @@ public class MobConversion {
         MobConversionFunctions.registerMobConversionFunctionType(MobPositionChanceFunction.ID, MobPositionChanceFunction::fromJson);
         MobConversionFunctions.registerMobConversionFunctionType(MobPositionFunction.ID, MobPositionFunction::fromJson);
         MobConversionFunctions.registerMobConversionFunctionType(BiomeFunction.ID, BiomeFunction::fromJson);
-        // TODO dodac biome i dimension function
     }
 }

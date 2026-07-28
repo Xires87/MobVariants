@@ -1,0 +1,39 @@
+{
+  "priority": 1,
+  "target_mob": "minecraft:slime",
+  "outcome_mob": "frycmobvariants:toxic_slime",
+  "equipment": {
+    "keep_equipment": false,
+    "init_equipment": false,
+    "custom_equipment": []
+  },
+  "requirements": {
+    "type": "AND",
+    "functions": [
+      {
+        "type": "biome",
+        "tag": "frycmobvariants:toxic_slime_spawn_biomes"
+      },
+      {
+        "type": "fixed_chance",
+        "value": "slimeToToxicSlimeConvertChance"
+      },
+      {
+        "type": "OR",
+        "functions": [
+          {
+            "type": "mob_position",
+            "y": {
+              "comparator": "HIGHER_THAN",
+              "value": "minYLevelForBiomeVariants"
+            }
+          },
+          {
+            "type": "biome",
+            "tag": "c:is_cave"
+          }
+        ]
+      }
+    ]
+  }
+}

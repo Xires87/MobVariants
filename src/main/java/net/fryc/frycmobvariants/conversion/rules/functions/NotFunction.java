@@ -1,35 +1,25 @@
 package net.fryc.frycmobvariants.conversion.rules.functions;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.fryc.frycmobvariants.util.FrycJsonHelper;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.JsonHelper;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.function.BiPredicate;
 
-public record NotFunction(List<BiPredicate<MobEntity, Random>> functions) implements BiPredicate<MobEntity, Random> {
+public record NotFunction(BiPredicate<MobEntity, Random> function) implements BiPredicate<MobEntity, Random> {
 
     public static final String ID = "NOT";
 
     @Override
     public boolean test(MobEntity mob, Random random) {
-        return this.functions().stream().noneMatch(predicate -> predicate.test(mob, random));
+        return !this.function().test(mob, random);
     }
 
     public static NotFunction fromJson(JsonObject jsonObject) {
-        ArrayList<BiPredicate<MobEntity, Random>> list = new ArrayList<>();
-        JsonArray array = JsonHelper.getArray(jsonObject, "functions");
+        JsonObject object = JsonHelper.getObject(jsonObject, "function");
 
-        array.forEach(jsonElement -> {
-            if(jsonElement.isJsonObject()) {
-                list.add(FrycJsonHelper.getMobConversionFunction(jsonElement.getAsJsonObject()));
-            }
-        });
-
-        return new NotFunction(List.copyOf(list));
+        return new NotFunction(FrycJsonHelper.getMobConversionFunction(object));
     }
 }

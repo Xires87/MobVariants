@@ -16,6 +16,7 @@ import net.minecraft.util.JsonHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.function.BiPredicate;
 
@@ -74,7 +75,7 @@ public class FrycJsonHelper {
     }
 
     public static EquipmentSlot getEquipmentSlot(JsonObject object, String key) {
-        return EquipmentSlot.byName(JsonHelper.getString(object, key));
+        return EquipmentSlot.byName(JsonHelper.getString(object, key).toLowerCase(Locale.ROOT));
     }
 
     public static NumberComparator getNumberComparator(JsonObject jsonObject, String key) {

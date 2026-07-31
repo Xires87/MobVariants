@@ -24,14 +24,13 @@ public class ExplorerEntity extends ZombieEntity {
         if (!this.getWorld().isClient) {
             this.setClimbingWall(this.horizontalCollision);
         }
-
     }
 
     //explorers take 70% less damage from falling
     @Override
     public boolean damage(DamageSource source, float amount) {
         if(source.isIn(DamageTypeTags.IS_FALL)){
-            amount*=0.30;
+            amount *= 0.30F;
             super.damage(source, amount);
         }
         else{

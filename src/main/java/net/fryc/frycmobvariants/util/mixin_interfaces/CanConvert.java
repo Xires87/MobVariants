@@ -5,4 +5,5 @@ public interface CanConvert {
     void setCanConvertToTrue();
     void setCanConvertToFalse();
     void initMobEquipment();
+    void setNextTickUpdate(Runnable nextTickUpdate);
 }

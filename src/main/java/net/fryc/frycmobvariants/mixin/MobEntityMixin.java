@@ -35,6 +35,9 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     @Unique
     Random random = new Random();
 
+    @Unique
+    Runnable nextTickUpdate = null;
+
     protected MobEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -44,6 +47,11 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     public void tryToConvertMob(CallbackInfo info) {
         MobEntity mob = ((MobEntity)(Object)this);
         if(!mob.getWorld().isClient()){
+            if(this.nextTickUpdate != null){
+                this.nextTickUpdate.run();
+                this.nextTickUpdate = null;
+            }
+
             if(mob.hasStatusEffect(StatusEffects.NAUSEA)) this.canConvert = false;
             if(this.canConvert){
                 MobConvertingHelper.detectMobAndTryToConvert(mob, this.random);
@@ -106,6 +114,10 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
 
     public void initMobEquipment() {
         this.initEquipment(this.getRandom(), this.getWorld().getLocalDifficulty(this.getBlockPos()));
+    }
+
+    public void setNextTickUpdate(Runnable nextTickUpdate) {
+        this.nextTickUpdate = nextTickUpdate;
     }
 
 }

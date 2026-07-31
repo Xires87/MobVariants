@@ -12,13 +12,14 @@ import net.minecraft.item.ItemStack;
 import oshi.util.tuples.Pair;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class MobConvertingHelper {
 
+    private static final Random RANDOM = new Random();
+
     public static ItemStack getRandomItemStack(Map<Item, Pair<Float, Float>> map) {
-        float chance = ThreadLocalRandom.current().nextFloat();
+        float chance = RANDOM.nextFloat();
         Optional<Map.Entry<Item, Pair<Float, Float>>> optional = map.entrySet().stream().filter(entry -> {
             return chance >= entry.getValue().getA() && chance < entry.getValue().getB();
         }).findAny();
@@ -58,24 +59,27 @@ public class MobConvertingHelper {
         MobEntity mob = convertMob(originalMob, outcome);
 
         if(mob != null) {
-            if(slimeSize > -1 && mob instanceof SlimeEntity slime) {
-                slime.setSize(slimeSize, true);
-            }
-
-            if(outcome.conversionEquipment().initEquipment()) {
-                ((CanConvert) mob).initMobEquipment();
-            }
-
-            outcome.conversionEquipment().customEquipment().stream().collect(
-                    Collectors.groupingBy(MobConversionEquipment.MobConvertItem::slot)
-            ).forEach((equipmentSlot, mobConvertItems) -> {
-                List<MobConversionEquipment.MobConvertItem> list = mobConvertItems.stream().filter(item -> {
-                    return random.nextDouble() < item.chance();
-                }).toList();
-
-                if(!list.isEmpty()) {
-                    mob.equipStack(equipmentSlot, new ItemStack(list.get(random.nextInt(list.size())).item()));
+            // items need to be added next tick: adding in the same tick caused visual bugs (server/client synchronisation issues)
+            ((CanConvert) mob).setNextTickUpdate(() -> {
+                if(slimeSize > -1 && mob instanceof SlimeEntity slime) {
+                    slime.setSize(slimeSize, true);
                 }
+
+                if(outcome.conversionEquipment().initEquipment()) {
+                    ((CanConvert) mob).initMobEquipment();
+                }
+
+                outcome.conversionEquipment().customEquipment().stream().collect(
+                        Collectors.groupingBy(MobConversionEquipment.MobConvertItem::slot)
+                ).forEach((equipmentSlot, mobConvertItems) -> {
+                    List<MobConversionEquipment.MobConvertItem> list = mobConvertItems.stream().filter(item -> {
+                        return random.nextDouble() < item.chance();
+                    }).toList();
+
+                    if(!list.isEmpty()) {
+                        mob.equipStack(equipmentSlot, new ItemStack(list.get(random.nextInt(list.size())).item()));
+                    }
+                });
             });
         }
     }

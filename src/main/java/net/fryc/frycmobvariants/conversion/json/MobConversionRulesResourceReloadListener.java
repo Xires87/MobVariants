@@ -65,7 +65,7 @@ public class MobConversionRulesResourceReloadListener implements SimpleSynchrono
                 MobConversion.MOB_CONVERTING_RULES.get(targetMob).add(rule);
 
             } catch(Exception e) {
-                MobVariants.LOGGER.error("Error occurred while loading resource json" + id.toString(), e);
+                MobVariants.LOGGER.error("Error occurred while loading resource json: " + id.toString(), e);
             }
         }
     }

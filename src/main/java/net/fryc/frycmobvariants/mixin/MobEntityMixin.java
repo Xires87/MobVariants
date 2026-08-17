@@ -80,9 +80,16 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
         if(mobEntity != null){
             if(mobEntity instanceof MobEntity mob){
                 mob.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 10, 0, false, false));
+                return mobEntity;
             }
+
+            MobVariants.LOGGER.error(
+                    "Trying to convert a mob to a non-mob entity! Given entity should extend 'MobEntity' but '" +
+                            mobEntity.getClass() + "' does not! It may be caused by a conversion rule (invalid outcome mob)."
+            );
         }
-        return mobEntity;
+
+        return null;
     }
 
     //reading canConvert from Nbt

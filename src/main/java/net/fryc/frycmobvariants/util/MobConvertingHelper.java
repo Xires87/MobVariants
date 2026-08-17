@@ -5,6 +5,7 @@ import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.item.Item;
@@ -84,6 +85,7 @@ public class MobConvertingHelper {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static MobEntity convertMob(MobEntity originalMob, MobConvertingOutcome outcome) {
         if(originalMob.getType().equals(outcome.entityType())) {
             if(!outcome.conversionEquipment().keepEquipment()) {
@@ -93,6 +95,6 @@ public class MobConvertingHelper {
             return originalMob;
         }
 
-        return originalMob.convertTo(outcome.entityType(), outcome.conversionEquipment().keepEquipment());
+        return originalMob.convertTo((EntityType<? extends MobEntity>) outcome.entityType(), outcome.conversionEquipment().keepEquipment());
     }
 }

@@ -43,8 +43,9 @@ public class MobConversionRulesResourceReloadListener implements SimpleSynchrono
                 RegistryEntry<EntityType<? extends Entity>> targetEntity = FrycJsonHelper.getEntityType(jsonObject, "target_mob");
                 RegistryEntry<EntityType<? extends Entity>> outcomeEntity = FrycJsonHelper.getEntityType(jsonObject, "outcome_mob");
 
-                EntityType<? extends MobEntity> targetMob = (EntityType<? extends MobEntity>) targetEntity.value();
-                EntityType<? extends MobEntity> outcomeMob = (EntityType<? extends MobEntity>) outcomeEntity.value();
+                // non-mob target will just not work and non-mob outcome will print an error in logs
+                EntityType<? extends Entity> targetMob = targetEntity.value();
+                EntityType<? extends Entity> outcomeMob = outcomeEntity.value();
 
                 JsonObject requirementsObject = JsonHelper.getObject(jsonObject, "requirements");
                 JsonObject equipmentObject = JsonHelper.getObject(jsonObject, "equipment");

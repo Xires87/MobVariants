@@ -2,6 +2,7 @@ package net.fryc.frycmobvariants.conversion;
 
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.conversion.rules.functions.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class MobConversion {
 
-    public static final HashMap<EntityType<?>, List<MobConvertingRule>> MOB_CONVERTING_RULES = new HashMap<>();
+    public static final HashMap<EntityType<? extends Entity>, List<MobConvertingRule>> MOB_CONVERTING_RULES = new HashMap<>();
 
     public static void registerMobConversionFunctionTypes() {
         MobConversionFunctions.registerMobConversionFunctionType(OrFunction.ID, OrFunction::fromJson);

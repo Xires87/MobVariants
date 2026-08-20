@@ -10,7 +10,7 @@ Adds stronger variants for hostile mobs
 
 ## Datapacks:
 
-Example datapack can be found here (TODO link). Default conversion rules can be found here (TODO link).
+Example datapack can be found [here](https://github.com/Xires87/FrycDatapacks/tree/1.21/frycmobvariants_example). Default conversion rules can be found [here](https://github.com/Xires87/MobVariants/tree/master/src/main/resources/data/frycmobvariants/mob_conversion_rules).
 
 ### Creating mob conversion rule
 

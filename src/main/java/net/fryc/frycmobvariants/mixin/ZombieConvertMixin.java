@@ -2,7 +2,6 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.ModMobs;
-import net.fryc.frycmobvariants.mobs.biome.FrozenZombieEntity;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;

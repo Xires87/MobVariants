@@ -27,14 +27,13 @@ abstract class ZombieConvertMixin extends HostileEntity implements CanConvert {
         super(entityType, world);
     }
 
-    //converts zombie to forgotten or explorer or frozen zombie
-    //only first mob tick (right after spawning) tries to convert it
+    //converts zombie to frozen zombie
     @Inject(at = @At("TAIL"), method = "tick()V")
-    public void convertToZombieVariant(CallbackInfo info) {
+    public void convertToFrozenZombie(CallbackInfo info) {
         ZombieEntity zombie = ((ZombieEntity)(Object)this);
-        if(!zombie.getWorld().isClient){
+        if(!zombie.getWorld().isClient()){
             if(MobVariants.config.convertZombiesToFrozenZombiesInPowderSnow){
-                if(zombie.isAlive() && !zombie.isAiDisabled() && !zombie.canFreeze() && zombie.getClass() != FrozenZombieEntity.class){
+                if(zombie.isAlive() && !zombie.isAiDisabled() && !zombie.canFreeze() && !zombie.getType().equals(ModMobs.FROZEN_ZOMBIE)){
                     if (zombie.inPowderSnow) {
                         if (inPowderSnowTime >= 140) {
                             --convertToFrozenZombieTime;
@@ -55,35 +54,4 @@ abstract class ZombieConvertMixin extends HostileEntity implements CanConvert {
             }
         }
     }
-
-    /*
-    //reading canConvert from Nbt
-    @Inject(method = "Lnet/minecraft/entity/mob/ZombieEntity;readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
-    private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        if(nbt.contains("MobVariantsCanConvert")){
-            NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
-            canConvert = nbtCompound.getBoolean("canConvert");
-        }
-    }
-
-    //writing canConvert to Nbt
-    @Inject(method = "Lnet/minecraft/entity/mob/ZombieEntity;writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
-    private void writeCanConvertToNbt(NbtCompound nbt, CallbackInfo ci) {
-        if(!canConvert){
-            NbtCompound nbtCompound = new NbtCompound();
-            nbtCompound.putBoolean("canConvert", canConvert);
-            nbt.put("MobVariantsCanConvert", nbtCompound);
-        }
-    }
-
-    public void setCanConvertToTrue(){
-        canConvert = true;
-    }
-
-    public void setCanConvertToFalse(){
-        canConvert = false;
-    }
-
-     */
-
 }

@@ -3,17 +3,17 @@ package net.fryc.frycmobvariants.conversion.rules.functions;
 import com.google.gson.JsonObject;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.FrycJsonHelper;
-import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.world.entity.Mob;
 
 import java.util.Random;
 import java.util.function.BiPredicate;
 
-public record FixedChanceFunction(double value) implements BiPredicate<MobEntity, Random> {
+public record FixedChanceFunction(double value) implements BiPredicate<Mob, Random> {
 
     public static final String ID = "fixed_chance";
 
     @Override
-    public boolean test(MobEntity mob, Random random) {
+    public boolean test(Mob mob, Random random) {
         return random.nextDouble() < this.value();
     }
 

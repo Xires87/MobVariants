@@ -2,8 +2,8 @@ package net.fryc.frycmobvariants.conversion;
 
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.conversion.rules.functions.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 
 import java.util.HashMap;
 import java.util.List;

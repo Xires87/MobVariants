@@ -22,7 +22,7 @@ public record OrFunction(List<BiPredicate<Mob, Random>> functions) implements Bi
 
     public static OrFunction fromJson(JsonObject jsonObject) {
         ArrayList<BiPredicate<Mob, Random>> list = new ArrayList<>();
-        JsonArray array = JsonHelper.getArray(jsonObject, "functions");
+        JsonArray array = GsonHelper.getAsJsonArray(jsonObject, "functions");
 
         array.forEach(jsonElement -> {
             if(jsonElement.isJsonObject()) {

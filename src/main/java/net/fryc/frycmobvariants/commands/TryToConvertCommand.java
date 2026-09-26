@@ -1,21 +1,9 @@
 package net.fryc.frycmobvariants.commands;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.entity.Entity;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
-import java.util.Collection;
-import java.util.Iterator;
 
 public class TryToConvertCommand {
+    /* TODO komenda
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder) CommandManager.literal("tryToConvert").requires((source) -> {
@@ -48,4 +36,6 @@ public class TryToConvertCommand {
 
         return targets.size();
     }
+
+     */
 }

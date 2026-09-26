@@ -1,35 +1,17 @@
 package net.fryc.frycmobvariants.conversion.json;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.conversion.MobConversion;
-import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
-import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
-import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
-import net.fryc.frycmobvariants.util.FrycJsonHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.function.BiPredicate;
-
-public class MobConversionRulesResourceReloadListener implements SimpleSynchronousResourceReloadListener {
+public class MobConversionRulesResourceReloadListener /*implements SimpleSynchronousResourceReloadListener*/ {
 
     private static final String MOB_CONVERSION_RULES_PATH = "mob_conversion_rules";
 
+    /*
     @Override
     public Identifier getFabricId() {
         return Identifier.of(MobVariants.MOD_ID, MOB_CONVERSION_RULES_PATH);
     }
+
+     TODO reload listener
 
     @Override
     public void reload(ResourceManager manager) {
@@ -54,7 +36,7 @@ public class MobConversionRulesResourceReloadListener implements SimpleSynchrono
                 MobConversionEquipment equipment = FrycJsonHelper.getMobConversionEquipment(equipmentObject);
 
                 MobConvertingRule rule = new MobConvertingRule(priority, (mob, random) -> {
-                    if(mob.getType().equals(targetMob) /* <-- redundant check */ && requirements.test(mob, random)) {
+                    if(mob.getType().equals(targetMob) /* <-- redundant check *//* && requirements.test(mob, random)) {
                         return new MobConvertingOutcome(equipment, outcomeMob);
                     }
 
@@ -69,4 +51,6 @@ public class MobConversionRulesResourceReloadListener implements SimpleSynchrono
             }
         }
     }
+
+    */
 }

@@ -2,30 +2,21 @@ package net.fryc.frycmobvariants.mobs.nether;
 
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.mixin_interfaces.BlockRemovalCountdown;
-import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MagmaCubeEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.monster.cubemob.MagmaCube;
 
-public class LavaSlimeEntity extends MagmaCubeEntity {
 
-    public LavaSlimeEntity(EntityType<? extends MagmaCubeEntity> entityType, World world) {
-        super(entityType, world);
+public class LavaSlimeEntity extends MagmaCube {
+
+    public LavaSlimeEntity(EntityType<? extends MagmaCube> entityType, Level level) {
+        super(entityType, level);
         this.experiencePoints += 3;
     }
 
-    public static DefaultAttributeContainer.Builder createLavaSlimeAttributes() {
-        return MagmaCubeEntity.createMagmaCubeAttributes();
+    public static AttributeSupplier.Builder createLavaSlimeAttributes() {
+        return MagmaCube.createAttributes();
     }
 
 

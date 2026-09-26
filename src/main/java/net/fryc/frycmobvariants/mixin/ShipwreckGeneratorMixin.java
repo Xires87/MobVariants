@@ -2,39 +2,37 @@ package net.fryc.frycmobvariants.mixin;
 
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.biome.CorsairEntity;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.structure.ShipwreckGenerator;
-import net.minecraft.util.math.BlockBox;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.structures.ShipwreckPieces;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ShipwreckGenerator.Piece.class)
+@Mixin(ShipwreckPieces.ShipwreckPiece.class)
 abstract class ShipwreckGeneratorMixin {
 
     //spawns corsairs on shipwrecks
-    @Inject(method = "handleMetadata(Ljava/lang/String;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/util/math/random/Random;" +
-            "Lnet/minecraft/util/math/BlockBox;)V", at = @At("TAIL"))
-    private void spawnCorsairs(String metadata, BlockPos pos, ServerWorldAccess world, Random random, BlockBox boundingBox, CallbackInfo ci) {
-        BlockPos.Mutable cPos = new BlockPos.Mutable(pos.getX(), pos.getY() + 1, pos.getZ());
-        while(!world.getBlockState(cPos).isOf(Blocks.WATER) && !world.getBlockState(cPos).isOf(Blocks.AIR)) cPos.move(Direction.UP, 2);
-        CorsairEntity corsairEntity = (CorsairEntity) ModMobs.CORSAIR.create(world.toServerWorld());
+    @Inject(method = "handleDataMarker(Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V", at = @At("TAIL"))
+    private void spawnCorsairs(String markerId, BlockPos pos, ServerLevelAccessor level, RandomSource random, BoundingBox chunkBB, CallbackInfo ci) {
+        BlockPos.MutableBlockPos cPos = new BlockPos.MutableBlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+        while(!level.getBlockState(cPos).is(Blocks.WATER) && !level.getBlockState(cPos).is(Blocks.AIR)) cPos.move(Direction.UP, 2);
+        CorsairEntity corsairEntity = (CorsairEntity) ModMobs.CORSAIR.create(level.getLevel(), EntitySpawnReason.STRUCTURE);
         if (corsairEntity != null) {
-            corsairEntity.setPersistent();
-            corsairEntity.refreshPositionAndAngles(cPos, 0.0F, 0.0F);
-            corsairEntity.initialize(world, world.getLocalDifficulty(cPos), SpawnReason.STRUCTURE, (EntityData)null);
-            world.spawnEntityAndPassengers(corsairEntity);
-            if (cPos.getY() > world.getSeaLevel()) {
-                world.setBlockState(cPos, Blocks.AIR.getDefaultState(), 2);
+            corsairEntity.setPersistenceRequired();
+            corsairEntity.refreshDimensions();
+            corsairEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(cPos), EntitySpawnReason.STRUCTURE, null);
+            level.addFreshEntityWithPassengers(corsairEntity);
+            if (cPos.getY() > level.getSeaLevel()) {
+                level.setBlockAndUpdate(cPos, Blocks.AIR.defaultBlockState());
             } else {
-                world.setBlockState(cPos, Blocks.WATER.getDefaultState(), 2);
+                level.setBlockAndUpdate(cPos, Blocks.WATER.defaultBlockState());
             }
         }
     }

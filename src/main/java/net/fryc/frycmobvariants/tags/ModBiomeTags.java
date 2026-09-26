@@ -1,10 +1,10 @@
 package net.fryc.frycmobvariants.tags;
 
 import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.biome.Biome;
 
 public class ModBiomeTags {
 
@@ -21,10 +21,10 @@ public class ModBiomeTags {
     }
 
     public static TagKey<Biome> getCustomTag(String id) {
-        return TagKey.of(RegistryKeys.BIOME, Identifier.of(MobVariants.MOD_ID, id));
+        return TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, id));
     }
 
     public static TagKey<Biome> getTag(Identifier id) {
-        return TagKey.of(RegistryKeys.BIOME, id);
+        return TagKey.create(Registries.BIOME, id);
     }
 }

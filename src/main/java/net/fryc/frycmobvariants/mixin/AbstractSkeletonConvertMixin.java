@@ -1,57 +1,48 @@
 package net.fryc.frycmobvariants.mixin;
 
-import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.mobs.ModMobs;
-import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.ai.RangedAttackMob;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.AbstractSkeletonEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.ConversionTracker;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-@Mixin(AbstractSkeletonEntity.class)
-abstract class AbstractSkeletonConvertMixin extends HostileEntity implements RangedAttackMob, CanConvert {
-
+@Mixin(AbstractSkeleton.class)
+abstract class AbstractSkeletonConvertMixin extends Monster implements RangedAttackMob, CanConvert {
 
     @Unique
-    private static final TrackedData<Boolean> CONVERTING_IN_WATER;
+    private ConversionTracker<AbstractSkeleton> drowningTracker;
+
     @Unique
     private int ticksUntilWaterConversion;
     @Unique
     private int inWaterTime;
 
-    protected AbstractSkeletonConvertMixin(EntityType<? extends HostileEntity> entityType, World world) {
-        super(entityType, world);
+    protected AbstractSkeletonConvertMixin(EntityType<? extends Monster> type, Level level) {
+        super(type, level);
     }
-
+    // TODO naprawic przemienianie w korsarzy
+/*
     public void tick() {
         super.tick();
-        AbstractSkeletonEntity skeleton = ((AbstractSkeletonEntity)(Object)this);
-        if(!skeleton.getWorld().isClient){
+        AbstractSkeleton skeleton = ((AbstractSkeleton)(Object)this);
+        if(!skeleton.level().isClientSide()){
             //converting to corsair underwater
             if(MobVariants.config.convertSkeletonsToCorsairsUnderwater){
-                if ((skeleton.getClass() == SkeletonEntity.class || skeleton.getClass() == UndeadWarriorEntity.class) && skeleton.isAlive() && !skeleton.isAiDisabled()) {
-                    if (skeleton.getDataTracker().get(CONVERTING_IN_WATER)) {
+                if ((MobConvertingHelper.SKELETON_UNDERWATER_CONVERSION_AVAILABLE.contains(skeleton.getType())) && skeleton.isAlive() && !skeleton.isAiDisabled()) {
+                    if (skeleton.getEntityData().get(CONVERTING_IN_WATER)) {
                         --ticksUntilWaterConversion;
                         if (ticksUntilWaterConversion < 0) {
-                            skeleton.playSoundIfNotSilent(SoundEvents.AMBIENT_UNDERWATER_EXIT);
-                            if(skeleton.getMainHandStack().getItem() instanceof BowItem) skeleton.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                            skeleton.convertTo(ModMobs.CORSAIR, true);
+                            skeleton.playSound(SoundEvents.AMBIENT_UNDERWATER_EXIT);
+                            //skeleton.playSoundIfNotSilent(SoundEvents.AMBIENT_UNDERWATER_EXIT);
+                            if(skeleton.getMainHandItem().getItem() instanceof BowItem) skeleton.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                            skeleton.convertTo(ModMobs.CORSAIR, ConversionParams.single(skeleton, true, true), corsair -> {});
                         }
                     } else {
-                        if (skeleton.isSubmergedIn(FluidTags.WATER)) {
+                        if (skeleton.isUnderWater()) {
                             ++inWaterTime;
                             if (inWaterTime >= 600) {
                                 setTicksUntilWaterConversion(300);
@@ -81,4 +72,6 @@ abstract class AbstractSkeletonConvertMixin extends HostileEntity implements Ran
     static {
         CONVERTING_IN_WATER = DataTracker.registerData(AbstractSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     }
+
+ */
 }

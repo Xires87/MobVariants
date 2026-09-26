@@ -12,8 +12,10 @@ import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.conversion.json.MobConversionRulesResourceReloadListener;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
+import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.MobEquipment;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.world.entity.EntityTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,5 +46,8 @@ public class MobVariants implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			MobEquipment.initializePossibleEquipment();
 		});
+
+		MobConvertingHelper.SKELETON_UNDERWATER_CONVERSION_AVAILABLE.add(EntityTypes.SKELETON);
+		MobConvertingHelper.SKELETON_UNDERWATER_CONVERSION_AVAILABLE.add(ModMobs.UNDEAD_WARRIOR);
 	}
 }

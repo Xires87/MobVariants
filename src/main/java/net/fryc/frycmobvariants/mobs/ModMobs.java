@@ -8,13 +8,7 @@ import net.fryc.frycmobvariants.mobs.cave.CaveCreeperEntity;
 import net.fryc.frycmobvariants.mobs.cave.ForgottenEntity;
 import net.fryc.frycmobvariants.mobs.cave.UndeadWarriorEntity;
 import net.fryc.frycmobvariants.mobs.nether.*;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.entity.EntityType;
 
 public class ModMobs {
 

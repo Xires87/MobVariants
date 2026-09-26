@@ -5,17 +5,18 @@ import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
 import oshi.util.tuples.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MobConvertingHelper {
+
+    public static final Set<EntityType<? extends AbstractSkeleton>> SKELETON_UNDERWATER_CONVERSION_AVAILABLE = new HashSet<>();
 
     private static final Random RANDOM = new Random();
 

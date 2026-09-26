@@ -5,14 +5,16 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,10 +26,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(MobEntity.class)
-abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, Leashable, Targeter, CanConvert {
+@Mixin(Mob.class)
+abstract class MobEntityMixin extends LivingEntity implements Targeting, EquipmentUser, Leashable, CanConvert {
 
-    @Shadow protected abstract void initEquipment(net.minecraft.util.math.random.Random random, LocalDifficulty localDifficulty);
+    @Shadow protected abstract void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty);
 
     @Unique
     boolean canConvert = true;
@@ -38,21 +40,21 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     @Unique
     Runnable nextTickUpdate = null;
 
-    protected MobEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
-        super(entityType, world);
+    protected MobEntityMixin(EntityType<? extends LivingEntity> entityType, Level level) {
+        super(entityType, level);
     }
 
 
     @Inject(at = @At("TAIL"), method = "tick()V")
     public void tryToConvertMob(CallbackInfo info) {
-        MobEntity mob = ((MobEntity)(Object)this);
-        if(!mob.getWorld().isClient()){
+        Mob mob = ((Mob)(Object)this);
+        if(!mob.level().isClientSide()){
             if(this.nextTickUpdate != null){
                 this.nextTickUpdate.run();
                 this.nextTickUpdate = null;
             }
 
-            if(mob.hasStatusEffect(StatusEffects.NAUSEA)) this.canConvert = false;
+            if(mob.hasEffect(MobEffects.NAUSEA)) this.canConvert = false;
             if(this.canConvert){
                 MobConvertingHelper.detectMobAndTryToConvert(mob, this.random);
                 this.canConvert = false;
@@ -60,26 +62,25 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
         }
     }
 
-    @Inject(method = "initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;" +
-            "Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;)Lnet/minecraft/entity/EntityData;", at = @At("TAIL"))
-    private void preventConversionForSpecifiedSpawnReasons(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, CallbackInfoReturnable<EntityData> ret) {
-        if((spawnReason == SpawnReason.SPAWN_EGG && !MobVariants.config.convertMobsSpawnedBySpawnEgg) ||
-                (spawnReason == SpawnReason.COMMAND && !MobVariants.config.convertMobsSpawnedByCommand) ||
-                (spawnReason == SpawnReason.SPAWNER && !MobVariants.config.convertMobsSpawnedByNormalSpawner) ||
-                (spawnReason == SpawnReason.TRIAL_SPAWNER && !MobVariants.config.convertMobsSpawnedByTrialSpawner)) {
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 10, 0, false, false));
+    @Inject(method = "finalizeSpawn(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/world/entity/SpawnGroupData;)Lnet/minecraft/world/entity/SpawnGroupData;", at = @At("TAIL"))
+    private void preventConversionForSpecifiedSpawnReasons(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnReason, @Nullable SpawnGroupData groupData, CallbackInfoReturnable<SpawnGroupData> ret) {
+        if((spawnReason == EntitySpawnReason.SPAWN_ITEM_USE && !MobVariants.config.convertMobsSpawnedBySpawnEgg) ||
+                (spawnReason == EntitySpawnReason.COMMAND && !MobVariants.config.convertMobsSpawnedByCommand) ||
+                (spawnReason == EntitySpawnReason.SPAWNER && !MobVariants.config.convertMobsSpawnedByNormalSpawner) ||
+                (spawnReason == EntitySpawnReason.TRIAL_SPAWNER && !MobVariants.config.convertMobsSpawnedByTrialSpawner)) {
+            this.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 10, 0, false, false));
         }
     }
 
     @WrapOperation(
-            method = "convertTo(Lnet/minecraft/entity/EntityType;Z)Lnet/minecraft/entity/mob/MobEntity;",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityType;create(Lnet/minecraft/world/World;)Lnet/minecraft/entity/Entity;")
+            method = "convertTo(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/ConversionParams;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/world/entity/ConversionParams$AfterConversion;)Lnet/minecraft/world/entity/Mob;",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/EntityType;create(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntitySpawnReason;)Lnet/minecraft/world/entity/Entity;")
     )
-    private Entity setNauseaAfterConverting(EntityType<? extends MobEntity> instance, World world, Operation<Entity> original) {
-        Entity mobEntity = original.call(instance, world);
+    private Entity setNauseaAfterConverting(EntityType<? extends Mob> instance, Level level, EntitySpawnReason spawnReason, Operation<Entity> original) {
+        Entity mobEntity = original.call(instance, level, spawnReason);
         if(mobEntity != null){
-            if(mobEntity instanceof MobEntity mob){
-                mob.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 10, 0, false, false));
+            if(mobEntity instanceof Mob mob){
+                mob.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 10, 0, false, false));
                 return mobEntity;
             }
 
@@ -93,22 +94,15 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     }
 
     //reading canConvert from Nbt
-    @Inject(method = "readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
-    private void readCanConvertFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        if(nbt.contains("MobVariantsCanConvert")){
-            NbtCompound nbtCompound = nbt.getCompound("MobVariantsCanConvert");
-            this.canConvert = nbtCompound.getBoolean("canConvert");
-        }
+    @Inject(method = "readAdditionalSaveData(Lnet/minecraft/world/level/storage/ValueInput;)V", at = @At("TAIL"))
+    private void readCanConvertFromNbt(ValueInput input, CallbackInfo ci) {
+        this.canConvert = input.getBooleanOr("MobVariantsCanConvert", true);
     }
 
     //writing canConvert to Nbt
-    @Inject(method = "writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V", at = @At("TAIL"))
-    private void writeCanConvertToNbt(NbtCompound nbt, CallbackInfo ci) {
-        if(!this.canConvert){
-            NbtCompound nbtCompound = new NbtCompound();
-            nbtCompound.putBoolean("canConvert", false);
-            nbt.put("MobVariantsCanConvert", nbtCompound);
-        }
+    @Inject(method = "addAdditionalSaveData(Lnet/minecraft/world/level/storage/ValueOutput;)V", at = @At("TAIL"))
+    private void writeCanConvertToNbt(ValueOutput output, CallbackInfo ci) {
+        output.putBoolean("MobVariantsCanConvert", this.canConvert);
     }
 
     public void setCanConvertToTrue(){
@@ -120,7 +114,7 @@ abstract class MobEntityMixin extends LivingEntity implements EquipmentHolder, L
     }
 
     public void initMobEquipment() {
-        this.initEquipment(this.getRandom(), this.getWorld().getLocalDifficulty(this.getBlockPos()));
+        this.populateDefaultEquipmentSlots(this.getRandom(), ((ServerLevel) this.level()).getCurrentDifficultyAt(this.blockPosition()));
     }
 
     public void setNextTickUpdate(Runnable nextTickUpdate) {

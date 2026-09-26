@@ -1,83 +1,71 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.pathing.EntityNavigation;
-import net.minecraft.entity.ai.pathing.SpiderNavigation;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.world.World;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.monster.zombie.Zombie;
+import net.minecraft.world.level.Level;
 
-public class ExplorerEntity extends ZombieEntity {
-    private static final TrackedData<Byte> EXPLORER_FLAGS;
+public class ExplorerEntity extends Zombie {
+    private static final EntityDataAccessor<Byte> EXPLORER_FLAGS_ID = SynchedEntityData.defineId(ExplorerEntity.class, EntityDataSerializers.BYTE);
 
-    public ExplorerEntity(EntityType<? extends ZombieEntity> entityType, World world) {
-        super(entityType, world);
+    public ExplorerEntity(net.minecraft.world.entity.EntityType<? extends Zombie> type, Level level) {
+        super(type, level);
     }
+
 
     public void tick() {
         super.tick();
-        if (!this.getWorld().isClient) {
-            this.setClimbingWall(this.horizontalCollision);
+        if (!this.level().isClientSide()) {
+            this.setClimbing(this.horizontalCollision);
         }
     }
 
     //explorers take 70% less damage from falling
-    @Override
-    public boolean damage(DamageSource source, float amount) {
-        if(source.isIn(DamageTypeTags.IS_FALL)){
-            amount *= 0.30F;
-            super.damage(source, amount);
+    public boolean hurtServer(ServerLevel level, DamageSource source, float damage) {
+        if(source.is(DamageTypeTags.IS_FALL)){
+            super.hurtServer(level, source, damage * 0.30F);
         }
-        else{
-            super.damage(source, amount);
-        }
-        return true;
+
+        return super.hurtServer(level, source, damage);
     }
 
-    protected EntityNavigation createNavigation(World world) {
-        return new SpiderNavigation(this, world);
+    protected PathNavigation createNavigation(Level level) {
+        return new WallClimberNavigation(this, level());
     }
 
 
-    public boolean isClimbing() {
+    public boolean onClimbable() {
         return this.isClimbingWall();
     }
 
     public boolean isClimbingWall() {
-        return ((Byte)this.dataTracker.get(EXPLORER_FLAGS) & 1) != 0;
+        return (this.entityData.get(EXPLORER_FLAGS_ID) & 1) != 0;
     }
 
-    public void setClimbingWall(boolean climbing) {
-        byte b = (Byte)this.dataTracker.get(EXPLORER_FLAGS);
-        if (climbing) {
-            b = (byte)(b | 1);
+    public void setClimbing(boolean value) {
+        byte flags = (Byte)this.entityData.get(EXPLORER_FLAGS_ID);
+        if (value) {
+            flags = (byte)(flags | 1);
         } else {
-            b &= -2;
+            flags = (byte)(flags & -2);
         }
 
-        this.dataTracker.set(EXPLORER_FLAGS, b);
+        this.entityData.set(EXPLORER_FLAGS_ID, flags);
     }
 
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(EXPLORER_FLAGS, (byte)0);
+    protected void defineSynchedData(final SynchedEntityData.Builder entityData) {
+        super.defineSynchedData(entityData);
+        entityData.define(EXPLORER_FLAGS_ID, (byte)0);
     }
 
     public boolean canFreeze() {
         return true;
     }
 
-
-    protected ItemStack getSkull() {
-        return ItemStack.EMPTY;
-    }
-
-    static {
-        EXPLORER_FLAGS = DataTracker.registerData(ExplorerEntity.class, TrackedDataHandlerRegistry.BYTE);
-    }
 }

@@ -4,7 +4,25 @@ import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.StatusEffectHelper;
 import net.fryc.frycmobvariants.util.StringHelper;
+import net.minecraft.core.Holder;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.skeleton.Skeleton;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
@@ -17,13 +35,13 @@ public class UndeadWarriorEntity extends Skeleton {
 
     public java.util.Random rand = new java.util.Random();
     public int tippedArrowsAmount;
-    public Pair<RegistryEntry<StatusEffect>, Pair<Integer, Integer>> tippedArrowEffect;
+    public Pair<Holder<MobEffect>, Pair<Integer, Integer>> tippedArrowEffect;
 
     public static Map<Item, Pair<Float, Float>> undeadWarriorWeapons = new HashMap<>(Map.of(Items.BOW, new Pair<>(0.0F, 0.50F), Items.STONE_SWORD, new Pair<>(0.50F, 1.0F)));
 
-    public UndeadWarriorEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
-        super(entityType, world);
-        if(!world.isClient()){
+    public UndeadWarriorEntity(EntityType<? extends Skeleton> entityType, Level level) {
+        super(entityType, level);
+        if(!level.isClientSide()){
             int minTippedArrows = MobVariants.config.undeadWarriorAttributes.undeadWarriorsMinTippedArrowsCount;
             this.tippedArrowsAmount = rand.nextInt(
                     minTippedArrows,
@@ -33,38 +51,38 @@ public class UndeadWarriorEntity extends Skeleton {
         }
         else {
             this.tippedArrowsAmount = 1;
-            this.tippedArrowEffect = new Pair<>(StatusEffects.WEAKNESS, new Pair<>(400, 1));
+            this.tippedArrowEffect = new Pair<>(MobEffects.WEAKNESS, new Pair<>(400, 1));
         }
 
-        this.experiencePoints += 1;
+        this.xpReward += 1;
     }
 
-    public static DefaultAttributeContainer.Builder createUndeadWarriorAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 19.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2505).add(EntityAttributes.GENERIC_MAX_HEALTH, 22).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.2f);
+    public static AttributeSupplier.Builder createUndeadWarriorAttributes() {
+        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 19.0).add(Attributes.MOVEMENT_SPEED, 0.2505).add(Attributes.MAX_HEALTH, 22).add(Attributes.KNOCKBACK_RESISTANCE, 0.2f);
     }
 
-    protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        if(this.getMainHandStack().isEmpty()) {
-            super.initEquipment(random, localDifficulty);
+    protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance localDifficulty) {
+        if(this.getMainHandItem().isEmpty()) {
+            super.populateDefaultEquipmentSlots(random, localDifficulty);
         }
 
-        if(!MobVariants.config.undeadWarriorAttributes.alwaysKeepEnchantedBow || !this.getMainHandStack().hasEnchantments()) {
-            this.equipStack(EquipmentSlot.MAINHAND, getUndeadWarriorWeapon());
+        if(!MobVariants.config.undeadWarriorAttributes.alwaysKeepEnchantedBow || !this.getMainHandItem().isEnchanted()) {
+            this.setItemSlot(EquipmentSlot.MAINHAND, getUndeadWarriorWeapon());
         }
 
-        if(!(this.getMainHandStack().getItem() instanceof RangedWeaponItem)){
+        if(!(this.getMainHandItem().getItem() instanceof ProjectileWeaponItem)){
             this.tippedArrowsAmount = -1;
         }
     }
 
     @Nullable
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData);
-        this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(3.0);
-        this.updateAttackType();
-        return entityData2;
+    public SpawnGroupData finalizeSpawn(final ServerLevelAccessor level, final DifficultyInstance difficulty, final EntitySpawnReason spawnReason, @org.jspecify.annotations.Nullable SpawnGroupData groupData) {
+        SpawnGroupData groupData2 = super.finalizeSpawn(level, difficulty, spawnReason, groupData);
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(3.0);
+        this.reassessWeaponGoal();
+        return groupData2;
     }
-
+// TODO dokonczyc warriora
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
         PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier, shotFrom);
         if(this.tippedArrowsAmount > 0){

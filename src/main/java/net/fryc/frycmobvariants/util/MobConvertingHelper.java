@@ -6,9 +6,11 @@ import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.cubemob.Slime;
 import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import oshi.util.tuples.Pair;
 
 import java.util.*;
@@ -29,7 +31,7 @@ public class MobConvertingHelper {
         return optional.isPresent() ? new ItemStack(optional.get().getKey()) : ItemStack.EMPTY;
     }
 
-    public static void detectMobAndTryToConvert(MobEntity mob, Random random) {
+    public static void detectMobAndTryToConvert(Mob mob, Random random) {
         MobConvertingOutcome outcome;
         int currentPriority = 0;
         ArrayList<MobConvertingOutcome> possibleOutcomes = new ArrayList<>();
@@ -56,14 +58,14 @@ public class MobConvertingHelper {
         }
     }
 
-    private static void convertMobAndSetCustomEquipment(MobEntity originalMob, Random random, MobConvertingOutcome outcome) {
-        int slimeSize = originalMob instanceof SlimeEntity slime ? slime.getSize() : -1;
-        MobEntity mob = convertMob(originalMob, outcome);
-
-        if(mob != null) {
+    @SuppressWarnings("unchecked")
+    private static void convertMobAndSetCustomEquipment(Mob originalMob, Random random, MobConvertingOutcome outcome) {
+        int slimeSize = originalMob instanceof Slime slime ? slime.getSize() : -1;
+        originalMob.convertTo((EntityType<? extends Mob>) outcome.entityType(), new ConversionParams(ConversionType.SINGLE, outcome.conversionEquipment().keepEquipment(), true, null), EntitySpawnReason.NATURAL, mob -> {
             // items need to be added next tick: adding in the same tick caused visual bugs (server/client synchronisation issues)
+            // TODO sprawdzic czy nadal trzeba w osobnym ticku
             ((CanConvert) mob).setNextTickUpdate(() -> {
-                if(slimeSize > -1 && mob instanceof SlimeEntity slime) {
+                if(slimeSize > -1 && mob instanceof Slime slime) {
                     slime.setSize(slimeSize, true);
                 }
 
@@ -79,23 +81,10 @@ public class MobConvertingHelper {
                     }).toList();
 
                     if(!list.isEmpty()) {
-                        mob.equipStack(equipmentSlot, new ItemStack(list.get(random.nextInt(list.size())).item()));
+                        mob.setItemSlot(equipmentSlot, new ItemStack(list.get(random.nextInt(list.size())).item()));
                     }
                 });
             });
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private static MobEntity convertMob(MobEntity originalMob, MobConvertingOutcome outcome) {
-        if(originalMob.getType().equals(outcome.entityType())) {
-            if(!outcome.conversionEquipment().keepEquipment()) {
-                originalMob.getEquippedItems().forEach(item -> item.setCount(0));
-            }
-
-            return originalMob;
-        }
-
-        return originalMob.convertTo((EntityType<? extends MobEntity>) outcome.entityType(), outcome.conversionEquipment().keepEquipment());
+        });
     }
 }

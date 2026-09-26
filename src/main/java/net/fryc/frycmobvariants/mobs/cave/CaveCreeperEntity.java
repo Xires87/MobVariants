@@ -1,22 +1,21 @@
 package net.fryc.frycmobvariants.mobs.cave;
 
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.mob.CreeperEntity;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.level.Level;
 
 import java.util.Collection;
-import java.util.Iterator;
 
-public class CaveCreeperEntity extends CreeperEntity {
+public class CaveCreeperEntity extends Creeper {
 
-    private int explosionRadius = 3;
+    private static final int EXPLOSION_RADIUS = 3;
     private int instantExplodeTime = 33;
 
-    public CaveCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {
-        super(entityType, world);
-        this.experiencePoints += 1;
+    public CaveCreeperEntity(EntityType<? extends Creeper> type, Level level) {
+        super(type, level);
     }
 
 
@@ -24,40 +23,39 @@ public class CaveCreeperEntity extends CreeperEntity {
         if (this.isAlive()) {
             if(this.instantExplodeTime < 33) this.instantExplodeTime++;
             if(this.isOnFire()) this.instantExplodeTime -= 3;
-            if(this.instantExplodeTime <= 0) this.explode();
+            if(this.instantExplodeTime <= 0) this.explodeCreeper();
         }
         super.tick();
     }
 
-    private void explode() {
-        if (!this.getWorld().isClient) {
-            float f = this.shouldRenderOverlay() ? 2.0F : 1.0F;
+    private void explodeCreeper() {
+        if (this.level() instanceof ServerLevel level) {
+            float explosionMultiplier = this.isPowered() ? 2.0F : 1.0F;
             this.dead = true;
-            this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, World.ExplosionSourceType.MOB);
+            level.explode(this, this.getX(), this.getY(), this.getZ(), (float)EXPLOSION_RADIUS * explosionMultiplier, Level.ExplosionInteraction.MOB);
+            this.spawnLingeringCloud();
+            this.triggerOnDeathMobEffects(level, RemovalReason.KILLED);
             this.discard();
-            this.spawnEffectsCloud();
         }
 
     }
 
-    private void spawnEffectsCloud() {
-        Collection<StatusEffectInstance> collection = this.getStatusEffects();
-        if (!collection.isEmpty()) {
-            AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
-            areaEffectCloudEntity.setRadius(2.5F);
-            areaEffectCloudEntity.setRadiusOnUse(-0.5F);
-            areaEffectCloudEntity.setWaitTime(10);
-            areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 2);
-            areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
-            Iterator var3 = collection.iterator();
+    private void spawnLingeringCloud() {
+        Collection<MobEffectInstance> activeEffects = this.getActiveEffects();
+        if (!activeEffects.isEmpty()) {
+            AreaEffectCloud cloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
+            cloud.setRadius(2.5F);
+            cloud.setRadiusOnUse(-0.5F);
+            cloud.setWaitTime(10);
+            cloud.setDuration(300);
+            cloud.setPotionDurationScale(0.25F);
+            cloud.setRadiusPerTick(-cloud.getRadius() / (float)cloud.getDuration());
 
-            while(var3.hasNext()) {
-                StatusEffectInstance statusEffectInstance = (StatusEffectInstance)var3.next();
-                areaEffectCloudEntity.addEffect(new StatusEffectInstance(statusEffectInstance));
+            for(MobEffectInstance mobEffect : activeEffects) {
+                cloud.addEffect(new MobEffectInstance(mobEffect));
             }
 
-            this.getWorld().spawnEntity(areaEffectCloudEntity);
+            this.level().addFreshEntity(cloud);
         }
-
     }
 }

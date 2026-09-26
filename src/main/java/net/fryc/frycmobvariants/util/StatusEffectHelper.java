@@ -2,9 +2,9 @@ package net.fryc.frycmobvariants.util;
 
 
 import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.core.Holder;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import oshi.util.tuples.Pair;
 
 import java.util.HashMap;
@@ -19,13 +19,13 @@ public class StatusEffectHelper {
      * @param random random
      * @return Pair containing a status effect and a pair of integers (duration and amplifier)
      */
-    public static Pair<RegistryEntry<StatusEffect>, Pair<Integer, Integer>> pickRandomStatusEffect(Random random) {
+    public static Pair<Holder<MobEffect>, Pair<Integer, Integer>> pickRandomStatusEffect(Random random) {
         int bound = !availableStatusEffects.isEmpty() ? availableStatusEffects.size() : 1;
         int i = random.nextInt(0, bound);
         int j = 0;
         for(String key : availableStatusEffects.keySet()){
             if(j == i){
-                RegistryEntry<StatusEffect> effect = StringHelper.getStatusEffectFromString(key);
+                Holder<MobEffect> effect = StringHelper.getStatusEffectFromString(key);
                 Pair<Integer, Integer> durAndAmp = availableStatusEffects.get(key);
 
                 return new Pair<>(effect, durAndAmp);
@@ -33,7 +33,7 @@ public class StatusEffectHelper {
             j++;
         }
 
-        return new Pair<>(StatusEffects.WEAKNESS, new Pair<>(400, 1));
+        return new Pair<>(MobEffects.WEAKNESS, new Pair<>(400, 1));
     }
 
     public static void initializeStatusEffectMap(){

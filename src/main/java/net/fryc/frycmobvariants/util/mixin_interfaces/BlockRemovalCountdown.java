@@ -1,6 +1,6 @@
 package net.fryc.frycmobvariants.util.mixin_interfaces;
 
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 
 public interface BlockRemovalCountdown {
 

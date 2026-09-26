@@ -1,12 +1,12 @@
 package net.fryc.frycmobvariants.util;
 
 import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
@@ -109,7 +109,7 @@ public class StringHelper {
 
     @Nullable
     public static Item transformStringToItem(String item){
-        Optional<Item> optional = Registries.ITEM.getOrEmpty(Identifier.of(item));
+        Optional<Item> optional = BuiltInRegistries.ITEM.getOptional(Identifier.parse(item));
         if(optional.isEmpty()){
             MobVariants.LOGGER.error("An error occurred while reading MobVariants config. Unknown item: " + item);
             return null;
@@ -118,10 +118,10 @@ public class StringHelper {
         return optional.get();
     }
 
-    public static RegistryEntry<StatusEffect> getStatusEffectFromString(String statusEffect){
-        return Registries.STATUS_EFFECT.getEntry(Identifier.of(statusEffect)).orElseGet(() -> {
+    public static Holder<MobEffect> getStatusEffectFromString(String statusEffect){
+        return BuiltInRegistries.MOB_EFFECT.get(Identifier.parse(statusEffect)).orElseGet(() -> {
             MobVariants.LOGGER.error("Unable to find the following status effect: '" + statusEffect + "'");
-            return (RegistryEntry.Reference<StatusEffect>) StatusEffects.WEAKNESS;
+            return (Holder.Reference<MobEffect>) MobEffects.WEAKNESS;
         });
     }
 }

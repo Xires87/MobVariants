@@ -6,8 +6,9 @@ import net.minecraft.client.render.entity.model.CrossbowPosing;
 import net.minecraft.client.render.entity.model.PiglinEntityModel;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.Mob;
 
-public class ZombifiedPiglinBruteEntityModel extends PiglinEntityModel<MobEntity> {
+public class ZombifiedPiglinBruteEntityModel extends PiglinEntityModel<Mob> {
 
     private final ModelPart leftEar;
     private final ModelTransform bodyRotation;

@@ -1,7 +1,11 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.skeleton.Skeleton;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
@@ -15,13 +19,13 @@ public class CorsairEntity extends Skeleton {
     protected final MobNavigation landNavigation;
 
     public static Map<Item, Pair<Float, Float>> corsairWeapons = new HashMap<>(Map.of(Items.WOODEN_SWORD, new Pair<>(0.0F, 0.72F)));
-
-    public CorsairEntity(EntityType<? extends SkeletonEntity> entityType, World world) {
-        super(entityType, world);
+// TODO naprawic draza korsarza
+    public CorsairEntity(EntityType<? extends Skeleton> entityType, Level level) {
+        super(entityType, level);
         this.moveControl = new CorsairEntity.CorsairMoveControl(this);
         this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
-        this.waterNavigation = new SwimNavigation(this, world);
-        this.landNavigation = new MobNavigation(this, world);
+        this.waterNavigation = new SwimNavigation(this, level);
+        this.landNavigation = new MobNavigation(this, level);
     }
 
     protected void initGoals() {

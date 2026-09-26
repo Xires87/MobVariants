@@ -1,41 +1,41 @@
 package net.fryc.frycmobvariants.util;
 
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 public enum DifficultyPicker {
 
     NONE{
         @Override
-        public boolean hasCorrectDifficulty(World world) {
+        public boolean hasCorrectDifficulty(Level level) {
             return false;
         }
     },
     PEACEFUL{
         @Override
-        public boolean hasCorrectDifficulty(World world) {
+        public boolean hasCorrectDifficulty(Level level) {
             return true;
         }
     },
     EASY{
         @Override
-        public boolean hasCorrectDifficulty(World world) {
-            return world.getDifficulty() != Difficulty.PEACEFUL;
+        public boolean hasCorrectDifficulty(Level level) {
+            return level.getDifficulty() != Difficulty.PEACEFUL;
         }
     },
     NORMAL{
         @Override
-        public boolean hasCorrectDifficulty(World world) {
-            return world.getDifficulty() == Difficulty.NORMAL || world.getDifficulty() == Difficulty.HARD;
+        public boolean hasCorrectDifficulty(Level level) {
+            return level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD;
         }
     },
     HARD{
         @Override
-        public boolean hasCorrectDifficulty(World world) {
-            return world.getDifficulty() == Difficulty.HARD;
+        public boolean hasCorrectDifficulty(Level level) {
+            return level.getDifficulty() == Difficulty.HARD;
         }
     };
 
 
-    public abstract boolean hasCorrectDifficulty(World world);
+    public abstract boolean hasCorrectDifficulty(Level level);
 }

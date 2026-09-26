@@ -1,57 +1,55 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.cubemob.Slime;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 
-public class ToxicSlimeEntity extends SlimeEntity {
+public class ToxicSlimeEntity extends Slime {
 
-    public ToxicSlimeEntity(EntityType<? extends SlimeEntity> entityType, World world) {
-        super(entityType, world);
+    private static final int EASY_POISON_DURATION = 40;
+    private static final int NORMAL_POISON_DURATION = 80;
+    private static final int HARD_POISON_DURATION = 120;
+
+    public ToxicSlimeEntity(EntityType<? extends Slime> type, Level level) {
+        super(type, level);
     }
 
-
-    protected void damage(LivingEntity target) {
-        if (this.isAlive() && this.isInAttackRange(target) && this.canSee(target)) {
-            DamageSource damageSource = this.getDamageSources().mobAttack(this);
-            if (target.damage(damageSource, this.getDamageAmount())) {
-                int i = this.getSize();
-                int duration;
-                if(this.getWorld().getDifficulty() == Difficulty.EASY){
-                    duration = 40;
-                }
-                else if(this.getWorld().getDifficulty() == Difficulty.NORMAL){
-                    duration = 80;
-                }
-                else{
-                    duration = 120;
-                }
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, i * duration, 0));
-                this.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-                World var4 = this.getWorld();
-                if (var4 instanceof ServerWorld) {
-                    ServerWorld serverWorld = (ServerWorld)var4;
-                    EnchantmentHelper.onTargetDamaged(serverWorld, target, damageSource);
+    protected void dealDamage(LivingEntity target) {
+        if (this.level() instanceof ServerLevel level) {
+            if (this.isAlive() && this.doTeamsAllowDamage(target) && this.isWithinMeleeAttackRange(target) && this.hasLineOfSight(target)) {
+                DamageSource damageSource = this.damageSources().mobAttack(this);
+                if (target.hurtServer(level, damageSource, this.getAttackDamage())) {
+                    target.addEffect(new MobEffectInstance(MobEffects.POISON, this.getSize() * getPoisonDuration(this.level().getDifficulty()), 0));
+                    this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                    EnchantmentHelper.doPostAttackEffects(level, target, damageSource);
                 }
             }
         }
     }
 
-    protected boolean canAttack() {
-        return this.canMoveVoluntarily();
+    protected boolean canDealDamage() {
+        return this.isEffectiveAi();
     }
 
     @Override
-    public boolean canHaveStatusEffect(StatusEffectInstance effect) {
-        if(effect.getEffectType() == StatusEffects.POISON) return false;
-        return super.canHaveStatusEffect(effect);
+    public boolean canBeAffected(MobEffectInstance newEffect) {
+        return newEffect.getEffect() != MobEffects.POISON && super.canBeAffected(newEffect);
+    }
+
+    private static int getPoisonDuration(Difficulty difficulty) {
+        return switch (difficulty) {
+            case EASY -> EASY_POISON_DURATION;
+            case NORMAL -> NORMAL_POISON_DURATION;
+            case HARD -> HARD_POISON_DURATION;
+            default -> 0;
+        };
     }
 }

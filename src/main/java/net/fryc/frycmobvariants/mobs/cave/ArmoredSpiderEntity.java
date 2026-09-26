@@ -1,42 +1,46 @@
 package net.fryc.frycmobvariants.mobs.cave;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ProjectileDeflection;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.SpiderEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityReference;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.spider.Spider;
+import net.minecraft.world.entity.projectile.ProjectileDeflection;
+import net.minecraft.world.entity.projectile.arrow.Arrow;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class ArmoredSpiderEntity extends SpiderEntity {
-    public ArmoredSpiderEntity(EntityType<? extends SpiderEntity> entityType, World world) {
-        super(entityType, world);
-        this.experiencePoints += 1;
+public class ArmoredSpiderEntity extends Spider {
+
+
+    public ArmoredSpiderEntity(EntityType<? extends Spider> type, Level level) {
+        super(type, level);
+        this.xpReward += 1;
     }
 
-    public static DefaultAttributeContainer.Builder createArmoredSpiderAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000000192092896).add(EntityAttributes.GENERIC_ARMOR, 12).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.1f);
+    public static AttributeSupplier.Builder createArmoredSpiderAttributes() {
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 18.0).add(Attributes.MOVEMENT_SPEED, 0.30000000192092896).add(Attributes.ARMOR, 12).add(Attributes.KNOCKBACK_RESISTANCE, 0.1f);
     }
 
     //armored spiders deflect arrows
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if(source.getSource() instanceof ArrowEntity arrow){
+    public boolean hurtServer(ServerLevel level, DamageSource source, float damage) {
+        if(source.getDirectEntity() instanceof Arrow arrow){
             if(arrow.getPierceLevel() < 1){
-                arrow.deflect(ProjectileDeflection.SIMPLE, this, source.getAttacker(), false);
+                arrow.deflect(ProjectileDeflection.MOMENTUM_DEFLECT, source.getEntity(), EntityReference.of(this), false, 0.3);
                 return false;
             }
         }
 
-        return super.damage(source, amount);
+        return super.hurtServer(level, source, damage);
     }
 
-    protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.20F, 0.50F);
+    protected void playStepSound(final BlockPos pos, final BlockState blockState) {
+        this.playSound(SoundEvents.SPIDER_STEP, 0.20F, 0.50F);
     }
 }

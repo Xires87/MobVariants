@@ -1,15 +1,16 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.pathing.PathNodeType;
-import net.minecraft.entity.mob.PiglinEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
+import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.pathfinder.PathType;
 
-public class InfectedPiglinEntity extends PiglinEntity {
+public class InfectedPiglinEntity extends Piglin {
 
-    public InfectedPiglinEntity(EntityType<? extends PiglinEntity> entityType, World world) {
-        super(entityType, world);
-        this.setPathfindingPenalty(PathNodeType.LAVA, 8.0F);
+
+    public InfectedPiglinEntity(EntityType<? extends AbstractPiglin> type, Level level) {
+        super(type, level);
+        this.setPathfindingMalus(PathType.LAVA, 8.0F);
     }
-
 }

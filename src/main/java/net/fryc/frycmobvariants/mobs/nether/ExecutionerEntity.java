@@ -1,27 +1,26 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.AbstractSkeletonEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.WitherSkeletonEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.World;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
+import net.minecraft.world.entity.monster.skeleton.WitherSkeleton;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import oshi.util.tuples.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExecutionerEntity extends WitherSkeletonEntity {
+public class ExecutionerEntity extends WitherSkeleton {
 
     public static Map<Item, Pair<Float, Float>> executionerWeapons = new HashMap<>(Map.of(Items.STONE_AXE, new Pair<>(0.0F, 1.0F)));
     public static Map<Item, Pair<Float, Float>> executionerHelmets = new HashMap<>(Map.of(Items.IRON_HELMET, new Pair<>(0.0F, 1.0F)));
@@ -29,18 +28,18 @@ public class ExecutionerEntity extends WitherSkeletonEntity {
     public static Map<Item, Pair<Float, Float>> executionerLeggings = new HashMap<>(Map.of(Items.IRON_LEGGINGS, new Pair<>(0.0F, 0.25F)));
     public static Map<Item, Pair<Float, Float>> executionerBoots = new HashMap<>(Map.of(Items.IRON_BOOTS, new Pair<>(0.0F, 0.04F)));
 
-    public ExecutionerEntity(EntityType<? extends WitherSkeletonEntity> entityType, World world) {
-        super(entityType, world);
-        this.experiencePoints += 8;
-    }
-
-    public static DefaultAttributeContainer.Builder createExecutionerAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23335589123124123523).add(EntityAttributes.GENERIC_MAX_HEALTH, 46).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.6).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0);
+    public ExecutionerEntity(EntityType<? extends WitherSkeleton> type, Level level) {
+        super(type, level);
+        this.xpReward += 8;
     }
 
 
-    //used only in summons and spawn eggs, executioners don't spawn naturally
-    protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
+    public static AttributeSupplier.Builder createExecutionerAttributes() {
+        return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.23335589123124123523).add(Attributes.MAX_HEALTH, 46).add(Attributes.KNOCKBACK_RESISTANCE, 0.6).add(Attributes.ATTACK_DAMAGE, 5.0);
+    }
+
+
+    protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance localDifficulty) {
         initExecutionerEquipment(this);
     }
 
@@ -65,32 +64,24 @@ public class ExecutionerEntity extends WitherSkeletonEntity {
     }
 
     public void playAmbientSound() {
-        SoundEvent soundEvent = this.getAmbientSound();
-        if (soundEvent != null) {
-            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.25F);
-        }
-
+        this.playSound(this.getAmbientSound(), this.getSoundVolume(), this.getVoicePitch() - 0.25F);
     }
 
     protected void playHurtSound(DamageSource source) {
         this.resetSoundDelay();
-        SoundEvent soundEvent = this.getHurtSound(source);
-        if (soundEvent != null) {
-            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.20F);
-        }
-
+        this.playSound(this.getHurtSound(source), this.getSoundVolume(), this.getVoicePitch() - 0.20F);
     }
 
     private void resetSoundDelay() {
-        this.ambientSoundChance = -this.getMinAmbientSoundDelay();
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
     }
 
-    public static void initExecutionerEquipment(AbstractSkeletonEntity skeleton){
-        skeleton.equipStack(EquipmentSlot.MAINHAND, getExecutionerAxe());
-        skeleton.equipStack(EquipmentSlot.HEAD, getExecutionerHelmet());
-        skeleton.equipStack(EquipmentSlot.CHEST, getExecutionerChestplate());
-        skeleton.equipStack(EquipmentSlot.LEGS, getExecutionerLeggings());
-        skeleton.equipStack(EquipmentSlot.FEET, getExecutionerBoots());
+    public static void initExecutionerEquipment(AbstractSkeleton skeleton){
+        skeleton.setItemSlot(EquipmentSlot.MAINHAND, getExecutionerAxe());
+        skeleton.setItemSlot(EquipmentSlot.HEAD, getExecutionerHelmet());
+        skeleton.setItemSlot(EquipmentSlot.CHEST, getExecutionerChestplate());
+        skeleton.setItemSlot(EquipmentSlot.LEGS, getExecutionerLeggings());
+        skeleton.setItemSlot(EquipmentSlot.FEET, getExecutionerBoots());
     }
 
 }

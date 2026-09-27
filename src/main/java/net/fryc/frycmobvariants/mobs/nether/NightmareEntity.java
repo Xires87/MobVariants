@@ -1,149 +1,76 @@
 package net.fryc.frycmobvariants.mobs.nether;
 
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.control.MoveControl;
-import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.GhastEntity;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FireballEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-
-import java.util.EnumSet;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball;
+import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 
-public class NightmareEntity extends GhastEntity {
+public class NightmareEntity extends Ghast {
 
-    public NightmareEntity(EntityType<? extends GhastEntity> entityType, World world) {
-        super(entityType, world);
-        this.experiencePoints += 3;
+    private static final int ADDITIONAL_EXPLOSION_POWER = 1;
+
+
+    public NightmareEntity(EntityType<? extends Ghast> type, Level level) {
+        super(type, level);
+        this.xpReward += 3;
     }
 
     protected void initGoals() {
-        this.goalSelector.add(5, new FlyRandomlyGoal(this));
-        this.goalSelector.add(7, new LookAtTargetGoal(this));
-        this.goalSelector.add(7, new NightmareEntity.ShootFireballGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal(this, PlayerEntity.class, 10, true, false, (entity) -> {
-            return Math.abs(((LivingEntity)entity).getY() - this.getY()) <= 4.0;
-        }));
+        this.goalSelector.addGoal(5, new RandomFloatAroundGoal(this));
+        this.goalSelector.addGoal(7, new GhastLookGoal(this));
+        this.goalSelector.addGoal(7, new NightmareEntity.NightmareShootFireballGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(
+                this, Player.class, 10, true, false, (target, level) -> {
+                    return Math.abs(target.getY() - this.getY()) <= (double)4.0F;
+                }
+        ));
     }
 
-    public static DefaultAttributeContainer.Builder createNightmareAttributes() {
-        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0);
+    public static AttributeSupplier.Builder createNightmareAttributes() {
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0).add(Attributes.FOLLOW_RANGE, 100.0);
     }
 
     public void playAmbientSound() {
-        SoundEvent soundEvent = this.getAmbientSound();
-        if (soundEvent != null) {
-            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.15F);
-        }
-
+        this.playSound(this.getAmbientSound(), this.getSoundVolume(), this.getVoicePitch() - 0.15F);
     }
 
     protected void playHurtSound(DamageSource source) {
         this.resetSoundDelay();
-        SoundEvent soundEvent = this.getHurtSound(source);
-        if (soundEvent != null) {
-            this.playSound(soundEvent, this.getSoundVolume(), this.getSoundPitch() - 0.20F);
-        }
-
+        this.playSound(this.getHurtSound(source), this.getSoundVolume(), this.getVoicePitch() - 0.20F);
     }
 
     private void resetSoundDelay() {
-        this.ambientSoundChance = -this.getMinAmbientSoundDelay();
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
+    }
+
+    public int getExplosionPower() {
+        return super.getExplosionPower() + ADDITIONAL_EXPLOSION_POWER;
     }
 
 
-    private static class FlyRandomlyGoal extends Goal {
-        private final GhastEntity ghast;
-
-        public FlyRandomlyGoal(GhastEntity ghast) {
-            this.ghast = ghast;
-            this.setControls(EnumSet.of(Control.MOVE));
-        }
-
-        public boolean canStart() {
-            MoveControl moveControl = this.ghast.getMoveControl();
-            if (!moveControl.isMoving()) {
-                return true;
-            } else {
-                double d = moveControl.getTargetX() - this.ghast.getX();
-                double e = moveControl.getTargetY() - this.ghast.getY();
-                double f = moveControl.getTargetZ() - this.ghast.getZ();
-                double g = d * d + e * e + f * f;
-                return g < 1.0 || g > 3600.0;
-            }
-        }
-
-        public boolean shouldContinue() {
-            return false;
-        }
-
-        public void start() {
-            Random random = this.ghast.getRandom();
-            double d = this.ghast.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            double e = this.ghast.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            double f = this.ghast.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            this.ghast.getMoveControl().moveTo(d, e, f, 1.0);
-        }
-    }
-
-    static class LookAtTargetGoal extends Goal {
-        private final GhastEntity ghast;
-
-        public LookAtTargetGoal(GhastEntity ghast) {
-            this.ghast = ghast;
-            this.setControls(EnumSet.of(Control.LOOK));
-        }
-
-        public boolean canStart() {
-            return true;
-        }
-
-        public boolean shouldRunEveryTick() {
-            return true;
-        }
-
-        public void tick() {
-            if (this.ghast.getTarget() == null) {
-                Vec3d vec3d = this.ghast.getVelocity();
-                this.ghast.setYaw(-((float) MathHelper.atan2(vec3d.x, vec3d.z)) * 57.295776F);
-                this.ghast.bodyYaw = this.ghast.getYaw();
-            } else {
-                LivingEntity livingEntity = this.ghast.getTarget();
-                double d = 64.0;
-                if (livingEntity.squaredDistanceTo(this.ghast) < 4096.0) {
-                    double e = livingEntity.getX() - this.ghast.getX();
-                    double f = livingEntity.getZ() - this.ghast.getZ();
-                    this.ghast.setYaw(-((float)MathHelper.atan2(e, f)) * 57.295776F);
-                    this.ghast.bodyYaw = this.ghast.getYaw();
-                }
-            }
-
-        }
-    }
-
-    private static class ShootFireballGoal extends Goal {
-        private final NightmareEntity ghast;
+    private static class NightmareShootFireballGoal extends Goal {
+        private final Ghast ghast;
         public int cooldown;
-
         java.util.Random random = new java.util.Random();
-        public ShootFireballGoal(NightmareEntity ghast) {
+
+        public NightmareShootFireballGoal(Ghast ghast) {
             this.ghast = ghast;
         }
 
-        public boolean canStart() {
+        public boolean canUse() {
             return this.ghast.getTarget() != null;
         }
 
@@ -152,46 +79,44 @@ public class NightmareEntity extends GhastEntity {
         }
 
         public void stop() {
-            this.ghast.setShooting(false);
+            this.ghast.setCharging(false);
         }
 
-        public boolean shouldRunEveryTick() {
+        public boolean requiresUpdateEveryTick() {
             return true;
         }
 
         public void tick() {
             LivingEntity livingEntity = this.ghast.getTarget();
             if (livingEntity != null) {
-                double d = 64.0;
-                if (livingEntity.squaredDistanceTo(this.ghast) < 4096.0 && this.ghast.canSee(livingEntity)) {
-                    World world = this.ghast.getWorld();
+                if (livingEntity.distanceToSqr(this.ghast) < 4096.0 && this.ghast.hasLineOfSight(livingEntity)) {
+                    Level level = this.ghast.level();
                     ++this.cooldown;
                     if (this.cooldown == 10 && !this.ghast.isSilent()) {
-                        world.syncWorldEvent((PlayerEntity)null, 1015, this.ghast.getBlockPos(), 0);
+                        level.levelEvent((Entity) null, 1015, this.ghast.blockPosition(), 0);
                     }
 
                     if (this.cooldown == 20) {
-                        double e = 4.0;
-                        Vec3d vec3d = this.ghast.getRotationVec(1.0F);
+                        Vec3 vec3d = this.ghast.getViewVector(1.0F);
                         double f = livingEntity.getX() - (this.ghast.getX() + vec3d.x * 4.0);
-                        double g = livingEntity.getBodyY(0.5) - (0.5 + this.ghast.getBodyY(0.5));
+                        double g = livingEntity.getY(0.5) - (0.5 + this.ghast.getY(0.5));
                         double h = livingEntity.getZ() - (this.ghast.getZ() + vec3d.z * 4.0);
                         if (!this.ghast.isSilent()) {
-                            world.syncWorldEvent((PlayerEntity)null, 1016, this.ghast.getBlockPos(), 0);
+                            level.levelEvent((Entity)null, 1016, this.ghast.blockPosition(), 0);
                         }
-                        if(this.ghast.squaredDistanceTo(livingEntity) < 800){
+                        if(this.ghast.distanceToSqr(livingEntity) < 800){
                             for(float j = 0.0f; j < 1.1f; j += 0.5f){
                                 for(int i = -3; i<3; i++){
-                                    SmallFireballEntity fireballEntity = new SmallFireballEntity(world, this.ghast, new Vec3d(f + random.nextDouble(-2.8, 2.8), g + random.nextDouble(-3.5, 3.5), h + random.nextDouble(-2.8, 2.8)));
-                                    fireballEntity.setPosition(this.ghast.getX() + i + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + j, fireballEntity.getZ() + vec3d.z * 4.0);
-                                    world.spawnEntity(fireballEntity);
+                                    SmallFireball fireballEntity = new SmallFireball(level, this.ghast, new Vec3(f + random.nextDouble(-2.8, 2.8), g + random.nextDouble(-3.5, 3.5), h + random.nextDouble(-2.8, 2.8)));
+                                    fireballEntity.setPos(this.ghast.getX() + i + vec3d.x * 4.0, this.ghast.getY(0.5) + j, fireballEntity.getZ() + vec3d.z * 4.0);
+                                    level.addFreshEntity(fireballEntity);
                                 }
                             }
                         }
                         else {
-                            FireballEntity fireballEntity = new FireballEntity(world, this.ghast, new Vec3d(f,g,h), this.ghast.getFireballStrength() + 1);
-                            fireballEntity.setPosition(this.ghast.getX() + vec3d.x * 4.0, this.ghast.getBodyY(0.5) + 0.5, fireballEntity.getZ() + vec3d.z * 4.0);
-                            world.spawnEntity(fireballEntity);
+                            LargeFireball fireballEntity = new LargeFireball(level, this.ghast, new Vec3(f,g,h), this.ghast.getExplosionPower());
+                            fireballEntity.setPos(this.ghast.getX() + vec3d.x * 4.0, this.ghast.getY(0.5) + 0.5, fireballEntity.getZ() + vec3d.z * 4.0);
+                            level.addFreshEntity(fireballEntity);
                         }
 
 
@@ -201,7 +126,7 @@ public class NightmareEntity extends GhastEntity {
                     --this.cooldown;
                 }
 
-                this.ghast.setShooting(this.cooldown > 10);
+                this.ghast.setCharging(this.cooldown > 10);
             }
         }
     }

@@ -1,60 +1,84 @@
 package net.fryc.frycmobvariants.mobs.biome;
 
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.entity.animal.golem.IronGolem;
+import net.minecraft.world.entity.animal.turtle.Turtle;
+import net.minecraft.world.entity.animal.wolf.Wolf;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.skeleton.Skeleton;
+import net.minecraft.world.entity.monster.zombie.Drowned;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.phys.Vec3;
+import org.jspecify.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CorsairEntity extends Skeleton {
-    boolean targetingUnderwater;
-    protected final SwimNavigation waterNavigation;
-    protected final MobNavigation landNavigation;
+
+    public boolean searchingForLand;
 
     public static Map<Item, Pair<Float, Float>> corsairWeapons = new HashMap<>(Map.of(Items.WOODEN_SWORD, new Pair<>(0.0F, 0.72F)));
-// TODO naprawic draza korsarza
+
     public CorsairEntity(EntityType<? extends Skeleton> entityType, Level level) {
         super(entityType, level);
-        this.moveControl = new CorsairEntity.CorsairMoveControl(this);
-        this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
-        this.waterNavigation = new SwimNavigation(this, level);
-        this.landNavigation = new MobNavigation(this, level);
+        this.moveControl = new CorsairEntity.CorsairMoveControl<>(this);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
     }
 
-    protected void initGoals() {
-        this.goalSelector.add(1, new CorsairEntity.WanderAroundOnSurfaceGoal(this, 1.0));
-        this.goalSelector.add(3, new FleeEntityGoal(this, WolfEntity.class, 6.0F, 1.0, 1.2));
-        this.goalSelector.add(5, new CorsairEntity.LeaveWaterGoal(this, 1.0));
-        this.goalSelector.add(6, new CorsairEntity.TargetAboveWaterGoal(this, 1.0, this.getWorld().getSeaLevel()));
-        this.goalSelector.add(7, new WanderAroundGoal(this, 1.0));
-        this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal(this, IronGolemEntity.class, true));
-        this.targetSelector.add(3, new ActiveTargetGoal(this, TurtleEntity.class, 10, true, false, TurtleEntity.BABY_TURTLE_ON_LAND_FILTER));
-
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new Drowned.DrownedGoToWaterGoal(this, (double)1.0F));
+        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Wolf.class, 6.0F, (double)1.0F, 1.2));
+        this.goalSelector.addGoal(5, new CorsairEntity.CorsairGoToBeachGoal(this, (double)1.0F));
+        this.goalSelector.addGoal(6, new CorsairEntity.CorsairSwimUpGoal(this, (double)1.0F, this.level().getSeaLevel()));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(7, new RandomStrollGoal(this, (double)1.0F));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (target, level) -> this.okTarget(target)));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
     }
 
-    public static DefaultAttributeContainer.Builder createCorsairAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 85).add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.0);
+    public static AttributeSupplier.Builder createCorsairAttributes() {
+        return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25).add(Attributes.FOLLOW_RANGE, 85).add(Attributes.STEP_HEIGHT, 1.0);
     }
 
-    protected void initEquipment(Random random, LocalDifficulty localDifficulty) {
-        this.equipStack(EquipmentSlot.MAINHAND, getCorsairSword());
+    protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance localDifficulty) {
+        this.setItemSlot(EquipmentSlot.MAINHAND, getCorsairSword());
     }
 
-    protected boolean hasFinishedCurrentPath() {
-        Path path = this.getNavigation().getCurrentPath();
+    protected boolean closeToNextPos() {
+        Path path = this.getNavigation().getPath();
         if (path != null) {
-            BlockPos blockPos = path.getTarget();
-            if (blockPos != null) {
-                double d = this.squaredDistanceTo((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ());
-                if (d < 4.0) {
+            BlockPos pos = path.getTarget();
+            if (pos != null) {
+                double sqrDistToNextPos = this.distanceToSqr((double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
+                if (sqrDistToNextPos < (double)4.0F) {
                     return true;
                 }
             }
@@ -63,44 +87,36 @@ public class CorsairEntity extends Skeleton {
         return false;
     }
 
-    public void updateSwimming() {
-        if (!this.getWorld().isClient) {
-            if (this.canMoveVoluntarily() && this.isTouchingWater() && this.isTargetingUnderwater()) {
-                this.navigation = this.waterNavigation;
-                this.setSwimming(true);
-            } else {
-                this.navigation = this.landNavigation;
-                this.setSwimming(false);
-            }
-        }
+    protected PathNavigation createNavigation(final Level level) {
+    return new AmphibiousPathNavigation(this, level);
+}
 
-    }
-
-    public void travel(Vec3d movementInput) {
-        if (this.isLogicalSideForUpdatingMovement() && this.isTouchingWater() && this.isTargetingUnderwater()) {
-            this.updateVelocity(0.01F, movementInput);
-            this.move(MovementType.SELF, this.getVelocity());
-            this.setVelocity(this.getVelocity().multiply(0.9));
+    public boolean okTarget(final @Nullable LivingEntity target) {
+        if (target != null) {
+            return !this.level().isBrightOutside() || target.isInWater();
         } else {
-            super.travel(movementInput);
+            return false;
         }
-
     }
 
-    public void setTargetingUnderwater(boolean targetingUnderwater) {
-        this.targetingUnderwater = targetingUnderwater;
+    public void setSearchingForLand(boolean searchingForLand) {
+        this.searchingForLand = searchingForLand;
     }
 
-    boolean isTargetingUnderwater() {
-        if (this.targetingUnderwater) {
+    public boolean isSearchingForLand() {
+        return this.searchingForLand;
+    }
+
+    public boolean wantsToSwim() {
+        if (this.searchingForLand) {
             return true;
         } else {
-            LivingEntity livingEntity = this.getTarget();
-            return livingEntity != null && livingEntity.isTouchingWater();
+            LivingEntity target = this.getTarget();
+            return target != null && target.isInWater();
         }
     }
 
-    public boolean isPushedByFluids() {
+    public boolean isPushedByFluid() {
         return !this.isSwimming();
     }
 
@@ -109,42 +125,39 @@ public class CorsairEntity extends Skeleton {
     }
 
 
-    //move control
-    private static class CorsairMoveControl extends MoveControl {
-        private final CorsairEntity corsair;
+    public static class CorsairMoveControl<T extends CorsairEntity> extends MoveControl<T> {
 
-        public CorsairMoveControl(CorsairEntity corsair) {
-            super(corsair);
-            this.corsair = corsair;
+        public CorsairMoveControl(T mob) {
+            super(mob);
         }
 
         public void tick() {
-            LivingEntity livingEntity = this.corsair.getTarget();
-            if (this.corsair.isTargetingUnderwater() && this.corsair.isTouchingWater()) {
-                if (livingEntity != null && livingEntity.getY() > this.corsair.getY() || this.corsair.targetingUnderwater) {
-                    this.corsair.setVelocity(this.corsair.getVelocity().add(0.0, 0.002, 0.0));
+            LivingEntity target = ((CorsairEntity)this.mob).getTarget();
+            if (((CorsairEntity)this.mob).wantsToSwim() && ((CorsairEntity)this.mob).isInWater()) {
+                if (target != null && target.getY() > ((CorsairEntity)this.mob).getY() || ((CorsairEntity)this.mob).isSearchingForLand()) {
+                    ((CorsairEntity)this.mob).setDeltaMovement(((CorsairEntity)this.mob).getDeltaMovement().add((double)0.0F, 0.002, (double)0.0F));
                 }
 
-                if (this.state != State.MOVE_TO || this.corsair.getNavigation().isIdle()) {
-                    this.corsair.setMovementSpeed(0.0F);
+                if (this.operation != Operation.MOVE_TO || ((CorsairEntity)this.mob).getNavigation().isDone()) {
+                    ((CorsairEntity)this.mob).setSpeed(0.0F);
                     return;
                 }
 
-                double d = this.targetX - this.corsair.getX();
-                double e = this.targetY - this.corsair.getY();
-                double f = this.targetZ - this.corsair.getZ();
-                double g = Math.sqrt(d * d + e * e + f * f);
-                e /= g;
-                float h = (float)(MathHelper.atan2(f, d) * 57.2957763671875) - 90.0F;
-                this.corsair.setYaw(this.wrapDegrees(this.corsair.getYaw(), h, 90.0F));
-                this.corsair.bodyYaw = this.corsair.getYaw();
-                float i = (float)(this.speed * this.corsair.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED));
-                float j = MathHelper.lerp(0.125F, this.corsair.getMovementSpeed(), i);
-                this.corsair.setMovementSpeed(j);
-                this.corsair.setVelocity(this.corsair.getVelocity().add((double)j * d * 0.005, (double)j * e * 0.1, (double)j * f * 0.005));
+                double xd = this.wantedX - ((CorsairEntity)this.mob).getX();
+                double yd = this.wantedY - ((CorsairEntity)this.mob).getY();
+                double zd = this.wantedZ - ((CorsairEntity)this.mob).getZ();
+                double dd = Math.sqrt(xd * xd + yd * yd + zd * zd);
+                yd /= dd;
+                float yRotD = (float)(Mth.atan2(zd, xd) * (double)(180F / (float)Math.PI)) - 90.0F;
+                ((CorsairEntity)this.mob).setYRot(this.rotlerp(((CorsairEntity)this.mob).getYRot(), yRotD, 90.0F));
+                ((CorsairEntity)this.mob).yBodyRot = ((CorsairEntity)this.mob).getYRot();
+                float targetSpeed = (float)(this.speedModifier * ((CorsairEntity)this.mob).getAttributeValue(Attributes.MOVEMENT_SPEED));
+                float newSpeed = Mth.lerp(0.125F, ((CorsairEntity)this.mob).getSpeed(), targetSpeed);
+                ((CorsairEntity)this.mob).setSpeed(newSpeed);
+                ((CorsairEntity)this.mob).setDeltaMovement(((CorsairEntity)this.mob).getDeltaMovement().add((double)newSpeed * xd * 0.005, (double)newSpeed * yd * 0.1, (double)newSpeed * zd * 0.005));
             } else {
-                if (!this.corsair.isOnGround()) {
-                    this.corsair.setVelocity(this.corsair.getVelocity().add(0.0, -0.008, 0.0));
+                if (!((CorsairEntity)this.mob).onGround()) {
+                    ((CorsairEntity)this.mob).setDeltaMovement(((CorsairEntity)this.mob).getDeltaMovement().add((double)0.0F, -0.008, (double)0.0F));
                 }
 
                 super.tick();
@@ -153,34 +166,29 @@ public class CorsairEntity extends Skeleton {
         }
     }
 
-
-
-
-    //goal classes
-    private static class LeaveWaterGoal extends MoveToTargetPosGoal {
+    public static class CorsairGoToBeachGoal extends MoveToBlockGoal {
         private final CorsairEntity corsair;
 
-        public LeaveWaterGoal(CorsairEntity corsair, double speed) {
-            super(corsair, speed, 8, 2);
+        public CorsairGoToBeachGoal(CorsairEntity corsair, final double speedModifier) {
+            super(corsair, speedModifier, 8, 2);
             this.corsair = corsair;
         }
 
-        public boolean canStart() {
-            return super.canStart() && !this.corsair.getWorld().isDay() && this.corsair.isTouchingWater() && this.corsair.getY() >= (double)(this.corsair.getWorld().getSeaLevel() - 3);
+        public boolean canUse() {
+            return super.canUse() && !this.corsair.level().isBrightOutside() && this.corsair.isInWater() && this.corsair.getY() >= (double)(this.corsair.level().getSeaLevel() - 3);
         }
 
-        public boolean shouldContinue() {
-            return super.shouldContinue();
+        public boolean canContinueToUse() {
+            return super.canContinueToUse();
         }
 
-        protected boolean isTargetPos(WorldView world, BlockPos pos) {
-            BlockPos blockPos = pos.up();
-            return world.isAir(blockPos) && world.isAir(blockPos.up()) ? world.getBlockState(pos).hasSolidTopSurface(world, pos, this.corsair) : false;
+        protected boolean isValidTarget(final LevelReader level, final BlockPos pos) {
+            BlockPos above = pos.above();
+            return level.isEmptyBlock(above) && level.isEmptyBlock(above.above()) ? level.getBlockState(pos).entityCanStandOn(level, pos, this.corsair) : false;
         }
 
         public void start() {
-            this.corsair.setTargetingUnderwater(false);
-            this.corsair.navigation = this.corsair.landNavigation;
+            this.corsair.setSearchingForLand(false);
             super.start();
         }
 
@@ -189,104 +197,46 @@ public class CorsairEntity extends Skeleton {
         }
     }
 
-    private static class TargetAboveWaterGoal extends Goal {
+    public static class CorsairSwimUpGoal extends Goal {
         private final CorsairEntity corsair;
-        private final double speed;
-        private final int minY;
-        private boolean foundTarget;
+        private final double speedModifier;
+        private final int seaLevel;
+        private boolean stuck;
 
-        public TargetAboveWaterGoal(CorsairEntity corsair, double speed, int minY) {
+        public CorsairSwimUpGoal(CorsairEntity corsair, double speedModifier, int seaLevel) {
             this.corsair = corsair;
-            this.speed = speed;
-            this.minY = minY;
+            this.speedModifier = speedModifier;
+            this.seaLevel = seaLevel;
         }
 
-        public boolean canStart() {
-            return !this.corsair.getWorld().isDay() && this.corsair.isTouchingWater() && this.corsair.getY() < (double)(this.minY - 2);
+        public boolean canUse() {
+            return !this.corsair.level().isBrightOutside() && this.corsair.isInWater() && this.corsair.getY() < (double)(this.seaLevel - 2);
         }
 
-        public boolean shouldContinue() {
-            return this.canStart() && !this.foundTarget;
+        public boolean canContinueToUse() {
+            return this.canUse() && !this.stuck;
         }
 
         public void tick() {
-            if (this.corsair.getY() < (double)(this.minY - 1) && (this.corsair.getNavigation().isIdle() || this.corsair.hasFinishedCurrentPath())) {
-                Vec3d vec3d = NoPenaltyTargeting.findTo(this.corsair, 4, 8, new Vec3d(this.corsair.getX(), (double)(this.minY - 1), this.corsair.getZ()), 1.5707963705062866);
-                if (vec3d == null) {
-                    this.foundTarget = true;
+            if (this.corsair.getY() < (double)(this.seaLevel - 1) && (this.corsair.getNavigation().isDone() || this.corsair.closeToNextPos())) {
+                Vec3 nextPos = DefaultRandomPos.getPosTowards(this.corsair, 4, 8, new Vec3(this.corsair.getX(), (double)(this.seaLevel - 1), this.corsair.getZ()), (double)((float)Math.PI / 2F));
+                if (nextPos == null) {
+                    this.stuck = true;
                     return;
                 }
 
-                this.corsair.getNavigation().startMovingTo(vec3d.x, vec3d.y, vec3d.z, this.speed);
+                this.corsair.getNavigation().moveTo(nextPos.x, nextPos.y, nextPos.z, this.speedModifier);
             }
 
         }
 
         public void start() {
-            this.corsair.setTargetingUnderwater(true);
-            this.foundTarget = false;
+            this.corsair.setSearchingForLand(true);
+            this.stuck = false;
         }
 
         public void stop() {
-            this.corsair.setTargetingUnderwater(false);
+            this.corsair.setSearchingForLand(false);
         }
     }
-
-    private static class WanderAroundOnSurfaceGoal extends Goal {
-        private final PathAwareEntity mob;
-        private double x;
-        private double y;
-        private double z;
-        private final double speed;
-        private final World world;
-
-        public WanderAroundOnSurfaceGoal(PathAwareEntity mob, double speed) {
-            this.mob = mob;
-            this.speed = speed;
-            this.world = mob.getWorld();
-            this.setControls(EnumSet.of(Control.MOVE));
-        }
-
-        public boolean canStart() {
-            if (!this.world.isDay()) {
-                return false;
-            } else if (this.mob.isTouchingWater()) {
-                return false;
-            } else {
-                Vec3d vec3d = this.getWanderTarget();
-                if (vec3d == null) {
-                    return false;
-                } else {
-                    this.x = vec3d.x;
-                    this.y = vec3d.y;
-                    this.z = vec3d.z;
-                    return true;
-                }
-            }
-        }
-
-        public boolean shouldContinue() {
-            return !this.mob.getNavigation().isIdle();
-        }
-
-        public void start() {
-            this.mob.getNavigation().startMovingTo(this.x, this.y, this.z, this.speed);
-        }
-
-        @Nullable
-        private Vec3d getWanderTarget() {
-            Random random = this.mob.getRandom();
-            BlockPos blockPos = this.mob.getBlockPos();
-
-            for(int i = 0; i < 10; ++i) {
-                BlockPos blockPos2 = blockPos.add(random.nextInt(20) - 10, 2 - random.nextInt(8), random.nextInt(20) - 10);
-                if (this.world.getBlockState(blockPos2).isOf(Blocks.WATER)) {
-                    return Vec3d.ofBottomCenter(blockPos2);
-                }
-            }
-
-            return null;
-        }
-    }
-
 }

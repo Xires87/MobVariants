@@ -18,6 +18,7 @@
   "license": "MIT",
   "icon": "assets/frycmobvariants/icon.png",
 
+  "accessWidener": "frycmobvariants.accesswidener",
   "environment": "*",
   "entrypoints": {
     "main": [

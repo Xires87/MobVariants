@@ -3,23 +3,27 @@ package net.fryc.frycmobvariants.mobs.renderer.biome;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.ZombieEntityRenderer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ZombieRenderer;
+import net.minecraft.client.renderer.entity.state.ZombieRenderState;
+import net.minecraft.resources.Identifier;
+
 
 @Environment(EnvType.CLIENT)
-public class FrozenZombieEntityRenderer extends ZombieEntityRenderer {
-    private static final Identifier TEXTURE =
-            Identifier.of(MobVariants.MOD_ID, "textures/entity/zombie/frozen_zombie.png");
+public class FrozenZombieEntityRenderer extends ZombieRenderer {
 
-    public FrozenZombieEntityRenderer(EntityRendererFactory.Context context) {
-        super(context,EntityModelLayers.ZOMBIE, EntityModelLayers.ZOMBIE_INNER_ARMOR, EntityModelLayers.ZOMBIE_OUTER_ARMOR);
+    private static final Identifier TEXTURE =
+            Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, "textures/entity/zombie/frozen_zombie.png");
+    private static final Identifier BABY_TEXTURE =
+            Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, "textures/entity/zombie/frozen_zombie_baby.png");
+
+
+    public FrozenZombieEntityRenderer(EntityRendererProvider.Context context) {
+        super(context);
     }
 
 
-    public Identifier getTexture(ZombieEntity zombieEntity) {
-        return TEXTURE;
+    public Identifier getTextureLocation(ZombieRenderState state) {
+        return state.isBaby ? BABY_TEXTURE : TEXTURE;
     }
 }

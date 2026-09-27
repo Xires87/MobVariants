@@ -1,16 +1,10 @@
 package net.fryc.frycmobvariants.mobs;
 
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.item.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+
 
 public class ModSpawnEggs {
+    // TODO spawn eggs
+    /*
     //item group
     public static final RegistryKey<ItemGroup> MOB_VARIANTS = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(MobVariants.MOD_ID, "mob_variants_spawn_eggs"));
 
@@ -87,4 +81,6 @@ public class ModSpawnEggs {
                 })
                 .build());
     }
+
+     */
 }

@@ -4,22 +4,24 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fryc.frycmobvariants.MobVariants;
 import net.fryc.frycmobvariants.mobs.biome.TropicalSpiderEntity;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.SpiderEntityRenderer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.SpiderRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class TropicalSpiderEntityRenderer extends SpiderEntityRenderer<TropicalSpiderEntity> {
+public class TropicalSpiderEntityRenderer extends SpiderRenderer<TropicalSpiderEntity> {
 
     private static final Identifier TEXTURE =
-            Identifier.of(MobVariants.MOD_ID, "textures/entity/spider/tropical_spider.png");
+            Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, "textures/entity/spider/tropical_spider.png");
 
-    public TropicalSpiderEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, EntityModelLayers.SPIDER);
+
+    public TropicalSpiderEntityRenderer(EntityRendererProvider.Context context) {
+        super(context);
     }
 
-    public Identifier getTexture(TropicalSpiderEntity tropicalSpiderEntity) {
+
+    public Identifier getTextureLocation(final LivingEntityRenderState state) {
         return TEXTURE;
     }
 }

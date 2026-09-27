@@ -1,14 +1,8 @@
 package net.fryc.frycmobvariants.models;
 
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.model.ModelTransform;
-import net.minecraft.client.render.entity.model.CrossbowPosing;
-import net.minecraft.client.render.entity.model.PiglinEntityModel;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.entity.Mob;
 
-public class ZombifiedPiglinBruteEntityModel extends PiglinEntityModel<Mob> {
+
+public class ZombifiedPiglinBruteEntityModel{}/* extends PiglinEntityModel<Mob> {
 
     private final ModelPart leftEar;
     private final ModelTransform bodyRotation;
@@ -47,4 +41,4 @@ public class ZombifiedPiglinBruteEntityModel extends PiglinEntityModel<Mob> {
         this.jacket.copyTransform(this.body);
         this.hat.copyTransform(this.head);
     }
-}
+}*/

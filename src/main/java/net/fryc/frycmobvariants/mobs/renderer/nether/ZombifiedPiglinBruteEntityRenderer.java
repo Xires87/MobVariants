@@ -3,17 +3,33 @@ package net.fryc.frycmobvariants.mobs.renderer.nether;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fryc.frycmobvariants.MobVariants;
-import net.fryc.frycmobvariants.models.ZombifiedPiglinBruteEntityModel;
-import net.minecraft.client.render.entity.BipedEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
-import net.minecraft.client.render.entity.model.ArmorEntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.client.render.entity.model.EntityModelLoader;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.ArmorModelSet;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ZombifiedPiglinRenderer;
+import net.minecraft.client.renderer.entity.state.ZombifiedPiglinRenderState;
+import net.minecraft.resources.Identifier;
 
+
+@Environment(EnvType.CLIENT)
+public class ZombifiedPiglinBruteEntityRenderer extends ZombifiedPiglinRenderer {
+
+    private static final Identifier TEXTURE =
+            Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, "textures/entity/zombie/zombified_piglin_brute.png");
+
+
+    public ZombifiedPiglinBruteEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, ModelLayers.ZOMBIFIED_PIGLIN, ModelLayers.ZOMBIFIED_PIGLIN, ModelLayers.ZOMBIFIED_PIGLIN_ARMOR, ModelLayers.ZOMBIFIED_PIGLIN_ARMOR);
+    }
+
+
+    public Identifier getTextureLocation(ZombifiedPiglinRenderState state) {
+        return TEXTURE;
+    }
+}
+
+/*
 @Environment(EnvType.CLIENT)
 public class ZombifiedPiglinBruteEntityRenderer extends BipedEntityRenderer<MobEntity, ZombifiedPiglinBruteEntityModel> {
 
@@ -43,3 +59,5 @@ public class ZombifiedPiglinBruteEntityRenderer extends BipedEntityRenderer<MobE
     }
 
 }
+
+ */

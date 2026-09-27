@@ -3,26 +3,26 @@ package net.fryc.frycmobvariants.mobs.renderer.nether;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fryc.frycmobvariants.MobVariants;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.GhastEntityRenderer;
-import net.minecraft.entity.mob.GhastEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.GhastRenderer;
+import net.minecraft.client.renderer.entity.state.GhastRenderState;
+import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class NightmareEntityRenderer extends GhastEntityRenderer {
+public class NightmareEntityRenderer extends GhastRenderer {
+
     private static final Identifier TEXTURE =
-            Identifier.of(MobVariants.MOD_ID, "textures/entity/ghast/nightmare.png");
-
+            Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, "textures/entity/ghast/nightmare.png");
     private static final Identifier ANGRY_TEXTURE =
-            Identifier.of(MobVariants.MOD_ID, "textures/entity/ghast/nightmare_angry.png");
+            Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, "textures/entity/ghast/nightmare_angry.png");
 
-    public NightmareEntityRenderer(EntityRendererFactory.Context context) {
+
+    public NightmareEntityRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
 
-    public Identifier getTexture(GhastEntity ghastEntity) {
-        return ghastEntity.isShooting() ? ANGRY_TEXTURE : TEXTURE;
+    public Identifier getTextureLocation(final GhastRenderState state) {
+        return state.isCharging ? ANGRY_TEXTURE : TEXTURE;
     }
-
 }

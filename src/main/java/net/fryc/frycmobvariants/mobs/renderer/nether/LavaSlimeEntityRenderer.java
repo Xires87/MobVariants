@@ -31,6 +31,6 @@ public class LavaSlimeEntityRenderer extends AbstractCubeMobRenderer<LavaSlimeEn
 
     @Override
     public SlimeRenderState createRenderState() {
-        return null;
+        return new SlimeRenderState();
     }
 }

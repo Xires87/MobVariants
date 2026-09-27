@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(Snowball.class)
 abstract class SnowballEntityMixin {
 
-    @ModifyVariable(method = "onHitEntity(Lnet/minecraft/util/hit/EntityHitResult;)V", at = @At("STORE"), ordinal = 0)
+    @ModifyVariable(method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V", at = @At("STORE"), ordinal = 0)
     private int dealDamageToLavaSlimes(int i, EntityHitResult entityHitResult) {
         if(entityHitResult.getEntity() instanceof LavaSlimeEntity){
             i += 2;

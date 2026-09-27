@@ -1,5 +1,6 @@
 package net.fryc.frycmobvariants.mobs.renderer.nether;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fryc.frycmobvariants.MobVariants;
@@ -23,10 +24,7 @@ public class ExecutionerEntityRenderer extends WitherSkeletonRenderer {
         return TEXTURE;
     }
 
-    public SkeletonRenderState createRenderState() {
-        SkeletonRenderState state = new SkeletonRenderState();
-        state.scale *= 1.3F;
-
-        return state;
+    protected void scale(SkeletonRenderState state, PoseStack poseStack) {
+        poseStack.scale(1.1F, 1.1F, 1.1F);
     }
 }

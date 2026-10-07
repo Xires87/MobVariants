@@ -5,12 +5,12 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Ghast;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball;
 import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
@@ -32,7 +32,7 @@ public class NightmareEntity extends Ghast {
         this.goalSelector.addGoal(5, new RandomFloatAroundGoal(this));
         this.goalSelector.addGoal(7, new GhastLookGoal(this));
         this.goalSelector.addGoal(7, new NightmareEntity.NightmareShootFireballGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(
                 this, Player.class, 10, true, false, (target, level) -> {
                     return Math.abs(target.getY() - this.getY()) <= (double)4.0F;
                 }
@@ -40,7 +40,7 @@ public class NightmareEntity extends Ghast {
     }
 
     public static AttributeSupplier.Builder createNightmareAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0).add(Attributes.FOLLOW_RANGE, 100.0);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 16.0).add(Attributes.FOLLOW_RANGE, 100.0).add(Attributes.CAMERA_DISTANCE, 8.0F).add(Attributes.FLYING_SPEED, 0.06);
     }
 
     public void playAmbientSound() {

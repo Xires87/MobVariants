@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.mobs.ModMobs;
+import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.MobEquipment;
 import net.minecraft.world.entity.EntityTypes;
@@ -26,7 +27,7 @@ public class MobVariants implements ModInitializer {
 		config = AutoConfig.getConfigHolder(MobVariantsConfig.class).getConfig();
 
 		ModMobs.registerModMobs();
-		// TODO ModSpawnEggs.registerSpawnEggs();
+		ModSpawnEggs.registerSpawnEggs();
 		MobConversion.registerMobConversionFunctionTypes();
 
 		// TODO ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new MobConversionRulesResourceReloadListener());

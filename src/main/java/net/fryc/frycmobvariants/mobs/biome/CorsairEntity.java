@@ -52,6 +52,7 @@ public class CorsairEntity extends Skeleton {
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new Drowned.DrownedGoToWaterGoal(this, (double)1.0F));
+        this.goalSelector.addGoal(2, new CorsairMeleeAttackGoal(this, (double)1.0F, false));
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Wolf.class, 6.0F, (double)1.0F, 1.2));
         this.goalSelector.addGoal(5, new CorsairEntity.CorsairGoToBeachGoal(this, (double)1.0F));
         this.goalSelector.addGoal(6, new CorsairEntity.CorsairSwimUpGoal(this, (double)1.0F, this.level().getSeaLevel()));
@@ -237,6 +238,25 @@ public class CorsairEntity extends Skeleton {
 
         public void stop() {
             this.corsair.setSearchingForLand(false);
+        }
+    }
+
+    private static class CorsairMeleeAttackGoal extends MeleeAttackGoal {
+
+        private final CorsairEntity corsair;
+
+
+        public CorsairMeleeAttackGoal(CorsairEntity corsair, double speedModifier, boolean followingTargetEvenIfNotSeen) {
+            super(corsair, speedModifier, followingTargetEvenIfNotSeen);
+            this.corsair = corsair;
+        }
+
+        public boolean canUse() {
+            return super.canUse() && this.corsair.okTarget(this.corsair.getTarget());
+        }
+
+        public boolean canContinueToUse() {
+            return super.canContinueToUse() && this.corsair.okTarget(this.corsair.getTarget());
         }
     }
 }

@@ -21,18 +21,20 @@ abstract class ShipwreckGeneratorMixin {
     //spawns corsairs on shipwrecks
     @Inject(method = "handleDataMarker(Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V", at = @At("TAIL"))
     private void spawnCorsairs(String markerId, BlockPos pos, ServerLevelAccessor level, RandomSource random, BoundingBox chunkBB, CallbackInfo ci) {
-        BlockPos.MutableBlockPos cPos = new BlockPos.MutableBlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-        while(!level.getBlockState(cPos).is(Blocks.WATER) && !level.getBlockState(cPos).is(Blocks.AIR)) cPos.move(Direction.UP, 2);
-        CorsairEntity corsairEntity = (CorsairEntity) ModMobs.CORSAIR.create(level.getLevel(), EntitySpawnReason.STRUCTURE);
-        if (corsairEntity != null) {
-            corsairEntity.setPersistenceRequired();
-            corsairEntity.refreshDimensions();
-            corsairEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(cPos), EntitySpawnReason.STRUCTURE, null);
-            level.addFreshEntityWithPassengers(corsairEntity);
-            if (cPos.getY() > level.getSeaLevel()) {
-                level.setBlockAndUpdate(cPos, Blocks.AIR.defaultBlockState());
-            } else {
-                level.setBlockAndUpdate(cPos, Blocks.WATER.defaultBlockState());
+        if(markerId.equals("map_chest") || markerId.equals("treasure_chest") || markerId.equals("supply_chest")) {
+            CorsairEntity corsairEntity = (CorsairEntity) ModMobs.CORSAIR.create(level.getLevel(), EntitySpawnReason.STRUCTURE);
+            if (corsairEntity != null) {
+                BlockPos.MutableBlockPos cPos = new BlockPos.MutableBlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+                while(!level.getBlockState(cPos).is(Blocks.WATER) && !level.getBlockState(cPos).is(Blocks.AIR)) cPos.move(Direction.UP, 2);
+                corsairEntity.setPersistenceRequired();
+                corsairEntity.snapTo(cPos, 0F, 0F);
+                corsairEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(cPos), EntitySpawnReason.STRUCTURE, null);
+                level.addFreshEntityWithPassengers(corsairEntity);
+                if (cPos.getY() > level.getSeaLevel()) {
+                    level.setBlock(cPos, Blocks.AIR.defaultBlockState(), 2);
+                } else {
+                    level.setBlock(cPos, Blocks.WATER.defaultBlockState(), 2);
+                }
             }
         }
     }

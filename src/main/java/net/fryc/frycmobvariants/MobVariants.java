@@ -4,12 +4,15 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.conversion.MobConversion;
+import net.fryc.frycmobvariants.conversion.json.MobConversionRulesResourceReloadListener;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.MobEquipment;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.world.entity.EntityTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +33,7 @@ public class MobVariants implements ModInitializer {
 		ModSpawnEggs.registerSpawnEggs();
 		MobConversion.registerMobConversionFunctionTypes();
 
-		// TODO ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new MobConversionRulesResourceReloadListener());
+		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new MobConversionRulesResourceReloadListener());
 
 		// TODO CommandRegistrationCallback.EVENT.register(TryToConvertCommand::register);
 

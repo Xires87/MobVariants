@@ -85,7 +85,7 @@ abstract class MobEntityMixin extends LivingEntity implements Targeting, Equipme
             }
 
             MobVariants.LOGGER.error(
-                    "Trying to convert a mob to a non-mob entity! Given entity should extend 'MobEntity' but '" +
+                    "Trying to convert a mob to a non-mob entity! Given entity should extend 'Mob' but '" +
                             mobEntity.getClass() + "' does not! It may be caused by a conversion rule (invalid outcome mob)."
             );
         }

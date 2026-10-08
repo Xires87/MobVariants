@@ -22,7 +22,7 @@ public class SoulStealerEntityRenderer extends AbstractSkeletonRenderer<SoulStea
 
     public SoulStealerEntityRenderer(EntityRendererProvider.Context context) {
         super(context, ModelLayers.STRAY, ModelLayers.STRAY_ARMOR);
-        this.addLayer(new SkeletonClothingLayer(this, context.getModelSet(), ModelLayers.STRAY_OUTER_LAYER, OVERLAY));
+        this.addLayer(new SkeletonClothingLayer<>(this, context.getModelSet(), ModelLayers.STRAY_OUTER_LAYER, OVERLAY));
     }
 
 

@@ -1,42 +1,62 @@
 package net.fryc.frycmobvariants.conversion.json;
 
 
-public class MobConversionRulesResourceReloadListener /*implements SimpleSynchronousResourceReloadListener*/ {
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
+import net.fryc.frycmobvariants.MobVariants;
+import net.fryc.frycmobvariants.conversion.MobConversion;
+import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
+import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
+import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
+import net.fryc.frycmobvariants.util.FrycJsonHelper;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.function.BiPredicate;
+
+public class MobConversionRulesResourceReloadListener implements SimpleSynchronousResourceReloadListener {
 
     private static final String MOB_CONVERSION_RULES_PATH = "mob_conversion_rules";
 
-    /*
     @Override
     public Identifier getFabricId() {
-        return Identifier.of(MobVariants.MOD_ID, MOB_CONVERSION_RULES_PATH);
+        return Identifier.fromNamespaceAndPath(MobVariants.MOD_ID, MOB_CONVERSION_RULES_PATH);
     }
 
-     TODO reload listener
 
     @Override
-    public void reload(ResourceManager manager) {
+    public void onResourceManagerReload(ResourceManager manager) {
         MobConversion.MOB_CONVERTING_RULES.clear();
 
-        for(Identifier id : manager.findResources(MOB_CONVERSION_RULES_PATH, path -> path.getPath().endsWith(".json")).keySet()) {
-            try(InputStream stream = manager.getResource(id).get().getInputStream()) {
+        for(Identifier id : manager.listResources(MOB_CONVERSION_RULES_PATH, path -> path.getPath().endsWith(".json")).keySet()) {
+            try(InputStream stream = manager.getResource(id).get().open()) {
                 JsonObject jsonObject = JsonParser.parseString(new String(stream.readAllBytes())).getAsJsonObject();
 
-                int priority = JsonHelper.getInt(jsonObject, "priority", 1);
-                RegistryEntry<EntityType<? extends Entity>> targetEntity = FrycJsonHelper.getEntityType(jsonObject, "target_mob");
-                RegistryEntry<EntityType<? extends Entity>> outcomeEntity = FrycJsonHelper.getEntityType(jsonObject, "outcome_mob");
+                int priority = GsonHelper.getAsInt(jsonObject, "priority", 1);
+                Holder<EntityType<? extends Entity>> targetEntity = FrycJsonHelper.getEntityType(jsonObject, "target_mob");
+                Holder<EntityType<? extends Entity>> outcomeEntity = FrycJsonHelper.getEntityType(jsonObject, "outcome_mob");
 
                 // non-mob target will just not work and non-mob outcome will print an error in logs
                 EntityType<? extends Entity> targetMob = targetEntity.value();
                 EntityType<? extends Entity> outcomeMob = outcomeEntity.value();
 
-                JsonObject requirementsObject = JsonHelper.getObject(jsonObject, "requirements");
-                JsonObject equipmentObject = JsonHelper.getObject(jsonObject, "equipment");
+                JsonObject requirementsObject = GsonHelper.getAsJsonObject(jsonObject, "requirements");
+                JsonObject equipmentObject = GsonHelper.getAsJsonObject(jsonObject, "equipment");
 
-                BiPredicate<MobEntity, Random> requirements = FrycJsonHelper.getMobConversionFunction(requirementsObject);
+                BiPredicate<Mob, Random> requirements = FrycJsonHelper.getMobConversionFunction(requirementsObject);
                 MobConversionEquipment equipment = FrycJsonHelper.getMobConversionEquipment(equipmentObject);
 
                 MobConvertingRule rule = new MobConvertingRule(priority, (mob, random) -> {
-                    if(mob.getType().equals(targetMob) /* <-- redundant check *//* && requirements.test(mob, random)) {
+                    if(mob.getType().equals(targetMob) /* <-- redundant check */ && requirements.test(mob, random)) {
                         return new MobConvertingOutcome(equipment, outcomeMob);
                     }
 
@@ -51,6 +71,4 @@ public class MobConversionRulesResourceReloadListener /*implements SimpleSynchro
             }
         }
     }
-
-    */
 }

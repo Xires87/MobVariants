@@ -61,9 +61,9 @@ public class MobConvertingHelper {
     @SuppressWarnings("unchecked")
     private static void convertMobAndSetCustomEquipment(Mob originalMob, Random random, MobConvertingOutcome outcome) {
         int slimeSize = originalMob instanceof Slime slime ? slime.getSize() : -1;
-        originalMob.convertTo((EntityType<? extends Mob>) outcome.entityType(), new ConversionParams(ConversionType.SINGLE, outcome.conversionEquipment().keepEquipment(), true, null), EntitySpawnReason.NATURAL, mob -> {
+        originalMob.convertTo((EntityType<? extends Mob>) outcome.entityType(), new ConversionParams(ConversionType.SINGLE, outcome.conversionEquipment().keepEquipment(), true, originalMob.getTeam()), EntitySpawnReason.NATURAL, mob -> {
             // items need to be added next tick: adding in the same tick caused visual bugs (server/client synchronisation issues)
-            // TODO sprawdzic czy nadal trzeba w osobnym ticku
+
             ((CanConvert) mob).setNextTickUpdate(() -> {
                 if(slimeSize > -1 && mob instanceof Slime slime) {
                     slime.setSize(slimeSize, true);

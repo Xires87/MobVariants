@@ -53,7 +53,7 @@ public class BloatedCorpseEntity extends Zombie {
         areaEffectCloudEntity.setRadius(3.5F);
         areaEffectCloudEntity.setRadiusOnUse(-0.5F);
         areaEffectCloudEntity.setWaitTime(4);
-        areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration());
+        areaEffectCloudEntity.setDuration(300);
         areaEffectCloudEntity.setRadiusPerTick(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
         //areaEffectCloudEntity.setColor(8888888);
         areaEffectCloudEntity.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 320));

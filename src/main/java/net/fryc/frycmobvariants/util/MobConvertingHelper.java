@@ -5,7 +5,6 @@ import net.fryc.frycmobvariants.conversion.rules.MobConversionEquipment;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingOutcome;
 import net.fryc.frycmobvariants.conversion.rules.MobConvertingRule;
 import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
-
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.cubemob.Slime;
 import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;

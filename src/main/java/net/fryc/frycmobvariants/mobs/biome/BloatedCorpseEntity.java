@@ -76,7 +76,7 @@ public class BloatedCorpseEntity extends ZombieEntity {
                     livingEntity.damage(this.getWorld().getDamageSources().onFire(), 0.1f);
                 }
                 else{
-                    float damage = (float) (3.5-(d/4));
+                    float damage = (float) (3.5 - (d > 0 ? d/4 : 0));
                     livingEntity.damage(this.getWorld().getDamageSources().inFire(), damage);
                     livingEntity.setOnFireFor((int)(damage+1));
                 }

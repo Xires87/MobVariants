@@ -18,7 +18,7 @@ public class TropicalSpiderEntity extends SpiderEntity {
     }
 
     public static DefaultAttributeContainer.Builder createTropicalSpiderAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0);
     }
 
     public boolean tryAttack(Entity target) {

@@ -22,7 +22,7 @@ public class FrozenZombieEntity extends ZombieEntity {
     }
 
     public static DefaultAttributeContainer.Builder createFrozenZombieAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0).add(EntityAttributes.GENERIC_ARMOR, 6.0).add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 35.0F).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0).add(EntityAttributes.GENERIC_ARMOR, 6.0).add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
     }
 
     public boolean tryAttack(Entity target) {

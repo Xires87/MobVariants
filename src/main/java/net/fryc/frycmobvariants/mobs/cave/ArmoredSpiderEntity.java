@@ -20,7 +20,7 @@ public class ArmoredSpiderEntity extends SpiderEntity {
     }
 
     public static DefaultAttributeContainer.Builder createArmoredSpiderAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000000192092896).add(EntityAttributes.GENERIC_ARMOR, 12).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.1f);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3).add(EntityAttributes.GENERIC_ARMOR, 12).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.1f);
     }
 
     //armored spiders deflect arrows

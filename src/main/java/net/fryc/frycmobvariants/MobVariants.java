@@ -3,8 +3,10 @@ package net.fryc.frycmobvariants;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fryc.frycmobvariants.commands.TryToConvertCommand;
 import net.fryc.frycmobvariants.config.MobVariantsConfig;
 import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.conversion.json.MobConversionRulesResourceReloadListener;
@@ -35,7 +37,7 @@ public class MobVariants implements ModInitializer {
 
 		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new MobConversionRulesResourceReloadListener());
 
-		// TODO CommandRegistrationCallback.EVENT.register(TryToConvertCommand::register);
+		CommandRegistrationCallback.EVENT.register(TryToConvertCommand::register);
 
 		ServerLifecycleEvents.START_DATA_PACK_RELOAD.register((server, resourceManager) -> {
 			MobEquipment.initializePossibleEquipment();

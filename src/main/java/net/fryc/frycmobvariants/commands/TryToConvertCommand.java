@@ -1,41 +1,51 @@
 package net.fryc.frycmobvariants.commands;
 
 
+import com.mojang.brigadier.CommandDispatcher;
+import net.fryc.frycmobvariants.util.mixin_interfaces.CanConvert;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.world.entity.Entity;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 public class TryToConvertCommand {
-    /* TODO komenda
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
-        dispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder) CommandManager.literal("tryToConvert").requires((source) -> {
-            return source.hasPermissionLevel(2);
-        })).executes((context) -> {
-            return execute((ServerCommandSource)context.getSource(), ImmutableList.of(((ServerCommandSource)context.getSource()).getEntityOrThrow()));
-        })).then(CommandManager.argument("targets", EntityArgumentType.entities()).executes((context) -> {
-            return execute((ServerCommandSource)context.getSource(), EntityArgumentType.getEntities(context, "targets"));
-        })));
+
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext ctx, Commands.CommandSelection commandSelection) {
+        dispatcher.register(Commands
+                .literal("tryToConvert")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .then(Commands.argument("targets", EntityArgument.entities()).executes((context) -> {
+                    return execute(context.getSource(), EntityArgument.getEntities(context, "targets"));
+                })));
     }
 
-    private static int execute(ServerCommandSource source, Collection<? extends Entity> targets) {
-        Iterator var2 = targets.iterator();
-        boolean success = false;
+    private static int execute(CommandSourceStack source, Collection<? extends Entity> targets) {
+        Iterator<? extends Entity> var2 = targets.iterator();
+        int affectedTargets = 0;
         while(var2.hasNext()) {
-            Entity entity = (Entity)var2.next();
+            Entity entity = var2.next();
             if(entity instanceof CanConvert mob){
                 mob.setCanConvertToTrue();
-                success = true;
+                affectedTargets++;
             }
         }
 
-        boolean s = success;
-        source.sendFeedback(() -> {
-            if(s){
-                return Text.literal("Command executed successfully");
-            }
-            return Text.literal("Wrong target").formatted(Formatting.RED);
-        }, false);
+        if(affectedTargets > 0) {
+            source.sendSystemMessage(Component.literal("Affected " + affectedTargets + " target" + (affectedTargets > 1 ? "s" : "")));
+        }
+        else {
+            source.sendSystemMessage(Component.literal("Wrong target").withColor(TextColor.RED));
+        }
+
 
         return targets.size();
     }
 
-     */
 }

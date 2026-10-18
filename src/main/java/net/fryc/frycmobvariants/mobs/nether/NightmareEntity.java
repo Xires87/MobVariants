@@ -29,14 +29,14 @@ public class NightmareEntity extends Ghast {
         this.xpReward += 3;
     }
 
-    protected void initGoals() {
+    protected void registerGoals() {
         this.goalSelector.addGoal(5, new RandomFloatAroundGoal(this));
         this.goalSelector.addGoal(7, new GhastLookGoal(this));
         this.goalSelector.addGoal(7, new NightmareEntity.NightmareShootFireballGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(
                 this, Player.class, 10, true, false, (target, level) -> {
-                    return Math.abs(target.getY() - this.getY()) <= (double)4.0F;
-                }
+            return Math.abs(target.getY() - this.getY()) <= (double)4.0F;
+        }
         ));
     }
 

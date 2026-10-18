@@ -22,7 +22,7 @@ public class FrozenZombieEntity extends Zombie {
     }
 
     public static AttributeSupplier.Builder createFrozenZombieAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.23000000417232513).add(Attributes.ATTACK_DAMAGE, 3.0).add(Attributes.ARMOR, 6.0).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0F).add(Attributes.MOVEMENT_SPEED, 0.23).add(Attributes.ATTACK_DAMAGE, 3.0).add(Attributes.ARMOR, 6.0).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
 
     public boolean doHurtTarget(ServerLevel level, Entity target) {

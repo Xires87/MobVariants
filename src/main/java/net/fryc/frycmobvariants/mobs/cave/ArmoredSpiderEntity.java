@@ -24,7 +24,7 @@ public class ArmoredSpiderEntity extends Spider {
     }
 
     public static AttributeSupplier.Builder createArmoredSpiderAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 18.0).add(Attributes.MOVEMENT_SPEED, 0.30000000192092896).add(Attributes.ARMOR, 12).add(Attributes.KNOCKBACK_RESISTANCE, 0.1f);
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 18.0).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.ARMOR, 12).add(Attributes.KNOCKBACK_RESISTANCE, 0.1f);
     }
 
     //armored spiders deflect arrows

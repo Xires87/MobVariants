@@ -24,7 +24,7 @@ public class TropicalSpiderEntity extends Spider {
     }
 
     public static AttributeSupplier.Builder createTropicalSpiderAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0).add(Attributes.MOVEMENT_SPEED, 0.30000001192092896).add(Attributes.ATTACK_DAMAGE, 1.0);
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
     public boolean doHurtTarget(ServerLevel level, Entity target) {

@@ -25,7 +25,7 @@ public class ForgottenEntity extends Zombie {
     }
 
     public static AttributeSupplier.Builder createForgottenAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 18.0).add(Attributes.MOVEMENT_SPEED, 0.23200000417232513).add(Attributes.MAX_HEALTH, 26).add(Attributes.ATTACK_DAMAGE, 5.0).add(Attributes.ARMOR, 4.0).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 37.0).add(Attributes.MOVEMENT_SPEED, 0.232).add(Attributes.MAX_HEALTH, 26).add(Attributes.ATTACK_DAMAGE, 5.0).add(Attributes.ARMOR, 4.0).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
 
 

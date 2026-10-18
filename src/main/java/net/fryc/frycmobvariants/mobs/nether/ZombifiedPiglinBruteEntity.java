@@ -24,7 +24,7 @@ public class ZombifiedPiglinBruteEntity extends ZombifiedPiglin {
     }
 
     public static AttributeSupplier.Builder createZombifiedPiglinBruteAttributes() {
-        return Zombie.createAttributes().add(Attributes.MAX_HEALTH, 42).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 0.0).add(Attributes.MOVEMENT_SPEED, 0.26050000417232513).add(Attributes.ATTACK_DAMAGE, 6.0);
+        return Zombie.createAttributes().add(Attributes.MAX_HEALTH, 42).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 0.0).add(Attributes.MOVEMENT_SPEED, 0.2605).add(Attributes.ATTACK_DAMAGE, 6.0);
     }
 
 

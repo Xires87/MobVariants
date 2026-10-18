@@ -33,7 +33,7 @@ public class BloatedCorpseEntity extends Zombie {
     }
 
     public static AttributeSupplier.Builder createBloatedCorpseAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0F).add(Attributes.MAX_HEALTH, 18).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_DAMAGE, 3.0).add(Attributes.ARMOR, 2.0).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0F).add(Attributes.MAX_HEALTH, 18).add(Attributes.MOVEMENT_SPEED, 0.21555F).add(Attributes.ATTACK_DAMAGE, 3.0).add(Attributes.ARMOR, 2.0).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
 
     protected void triggerOnDeathMobEffects(ServerLevel level, RemovalReason reason) {

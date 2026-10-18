@@ -6,15 +6,18 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.cubemob.MagmaCube;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 
 
@@ -76,5 +79,9 @@ public class LavaSlimeEntity extends MagmaCube {
             this.playSound(SoundEvents.BUCKET_EMPTY_LAVA, 0.78f, this.getSoundPitch());
         }
         return super.getJumpSound();
+    }
+
+    public static boolean checkLavaSlimeSpawnRules(final EntityType<LavaSlimeEntity> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
+        return level.getDifficulty() != Difficulty.PEACEFUL;
     }
 }

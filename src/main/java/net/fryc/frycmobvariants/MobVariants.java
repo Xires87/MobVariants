@@ -12,6 +12,7 @@ import net.fryc.frycmobvariants.conversion.MobConversion;
 import net.fryc.frycmobvariants.conversion.json.MobConversionRulesResourceReloadListener;
 import net.fryc.frycmobvariants.mobs.ModMobs;
 import net.fryc.frycmobvariants.mobs.ModSpawnEggs;
+import net.fryc.frycmobvariants.mobs.ModSpawnRules;
 import net.fryc.frycmobvariants.util.MobConvertingHelper;
 import net.fryc.frycmobvariants.util.MobEquipment;
 import net.minecraft.server.packs.PackType;
@@ -34,6 +35,7 @@ public class MobVariants implements ModInitializer {
 		ModMobs.registerModMobs();
 		ModSpawnEggs.registerSpawnEggs();
 		MobConversion.registerMobConversionFunctionTypes();
+		ModSpawnRules.registerModSpawnRules();
 
 		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new MobConversionRulesResourceReloadListener());
 

@@ -68,7 +68,7 @@ public class BloatedCorpseEntity extends Zombie {
         this.spawnFireExplosionParticles();
         this.playSound(SoundEvents.BLAZE_SHOOT, 1.0f, 1.0f);
 
-        AABB box = this.getBoundingBox().expandTowards(3.0, 3.0, 3.0);
+        AABB box = this.getBoundingBox().expandTowards(3.0, 3.0, 3.0).expandTowards(-3.0, -3.0, -3.0);
         List<LivingEntity> list = this.level().getEntitiesOfClass(LivingEntity.class, box, AFFECTED_BY_FIRE);
 
         for (LivingEntity livingEntity : list) {
@@ -78,18 +78,17 @@ public class BloatedCorpseEntity extends Zombie {
                     livingEntity.hurtServer(((ServerLevel) this.level()), this.level().damageSources().onFire(), 0.1f);
                 }
                 else{
-                    float damage = (float) (3.5-(d/4));
+                    float damage = (float) (3.5 - (d > 0 ? d/4 : 0));
                     livingEntity.hurtServer(((ServerLevel) this.level()), this.level().damageSources().inFire(), damage);
-                    livingEntity.igniteForTicks((int)(damage+1));
+                    livingEntity.igniteForTicks((int)(damage+1) * 16);
                 }
             }
         }
     }
 
     private void spawnFireExplosionParticles(){
-        RandomSource rand = this.getRandom();
-        for(int i = 60; i > 0; i--){
-            this.level().addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), rand.nextFloat() * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * (rand.nextBoolean() ? 1 : -1), rand.nextFloat() * (rand.nextBoolean() ? 1 : -1));
+        if(!this.level().isClientSide()) {
+            ((ServerLevel) this.level()).sendParticles(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 60, 1, 1, 1, 0.8);
         }
     }
 
